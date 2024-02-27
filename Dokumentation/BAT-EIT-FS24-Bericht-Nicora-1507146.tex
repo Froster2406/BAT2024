@@ -24,13 +24,14 @@
 
 \renewcommand*\contentsname{Inhaltsverzeichnis} % rename table of content
 
+\usepackage{fancyhdr} %header and footer
+
 % colored \pm
 \usepackage{stackengine,xcolor}
 \def\cpm{\mathbin{\ensurestackMath{\abovebaseline[-3.4pt]{%
 				\stackunder[-3.5pt]{\color{green!70}+}{\color{red}-}}}}}
 
 \usepackage[utf8]{inputenc}
-
 
 \begin{document}
 	\begin{titlepage}
@@ -51,8 +52,76 @@
 	\end{titlepage}
 	\tableofcontents
 	
+	%to do: add footer and header
+	
 	\newpage
 	\section{Einleitung}
+	\subsection{Ausgangslage}
+	Die Firma hEar hat es sich zum Ziel gesetzt, gegen \color{red}TODO\color{black}. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser Prototyp ist jedoch noch unhandlich und nicht für den Massenmarkt geeignet. 
+	\subsection{Ziele}
+	Das Ziel dieser Arbeit ist es, in einem ersten Schritt, auf Basis des vorhandenen Prototypen, ein funktionales, kompaktes und portables Schalldruckpegel-Messgerät zu entwickeln. Dabei sollen folgende Rahmenbedingungen zwingend eingehalten werden:
+	\begin{itemize}
+		\item Die Laufzeit des Gerätes soll mindestens 12 Stunden betragen.
+		\item Das Gerät wird mit einem Akku betrieben. Dieser wird via eines USB-C-Anschlusses aufgeladen.
+		\item Der Schalldruckpegel wird mit einem MEMS-Mikrofon aufgezeichnet.
+		\item Die Messdaten werden in regelmässigen Abständen auf dem Gerät gespeichert.
+		\item Das Gerät verfügt über eine BLE-Schnittstelle um die Messdaten drahtlos an ein Zielgerät zu übertragen.
+		\item Der aktuelle Schalldruckpegel wird auf der Vorderseite des Gerätes visuell dargestellt.
+	\end{itemize}
+	In einem zweiten Schritt, wird das Gerät kalibriert und dessen Qualität mit auf dem Markt bereits vorhandenen Geräten verglichen.
+	
+	\newpage
+	\section{Mikrofon}
+	\subsection{Grundlagen}
+	\subsubsection{MEMS}
+	\subsubsection{I2S}
+	\subsubsection{PDM}
+	\subsubsection{Schalldruckpegel}
+	\subsection{Komponentenwahl}
+	\subsubsection{Kriterien}
+	\subsubsection{Vergleich}
+	
+	\newpage
+	\section{Mikrocontroller}
+	\subsection{Grundlagen}
+	\subsubsection{DMA}
+	\subsubsection{BLE}
+	\subsubsection{RTC}
+	\subsubsection{Peripherie in Hardware oder Software}
+	\subsection{Komponentenwahl}
+	Es existieren eine Vielzahl von Mikrocontroller-Herstellern. Viele dieser verfügen über eine breite Palette an BLE-tauglichen Chips. Um den geeignetsten darunter zu finden, werden nachfolgend die benötigten Schnittstellen definiert und mehrere, vorselektionierte Mikrocontroller, miteinander verglichen.
+	\subsubsection{Kriterien}
+	\subsubsection{Vergleich}
+	\subsubsection{Fazit}
+	
+	\newpage
+	\section{LED}
+	\subsection{Grundlagen}
+	\subsubsection{Leistungsaufnahme}
+	\subsubsection{Lichtleistung}
+	\subsection{Komponentenwahl}
+	\subsubsection{Kriterien}
+	\subsubsection{Vergleich}
+	
+	\newpage
+	\section{Entwicklung}
+	\subsection{Hardware}
+	\subsubsection{PCB}
+	\subsubsection{Kosten}
+	\subsection{Software}
+	
+	\newpage
+	\section{Messungen}
+	\subsection{Leistungsaufnahme}
+	\subsection{Mikrofon-Kalibrierung}
+	\subsection{Vergleich}
+	
+	\newpage
+	\section{Fazit und Ausblick}
+	
+	\newpage
+	\section{Anhang}
+	
 	
 	
 	
