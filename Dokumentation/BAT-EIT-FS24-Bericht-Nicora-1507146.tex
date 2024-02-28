@@ -74,7 +74,24 @@
 	\section{Mikrofon}
 	\subsection{Grundlagen}
 	\subsubsection{MEMS}
+	
 	\subsubsection{I2S}
+	Inter-Integrated Sound (I²S) bezeichnet eine Bus-Schnittstelle, welche von Philips zur Übertragung von digitalen Audiosignalen entwickelt wurde. Ähnlich wie I²C (Inter-Integrated Circuit) wird die Schnittstelle jedoch nur innerhalb des Gerätes verwendet. Dabei werden drei Pins zwischen Sender (hier das Mikrofon) und dem Empfänger (hier der Mikrocontroller) benötigt:
+	\begin{itemize}
+		\item \textbf{SCK} \quad (Serial Clock) \\
+		Generiert die Taktrate, welche gleichzeitig die Datenrate der Übertragung definiert. Die Taktrate wird vom Master (hier der Mikrocontroller) vorgegeben.
+		\item \color{green}\textbf{WS}\color{black} \quad (Word Select) \\
+		Gibt vor, welcher Audiokanal (R, L) übertragen werden soll. Dies ermöglicht es, entweder ein Stereo-Signal oder zwei Mono-Signale wie zum Beispiel zwei Mikrofone zu übertragen.
+		\item \color{red}\textbf{SD}\color{black} \quad (Serial Data)
+		Beinhaltet den eigentlichen Datenstream mit der Datenrate definiert durch SCK und der Länge definiert durch WS.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_I2S}
+		\caption[]{Übersicht I2S-Signale}
+		\label{fig:bati2s}
+	\end{figure}
+	
 	\subsubsection{PDM}
 	\subsubsection{Schalldruckpegel}
 	\subsection{Komponentenwahl}
