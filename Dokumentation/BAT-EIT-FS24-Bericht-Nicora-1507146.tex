@@ -22,7 +22,12 @@
 
 \usepackage{pdfpages} %add pdf to latex file
 
+\usepackage{graphicx} %list of figures
+
 \renewcommand*\contentsname{Inhaltsverzeichnis} % rename table of content
+
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+\renewcommand{\listtablename}{Tabellenverzeichnis}
 
 \usepackage{fancyhdr} %header and footer
 
@@ -83,7 +88,7 @@
 		\item \color{green}\textbf{WS}\color{black} \quad (Word Select) \\
 		Gibt vor, welcher Audiokanal (R, L) übertragen werden soll. Dies ermöglicht es, entweder ein Stereo-Signal oder zwei Mono-Signale wie zum Beispiel zwei Mikrofone zu übertragen.
 		\item \color{red}\textbf{SD}\color{black} \quad (Serial Data)
-		Beinhaltet den eigentlichen Datenstream mit der Datenrate definiert durch SCK und der Länge definiert durch WS.
+		Beinhaltet den eigentlichen Datenstream mit der Datenrate definiert durch \textbf{SCK} und der Länge definiert durch \color{green}\textbf{WS}\color{black}.
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
@@ -91,9 +96,10 @@
 		\caption[]{Übersicht I2S-Signale}
 		\label{fig:bati2s}
 	\end{figure}
-	
 	\subsubsection{PDM}
+	Pulse Density Modulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht die Anzahl der digitalen "1" der Amplitude des analogen Signales.
 	\subsubsection{Schalldruckpegel}
+	\subsubsection{Frequenzbewertung}
 	\subsection{Komponentenwahl}
 	\subsubsection{Kriterien}
 	\subsubsection{Vergleich}
@@ -102,30 +108,73 @@
 	\section{Mikrocontroller}
 	\subsection{Grundlagen}
 	\subsubsection{DMA}
+	Bei \textbf{D}irect \textbf{M}emory \textbf{A}ccess handelt es sich um eine Art Steuerbaustein, welcher unabhängig und parallel zum eigentlichen Rechenkern arbeitet. Dieser hat, wie der Rechenkern selbst, Zugriff auf den gesamten Datenbus. Dieser ermöglicht es, effizient Daten von Peripherien wie der UART, I²S, SPI, ect. in den RAM und umgekehrt zu laden. Dadurch wird der Rechenkern entlastet und kann für wichtigere Aufgaben eingesetzt oder gar in einen Energiesparmodus versetzt werden. Dabei gibt es zwei Möglichkeiten mit dem DMA-Baustein zu interagieren:
+	\begin{itemize}
+		\item Fire-and-forget
+	\end{itemize}
 	\subsubsection{BLE}
 	\subsubsection{RTC}
+	Unter einer \textbf{R}eal \textbf{T}ime \textbf{C}lock versteht man ein Stück Hardware (intern oder extern), welche die Zeit ab Inbetriebnahme misst. Übliche RTCs haben, aufgrund ihrer Bauweise eine Genauigkeit von 100ppm. Da dies einer Zeitverschiebung von 4min und 19s @32kHz entspricht, enthalten die meisten RTCs Kompensationsmechanismen, um diese Zeit auf unter 100ms zu bringen. \cite{dighe_tps65950_2008}
+% 	https://www.ti.com/lit/an/swca024/swca024.pdf?ts=1709375495514&ref_url=https%253A%252F%252Fwww.google.com%252F
+	\subsubsection{Low Power}
 	\subsubsection{Peripherie in Hardware oder Software}
+	Bei allen gängigen Kommunikationsprotokollen ist die Frage, wie diese implementiert werden sollen. Dabei stehen folgende Möglichkeiten zur Auswahl:
+	\begin{itemize}
+		\item in \textbf{Hardware} \\
+		+ Die benötigte Infrastruktur (Register, CRC, etc.) sind bereits physikalisch implementiert. Die Kommunikation kann dementsprechend vom Rechenkern abgekoppelt durchgeführt werden und ermöglicht eine gewisse Parallelität von mehreren Prozessen mit wenig Rechenaufwand. Insbesondere in Verbindung mit DMA, kann so viel Rechenzeit eingespart werden. \\
+		- Bei den meisten Mikrocontrollern ist die spezifische Hardware an einzelne Pins gebunden. Dies wirkt sich auf die Flexibilität des PCB-Layouts oder gar des Gesamtsystems (zu wenig Anschlüsse) aus.
+		\item in \textbf{Software} \\
+		+ Die meisten Pins können flexibel für jedes Protokoll verwendet werden. Dadurch vereinfacht sich auch das PCB-Layouten.\\
+		- Bei Verwendung von Ein-Kern-Systemen, welche im Embedded-Bereich mehrheitlich anzutreffen sind, kann keine echte Parallelität von Prozessen erfolgen. Dies verringert die Ausführungsgeschwindigkeit.
+	\end{itemize}
+	Grundsätzlich ist, nach Möglichkeit und Verfügbarkeit, eine Hardware-Peripherie zu bevorzugen. Insbesondere bei batteriebetriebenen Systemen mit langer Laufzeit, ist diese ausschlaggebend.
 	\subsection{Komponentenwahl}
 	Es existieren eine Vielzahl von Mikrocontroller-Herstellern. Viele dieser verfügen über eine breite Palette an BLE-tauglichen Chips. Um den geeignetsten darunter zu finden, werden nachfolgend die benötigten Schnittstellen definiert und mehrere, vorselektionierte Mikrocontroller, miteinander verglichen.
 	\subsubsection{Kriterien}
+	\begin{itemize}
+		\item \textbf{I²S} + \textbf{PDM} zur Ansteuerung des Mikrofons.
+		\item \textbf{SPI} zur Ansteuerung von möglichen Peripherien wie externe Speicherbausteine oder Displays.
+		\item \textbf{I²C} zur Ansteuerung von Laderegler und LED-Treiber-IC.
+		\item \textbf{DMA} zur energieeffizienten Verarbeitung der Daten.
+		\item \textbf{RTC} um die gemessenen Werten mit einem Zeitstempel verknüpfen zu können.
+		\item \textbf{BLE}-Fähiger Mikrocontroller mit vorgefertigter Antenne um die Integration zu vereinfachen.
+	\end{itemize}
 	\subsubsection{Vergleich}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{tables/BAT_Vergleich-Mikrocontroller}
+		\caption{Vergleich von möglichen Mikrocontrollern}
+		\label{table:batvergleich-mikrocontroller}
+	\end{figure}
 	\subsubsection{Fazit}
+	Wie dem Vergleich zu entnehmen ist, unterscheiden sich die Mikrocontroller meist nur in der integrierten Flash-Grösse sowie der Leistungsaufnahme bei einer gewissen Taktrate. Dadurch wird die Wahl nicht eingeschränkt, was eine geeignete Evaluation nicht vereinfacht. Ausschlaggebend ist jedoch der Formfaktor. Bis auf Silicon Labs und STmicro muss für einen Mikrocontroller mit vorgefertigter Antenne auf Drittanbieter ausgewichen werden. In Zeiten von Katastrophen wie COVID oder Kriegen inmitten von Handelsrouten ist die Produktverfügbarkeit einer der zentraler Aspekte. Aus diesem Grund wird nachfolgend der EFR32BG22 von Silicon Labs bzw. dessen Modul-Variante, der \textbf{BGM220P}, eingesetzt.
 	
 	\newpage
 	\section{LED}
 	\subsection{Grundlagen}
+	\subsubsection{Wellenlänge}
 	\subsubsection{Leistungsaufnahme}
 	\subsubsection{Lichtleistung}
+	\subsubsection{Vorwiderstand / Strombegrenzung}
 	\subsection{Komponentenwahl}
 	\subsubsection{Kriterien}
+	\begin{itemize}
+		\item Lichtleistung 
+	\end{itemize}
 	\subsubsection{Vergleich}
 	
 	\newpage
 	\section{Entwicklung}
+	\subsection{Konzept}
 	\subsection{Hardware}
 	\subsubsection{PCB}
+	\paragraph{Laderegler}
 	\subsubsection{Kosten}
 	\subsection{Software}
+	\subsubsection{Filterdesign}
+	\subsubsection{I²S}
+	\subsubsection{I²C}
+	\subsubsection{SPI}
 	
 	\newpage
 	\section{Messungen}
@@ -138,6 +187,15 @@
 	
 	\newpage
 	\section{Anhang}
+	\bibliography{Sources} 
+	\bibliographystyle{ieeetr}
+	\listoffigures
+	\subsection{Fremdwörter}
+	CRC \\
+	Register \\
+	Pins \\
+	Embedded \\
+	ppm \\
 	
 	
 	
