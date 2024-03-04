@@ -1,0 +1,19 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "a3552e2f-aad6-432c-9dc6-cdba95841114")
+	(paper "A4")
+	(title_block
+		(title "Schalldruckpegelmessgerät")
+		(rev "1.0")
+		(company "Stefano Nicora")
+		(comment 1 "Hochschule Luzern, Technik & Architektur")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
