@@ -439,8 +439,12 @@
     }
   },
   "libraries": {
-    "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_footprint_libs": [
+      "BAT_Footprint-Library"
+    ],
+    "pinned_symbol_libs": [
+      "BAT_Library"
+    ]
   },
   "meta": {
     "filename": "BAT2024.kicad_pro",
@@ -574,7 +578,7 @@
       "version": 1
     },
     "net_format_name": "",
-    "page_layout_descr_file": "",
+    "page_layout_descr_file": "Library\\templates\\Drawingsheet.kicad_wks",
     "plot_directory": "",
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
