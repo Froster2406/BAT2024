@@ -2,4 +2,6 @@
   (version 7)
   (lib (name "BAT_Library")(type "KiCad")(uri "${KICAD_USER_SYMBOL_DIR}/BAT_Library.kicad_sym")(options "")(descr ""))
   (lib (name "USB4105-GF-A-060")(type "KiCad")(uri "${KICAD_USER_SYMBOL_DIR}/USB4105-GF-A-060.kicad_sym")(options "")(descr ""))
+  (lib (name "C-K_JS102011SAQN")(type "KiCad")(uri "${KICAD_USER_SYMBOL_DIR}/Original_files/C-K_JS102011SAQN.kicad_sym")(options "")(descr ""))
+  (lib (name "BQ21040DBVR")(type "KiCad")(uri "${KICAD_USER_SYMBOL_DIR}/Original_files/BQ21040DBVR.kicad_sym")(options "")(descr ""))
 )
