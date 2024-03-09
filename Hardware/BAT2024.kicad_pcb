@@ -125,4 +125,28 @@
 		)
 	)
 	(net 0 "")
+	(gr_circle
+		(center 158.628 97.028)
+		(end 198.628 97.028)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(fill none)
+		(layer "Edge.Cuts")
+		(uuid "4c8495a0-da04-4c07-ac9c-13c2ed8a9b30")
+	)
+	(gr_text "Bachelorarbeit 2024\nStefano Nicora\nHSLU T&A | V1.0\n"
+		(at 148.336 130.556 0)
+		(layer "F.SilkS")
+		(uuid "ee1ce309-3571-433b-bbf1-d8b92a4d5b82")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
 )
