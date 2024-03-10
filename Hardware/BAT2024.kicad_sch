@@ -4884,10 +4884,10 @@
 		(uuid "1232f1e9-8002-4413-afcc-1a43c1ca5c9d")
 	)
 	(junction
-		(at 62.23 25.4)
+		(at 88.9 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "34799022-9857-43f9-b651-327f80268ac1")
+		(uuid "4336412f-15c3-42ca-93d7-e8f0e35be9ad")
 	)
 	(junction
 		(at 64.77 74.93)
@@ -5008,16 +5008,6 @@
 			(type default)
 		)
 		(uuid "03ebfe8a-512b-4258-a7c9-a286d6c8679e")
-	)
-	(wire
-		(pts
-			(xy 24.13 101.6) (xy 27.94 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "05c3cd05-d947-4f74-8986-0202f188c6c6")
 	)
 	(wire
 		(pts
@@ -5161,6 +5151,16 @@
 	)
 	(wire
 		(pts
+			(xy 82.55 25.4) (xy 88.9 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3fcc51ff-020b-448b-b950-77c4ec22f3bc")
+	)
+	(wire
+		(pts
 			(xy 62.23 43.18) (xy 62.23 45.72)
 		)
 		(stroke
@@ -5191,7 +5191,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 25.4) (xy 64.77 25.4)
+			(xy 88.9 25.4) (xy 91.44 25.4)
 		)
 		(stroke
 			(width 0)
@@ -5258,6 +5258,16 @@
 			(type default)
 		)
 		(uuid "5b678a5d-70e8-447e-8b55-f1472b90fa89")
+	)
+	(wire
+		(pts
+			(xy 64.77 25.4) (xy 62.23 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "690d6f1a-7818-4520-9e7c-eaf47e6f66a5")
 	)
 	(wire
 		(pts
@@ -5937,7 +5947,7 @@
 		(uuid "11feddd1-4b8f-47cb-8b16-93fa4c5b9b94")
 	)
 	(label "SWCLK"
-		(at 95.25 35.56 270)
+		(at 96.52 46.99 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6245,7 +6255,7 @@
 		(uuid "86b628f5-e124-472f-86a8-3dd9fbcd58f3")
 	)
 	(label "SWO"
-		(at 90.17 35.56 270)
+		(at 91.44 46.99 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6344,7 +6354,7 @@
 		(uuid "9504cb4f-2d9a-4da6-8eae-19959ad382cd")
 	)
 	(label "SWDIO"
-		(at 92.71 35.56 270)
+		(at 93.98 46.99 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6663,7 +6673,7 @@
 		(uuid "f9dd72be-135d-48a1-b7be-22cb12225bdd")
 	)
 	(label "RESET"
-		(at 100.33 35.56 270)
+		(at 101.6 46.99 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6712,7 +6722,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 17.018 41.91 90)
 			(effects
 				(font
@@ -6782,7 +6792,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 30.1752 187.96 0)
 			(effects
 				(font
@@ -7091,7 +7101,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 105.41 25.4 270)
+		(at 106.68 36.83 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7100,7 +7110,7 @@
 		(fields_autoplaced yes)
 		(uuid "0a27ece6-f3c5-491d-957e-a16c5870253c")
 		(property "Reference" "#PWR04"
-			(at 101.6 25.4 0)
+			(at 102.87 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7109,7 +7119,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 110.49 25.4 0)
+			(at 111.76 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7117,7 +7127,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 105.41 25.4 0)
+			(at 106.68 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7126,7 +7136,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 105.41 25.4 0)
+			(at 106.68 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7135,7 +7145,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 105.41 25.4 0)
+			(at 106.68 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7250,7 +7260,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 82.2452 187.96 0)
 			(effects
 				(font
@@ -7386,7 +7396,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
 			(at 85.09 104.14 0)
 			(effects
 				(font
@@ -7709,7 +7719,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 164.592 185.42 90)
 			(effects
 				(font
@@ -7779,7 +7789,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 151.892 185.42 90)
 			(effects
 				(font
@@ -7913,7 +7923,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 29.972 110.49 90)
 			(effects
 				(font
@@ -8326,7 +8336,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 42.8752 187.96 0)
 			(effects
 				(font
@@ -8507,7 +8517,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "2d2b1d4c-caf9-4a8e-bb9a-7006d811ae46")
 		(property "Reference" "H5"
@@ -8935,7 +8945,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 55.5752 187.96 0)
 			(effects
 				(font
@@ -9776,7 +9786,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 119.0752 187.96 0)
 			(effects
 				(font
@@ -9820,7 +9830,7 @@
 	)
 	(symbol
 		(lib_id "BAT_Library:Littlefuse_1210L020WR")
-		(at 27.94 101.6 0)
+		(at 64.77 25.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9828,7 +9838,7 @@
 		(dnp no)
 		(uuid "50cf832c-d84c-4801-83ed-63004fe5d7bd")
 		(property "Reference" "F1"
-			(at 36.83 95.25 0)
+			(at 73.66 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9836,7 +9846,7 @@
 			)
 		)
 		(property "Value" "Littlefuse_1210L020WR"
-			(at 37.338 98.806 0)
+			(at 74.168 22.606 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9844,7 +9854,7 @@
 			)
 		)
 		(property "Footprint" "BAT_Footprint-Library:Littlefuse_FUSC3226X100N"
-			(at 41.91 100.33 0)
+			(at 78.74 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9854,7 +9864,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.littelfuse.com/~{/media/electronics/datasheets/resettable_ptcs/littelfuse_ptc_1210l_datasheet.pdf.pdf}"
-			(at 41.91 102.87 0)
+			(at 78.74 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9864,7 +9874,7 @@
 			)
 		)
 		(property "Description" "Littelfuse 0.2A Surface Mount Resettable Fuse, 30V dc"
-			(at 41.91 105.41 0)
+			(at 78.74 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9874,7 +9884,7 @@
 			)
 		)
 		(property "Height" "1"
-			(at 41.91 107.95 0)
+			(at 78.74 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9884,7 +9894,7 @@
 			)
 		)
 		(property "Mouser Part Number" "576-1210L020WR"
-			(at 41.91 110.49 0)
+			(at 78.74 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9894,7 +9904,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Littelfuse/1210L020WR?qs=PWhpLWeW8wcFhN6lPv0ohQ%3D%3D"
-			(at 41.91 113.03 0)
+			(at 78.74 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9904,7 +9914,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "LITTELFUSE"
-			(at 41.91 115.57 0)
+			(at 78.74 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9914,7 +9924,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "1210L020WR"
-			(at 41.91 118.11 0)
+			(at 78.74 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10004,6 +10014,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+BATT")
+		(at 81.28 180.34 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5567e447-be90-495f-8549-4d9a1f4a9622")
+		(property "Reference" "#PWR051"
+			(at 81.28 184.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+BATT"
+			(at 81.28 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 81.28 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 81.28 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 81.28 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ba4288d0-100e-41f8-869a-997c42a4dfa8")
+		)
+		(instances
+			(project "BAT2024"
+				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
+					(reference "#PWR051")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 16.51 184.15 0)
 		(unit 1)
@@ -10031,7 +10107,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 17.4752 187.96 0)
 			(effects
 				(font
@@ -10142,7 +10218,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 24.13 101.6 0)
+		(at 45.72 101.6 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10151,7 +10227,7 @@
 		(fields_autoplaced yes)
 		(uuid "58d9566f-4683-4d83-bfcd-26916e0544f1")
 		(property "Reference" "#PWR029"
-			(at 24.13 105.41 0)
+			(at 45.72 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10160,7 +10236,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 24.13 96.52 0)
+			(at 45.72 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10168,7 +10244,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 24.13 101.6 0)
+			(at 45.72 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10177,7 +10253,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 24.13 101.6 0)
+			(at 45.72 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10186,7 +10262,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 24.13 101.6 0)
+			(at 45.72 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11118,7 +11194,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 141.732 185.42 90)
 			(effects
 				(font
@@ -11790,7 +11866,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 92.71 105.918 90)
 			(effects
 				(font
@@ -12071,7 +12147,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 69.5452 187.96 0)
 			(effects
 				(font
@@ -12207,7 +12283,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 106.3752 187.96 0)
 			(effects
 				(font
@@ -12277,7 +12353,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 93.6752 187.96 0)
 			(effects
 				(font
@@ -12413,7 +12489,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 131.7752 187.96 0)
 			(effects
 				(font
@@ -12720,7 +12796,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 85.09 25.4 270)
+		(at 86.36 36.83 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12729,7 +12805,7 @@
 		(fields_autoplaced yes)
 		(uuid "99367bf4-1283-4fe1-9c16-5981b034b409")
 		(property "Reference" "#PWR03"
-			(at 78.74 25.4 0)
+			(at 80.01 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12738,7 +12814,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 80.01 25.4 0)
+			(at 81.28 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12746,7 +12822,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 85.09 25.4 0)
+			(at 86.36 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12755,7 +12831,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 85.09 25.4 0)
+			(at 86.36 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12764,7 +12840,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 85.09 25.4 0)
+			(at 86.36 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12878,7 +12954,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 40.132 110.49 90)
 			(effects
 				(font
@@ -14707,7 +14783,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 62.23 25.4 0)
+		(at 88.9 25.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14716,7 +14792,7 @@
 		(fields_autoplaced yes)
 		(uuid "c6b5de75-c2bb-45b5-81c0-b5786ca71796")
 		(property "Reference" "#PWR02"
-			(at 62.23 29.21 0)
+			(at 88.9 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14725,7 +14801,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 62.23 20.32 0)
+			(at 88.9 20.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14733,7 +14809,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 62.23 25.4 0)
+			(at 88.9 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14742,7 +14818,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 25.4 0)
+			(at 88.9 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14751,7 +14827,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 62.23 25.4 0)
+			(at 88.9 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14773,7 +14849,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_ARM_SWD_TagConnect_TC2030-NL")
-		(at 95.25 27.94 270)
+		(at 96.52 39.37 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -14781,7 +14857,7 @@
 		(dnp no)
 		(uuid "cf14388f-f50c-4132-8a15-2efd6a5dac4c")
 		(property "Reference" "J1"
-			(at 96.52 17.78 90)
+			(at 97.79 29.21 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14790,7 +14866,7 @@
 			)
 		)
 		(property "Value" "Conn_ARM_SWD_TagConnect_TC2030-NL"
-			(at 114.046 20.32 90)
+			(at 115.316 31.75 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14799,7 +14875,7 @@
 			)
 		)
 		(property "Footprint" "Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical"
-			(at 77.47 27.94 0)
+			(at 78.74 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14808,7 +14884,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/TC2030-CTX_1.pdf"
-			(at 80.01 27.94 0)
+			(at 81.28 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14817,7 +14893,7 @@
 			)
 		)
 		(property "Description" "Tag-Connect ARM Cortex SWD JTAG connector, 6 pin, no legs"
-			(at 95.25 27.94 0)
+			(at 96.52 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15452,72 +15528,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 81.28 180.34 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "dc569a6f-4720-474c-a244-512a4bf99c61")
-		(property "Reference" "#PWR051"
-			(at 81.28 184.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 81.28 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 81.28 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 81.28 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 81.28 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "735f51c9-47de-4a84-9468-75b4a37800b9")
-		)
-		(instances
-			(project "BAT2024"
-				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
-					(reference "#PWR051")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:VCC")
 		(at 16.51 152.4 180)
 		(unit 1)
@@ -15611,7 +15621,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 71.628 41.91 90)
 			(effects
 				(font
@@ -15983,7 +15993,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 64.77 25.4 0)
+		(at 91.44 25.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15992,7 +16002,7 @@
 		(fields_autoplaced yes)
 		(uuid "e59fb42b-bfc1-43d5-83e0-4c62e2187565")
 		(property "Reference" "#FLG01"
-			(at 64.77 23.495 0)
+			(at 91.44 23.495 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16001,7 +16011,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 64.77 20.32 0)
+			(at 91.44 20.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16010,7 +16020,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 64.77 25.4 0)
+			(at 91.44 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16019,7 +16029,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 64.77 25.4 0)
+			(at 91.44 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16028,7 +16038,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 64.77 25.4 0)
+			(at 91.44 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
