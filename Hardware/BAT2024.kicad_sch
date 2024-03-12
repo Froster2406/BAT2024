@@ -4884,7 +4884,13 @@
 		(uuid "1232f1e9-8002-4413-afcc-1a43c1ca5c9d")
 	)
 	(junction
-		(at 88.9 25.4)
+		(at 109.22 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "12afd1eb-821f-47e1-a3fa-6169002d8b81")
+	)
+	(junction
+		(at 109.22 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4336412f-15c3-42ca-93d7-e8f0e35be9ad")
@@ -4894,12 +4900,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9038ef17-f370-44b1-83c0-06051e5d2b03")
-	)
-	(junction
-		(at 102.87 77.47)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a38355ae-27b8-4fec-9d25-c61ed0846d6b")
 	)
 	(junction
 		(at 81.28 101.6)
@@ -4916,7 +4916,7 @@
 		(uuid "03a84eb8-094c-47c7-af21-96a35621d739")
 	)
 	(no_connect
-		(at 87.63 80.01)
+		(at 93.98 80.01)
 		(uuid "1395208f-03a1-4653-a803-485b8d1f2eb6")
 	)
 	(no_connect
@@ -5061,6 +5061,16 @@
 	)
 	(wire
 		(pts
+			(xy 64.77 25.4) (xy 62.23 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "195ae0e2-dfc2-418b-ae30-24d25e17aa74")
+	)
+	(wire
+		(pts
 			(xy 143.51 180.34) (xy 143.51 181.61)
 		)
 		(stroke
@@ -5151,7 +5161,7 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 25.4) (xy 88.9 25.4)
+			(xy 102.87 25.4) (xy 109.22 25.4)
 		)
 		(stroke
 			(width 0)
@@ -5191,7 +5201,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 25.4) (xy 91.44 25.4)
+			(xy 109.22 25.4) (xy 111.76 25.4)
 		)
 		(stroke
 			(width 0)
@@ -5261,16 +5271,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 25.4) (xy 62.23 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "690d6f1a-7818-4520-9e7c-eaf47e6f66a5")
-	)
-	(wire
-		(pts
 			(xy 134.62 46.99) (xy 138.43 46.99)
 		)
 		(stroke
@@ -5321,7 +5321,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 77.47) (xy 111.76 77.47)
+			(xy 109.22 77.47) (xy 118.11 77.47)
 		)
 		(stroke
 			(width 0)
@@ -5501,16 +5501,6 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 74.93) (xy 87.63 74.93)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c9418219-bf8d-4cad-ac46-7c49cc4cf9b1")
-	)
-	(wire
-		(pts
 			(xy 43.18 74.93) (xy 39.37 74.93)
 		)
 		(stroke
@@ -5578,6 +5568,16 @@
 			(type default)
 		)
 		(uuid "ea722241-fa4d-470c-89c4-3f129ff43f01")
+	)
+	(wire
+		(pts
+			(xy 81.28 25.4) (xy 85.09 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f0710eb1-0c21-4e95-9bdf-72f66a21fa0f")
 	)
 	(wire
 		(pts
@@ -5990,6 +5990,17 @@
 		)
 		(uuid "2539ddcc-1bbd-4b64-b8a0-f52b0d108c7b")
 	)
+	(label "SWDIO"
+		(at 21.59 35.56 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "28b45f78-3e54-43c1-8ef2-af1a40369ae9")
+	)
 	(label "C2-"
 		(at 54.61 187.96 0)
 		(fields_autoplaced yes)
@@ -6012,8 +6023,8 @@
 		)
 		(uuid "2ba7f0d6-ea6c-452a-a1ac-2c277dba9f0b")
 	)
-	(label "SWCLK"
-		(at 62.23 33.02 0)
+	(label "RESET"
+		(at 62.23 35.56 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6021,7 +6032,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "329b38f2-3041-4d50-b926-869b1e48ef55")
+		(uuid "2ee453fd-1275-48a3-a88b-0969af3bff2b")
 	)
 	(label "SPI_SCK"
 		(at 175.26 44.45 0)
@@ -6177,6 +6188,17 @@
 		)
 		(uuid "5d5d5b51-981f-4cee-ac58-4ef7ffa51a68")
 	)
+	(label "SWO"
+		(at 21.59 33.02 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "5f6f9c94-91c3-44dc-b2bc-4343df675869")
+	)
 	(label "DRV_VOUT"
 		(at 29.21 180.34 0)
 		(fields_autoplaced yes)
@@ -6287,17 +6309,6 @@
 		)
 		(uuid "8e5ca50c-2f9a-4587-8342-f1964f5f8463")
 	)
-	(label "RESET"
-		(at 21.59 35.56 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "8f6b1683-2514-4c2d-8acd-3c3216a3b4f2")
-	)
 	(label "LED5"
 		(at 220.98 58.42 0)
 		(fields_autoplaced yes)
@@ -6375,17 +6386,6 @@
 		)
 		(uuid "9e99414a-acff-412e-bb97-a1acf1ca7b48")
 	)
-	(label "SWDIO"
-		(at 62.23 35.56 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "9fabc853-c31c-400b-b808-a9b9ec343454")
-	)
 	(label "LED3"
 		(at 248.92 33.02 0)
 		(fields_autoplaced yes)
@@ -6396,6 +6396,17 @@
 			(justify left bottom)
 		)
 		(uuid "a079c74e-54ed-470a-8274-7610c6d915b9")
+	)
+	(label "SWCLK"
+		(at 62.23 33.02 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a2141a98-188a-45b7-92e5-16160515dd9d")
 	)
 	(label "LED2"
 		(at 238.76 88.9 90)
@@ -6418,17 +6429,6 @@
 			(justify left bottom)
 		)
 		(uuid "ab5a56db-94b4-4f31-b980-57b3fd6194b4")
-	)
-	(label "SWO"
-		(at 21.59 33.02 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ac6eda5a-4d3b-4384-b3a0-25cb0aedb778")
 	)
 	(label "RESET"
 		(at 175.26 57.15 0)
@@ -7052,7 +7052,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3.3V"
+		(property "Value" "+3.3"
 			(at 105.41 175.26 0)
 			(effects
 				(font
@@ -7094,72 +7094,6 @@
 			(project "BAT2024"
 				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
 					(reference "#PWR053")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 106.68 36.83 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0a27ece6-f3c5-491d-957e-a16c5870253c")
-		(property "Reference" "#PWR04"
-			(at 102.87 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VCC"
-			(at 111.76 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 106.68 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 106.68 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 106.68 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "662fd010-8060-465c-afb4-d10053e7aa24")
-		)
-		(instances
-			(project "BAT2024"
-				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
-					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -7966,6 +7900,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3.3V")
+		(at 85.09 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "18065568-2a96-4721-a856-f950ce228dc9")
+		(property "Reference" "#PWR067"
+			(at 85.09 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3"
+			(at 85.09 71.374 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 85.09 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 85.09 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 85.09 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e17d2097-a266-41ec-ac77-6911f4851d9d")
+		)
+		(instances
+			(project "BAT2024"
+				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
+					(reference "#PWR067")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 62.23 45.72 270)
 		(unit 1)
@@ -8516,7 +8516,7 @@
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
-		(on_board yes)
+		(on_board no)
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "2d2b1d4c-caf9-4a8e-bb9a-7006d811ae46")
@@ -9266,7 +9266,7 @@
 	)
 	(symbol
 		(lib_id "BAT_Library:JS102011SAQN")
-		(at 95.25 77.47 0)
+		(at 101.6 77.47 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9275,7 +9275,7 @@
 		(fields_autoplaced yes)
 		(uuid "48036e75-6448-49f6-9c1a-111cc4b42ad4")
 		(property "Reference" "S1"
-			(at 95.25 69.85 0)
+			(at 101.6 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9283,7 +9283,7 @@
 			)
 		)
 		(property "Value" "JS102011SAQN"
-			(at 95.25 72.39 0)
+			(at 101.6 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9291,7 +9291,7 @@
 			)
 		)
 		(property "Footprint" "BAT_Footprint-Library:C-K_Switch_JS102011SAQN"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9301,7 +9301,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9310,7 +9310,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9319,7 +9319,7 @@
 			)
 		)
 		(property "DigiKey_Part_Number" "401-1999-2-ND"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9329,7 +9329,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/JS102011SAQN/C%2526K/view-part/?ref=snap"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9339,7 +9339,7 @@
 			)
 		)
 		(property "Description_1" "\nSwitch, Slide, SPDT, ON-ON, 300mA, 6VDC, Surface Mount, R/A, Gull Wing | C&K JS102011SAQN\n"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9349,7 +9349,7 @@
 			)
 		)
 		(property "Package" "None"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9359,7 +9359,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/JS102011SAQN/C%2526K/view-part/?ref=eda"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9369,7 +9369,7 @@
 			)
 		)
 		(property "MF" "C&K"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9379,7 +9379,7 @@
 			)
 		)
 		(property "MP" "JS102011SAQN"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9389,7 +9389,7 @@
 			)
 		)
 		(property "MANUFACTURER" "C&K"
-			(at 95.25 77.47 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9830,7 +9830,7 @@
 	)
 	(symbol
 		(lib_id "BAT_Library:Littlefuse_1210L020WR")
-		(at 64.77 25.4 0)
+		(at 85.09 25.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9838,7 +9838,7 @@
 		(dnp no)
 		(uuid "50cf832c-d84c-4801-83ed-63004fe5d7bd")
 		(property "Reference" "F1"
-			(at 73.66 19.05 0)
+			(at 93.98 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9846,7 +9846,7 @@
 			)
 		)
 		(property "Value" "Littlefuse_1210L020WR"
-			(at 74.168 22.606 0)
+			(at 94.488 22.606 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9854,7 +9854,7 @@
 			)
 		)
 		(property "Footprint" "BAT_Footprint-Library:Littlefuse_FUSC3226X100N"
-			(at 78.74 24.13 0)
+			(at 99.06 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9864,7 +9864,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.littelfuse.com/~{/media/electronics/datasheets/resettable_ptcs/littelfuse_ptc_1210l_datasheet.pdf.pdf}"
-			(at 78.74 26.67 0)
+			(at 99.06 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9874,7 +9874,7 @@
 			)
 		)
 		(property "Description" "Littelfuse 0.2A Surface Mount Resettable Fuse, 30V dc"
-			(at 78.74 29.21 0)
+			(at 99.06 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9884,7 +9884,7 @@
 			)
 		)
 		(property "Height" "1"
-			(at 78.74 31.75 0)
+			(at 99.06 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9894,7 +9894,7 @@
 			)
 		)
 		(property "Mouser Part Number" "576-1210L020WR"
-			(at 78.74 34.29 0)
+			(at 99.06 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9904,7 +9904,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Littelfuse/1210L020WR?qs=PWhpLWeW8wcFhN6lPv0ohQ%3D%3D"
-			(at 78.74 36.83 0)
+			(at 99.06 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9914,7 +9914,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "LITTELFUSE"
-			(at 78.74 39.37 0)
+			(at 99.06 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9924,7 +9924,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "1210L020WR"
-			(at 78.74 41.91 0)
+			(at 99.06 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10144,73 +10144,6 @@
 			(project "BAT2024"
 				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
 					(reference "C1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 45.72 74.93 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "58d74732-98fe-401f-ba4f-3b3bfc0ccb1f")
-		(property "Reference" "#FLG03"
-			(at 45.72 73.025 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 45.72 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 45.72 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 45.72 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 45.72 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bf10b1a8-1961-4951-bcf5-deefb5648a83")
-		)
-		(instances
-			(project "BAT2024"
-				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
-					(reference "#FLG03")
 					(unit 1)
 				)
 			)
@@ -11094,6 +11027,72 @@
 			(project "BAT2024"
 				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
 					(reference "#PWR041")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 64.77 25.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "61636046-179f-495f-b691-6758f6ad64eb")
+		(property "Reference" "#PWR069"
+			(at 64.77 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "Fuse"
+			(at 64.77 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 64.77 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 64.77 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 64.77 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4932e065-4a78-40a6-8884-62e1480aa966")
+		)
+		(instances
+			(project "BAT2024"
+				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
+					(reference "#PWR069")
 					(unit 1)
 				)
 			)
@@ -12191,6 +12190,71 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
+		(at 93.98 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7f742b9d-53ca-4680-89cc-a05c62e13d4a")
+		(property "Reference" "#PWR068"
+			(at 93.98 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3"
+			(at 89.408 72.898 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 93.98 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bd3bdbbc-863a-4c63-84eb-ad3626373cf2")
+		)
+		(instances
+			(project "BAT2024"
+				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
+					(reference "#PWR068")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
 		(at 35.56 152.4 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12208,7 +12272,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3.3V"
+		(property "Value" "+3.3"
 			(at 35.56 157.48 0)
 			(effects
 				(font
@@ -12665,7 +12729,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 111.76 77.47 0)
+		(at 118.11 77.47 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12674,7 +12738,7 @@
 		(fields_autoplaced yes)
 		(uuid "8f2c8cf4-0892-4d56-a32e-2e8d86add998")
 		(property "Reference" "#FLG04"
-			(at 111.76 75.565 0)
+			(at 118.11 75.565 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12683,7 +12747,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 111.76 72.39 0)
+			(at 118.11 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12692,7 +12756,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 111.76 77.47 0)
+			(at 118.11 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12701,7 +12765,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 111.76 77.47 0)
+			(at 118.11 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12710,7 +12774,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 111.76 77.47 0)
+			(at 118.11 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12796,7 +12860,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 86.36 36.83 270)
+		(at 86.36 36.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12805,7 +12869,7 @@
 		(fields_autoplaced yes)
 		(uuid "99367bf4-1283-4fe1-9c16-5981b034b409")
 		(property "Reference" "#PWR03"
-			(at 80.01 36.83 0)
+			(at 86.36 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12814,7 +12878,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 81.28 36.83 0)
+			(at 86.36 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13267,6 +13331,73 @@
 			(project "BAT2024"
 				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
 					(reference "LED3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 45.72 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a03679ac-924d-4cfa-921f-3dcb26d5ebc3")
+		(property "Reference" "#FLG03"
+			(at 45.72 73.025 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 45.72 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 45.72 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 45.72 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 45.72 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0d69f2fc-79a8-4e04-b59c-f1f10676c27b")
+		)
+		(instances
+			(project "BAT2024"
+				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
@@ -14077,6 +14208,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VCC")
+		(at 81.28 25.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b4a7e745-0eee-4c4a-94aa-ba5c8bd04aa4")
+		(property "Reference" "#PWR070"
+			(at 81.28 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "Fuse"
+			(at 81.28 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 81.28 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 81.28 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 81.28 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b538a11a-9bba-41e0-8e01-4f2bbfc53ad3")
+		)
+		(instances
+			(project "BAT2024"
+				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
+					(reference "#PWR070")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "BAT_Library:USB4105-GF-A-060")
 		(at 41.91 35.56 0)
 		(unit 1)
@@ -14585,7 +14782,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 102.87 77.47 0)
+		(at 109.22 77.47 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14593,7 +14790,7 @@
 		(dnp no)
 		(uuid "c118ca53-2708-44e1-804c-7eeab4da8623")
 		(property "Reference" "#PWR023"
-			(at 102.87 81.28 0)
+			(at 109.22 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14602,7 +14799,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 106.68 75.946 0)
+			(at 113.03 75.946 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14610,7 +14807,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 102.87 77.47 0)
+			(at 109.22 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14619,7 +14816,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 102.87 77.47 0)
+			(at 109.22 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14628,7 +14825,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 102.87 77.47 0)
+			(at 109.22 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14783,7 +14980,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 88.9 25.4 0)
+		(at 109.22 25.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14792,7 +14989,7 @@
 		(fields_autoplaced yes)
 		(uuid "c6b5de75-c2bb-45b5-81c0-b5786ca71796")
 		(property "Reference" "#PWR02"
-			(at 88.9 29.21 0)
+			(at 109.22 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14801,7 +14998,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 88.9 20.32 0)
+			(at 109.22 20.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14809,7 +15006,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 25.4 0)
+			(at 109.22 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14818,7 +15015,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 25.4 0)
+			(at 109.22 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14827,7 +15024,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 88.9 25.4 0)
+			(at 109.22 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14842,6 +15039,71 @@
 			(project "BAT2024"
 				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
 					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 106.68 36.83 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cee2abbe-e939-4dbe-aa1d-548a5c83b480")
+		(property "Reference" "#PWR04"
+			(at 106.68 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 110.49 35.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 106.68 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 106.68 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 106.68 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3ac17699-7236-413e-a22b-66ed44183ad7")
+		)
+		(instances
+			(project "BAT2024"
+				(path "/a3552e2f-aad6-432c-9dc6-cdba95841114"
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -15993,7 +16255,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 91.44 25.4 0)
+		(at 111.76 25.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16002,7 +16264,7 @@
 		(fields_autoplaced yes)
 		(uuid "e59fb42b-bfc1-43d5-83e0-4c62e2187565")
 		(property "Reference" "#FLG01"
-			(at 91.44 23.495 0)
+			(at 111.76 23.495 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16011,7 +16273,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 91.44 20.32 0)
+			(at 111.76 20.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16020,7 +16282,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 91.44 25.4 0)
+			(at 111.76 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16029,7 +16291,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 91.44 25.4 0)
+			(at 111.76 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16038,7 +16300,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 91.44 25.4 0)
+			(at 111.76 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
