@@ -5,44 +5,46 @@ Reallocating 'name_of_file' (item size: 1) to 8 items.
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: ieeetr.bst
 Database file #1: Sources.bib
-You've used 1 entry,
+Warning--empty year in oppenheimer_alan_v_zeitdiskrete_nodate
+You've used 2 entries,
             1876 wiz_defined-function locations,
-            481 strings with 3620 characters,
-and the built_in function-call counts, 145 in all, are:
-= -- 10
-> -- 4
+            485 strings with 3724 characters,
+and the built_in function-call counts, 292 in all, are:
+= -- 23
+> -- 8
 < -- 0
-+ -- 2
-- -- 1
-* -- 8
-:= -- 28
-add.period$ -- 1
-call.type$ -- 1
++ -- 4
+- -- 2
+* -- 15
+:= -- 48
+add.period$ -- 3
+call.type$ -- 2
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 4
-empty$ -- 19
-format.name$ -- 1
-if$ -- 32
+cite$ -- 3
+duplicate$ -- 13
+empty$ -- 39
+format.name$ -- 2
+if$ -- 69
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 6
-num.names$ -- 1
-pop$ -- 7
+int.to.str$ -- 2
+missing$ -- 2
+newline$ -- 10
+num.names$ -- 2
+pop$ -- 14
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 4
+skip$ -- 5
 stack$ -- 0
 substring$ -- 0
-swap$ -- 0
+swap$ -- 1
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 1
-width$ -- 2
-write$ -- 9
+warning$ -- 1
+while$ -- 2
+width$ -- 3
+write$ -- 17
+(There was 1 warning)
