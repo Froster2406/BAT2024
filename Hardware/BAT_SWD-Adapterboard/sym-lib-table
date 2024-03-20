@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "BAT_Library")(type "KiCad")(uri "${KICAD_USER_SYMBOL_DIR}/BAT_Library.kicad_sym")(options "")(descr ""))
+  (lib (name "Header_20021121-00010C4LF")(type "KiCad")(uri "${KICAD_USER_SYMBOL_DIR}/Original_files/Header_20021121-00010C4LF.kicad_sym")(options "")(descr ""))
+)
