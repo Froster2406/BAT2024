@@ -35,15 +35,27 @@
 // The advertising set handle allocated from Bluetooth stack.
 static uint8_t advertising_set_handle = 0xff;
 
+#include "custom\BAT_RTC.h"
+#include "custom\BAT_SPI.h"
+
+/* https://docs.silabs.com/gecko-platform/4.4.1/platform-hardware-driver/mic */
+#include "sl_mic.h"
+
+#define MIC_SAMPLE_RATE            44100
+#define MIC_SAMPLE_BUFFER_SIZE     1024
+#define MIC_N_CHANNELS             1
+
+static int16_t buffer[MIC_SAMPLE_BUFFER_SIZE * MIC_N_CHANNELS];
+
 /**************************************************************************//**
  * Application Init.
  *****************************************************************************/
 SL_WEAK void app_init(void)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Put your additional application init code here!                         //
-  // This is called once during start-up.                                    //
-  /////////////////////////////////////////////////////////////////////////////
+  // Initialize microphone with sample rate and number of channels
+  //sl_mic_init(MIC_SAMPLE_RATE, MIC_N_CHANNELS);
+  //BAT_RTC_init();
+  BAT_SPI_init();
 }
 
 /**************************************************************************//**
@@ -51,11 +63,19 @@ SL_WEAK void app_init(void)
  *****************************************************************************/
 SL_WEAK void app_process_action(void)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Put your additional application code here!                              //
-  // This is called infinitely.                                              //
-  // Do not call blocking functions from here!                               //
-  /////////////////////////////////////////////////////////////////////////////
+//  float sound_level_0;
+//  float sound_level_1;
+//  uint32_t n_samples = 1024;
+//  // Read samples from the microphone
+//  sl_mic_get_n_samples(buffer, n_samples);
+//
+//  while (!sl_mic_sample_buffer_ready()) {
+//    // Wait until sample buffer ready
+//  }
+//  // Calculate sound level
+//  sl_mic_calculate_sound_level(&sound_level_0, buffer, n_samples, 0);
+//  sl_mic_calculate_sound_level(&sound_level_1, buffer, n_samples, 1);
+  BAT_SPI_eepromIsAvailable();
 }
 
 /**************************************************************************//**
