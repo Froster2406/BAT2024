@@ -97,7 +97,7 @@
 		\label{fig:bati2s}
 	\end{figure}
 	\subsubsection{PDM}
-	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Im Gegensatz dazu, wird im weit verbreiteten Pulsweitenmodulationsverfahren, kurz PWM, in jeder Periode das Verhältnis zwischen digitalem "1" und "0" variiert. Dies um zum Beispiel einen FET anzusteuern.
+	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Im Gegensatz dazu, wird im weit verbreiteten Pulsweitenmodulationsverfahren, kurz PWM, in jeder Periode das Verhältnis zwischen digitalem "1" und "0" variiert. Dies um zum Beispiel einen FET anzusteuern. \color{red}Farben von Bild anpassen\color{black}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_PDM-vs-PWM}
@@ -129,10 +129,19 @@
 		\item \color{red}TODO\color{black}
 	\end{itemize}
 	\subsubsection{Bootloader}
+	Unter einem Bootloader versteht man Code, welcher grundsätzlich nach dem erstmaligen flashen, persistent im System bleibt. Er dient als Ausgangspunkt für die eigentliche Software und ermöglicht es beispielsweise auch, während der Laufzeit des Gerätes, Softwareupdates herunter zu laden und diese anschliessend einzuspielen. Insbesondere wenn Funkprotokolle wie Bluetooth oder WLAN eingesetzt werden, ist ein Bootloader oftmals unerlässlich. Der Nachteil ist jedoch, dass dieser den ohnehin knappen Speicherplatz weiter reduziert.
 	\subsubsection{RTC}
 	Unter einer \textbf{R}eal \textbf{T}ime \textbf{C}lock versteht man ein Stück Hardware (intern oder extern), welche die Zeit ab Inbetriebnahme misst. Übliche RTCs haben, aufgrund ihrer Bauweise eine Genauigkeit von 100ppm. Da dies einer Zeitverschiebung von 4min und 19s @32kHz entspricht, enthalten die meisten RTCs Kompensationsmechanismen, um diese Zeit auf unter 100ms zu bringen. \cite{dighe_tps65950_2008}
 % 	https://www.ti.com/lit/an/swca024/swca024.pdf?ts=1709375495514&ref_url=https%253A%252F%252Fwww.google.com%252F
 	\subsubsection{Low Power}
+	Mit Low Power wird, insbesondere bei Embedded-Systemen, die reduzierte Leistungsaufnahme beschrieben. Oftmals verfügen die Systeme über mehrere Modi mit jeweils unterschiedlichen Eigenschaften. Das Ziel ist es, mit jedem tieferen Modus etwas mehr Energie zu sparen und somit die Akkulaufzeit zu verlängern. Wie in Abbildung  \ref{fig:batlow-power-modestm} ersichtlich, sinkt zwar die Leistungsaufnahme mit jeder Stufe, jedoch werden dabei gewisse Peripherien abgeschaltet und die allgemeine Startzeit des Systems wird erhöht.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/BAT_Low-Power-Mode_STM}
+		\caption{Vergleich Low-Power-Modi STM $\vert$ Quelle: \cite{noauthor_stm32l4_2024}}
+		\label{fig:batlow-power-modestm}
+	\end{figure}
+	
 	\subsubsection{Peripherie in Hardware oder Software}
 	Bei allen gängigen Kommunikationsprotokollen ist die Frage, wie diese implementiert werden sollen. Dabei stehen folgende Möglichkeiten zur Auswahl:
 	\begin{itemize}
@@ -158,7 +167,7 @@
 	\subsubsection{Vergleich}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\linewidth]{tables/BAT_Vergleich-Mikrocontroller}
+		\includegraphics[width=0.9\linewidth]{tables/BAT_Vergleich-Mikrocontroller}
 		\caption{Vergleich von möglichen Mikrocontrollern}
 		\label{table:batvergleich-mikrocontroller}
 	\end{figure}
@@ -191,24 +200,31 @@
 		\item Mikrofon
 		\item LED-Treiber-IC
 	\end{itemize}
-	Zudem sind die LEDs sind ringförmig angeordnet, um der Anforderung eines Ladebalkens entsprechen zu können.
+	Zudem sind die LEDs sind ringförmig angeordnet, um der Anforderung eines visuellen Ladebalkens entsprechen zu können.
 	\paragraph{Back}
 	Die Rückseite hingegen, beinhaltet folgende Bauteile:
 	\begin{itemize}
 		\item USB-C-Ladeanschluss
-		\item Polyfuse (Automatisch Rückstellbarer Überstromschutz)
+		\item Polyfuse (Automatisch rückstellbarer Überstromschutz)
 		\item Switch um generell das Gerät ein- und auszuschalten
-		\item BMS, um den Akku sicher auf- und entladen
+		\item BMS, um den Akku sicher auf- und entladen zu können
 		\item Mikrocontroller, welcher sich aufgrund seiner Antenne am Rand des PCBs befinden muss
 		\item Akkuhalter
 		\item Optionaler Speicherbaustein
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\linewidth]{images/BAT_Konzept_Gerät}
+		\includegraphics[width=0.9\linewidth]{images/BAT_Konzept_Gerät}
 		\caption{Konzept PCB-Layout}
 		\label{fig:batkonzeptgerat}
 	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{images/BAT_Konzept_Softwareablauf}
+		\caption{Konzept Softwareablauf}
+		\label{fig:batkonzeptsoftwareablauf}
+	\end{figure}
+	
 	\subsection{Hardware}
 	\subsubsection{PCB}
 	\paragraph{Laderegler}
@@ -247,7 +263,7 @@
 	Pins \\
 	Embedded \\
 	ppm \\
-	
+	flashen \\
 	
 	
 	
