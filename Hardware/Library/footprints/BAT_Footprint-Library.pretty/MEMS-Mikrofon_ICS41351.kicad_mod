@@ -255,7 +255,7 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "0ceae089-a212-4ff2-afef-b47dc4b72ff2")
 	)
-	(model "ICS-41351.stp"
+	(model "${KICAD_USER_3DMODEL_DIR}/ICS-41351.stp"
 		(offset
 			(xyz 0 0 0.9100000126)
 		)

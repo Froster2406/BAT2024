@@ -234,4 +234,15 @@
 		(solder_mask_margin 0.102)
 		(uuid "421ed884-902b-4087-9150-eac9e3051f9e")
 	)
+	(model "${KICAD_USER_3DMODEL_DIR}/MIC5504-3.3YM5_TR.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

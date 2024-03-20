@@ -312,4 +312,15 @@
 		(solder_mask_margin 0.102)
 		(uuid "8bef8a88-29e8-449b-839d-c0bd27f4673a")
 	)
+	(model "${KICAD_USER_3DMODEL_DIR}/BQ21040DBVR.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

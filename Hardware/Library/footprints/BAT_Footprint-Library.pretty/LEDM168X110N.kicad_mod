@@ -298,4 +298,15 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "23e7e657-d65b-479d-903d-dcd3b8921169")
 	)
+	(model "${KICAD_USER_3DMODEL_DIR}/SunLED_XZCM2CRK53WA-8VF.STEP"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

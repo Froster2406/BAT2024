@@ -295,4 +295,15 @@
 		(solder_mask_margin 0.102)
 		(uuid "05fd6eaa-a5e5-45cb-ab53-7ea8b6a49a11")
 	)
+	(model "${KICAD_USER_3DMODEL_DIR}/C-K_JS102011SAQN.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

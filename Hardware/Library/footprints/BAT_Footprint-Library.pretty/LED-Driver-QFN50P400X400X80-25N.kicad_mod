@@ -327,7 +327,7 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "e9aadfcf-d02a-4e67-988c-aa867f3b9821")
 	)
-	(model "LP55231SQX_NOPB.stp"
+	(model "${KICAD_USER_3DMODEL_DIR}/LP55231SQX_NOPB.stp"
 		(offset
 			(xyz 0 0 0)
 		)
