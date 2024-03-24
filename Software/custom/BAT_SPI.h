@@ -10,6 +10,8 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <string.h>
 #include "spidrv.h"
 
 #define BAT_SPI_WREN    0x06 /* Write enable */
@@ -46,6 +48,8 @@
 #define BAT_SPI_JEDEC_MEMORY_DENSITY  0x15
 
 void BAT_SPI_init(void);
+
+void BAT_SPI_writePage(char *dataToBeStored);
 
 bool BAT_SPI_eepromIsAvailable(void);
 
