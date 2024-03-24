@@ -1,5 +1,8 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces Vergleich PDM und PWM}}{5}{figure.caption.3}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{8}{figure.caption.4}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{10}{figure.caption.5}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Konzept PCB-Layout}}{13}{figure.caption.8}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Konzept Softwareablauf}}{13}{figure.caption.9}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Phon-Kurven im Vergleich $\vert $ Quelle: \cite {impairments_basics_2004}}}{6}{figure.caption.4}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Frequenzbewertungsfilter $\vert $ Quelle: \cite {noauthor_frequenzbewertung_2023}}}{7}{figure.caption.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{9}{figure.caption.6}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{11}{figure.caption.7}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Buck Converter}}{12}{figure.caption.8}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Konzept PCB-Layout}}{15}{figure.caption.11}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Konzept Softwareablauf}}{15}{figure.caption.12}%

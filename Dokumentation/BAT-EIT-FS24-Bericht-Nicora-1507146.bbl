@@ -1,5 +1,15 @@
 \begin{thebibliography}{1}
 
+\bibitem{impairments_basics_2004}
+N.~R. C. U. C. o. D. D. f. I. w.~H. Impairments, R.~A. Dobie, and S.~V. Hemel,
+  ``Basics of {Sound}, the {Ear}, and {Hearing},'' in {\em Hearing {Loss}:
+  {Determining} {Eligibility} for {Social} {Security} {Benefits}}, National
+  Academies Press (US), 2004.
+
+\bibitem{noauthor_frequenzbewertung_2023}
+``Frequenzbewertung,'' Oct. 2023.
+\newblock Page Version ID: 238201232.
+
 \bibitem{dighe_tps65950_2008}
 G.~Dighe, ``{TPS65950} {Real}-{Time} {Clock} {Timing} {Compensation},'' Oct.
   2008.
@@ -7,8 +17,8 @@ G.~Dighe, ``{TPS65950} {Real}-{Time} {Clock} {Timing} {Compensation},'' Oct.
 \bibitem{noauthor_stm32l4_2024}
 ``{STM32L4} {Series} - {PDF} {Documentation},'' Mar. 2024.
 
-\bibitem{oppenheimer_alan_v_zeitdiskrete_nodate}
-A.~V. Oppenheimer, {\em Zeitdiskrete {Signalverarbeitung}}.
+\bibitem{oppenheim_alan_v_zeitdiskrete_nodate}
+A.~V. Oppenheim, {\em Zeitdiskrete {Signalverarbeitung}}.
 \newblock R. Oldenbourg.
 
 \end{thebibliography}
