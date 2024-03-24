@@ -80,14 +80,14 @@
 	\subsection{Grundlagen}
 	\subsubsection{MEMS}
 	
-	\subsubsection{I2S}
-	Inter-Integrated Sound (I²S) bezeichnet eine Bus-Schnittstelle, welche von Philips zur Übertragung von digitalen Audiosignalen entwickelt wurde. Ähnlich wie I²C (Inter-Integrated Circuit) wird die Schnittstelle jedoch nur innerhalb des Gerätes verwendet. Dabei werden drei Pins zwischen Sender (hier das Mikrofon) und dem Empfänger (hier der Mikrocontroller) benötigt:
+	\subsubsection{I2S} \label{I2S}
+	\textbf{I}nter-\textbf{I}ntegrated \textbf{S}ound (I²S) bezeichnet eine Bus-Schnittstelle, welche von Philips zur Übertragung von digitalen Audiosignalen entwickelt wurde. Ähnlich wie I²C (Inter-Integrated Circuit) wird die Schnittstelle jedoch nur innerhalb des Gerätes verwendet. Dabei werden drei Pins zwischen Sender (hier das Mikrofon) und dem Empfänger (hier der Mikrocontroller) benötigt:
 	\begin{itemize}
 		\item \textbf{SCK} \quad (Serial Clock) \\
 		Generiert die Taktrate, welche gleichzeitig die Datenrate der Übertragung definiert. Die Taktrate wird vom Master (hier der Mikrocontroller) vorgegeben.
 		\item \color{green}\textbf{WS}\color{black} \quad (Word Select) \\
 		Gibt vor, welcher Audiokanal (R, L) übertragen werden soll. Dies ermöglicht es, entweder ein Stereo-Signal oder zwei Mono-Signale wie zum Beispiel zwei Mikrofone zu übertragen.
-		\item \color{red}\textbf{SD}\color{black} \quad (Serial Data)
+		\item \color{red}\textbf{SD}\color{black} \quad (Serial Data) \\
 		Beinhaltet den eigentlichen Datenstream mit der Datenrate definiert durch \textbf{SCK} und der Länge definiert durch \color{green}\textbf{WS}\color{black}.
 	\end{itemize}
 	\begin{figure}[H]
@@ -96,8 +96,14 @@
 		\caption[]{Übersicht I2S-Signale}
 		\label{fig:bati2s}
 	\end{figure}
-	\subsubsection{PDM}
-	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Im Gegensatz dazu, wird im weit verbreiteten Pulsweitenmodulationsverfahren, kurz PWM, in jeder Periode das Verhältnis zwischen digitalem "1" und "0" variiert. Dies um zum Beispiel einen FET anzusteuern. \color{red}Farben von Bild anpassen\color{black}
+	\subsubsection{PDM} \label{PDM}
+	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Im Gegensatz dazu, wird im weit verbreiteten Pulsweitenmodulationsverfahren, kurz PWM, in jeder Periode das Verhältnis zwischen digitalem "1" und "0" variiert. Dies um zum Beispiel einen FET anzusteuern. \color{red}Farben von Bild anpassen\color{black}. Im Gegensatz zu \ref{PDM} werden lediglich zwei Pins zwischen Mikrofon und Empfänger benötigt:
+	\begin{itemize}
+		\item DAT \quad (Data) \\
+		Beinhaltet den als PDM-Codierten Datenstream.
+		\item CLK \quad (Clock) \\
+		Generiert die Taktrate, mit welcher die Daten übertragen werden.
+	\end{itemize}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_PDM-vs-PWM}
@@ -107,6 +113,30 @@
 	
 	\subsubsection{Schalldruckpegel}
 	\subsubsection{Frequenzbewertung} \label{Frequenzbewertung}
+	Unser Gehör reagiert nicht nur nicht linear auf Lautstärkeveränderungen, sondern zusätzlich auch unterschiedlich Sensitiv auf unterschiedliche Frequenzen im hörbaren Bereich (20Hz-20kHz). Insbesondere im Bereich zwischen 3kHz bis 4kHz \cite{impairments_basics_2004} ist das Gehör besonders anfällig auf äussere Stimulation. Abbildung \ref{fig:phon-curve}, ursprünglich durch Fletcher \& Munson, mittlerweilen auch durch den ISO226-Standard beschrieben, zeigt diesen Umstand. Um der Problematik aus Abbildung \ref{fig:phon-curve} sorge tragen zu können, wird ein sogenannten Frequenzbewertungsfilter \footnote{ Weighting curves}, Abbildung \ref{fig:frequenzbewertung}, eingesetzt. Dabei werden heutzutage nur noch die dB(A), sowie der dB(C)-Filter eingesetzt. Dabei unterscheiden sich die beiden Filter folgendermassen:
+	\begin{itemize}
+		\item dB(A) \\
+		Reproduziert die 40 Phon Kurve \\
+		Widerspiegelt das menschliche Gehör besser, als der dB(C)-Filter
+		\item dB(C) \\
+		Reproduziert die 100 Phon Kurve.\\
+		Filtert weniger tiefe und hohe Frequenzen als dB(A) heraus\\
+		Wird verwendet, um besonders laute Umgebungen zu messen
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{images/phon-curve}
+		\caption{Phon-Kurven im Vergleich $\vert$ Quelle: \cite{impairments_basics_2004}}
+		\label{fig:phon-curve}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{images/Frequenzbewertung}
+		\caption{Frequenzbewertungsfilter $\vert$ Quelle: \cite{noauthor_frequenzbewertung_2023}}
+		\label{fig:frequenzbewertung}
+	\end{figure}
+	
+	
 	\subsection{Komponentenwahl}
 	\subsubsection{Kriterien}
 	\begin{itemize}
@@ -125,8 +155,10 @@
 	\subsubsection{DMA}
 	Bei \textbf{D}irect \textbf{M}emory \textbf{A}ccess handelt es sich um eine Art Steuerbaustein, welcher unabhängig und parallel zum eigentlichen Rechenkern arbeitet. Dieser hat, wie der Rechenkern selbst, Zugriff auf den gesamten Datenbus. Dieser ermöglicht es, effizient Daten von Peripherien wie der UART, I²S, SPI, ect. in den RAM und umgekehrt zu laden. Dadurch wird der Rechenkern entlastet und kann für wichtigere Aufgaben eingesetzt oder gar in einen Energiesparmodus versetzt werden. Dabei gibt es zwei Möglichkeiten mit dem DMA-Baustein zu interagieren:
 	\begin{itemize}
-		\item Fire-and-forget
-		\item \color{red}TODO\color{black}
+		\item Bus Master \\
+		Der DMA-Baustein wird einmalig durch den Rechenkern aufgesetzt und läuft danach autonom. So können beispielsweise via I²S einkommende Daten automatisch aus dem Eingangsregister in den Speicher geladen werden und bei genügend grosser Datenmenge (definiert durch den Entwickler), kann Rechenkern wieder aus dem Energiesparmodus aufgeweckt werden.
+		\item Programmed I/O \\
+		Jeder Arbeitsprozess des DMA-Bausteins wird durch den Rechenkern gestartet. Da sich DMA und Rechenkern den Datenbus teilen, wird so garantiert, dass die Speicheroperation zum gewünschten Zeitpunkt stattfindet.
 	\end{itemize}
 	\subsubsection{Bootloader}
 	Unter einem Bootloader versteht man Code, welcher grundsätzlich nach dem erstmaligen flashen, persistent im System bleibt. Er dient als Ausgangspunkt für die eigentliche Software und ermöglicht es beispielsweise auch, während der Laufzeit des Gerätes, Softwareupdates herunter zu laden und diese anschliessend einzuspielen. Insbesondere wenn Funkprotokolle wie Bluetooth oder WLAN eingesetzt werden, ist ein Bootloader oftmals unerlässlich. Der Nachteil ist jedoch, dass dieser den ohnehin knappen Speicherplatz weiter reduziert.
@@ -181,6 +213,14 @@
 	\subsubsection{Leistungsaufnahme}
 	\subsubsection{Lichtleistung}
 	\subsubsection{Vorwiderstand / Strombegrenzung}
+	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird normalerweise ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies kontraproduktiv. Als Alternative kann ein buck converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_Buck-Converter}
+		\caption{Buck Converter}
+		\label{fig:batbuck-converter}
+	\end{figure}
+	
 	\subsection{Komponentenwahl}
 	\subsubsection{Kriterien}
 	\begin{itemize}
@@ -231,7 +271,7 @@
 	\subsubsection{Kosten}
 	\subsection{Software}
 	\subsubsection{Filterdesign}
-	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter werden jedoch fast ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) veröffentlicht. Dadurch müssen diese mit der bilinaren Transformation \cite{oppenheimer_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
+	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter werden jedoch fast ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) veröffentlicht. Dadurch müssen diese mit der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
 	\begin{equation}\label{G_A_s}
 		G_A(s) = \frac{7.39705 \cdot 10^9 \cdot s^4}{(s+129.4)^2\cdot (s+676.7)\cdot (s+4636)\cdot (s+76617)^2}
 	\end{equation}
