@@ -1,4 +1,4 @@
-23080484114702869
+23104471914390545
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -14,7 +14,21 @@ audio belton reverb
 7
 7
 BAT_Footprint-Library
+AMPHENOL_20021121-00010C4LF
+
+
+0
+10
+10
+BAT_Footprint-Library
 BGM220PC22WGA2R
+BGM220PC22WGA2R-1
+Integrated Circuit
+0
+31
+31
+BAT_Footprint-Library
+BGM220PC22WGA2R_castellated-holes
 BGM220PC22WGA2R-1
 Integrated Circuit
 0
@@ -56,6 +70,13 @@ GCT_USB4105-GF-A-060
 16
 16
 BAT_Footprint-Library
+Header_M208760542
+M20-8760542-1
+Connector
+0
+10
+10
+BAT_Footprint-Library
 LDO_SOT95P280X145-5N
 
 
@@ -91,12 +112,40 @@ Microphone
 6
 6
 BAT_Footprint-Library
+SSM3J334RLF
+2-3Z1S
+MOSFET (P-Channel)
+0
+3
+3
+BAT_Footprint-Library
+Tag-Connect_TC2030-IDC-FP_2x03_P1.27mm_Vertical
+Tag-Connect programming header; http://www.tag-connect.com/Materials/TC2030-IDC.pdf
+tag connect programming header pogo pins
+0
+6
+6
+BAT_Footprint-Library
 TestPoint_Pad_1.5x1.5mm
 SMD rectangular pad as test Point, square 1.5mm side length
 test point SMD pad rectangle square
 0
 1
 1
+BAT_Footprint-Library
+TestPoint_Pad_D1.0mm
+SMD pad as test Point, diameter 1.0mm
+test point SMD pad
+0
+1
+1
+BAT_Footprint-Library
+USB4125GFA
+USB4125-GF-A-6
+Connector
+0
+10
+10
 Battery
 BatteryClip_Keystone_54_D16-19mm
 Battery clip for batteries with a diameter between 16-19 mm: https://www.keyelco.com/product.cfm/product_id/826
@@ -94472,7 +94521,21 @@ Varistor VF
 2
 2
 footprints
+AMPHENOL_20021121-00010C4LF
+
+
+0
+10
+10
+footprints
 BGM220PC22WGA2R
+BGM220PC22WGA2R-1
+Integrated Circuit
+0
+31
+31
+footprints
+BGM220PC22WGA2R_castellated-holes
 BGM220PC22WGA2R-1
 Integrated Circuit
 0
@@ -94514,6 +94577,13 @@ GCT_USB4105-GF-A-060
 16
 16
 footprints
+Header_M208760542
+M20-8760542-1
+Connector
+0
+10
+10
+footprints
 LDO_SOT95P280X145-5N
 
 
@@ -94549,9 +94619,37 @@ Microphone
 6
 6
 footprints
+SSM3J334RLF
+2-3Z1S
+MOSFET (P-Channel)
+0
+3
+3
+footprints
+Tag-Connect_TC2030-IDC-FP_2x03_P1.27mm_Vertical
+Tag-Connect programming header; http://www.tag-connect.com/Materials/TC2030-IDC.pdf
+tag connect programming header pogo pins
+0
+6
+6
+footprints
 TestPoint_Pad_1.5x1.5mm
 SMD rectangular pad as test Point, square 1.5mm side length
 test point SMD pad rectangle square
 0
 1
 1
+footprints
+TestPoint_Pad_D1.0mm
+SMD pad as test Point, diameter 1.0mm
+test point SMD pad
+0
+1
+1
+footprints
+USB4125GFA
+USB4125-GF-A-6
+Connector
+0
+10
+10
