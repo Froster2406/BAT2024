@@ -37,6 +37,7 @@ static uint8_t advertising_set_handle = 0xff;
 
 #include "custom\BAT_RTC.h"
 #include "custom\BAT_SPI.h"
+#include "custom\BAT_I2C.h"
 
 /* https://docs.silabs.com/gecko-platform/4.4.1/platform-hardware-driver/mic */
 #include "sl_mic.h"
@@ -56,6 +57,7 @@ SL_WEAK void app_init(void)
   //sl_mic_init(MIC_SAMPLE_RATE, MIC_N_CHANNELS);
   //BAT_RTC_init();
   BAT_SPI_init();
+  BAT_I2C_init();
 }
 
 /**************************************************************************//**
@@ -75,7 +77,9 @@ SL_WEAK void app_process_action(void)
 //  // Calculate sound level
 //  sl_mic_calculate_sound_level(&sound_level_0, buffer, n_samples, 0);
 //  sl_mic_calculate_sound_level(&sound_level_1, buffer, n_samples, 1);
-  BAT_SPI_eepromIsAvailable();
+//  BAT_SPI_eepromIsAvailable();
+  BAT_I2C_enableLedRange(8);
+//  BAT_I2C_readTemperature();
 }
 
 /**************************************************************************//**
