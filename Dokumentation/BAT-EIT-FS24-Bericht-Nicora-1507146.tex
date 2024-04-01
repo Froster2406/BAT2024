@@ -24,6 +24,8 @@
 
 \usepackage{graphicx} %list of figures
 
+\usepackage{tablefootnote}
+
 \renewcommand*\contentsname{Inhaltsverzeichnis} % rename table of content
 
 \renewcommand{\listfigurename}{Abbildungsverzeichnis}
@@ -97,23 +99,31 @@
 		\label{fig:bati2s}
 	\end{figure}
 	\subsubsection{PDM} \label{PDM}
-	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Im Gegensatz dazu, wird im weit verbreiteten Pulsweitenmodulationsverfahren, kurz PWM, in jeder Periode das Verhältnis zwischen digitalem "1" und "0" variiert. Dies um zum Beispiel einen FET anzusteuern. \color{red}Farben von Bild anpassen\color{black}. Im Gegensatz zu \ref{PDM} werden lediglich zwei Pins zwischen Mikrofon und Empfänger benötigt:
+	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Das PDM-Signal weist eine vielfach schnellere Takrate (meist Faktor 32 / 64), als das ursprünglich abgetastete Mikrofonsignal auf. Dadurch wird auftretendes Rauschen in einen höher gelegenen Frequenzbereich verschoben, welcher bei der anschliessenden Signalverarbeitung mit einem Tiefpassfilter abgeschnitten wird. Im Gegensatz zu I²S (\ref{I2S}) werden lediglich zwei Pins zwischen Mikrofon und Empfänger benötigt:
 	\begin{itemize}
-		\item DAT \quad (Data) \\
+		\item \color{red}DAT \color{black} \quad (Data) \\
 		Beinhaltet den als PDM-Codierten Datenstream.
 		\item CLK \quad (Clock) \\
 		Generiert die Taktrate, mit welcher die Daten übertragen werden.
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\linewidth]{images/BAT_PDM-vs-PWM}
-		\caption{Vergleich PDM und PWM}
-		\label{fig:batpdm-vs-pwm}
+		\includegraphics[width=1\linewidth]{images/BAT_PDM}
+		\caption{Beispiel PDM-Signal}
+		\label{fig:batpdm}
 	\end{figure}
-	
+	\subsubsection{PCM}
+	Bei \textbf{P}ulse \textbf{C}ode \textbf{M}odulation wird jeder analoge Messwert in einem digitalen Bereich abgebildet (Abbildung \ref{fig:batpcm}). Je nach benötigter Genauigkeit fällt dieser Bereich mal grösser, mal kleiner aus. Bei der Datenübertragung mittels I²S (\ref{I2S}) geschieht diese Umwandlung direkt im Sender und erzeugt somit das SD-Signal. Bei Sendern mit PDM-Ausgang (\ref{PDM}) ist dies nicht der Fall. Hier ist im Empfänger zwingend eine Peripherie notwendig, welche das PDM-Signal mittels Unterabtastung in ein PCM-Signal umwandelt.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_PCM}
+		\caption{Beispiel PCM-Signal}
+		\label{fig:batpcm}
+	\end{figure}
 	\subsubsection{Schalldruckpegel}
+	\color{red}TODO\color{black}
 	\subsubsection{Frequenzbewertung} \label{Frequenzbewertung}
-	Unser Gehör reagiert nicht nur nicht linear auf Lautstärkeveränderungen, sondern zusätzlich auch unterschiedlich Sensitiv auf unterschiedliche Frequenzen im hörbaren Bereich (20Hz-20kHz). Insbesondere im Bereich zwischen 3kHz bis 4kHz \cite{impairments_basics_2004} ist das Gehör besonders anfällig auf äussere Stimulation. Abbildung \ref{fig:phon-curve}, ursprünglich durch Fletcher \& Munson, mittlerweilen auch durch den ISO226-Standard beschrieben, zeigt diesen Umstand. Um der Problematik aus Abbildung \ref{fig:phon-curve} sorge tragen zu können, wird ein sogenannten Frequenzbewertungsfilter \footnote{ Weighting curves}, Abbildung \ref{fig:frequenzbewertung}, eingesetzt. Dabei werden heutzutage nur noch die dB(A), sowie der dB(C)-Filter eingesetzt. Dabei unterscheiden sich die beiden Filter folgendermassen:
+	Unser Gehör reagiert nicht nur nicht linear auf Lautstärkeveränderungen, sondern zusätzlich auch unterschiedlich Sensitiv auf unterschiedliche Frequenzen im hörbaren Bereich (20Hz-20kHz). Insbesondere im Bereich zwischen 3kHz bis 4kHz \cite{impairments_basics_2004} ist das Gehör besonders anfällig auf äussere Stimulation. Abbildung \ref{fig:phon-curve}, ursprünglich durch Fletcher \& Munson, mittlerweilen auch durch den ISO226-Standard beschrieben, zeigt diesen Umstand. Um der Problematik aus Abbildung \ref{fig:phon-curve} sorge tragen zu können, wird ein sogenannten Frequenzbewertungsfilter \footnote{ Weighting curves}, Abbildung \ref{fig:frequenzbewertung}, eingesetzt. Dabei werden heutzutage nur noch die dB(A), sowie der dB(C)-Filter eingesetzt. Die beiden Filter unterscheiden sich folgendermassen:
 	\begin{itemize}
 		\item dB(A) \\
 		Reproduziert die 40 Phon Kurve \\
@@ -125,13 +135,13 @@
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\linewidth]{images/phon-curve}
+		\includegraphics[width=1\linewidth]{images/phon-curve}
 		\caption{Phon-Kurven im Vergleich $\vert$ Quelle: \cite{impairments_basics_2004}}
 		\label{fig:phon-curve}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\linewidth]{images/Frequenzbewertung}
+		\includegraphics[width=1\linewidth]{images/Frequenzbewertung}
 		\caption{Frequenzbewertungsfilter $\vert$ Quelle: \cite{noauthor_frequenzbewertung_2023}}
 		\label{fig:frequenzbewertung}
 	\end{figure}
@@ -147,8 +157,26 @@
 		\item Frequenzbereich
 	\end{itemize}
 	\subsubsection{Vergleich}
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|l|l|l|l|l|l|l|}
+			\hline
+			\textbf{Typ} & \textbf{Protokoll} & \textbf{Öffnung} & \textbf{SNR} & \textbf{AOP[dB]} & \textbf{$f_{min}$ [Hz]} & \textbf{$f_{max}$[Hz]} \\\hline
+	ICS-43434 & I2S & Unten & 65 & 120 & 60 & 20000 \\ \hline
+	ICS-41351 & PDM & Oben & 65 & 120 & 50 & 20000 \\ \hline
+	MMICT5838-00-012 & PDM & Unten & 68 & 133 & 27 & 20000 \\ \hline
+	CMM-4737DT-26386-TR & PDM & Oben & 58 & 120 & 100 & 10000 \\ \hline
+	CMM-4737DT-26186-TR & PDM & Oben & 58 & 120 & 100 & 10000 \\ \hline
+	MP34DT05(-A) & PDM & Oben & 64 & 122.5 & 100 & 10000 \\ \hline
+	MP34DT06J & PDM & Oben & 64 & 122.5 & 100 & 10000 \\ \hline
+	SPH0645LM4H-B & I2S & Unten & 65 & 120 & 20 & 10000 \\ \hline
+	\end{tabular}
+	\caption{Vergleich Mikrofone}
+	\label{table:vergleich-mikrofone}
+\end{table}
+
 	\subsubsection{Fazit}
-	
+	$\frac{1}{3}$ der untersuchten Mikrofone weisen die Mikrofon-Öffnung auf der Unterseite auf. Dies ermöglicht es, einen höheren SNR gewährleisten zu können, jedoch ist diese Montageart für das Endprodukt nicht geeignet (siehe Kapitel \ref{Entwicklung}). Bei den restlichen Mikrofonen sticht das ICS-41351 von TDK InvenSense mit seinem hohen SNR, AOP sowie der hohen Frequenzbandbreite heraus. Dadurch hat dieses das Rennen gewonnen.
 	\newpage
 	\section{Mikrocontroller}
 	\subsection{Grundlagen}
@@ -209,11 +237,11 @@
 	\newpage
 	\section{LED}
 	\subsection{Grundlagen}
-	\subsubsection{Wellenlänge}
+	\subsubsection{Wellenlänge} \label{Wellenlänge}
 	\subsubsection{Leistungsaufnahme}
 	\subsubsection{Lichtleistung}
 	\subsubsection{Vorwiderstand / Strombegrenzung}
-	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird normalerweise ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies kontraproduktiv. Als Alternative kann ein buck converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
+	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird normalerweise ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies unerwünscht. Als Alternative kann ein buck converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_Buck-Converter}
@@ -228,9 +256,26 @@
 		\item Wellenlänge
 	\end{itemize}
 	\subsubsection{Vergleich}
-	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{Hersteller} & \textbf{Typ} & \textbf{Farbe} & \textbf{Intensität[mcd]\tablefootnote{bei einem Strom von 2mA}} & \textbf{Spannung [V]} \\ \hline
+			SunLED & XZCM2CRK53WA-8VF & Rot & 180 & 2.1 \\ \hline
+			SunLED & XZCDGK53W-8VF & Grün & 250 & 3.1 \\ \hline
+			SunLED & XZCFBB53W-8VF & Blau & 30 & 3 \\ \hline
+			Worldsemi & WS2018 & Rot & 55 & 2.2 \\ \hline
+			Worldsemi & WS2018 & Grün & 110 & 3.1 \\ \hline
+			Worldsemi & WS2018 & Blau & 20 & 3.4 \\ \hline
+			RND & 135-00184 & Rot & 7 & 1.6 \\ \hline
+		\end{tabular}
+		\caption{Vergleich LED}
+		\label{table:vergleich-led}
+	\end{table}
+	\subsubsection{Fazit}
+	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Leistungsaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblich mit einer Wellenlänge von 700nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
 	\newpage
-	\section{Entwicklung}	
+	\section{Entwicklung}\label{Entwicklung}
 	\subsection{Konzept}
 	Die im Unterkapitel \ref{Ziele} definierten Ziele sollen nun umgesetzt werden. Dazu soll die von aussen sichtbare Vorderseite möglichst wenig Bauteile aufweisen, um das visuelle Design nicht zu beeinträchtigen. Mit einer angestrebten Gesamtgrösse von 60mm Durchmesser, können die gewählten Bauteile geradenoch auf dem PCB in einer symmetrischen Art platziert werden. 
 	\paragraph{Front}
@@ -269,6 +314,33 @@
 	\subsubsection{PCB}
 	\paragraph{Laderegler}
 	\subsubsection{Kosten}
+	Die Tabelle \ref{table:materialliste} beinhaltet alle anfallenden Materialkosten exkl. Versand. Zudem wurde \href{https://jlcpcb.com/}{JLCPCB} als PCB-Hersteller gewählt, da zum einen die Qualität bei 2-Layer-PCBs ausreicht und zum anderen mit der Anbindung an \href{https://www.lcsc.com/}{LCSC} die Bestückung der PCBs direkt im selben Werk stattfindet. Dadurch verkürzt sich die Fertigung des Endproduktes. \\
+	Die vorhandenen Kondensatoren, sowie die benötigten Widerstände werden in der Tabelle \ref{table:materialliste} unter Diverse zusammengenommen. Dies aus dem Grund, dass keines dieser Bauteile einer besonderen Toleranz unterliegt. Dadurch kann bei der PCB-Bestellung eine kosten-optimierte Wahl getroffen werden.
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		\textbf{Hersteller} & \textbf{Typ} & \textbf{Bezeichnung} & \textbf{Preis/100} \\ \hline
+		JLCPCB & \href{https://cart.jlcpcb.com/quote?orderType=1\&stencilLayer=2\&stencilWidth=40\&stencilLength=40\&stencilCounts=100}{-} & PCB inkl. Versand & 0.394 \\ \hline
+		Texas Instruments  & \href{https://www.mouser.ch/ProductDetail/Texas-Instruments/BQ21040DBVR?qs=cttFivMKqWyovUuY6Xwwcw\%3D\%3D}{BQ21040DBVR} & Batterie-Management & 0.516 \\ \hline
+		Microchip Technology & \href{https://www.mouser.ch/ProductDetail/Microchip-Technology/MIC5504-3.3YM5-TR?qs=U6T8BxXiZAUmVQ5Zs217qQ\%3D\%3D}{MIC5504-3.3YM5-TR}  & 3V3 LDO & 0.095 \\ \hline
+		RS PRO & \href{https://ch.rs-online.com/web/p/knopfzellen-akkus/1834296}{LIR2477} & Akku & 4.085 \\ \hline
+		Littlefuse & \href{https://www.mouser.ch/ProductDetail/Littelfuse/1210L020WR?qs=PWhpLWeW8wcFhN6lPv0ohQ%3D%3D}{1210L020WR} & Rückstellbare Sicherung & 0.205 \\ \hline
+		Texas Instruments  & \href{https://www.mouser.ch/ProductDetail/Texas-Instruments/LP55231SQX-NOPB?qs=HF2YfZwisE8IcIRPR19gTw\%3D\%3D}{LP55231SQX/NOPB}  & 9-Kanal LED-Treiber IC & 1.35 \\ \hline
+		SunLED & \href{https://www.digikey.ch/de/products/detail/sunled/XZCM2CRK53WA-8VF/10449794}{XZCM2CRK53WA-8VF} & LED RED CLEAR 2SMD & 0.2072 \\ \hline
+		C\&K & \href{https://www.mouser.ch/ProductDetail/CK/JS102011SAQN?qs=LgMIjt8LuD\%252B69bNM9a\%2FozQ\%3D\%3D}{JS102011SAQN}  & Schalter 0.3A@6V & 0.453 \\ \hline
+		Keystone Electronics & \href{https://www.mouser.ch/ProductDetail/Keystone-Electronics/1025-7?qs=2eeJ4RqLicExTS\%2FpSQucQQ\%3D\%3D}{1025-7}  & Batteriehalter 24x7.7mm & 1.26 \\ \hline
+		STMicroelectronics & \href{https://www.mouser.ch/ProductDetail/STMicroelectronics/M95P16-IXMNT-E?qs=rQFj71Wb1eV9LflyHvgrDg\%3D\%3D}{M95P16-IXMNT/E}  & 16MBit SPI EEPROM & 0.843 \\ \hline
+		Silicon Labs & \href{https://www.mouser.ch/ProductDetail/Silicon-Labs/BGM220PC22WGA2R?qs=7MVldsJ5UayRQss0gz56jA\%3D\%3D}{BGM220PC22WGA2R}  & Mikrocontroller & 6.33 \\ \hline
+		TDK InvenSense & \href{https://www.mouser.ch/ProductDetail/TDK-InvenSense/ICS-41351?qs=\%252B6g0mu59x7LDJ1mBnROZzA\%3D\%3D}{ICS-41351}  & MEMS-Mikrofon & 1.05 \\ \hline
+		GCT & \href{https://www.mouser.ch/ProductDetail/GCT/USB4125-GF-A?qs=KUoIvG\%2F9IlaIQ4zBJ6gLeA\%3D\%3D}{640-USB4125-GF-A} & USB-C Buchse 6 Pin TOP & 0.381 \\ \hline
+		Toshiba & \href{https://www.mouser.ch/ProductDetail/Toshiba/SSM3J334RLF?qs=PiFplXvYe5VBSYhr6TJz8A\%3D\%3D}{SSM3J334R,LF} & P-Channel MOSFET & 0.109 \\ \hline
+		Diverse & Capacitor \& Resistor & Abmessung: 0603 [Inch] & 0.6 \\\hline
+		~ & ~ & ~ & \textbf{17.90 CHF} \\ \hline
+	\end{tabular}
+	\caption{Materialliste $\vert$ Stand: 01.04.2024}
+	\label{table:materialliste}
+\end{table}
 	\subsection{Software}
 	\subsubsection{Filterdesign}
 	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter werden jedoch fast ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) veröffentlicht. Dadurch müssen diese mit der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
