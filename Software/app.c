@@ -31,6 +31,7 @@
 #include "app_assert.h"
 #include "sl_bluetooth.h"
 #include "app.h"
+#include <stdio.h>
 
 // The advertising set handle allocated from Bluetooth stack.
 static uint8_t advertising_set_handle = 0xff;
@@ -38,6 +39,8 @@ static uint8_t advertising_set_handle = 0xff;
 #include "custom\BAT_RTC.h"
 #include "custom\BAT_SPI.h"
 #include "custom\BAT_I2C.h"
+#include "custom\BAT_PDM.h"
+#include "custom\BAT_LETIMER.h"
 
 /* https://docs.silabs.com/gecko-platform/4.4.1/platform-hardware-driver/mic */
 #include "sl_mic.h"
@@ -54,10 +57,13 @@ static int16_t buffer[MIC_SAMPLE_BUFFER_SIZE * MIC_N_CHANNELS];
 SL_WEAK void app_init(void)
 {
   // Initialize microphone with sample rate and number of channels
-  //sl_mic_init(MIC_SAMPLE_RATE, MIC_N_CHANNELS);
-  //BAT_RTC_init();
-  BAT_SPI_init();
-  BAT_I2C_init();
+//  sl_mic_init(MIC_SAMPLE_RATE, MIC_N_CHANNELS);
+  BAT_RTC_init();
+//  BAT_SPI_init();
+//  BAT_I2C_init();
+//  BAT_PDM_init();
+  BAT_TIMER_init();
+  BAT_GPIO_init();
 }
 
 /**************************************************************************//**
@@ -66,7 +72,6 @@ SL_WEAK void app_init(void)
 SL_WEAK void app_process_action(void)
 {
 //  float sound_level_0;
-//  float sound_level_1;
 //  uint32_t n_samples = 1024;
 //  // Read samples from the microphone
 //  sl_mic_get_n_samples(buffer, n_samples);
@@ -76,10 +81,11 @@ SL_WEAK void app_process_action(void)
 //  }
 //  // Calculate sound level
 //  sl_mic_calculate_sound_level(&sound_level_0, buffer, n_samples, 0);
-//  sl_mic_calculate_sound_level(&sound_level_1, buffer, n_samples, 1);
+//  sound_level_0 = 10;
 //  BAT_SPI_eepromIsAvailable();
-  BAT_I2C_enableLedRange(8);
+//  BAT_I2C_enableLedRange(8);
 //  BAT_I2C_readTemperature();
+
 }
 
 /**************************************************************************//**

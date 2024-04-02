@@ -12,48 +12,49 @@
 
 #include "BAT_RTC.h"
 
+//static uint16_t prescaler;
+//static uint32_t clock;
+
 void BAT_RTC_init(void){
-  /* follow this pattern: Set CFG->Set EN->Set CTRL->START CMD->adjust CTRL->STOP CMD */
-  RTCC_Init_TypeDef rtccInit = RTCC_INIT_DEFAULT;
-  rtccInit.enable = false; /* disable rtc to make config */
-  RTCC_Init(&rtccInit);
-  RTCC_CCChConf_TypeDef rtccInitCompareChannel = RTCC_CH_INIT_COMPARE_DEFAULT;
-
-  /* Setting RTCC clock source to 1kHz ultra low frequency oscillator */
-  CMU_ClockSelectSet(cmuClock_RTCCCLK, cmuSelect_ULFRCO);
-
-  /* Enable RTCC bus clock */
-  CMU_ClockEnable(cmuClock_RTCC, true);
-
-  /* Configure Channel 1 to increment each second */
-  RTCC_CCChConf_TypeDef ch1Conf = RTCC_CH_INIT_COMPARE_DEFAULT;
-  ch1Conf.compBase = rtccCntPresc_1; // No prescaler
-  ch1Conf.compMatchOutAction = rtccCompMatchOutActionToggle; // Toggle output on match
-  RTCC_ChannelInit(1, &ch1Conf);
-
-//  // Configure Channel 2 to overflow every 500ms and generate an interrupt
-//  RTCC_CCChConf_TypeDef ch2Conf = RTCC_CH_INIT_COMPARE_DEFAULT;
-//  ch2Conf.compBase = rtccCntPresc_1; // No prescaler
-//  ch2Conf.compMatchOutAction = rtccCompMatchOutActionSet; // Set output on match
-//  RTCC_ChannelInit(2, &ch2Conf);
+  /* calculate constants based on the
+   * clock and prescaler defined by the BLE stack */
+//  prescaler = RTCC->CFG >> 4;
+//  clock = CMU_ClockFreqGet(cmuClock_RTCC);
 //
-//  // Enable interrupt for Channel 2
-//  RTCC_IntEnable(RTCC_IF_CC2);
-//  NVIC_EnableIRQ(RTCC_IRQn);
-
-  RTCC_SyncWait();
-  /* Start the RTCC */
-  RTCC_Enable(true);
+//  switch (prescaler){
+//          case 0:   prescaler = 1;      break;
+//          case 1:   prescaler = 2;      break;
+//          case 2:   prescaler = 4;      break;
+//          case 3:   prescaler = 8;      break;
+//          case 4:   prescaler = 16;     break;
+//          case 5:   prescaler = 32;     break;
+//          case 6:   prescaler = 64;     break;
+//          case 7:   prescaler = 128;    break;
+//          case 8:   prescaler = 256;    break;
+//          case 9:   prescaler = 512;    break;
+//          case 10:  prescaler = 1024;   break;
+//          case 11:  prescaler = 2048;   break;
+//          case 12:  prescaler = 4096;   break;
+//          case 13:  prescaler = 8192;   break;
+//          case 14:  prescaler = 16384;  break;
+//          case 15:  prescaler = 32768;  break;
+//          default: break; /* invalid prescaler value */
+//  }
 }
 
 void BAT_RTC_deInit(void){
-  RTCC_Enable(false);
 }
 
-/* handle any generated interrupt */
-void BAT_RTC_IRQHandler(void)
-{
-    // Clear the interrupt flag
-    RTCC_IntClear(RTCC_IF_CC1);
-    // Handle the interrupt, e.g., toggle an LED
+/* returns timestamp in seconds */
+uint32_t BAT_RTC_getTime(void){
+  return sl_sleeptimer_get_time();
+}
+
+void BAT_RTC_convertTimeToString(uint32_t time, char* str){
+  uint8_t hours = time / 3600;
+  uint8_t minutes = (time % 3600) / 60;
+  uint8_t seconds = time % 60;
+
+  /* convert int to str */
+  snprintf(str, 8, "%02d:%02d:%02d", hours, minutes, seconds);
 }
