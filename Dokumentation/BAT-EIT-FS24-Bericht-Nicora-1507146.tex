@@ -312,7 +312,14 @@
 	
 	\subsection{Hardware}
 	\subsubsection{PCB}
-	\paragraph{Laderegler}
+	\paragraph{Akku-Laderegler}
+	\paragraph{Sicherung}
+	\paragraph{Spannungsregler}
+	\paragraph{LED-Treiber}
+	\paragraph{BMS}
+	\paragraph{USB-C-Buchse}
+	\paragraph{P-Kanal MOSFET}
+	
 	\subsubsection{Kosten}
 	Die Tabelle \ref{table:materialliste} beinhaltet alle anfallenden Materialkosten exkl. Versand. Zudem wurde \href{https://jlcpcb.com/}{JLCPCB} als PCB-Hersteller gewählt, da zum einen die Qualität bei 2-Layer-PCBs ausreicht und zum anderen mit der Anbindung an \href{https://www.lcsc.com/}{LCSC} die Bestückung der PCBs direkt im selben Werk stattfindet. Dadurch verkürzt sich die Fertigung des Endproduktes. \\
 	Die vorhandenen Kondensatoren, sowie die benötigten Widerstände werden in der Tabelle \ref{table:materialliste} unter Diverse zusammengenommen. Dies aus dem Grund, dass keines dieser Bauteile einer besonderen Toleranz unterliegt. Dadurch kann bei der PCB-Bestellung eine kosten-optimierte Wahl getroffen werden.
@@ -354,12 +361,18 @@
 	\subsubsection{PDM}
 	\subsubsection{I²C}
 	\subsubsection{SPI}
+	\subsubsection{RTC}
+	\subsubsection{Timer}
 	
 	\newpage
 	\section{Messungen}
 	\subsection{Leistungsaufnahme}
 	\subsection{Mikrofon-Kalibrierung}
 	\subsection{Vergleich}
+	
+	\newpage
+	\section{Stolpersteine}
+	RTC, BLE, Filterdesign, Debugger
 	
 	\newpage
 	\section{Fazit und Ausblick}
