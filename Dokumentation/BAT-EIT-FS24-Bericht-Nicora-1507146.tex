@@ -81,7 +81,7 @@
 	\section{Mikrofon}
 	\subsection{Grundlagen}
 	\subsubsection{MEMS}
-	
+	\color{red}TODO\color{black}
 	\subsubsection{I2S} \label{I2S}
 	\textbf{I}nter-\textbf{I}ntegrated \textbf{S}ound (I²S) bezeichnet eine Bus-Schnittstelle, welche von Philips zur Übertragung von digitalen Audiosignalen entwickelt wurde. Ähnlich wie I²C (Inter-Integrated Circuit) wird die Schnittstelle jedoch nur innerhalb des Gerätes verwendet. Dabei werden drei Pins zwischen Sender (hier das Mikrofon) und dem Empfänger (hier der Mikrocontroller) benötigt:
 	\begin{itemize}
@@ -238,9 +238,12 @@
 	\section{LED}
 	\subsection{Grundlagen}
 	\subsubsection{Wellenlänge} \label{Wellenlänge}
+	\color{red}TODO\color{black}
 	\subsubsection{Leistungsaufnahme}
+	\color{red}TODO\color{black}
 	\subsubsection{Lichtleistung}
-	\subsubsection{Vorwiderstand / Strombegrenzung}
+	\color{red}TODO\color{black}
+	\subsubsection{Vorwiderstand / Strombegrenzung} \label{Vorwiderstand}
 	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird normalerweise ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies unerwünscht. Als Alternative kann ein buck converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
 	\begin{figure}[H]
 		\centering
@@ -276,8 +279,8 @@
 	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Leistungsaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblich mit einer Wellenlänge von 700nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
 	\newpage
 	\section{Entwicklung}\label{Entwicklung}
-	\subsection{Konzept}
 	Die im Unterkapitel \ref{Ziele} definierten Ziele sollen nun umgesetzt werden. Dazu soll die von aussen sichtbare Vorderseite möglichst wenig Bauteile aufweisen, um das visuelle Design nicht zu beeinträchtigen. Mit einer angestrebten Gesamtgrösse von 60mm Durchmesser, können die gewählten Bauteile geradenoch auf dem PCB in einer symmetrischen Art platziert werden. 
+	\subsection{Konzept}
 	\paragraph{Front}
 	Die Vorderseite weist folgende Bauteile auf:
 	\begin{itemize}
@@ -312,13 +315,46 @@
 	
 	\subsection{Hardware}
 	\subsubsection{PCB}
-	\paragraph{Akku-Laderegler}
-	\paragraph{Sicherung}
-	\paragraph{Spannungsregler}
-	\paragraph{LED-Treiber}
-	\paragraph{BMS}
-	\paragraph{USB-C-Buchse}
-	\paragraph{P-Kanal MOSFET}
+	Das PCB durchlief mehrere Iterationen. Nun folgend die Änderungen mit den benötigten Zusatzinformationen wieso, welche Bauteile eingesetzt werden.
+	\paragraph{V1-1}\mbox{}\\
+	Lediglich kleinere Verdrahtungs- und Platzierungsoptimierungen.
+	\paragraph{V1-2}\mbox{}\\
+	Folgende Anpassungen wurden vorgenommen:
+	\begin{itemize}
+		\item Akku-Verpolungsschutz mittels \nameref{P-Kanal MOSFET}.
+		\item Testpads für I²C, SPI und PDM entfernt.
+		\item USB-C 16 Pin Buchse durch 6 Pin Buchse (power only) ersetzt.
+		\item Rotation der LEDs um 40° im Gegenuhrzeigersinn, um die Reihenfolge der LEDs zu gewährleisten. Zusätzliche Optimierung der Platzierung der LEDs, um die Verdrahtung zu vereinfachen.
+		\item TRIG-Pin des LED-Treiber-ICs auf Masse geschaltet.
+		\item Spannungsteiler zur Messung der Speisespannung via USB-C.
+		\item Optionaler Pullup-Widerstand an DRV\_EN um den Anschluss nicht immer manuell schalten zu müssen.
+	\end{itemize}
+	\paragraph{Sicherung}\mbox{}\\
+	Der Fall eines Kurzschlusses auf Geräteseite wird mittels einer rückstellbaren Sicherung (PPTC\footnote{\textbf{P}olymeric \textbf{P}ositive \textbf{T}emperature \textbf{C}oefficient, automatisch rückstellbare Sicherung von Littlefuse}) der Stromfluss unterbrochen. Die gewählte Sicherung blockiert bei einem Strom von 400mA komplett und setzt sich automatisch wieder zurück, sobald die Speisung abgetrennt wird.
+	\paragraph{LED-Treiber} \mbox{}\\
+	Die Aufgabe des Treibers ist es, den LED-Strom möglichst Energieeffizient zu regeln (siehe \ref{Vorwiderstand}). Der gewählte Treiber ermöglicht es alle 8 LEDs individuell in 100uA-Schritten zu regeln. So kann die Leistungsaufnahme des Gesamtsystems kontrolliert werden.
+	\paragraph{Akku-Laderegler $\vert$ BMS} \mbox{}\\
+	Das \textbf{B}attery \textbf{M}anagement \textbf{S}ystem wurde aufgrund folgender, benötigter Eigenschaften gewählt:
+	\begin{itemize}
+		\item Möglichst wenige externe Bauteile
+		\item Über- und Unterspannungsschutz
+		\item Überstromschutz
+		\item Keine direkte Ansteuerung mittels Mikrocontroller nötig
+		\item Möglichkeit zur visuellen Darstellung des Ladestatus
+		\item Unterstützung von Li-Po und Li-Ion Akkus
+	\end{itemize}
+	\paragraph{Spannungsregler} \mbox{}\\
+	Der Akku weist eine maximale Nennspannung von 4.2V (typ. 3.6V) auf. Alle gewählten Halbleiter erlauben jedoch maximal eine Speisespannung von 3.6V. Deswegen wird ein möglichst effizienter und kostengünstiger Spannungsregler verwendet. Wie auch bereits das BMS, weist der Spannungsregler möglichst wenig externe Bauteile auf.
+	\paragraph{USB-C-Buchse}\mbox{}\\
+	Die in V1-0 verwendete Buchse (16 Pin) wird durch eine 6 Pin (power only) ersetzt. Dies, da die ursprünglich geplante Möglichkeit, den Mikrocontroller via USB zu programmieren, wieder verworfen wurde. Dadurch kann eine günstigere Buchse verwendet werden.
+	\paragraph{P-Kanal MOSFET} \label{P-Kanal MOSFET} \mbox{}\\
+	Für den Verpolungsschutz kann im Grunde auch eine simple Diode (oder Schottky-Diode\footnote{Die Schwellspannung entspricht nur ca. 0.2V}) verwendet werden. Der daraus folgende Spannungsabfall ist jedoch für ein akkubetriebenes Gerät nicht ideal. Die Lösung bietet ein P-Kanal-MOSFET, wie in Abbildung \ref{fig:batverpolungsschutz}. Die Z-Diode, sowie der Gate-Widerstand, werden jedoch weggelassen, da die Batteriespannung die maximale Source-Gate-Spannung des gewählten FETs nicht überschreitet.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/BAT_Verpolungsschutz}
+		\caption{Verpolungsschutz mit P-Kanal MOSFET}
+		\label{fig:batverpolungsschutz}
+	\end{figure}
 	
 	\subsubsection{Kosten}
 	Die Tabelle \ref{table:materialliste} beinhaltet alle anfallenden Materialkosten exkl. Versand. Zudem wurde \href{https://jlcpcb.com/}{JLCPCB} als PCB-Hersteller gewählt, da zum einen die Qualität bei 2-Layer-PCBs ausreicht und zum anderen mit der Anbindung an \href{https://www.lcsc.com/}{LCSC} die Bestückung der PCBs direkt im selben Werk stattfindet. Dadurch verkürzt sich die Fertigung des Endproduktes. \\
@@ -359,16 +395,24 @@
 	\end{equation}
 	
 	\subsubsection{PDM}
+	\color{red}TODO\color{black}
 	\subsubsection{I²C}
+	\color{red}TODO\color{black}
 	\subsubsection{SPI}
+	\color{red}TODO\color{black}
 	\subsubsection{RTC}
+	\color{red}TODO\color{black}
 	\subsubsection{Timer}
+	\color{red}TODO\color{black}
 	
 	\newpage
 	\section{Messungen}
 	\subsection{Leistungsaufnahme}
+	\color{red}TODO\color{black}
 	\subsection{Mikrofon-Kalibrierung}
+	\color{red}TODO\color{black}
 	\subsection{Vergleich}
+	\color{red}TODO\color{black}
 	
 	\newpage
 	\section{Stolpersteine}
@@ -376,6 +420,7 @@
 	
 	\newpage
 	\section{Fazit und Ausblick}
+	\color{red}TODO\color{black}
 	
 	\newpage
 	\section{Anhang}
@@ -389,6 +434,8 @@
 	Embedded \\
 	ppm \\
 	flashen \\
+	Li-Po \\
+	Li-Ion
 	
 	
 	
