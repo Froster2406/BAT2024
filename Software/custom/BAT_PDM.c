@@ -6,11 +6,6 @@
  */
 
 #include "BAT_PDM.h"
-#include "BAT_DEFINES.h"
-#include "em_pdm.h"
-#include "em_cmu.h"
-
-#include "sl_mic.h"
 
 void BAT_PDM_init(void){
   CMU_DPLLInit_TypeDef pllInit = CMU_DPLL_LFXO_TO_40MHZ;
@@ -65,9 +60,26 @@ void BAT_PDM_deInit(void){
 void BAT_PDM_readMicrophone(void){
 
 }
-
-/* apply A or C filter onto data
- * returns dBSPL-value */
-uint8_t BAT_PDM_applyWeightingFilter(void){
-
+static double A_a_1_koeff[2] = { -0.140536082420711, 0.00493759761554020};
+static double A_a_2_koeff[2] = { -1.88490121742879,  0.886421471816168};
+static double A_a_3_koeff[2] = { -1.99413888126633,  0.994147469444531};
+static double A_b_1_koeff[3] = { 0.216100378798707, 0.432200757597415, 0.216100378798707};
+static double A_b_2_koeff[3] = { 1, -2, 1};
+static double A_b_3_koeff[3] = { 1, -2, 1};
+/* apply A or C filter (Direct form II transposed) onto data */
+void BAT_PDM_applyWeightingFilter(uint16_t *x, uint16_t *y, uint16_t k, weighting Filtertype){
+  /* first iteration */
+  for(uint16_t i = 0; i < k ; i++){
+      y[i+2] = x[i] * A_b_1_koeff[0] + x[i+1] * A_b_1_koeff[1] + x[i+2] * A_b_1_koeff[2] - y[i+1] * A_a_1_koeff[0] - y[i] * A_a_1_koeff[1];
+  }
+  /* second iteration */
+  memcpy(x, y, k);  /* copy output of first stage into input of second stage */
+  for(uint16_t i = 0; i < k ; i++){
+      y[i+2] = x[i] * A_b_2_koeff[0] + x[i+1] * A_b_2_koeff[1] + x[i+2] * A_b_2_koeff[2] - y[i+1] * A_a_2_koeff[0] - y[i] * A_a_2_koeff[1];
+  }
+  /* third iteration */
+  memcpy(x, y, k);  /* copy output of first stage into input of second stage */
+  for(uint16_t i = 0; i < k ; i++){
+      y[i+2] = x[i] * A_b_3_koeff[0] + x[i+1] * A_b_3_koeff[1] + x[i+2] * A_b_3_koeff[2] - y[i+1] * A_a_3_koeff[0] - y[i] * A_a_3_koeff[1];
+  }
 }
