@@ -147,8 +147,8 @@ void BAT_I2C_init(void){
 
   /* enable and toggle on GPIO pin to set pin high on IC */
   CMU_ClockEnable(cmuClock_GPIO, true);
-  GPIO_PinModeSet(gpioPortA, 4, gpioModePushPull, 1);
-  GPIO_PinOutSet(gpioPortA, 4);
+  GPIO_PinModeSet(BAT_I2C_ENABLE_PORT, BAT_I2C_ENABLE_PIN, gpioModePushPull, 1);
+  GPIO_PinOutSet(BAT_I2C_ENABLE_PORT, BAT_I2C_ENABLE_PIN);
 
   /* enable chip on register level */
   BAT_I2C_writeRegister(BAT_I2C_ENABLE, 1<<6);

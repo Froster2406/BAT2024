@@ -13,6 +13,7 @@
 #include "em_gpio.h"
 #include "em_cmu.h"
 #include "sl_udelay.h"
+#include "BAT_DEFINES.h"
 
 #define BAT_I2C_ADDR  0x32 /* Configured via ASEL0 and ASEL1 pins */
 
