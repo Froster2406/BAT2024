@@ -19,4 +19,31 @@
 #define BAT_MIC_DATA_PORT   gpioPortB
 #define BAT_MIC_DATA_PIN    0
 
+/* VISIUAL REPRESENTATION */
+#define LED_THRESHOLD_1 65 /* in dB */
+#define LED_THRESHOLD_2 70 /* in dB */
+#define LED_THRESHOLD_3 75 /* in dB */
+#define LED_THRESHOLD_4 80 /* in dB */
+#define LED_THRESHOLD_5 85 /* in dB */
+#define LED_THRESHOLD_6 90 /* in dB */
+#define LED_THRESHOLD_7 95 /* in dB */
+#define LED_THRESHOLD_8 100 /* in dB */
+
+/* SPI */
+#define BAT_SPI_MISO_PORT gpioPortC
+#define BAT_SPI_MISO_PIN  0
+#define BAT_SPI_MOSI_PORT gpioPortC
+#define BAT_SPI_MOSI_PIN  1
+#define BAT_SPI_CS_PORT   gpioPortC
+#define BAT_SPI_CS_PIN    2
+#define BAT_SPI_CLK_PORT  gpioPortC
+#define BAT_SPI_CLK_PIN   3
+
+/* I2C */
+#define BAT_I2C_SCL_PORT    gpioPortC
+#define BAT_I2C_SCL_PIN     7
+#define BAT_I2C_SDA_PORT    gpioPortC
+#define BAT_I2C_SDA_PIN     6
+#define BAT_I2C_ENABLE_PORT gpioPortA
+#define BAT_I2C_ENABLE_PIN  4
 #endif /* CUSTOM_BAT_DEFINES_H_ */
