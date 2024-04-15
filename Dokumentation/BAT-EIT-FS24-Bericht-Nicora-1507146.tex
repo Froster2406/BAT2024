@@ -236,13 +236,21 @@
 	
 	\newpage
 	\section{LED}
+	Die visuelle Darstellung des Schalldruckpegels kann auf verschiedene Arten umgesetzt werden. Da hEar explizit eine Darstellung mittels LED wünscht, werden nachfolgend die wichtigsten Eigenschaften eingeführt und anschliessend ein passendes Produkt evaluiert.
 	\subsection{Grundlagen}
 	\subsubsection{Wellenlänge} \label{Wellenlänge}
-	\color{red}TODO\color{black}
+	Das für den durchschnittlichen Menschen sichtbare Lichtspektrum beginnt bei 380nm (blau) und endet bei 780nm (rot)\cite{noauthor_v-lambda-kurve_2023}. Wie der Abbildung \ref{fig:batv-lambda-curve} zu entnehmen ist, entspricht die Sensitivität einer Gausskurve. Dabei erreicht diese ihr Maximum bei 555nm (grün) bei Betrachtung der Tageskurve. Dementsprechend kann beim Einsatz einer 555nm-LED im Gegensatz zu LEDs mit einer tieferen oder höheren Wellenlänge die zugeführte Leistung bei gleichwertiger Lichtempfindlichkeit reduziert werden.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/BAT_v-lambda-curve}
+		\caption{Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color{red}\textbf{schwarz}\color{black}) und Nacht (\color{blue}\textbf{blau}\color{black})$\vert$ Quelle: \cite{noauthor_v-lambda-kurve_2023}}
+		\label{fig:batv-lambda-curve}
+	\end{figure}
+	
 	\subsubsection{Leistungsaufnahme}
 	\color{red}TODO\color{black}
 	\subsubsection{Lichtleistung}
-	\color{red}TODO\color{black}
+	Neben der Wellenlänge, ist die Lichtleistung ausschlaggebend für die wahrgenommene Helligkeit einer LED. Dabei wird die Lichtleistung in Candela [cd] angegeben, wobei 1 cd der Helligkeit einer Kerze entspricht. Bei einer typischen LED verhält sich die Lichtleistung linear mit dem zugeführten Strom.
 	\subsubsection{Vorwiderstand / Strombegrenzung} \label{Vorwiderstand}
 	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird normalerweise ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies unerwünscht. Als Alternative kann ein buck converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
 	\begin{figure}[H]
@@ -276,7 +284,7 @@
 		\label{table:vergleich-led}
 	\end{table}
 	\subsubsection{Fazit}
-	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Leistungsaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblich mit einer Wellenlänge von 700nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
+	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Leistungsaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblich mit einer Wellenlänge von 780nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
 	\newpage
 	\section{Entwicklung}\label{Entwicklung}
 	Die im Unterkapitel \ref{Ziele} definierten Ziele sollen nun umgesetzt werden. Dazu soll die von aussen sichtbare Vorderseite möglichst wenig Bauteile aufweisen, um das visuelle Design nicht zu beeinträchtigen. Mit einer angestrebten Gesamtgrösse von 60mm Durchmesser, können die gewählten Bauteile geradenoch auf dem PCB in einer symmetrischen Art platziert werden. 
@@ -332,7 +340,7 @@
 	\paragraph{Sicherung}\mbox{}\\
 	Der Fall eines Kurzschlusses auf Geräteseite wird mittels einer rückstellbaren Sicherung (PPTC\footnote{\textbf{P}olymeric \textbf{P}ositive \textbf{T}emperature \textbf{C}oefficient, automatisch rückstellbare Sicherung von Littlefuse}) der Stromfluss unterbrochen. Die gewählte Sicherung blockiert bei einem Strom von 400mA komplett und setzt sich automatisch wieder zurück, sobald die Speisung abgetrennt wird.
 	\paragraph{LED-Treiber} \mbox{}\\
-	Die Aufgabe des Treibers ist es, den LED-Strom möglichst Energieeffizient zu regeln (siehe \ref{Vorwiderstand}). Der gewählte Treiber ermöglicht es alle 8 LEDs individuell in 100uA-Schritten zu regeln. So kann die Leistungsaufnahme des Gesamtsystems kontrolliert werden.
+	Die Aufgabe des Treibers ist es, den LED-Strom möglichst Energieeffizient zu regeln (siehe \ref{Vorwiderstand}). Der gewählte Treiber ermöglicht es, alle 8 LEDs individuell in 100uA-Schritten zu regeln. So kann die Leistungsaufnahme des Gesamtsystems kontrolliert werden.
 	\paragraph{Akku-Laderegler $\vert$ BMS} \mbox{}\\
 	Das \textbf{B}attery \textbf{M}anagement \textbf{S}ystem wurde aufgrund folgender, benötigter Eigenschaften gewählt:
 	\begin{itemize}
@@ -385,8 +393,11 @@
 	\label{table:materialliste}
 \end{table}
 	\subsection{Software}
+	Im Kern besteht die Software, wie in Abbildung \ref{fig:batkonzeptsoftwareablauf} gezeigt, aus einem einzelnen, sich wiederholenden Kreis. Durch den einfach gehaltenen Ablauf, wird auf den Einsatz eines RTOS verzichtet.
+	\subsubsection{Timer}
+	\color{red}TODO\color{black}
 	\subsubsection{Filterdesign}
-	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter werden jedoch fast ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) veröffentlicht. Dadurch müssen diese mit der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
+	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter werden jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) veröffentlicht. Dadurch müssen diese mit der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
 	\begin{equation}\label{G_A_s}
 		G_A(s) = \frac{7.39705 \cdot 10^9 \cdot s^4}{(s+129.4)^2\cdot (s+676.7)\cdot (s+4636)\cdot (s+76617)^2}
 	\end{equation}
@@ -401,8 +412,6 @@
 	\subsubsection{SPI}
 	\color{red}TODO\color{black}
 	\subsubsection{RTC}
-	\color{red}TODO\color{black}
-	\subsubsection{Timer}
 	\color{red}TODO\color{black}
 	
 	\newpage
@@ -435,7 +444,8 @@
 	ppm \\
 	flashen \\
 	Li-Po \\
-	Li-Ion
+	Li-Ion \\
+	RTOS
 	
 	
 	

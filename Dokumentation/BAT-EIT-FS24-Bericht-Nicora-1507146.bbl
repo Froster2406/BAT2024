@@ -17,6 +17,10 @@ G.~Dighe, ``{TPS65950} {Real}-{Time} {Clock} {Timing} {Compensation},'' Oct.
 \bibitem{noauthor_stm32l4_2024}
 ``{STM32L4} {Series} - {PDF} {Documentation},'' Mar. 2024.
 
+\bibitem{noauthor_v-lambda-kurve_2023}
+``V-{Lambda}-{Kurve},'' Dec. 2023.
+\newblock Page Version ID: 240001066.
+
 \bibitem{oppenheim_alan_v_zeitdiskrete_nodate}
 A.~V. Oppenheim, {\em Zeitdiskrete {Signalverarbeitung}}.
 \newblock R. Oldenbourg.

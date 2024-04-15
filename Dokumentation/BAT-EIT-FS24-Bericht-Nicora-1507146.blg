@@ -6,36 +6,36 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: ieeetr.bst
 Database file #1: Sources.bib
 Warning--empty year in oppenheim_alan_v_zeitdiskrete_nodate
-You've used 5 entries,
+You've used 6 entries,
             1876 wiz_defined-function locations,
-            500 strings with 4237 characters,
-and the built_in function-call counts, 703 in all, are:
-= -- 57
-> -- 21
+            503 strings with 4309 characters,
+and the built_in function-call counts, 817 in all, are:
+= -- 69
+> -- 22
 < -- 0
-+ -- 10
++ -- 11
 - -- 5
-* -- 40
-:= -- 98
-add.period$ -- 7
-call.type$ -- 5
-change.case$ -- 4
+* -- 45
+:= -- 109
+add.period$ -- 9
+call.type$ -- 6
+change.case$ -- 5
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 33
-empty$ -- 101
+cite$ -- 7
+duplicate$ -- 37
+empty$ -- 119
 format.name$ -- 5
-if$ -- 177
+if$ -- 209
 int.to.chr$ -- 0
-int.to.str$ -- 5
+int.to.str$ -- 6
 missing$ -- 3
-newline$ -- 20
+newline$ -- 24
 num.names$ -- 3
-pop$ -- 36
+pop$ -- 44
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 14
+skip$ -- 17
 stack$ -- 0
 substring$ -- 0
 swap$ -- 2
@@ -45,6 +45,6 @@ top$ -- 0
 type$ -- 0
 warning$ -- 1
 while$ -- 3
-width$ -- 6
-write$ -- 40
+width$ -- 7
+write$ -- 48
 (There was 1 warning)

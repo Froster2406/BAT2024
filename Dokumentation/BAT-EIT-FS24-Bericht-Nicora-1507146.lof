@@ -4,7 +4,8 @@
 \contentsline {figure}{\numberline {5}{\ignorespaces Frequenzbewertungsfilter $\vert $ Quelle: \cite {noauthor_frequenzbewertung_2023}}}{10}{figure.caption.6}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{13}{figure.caption.8}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{15}{figure.caption.9}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Buck Converter}}{16}{figure.caption.10}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Konzept PCB-Layout}}{19}{figure.caption.14}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Konzept Softwareablauf}}{19}{figure.caption.15}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Verpolungsschutz mit P-Kanal MOSFET}}{22}{figure.caption.24}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color {red}\textbf {schwarz}\color {black}) und Nacht (\color {blue}\textbf {blau}\color {black})$\vert $ Quelle: \cite {noauthor_v-lambda-kurve_2023}}}{16}{figure.caption.10}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Buck Converter}}{17}{figure.caption.11}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Konzept PCB-Layout}}{20}{figure.caption.15}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Konzept Softwareablauf}}{20}{figure.caption.16}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Verpolungsschutz mit P-Kanal MOSFET}}{23}{figure.caption.25}%
