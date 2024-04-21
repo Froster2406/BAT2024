@@ -323,7 +323,7 @@
 	
 	\subsection{Hardware}
 	\subsubsection{PCB}
-	Das PCB durchlief mehrere Iterationen. Nun folgend die Änderungen mit den benötigten Zusatzinformationen wieso, welche Bauteile eingesetzt werden.
+	Das PCB durchlief mehrere Iterationen. Nachfolgend treten die Änderungen mit den benötigten Zusatzinformationen chronologisch auf. Zudem findet sich eine Übersicht, wieso, welche Bauteile eingesetzt werden.
 	\paragraph{V1-1}\mbox{}\\
 	Lediglich kleinere Verdrahtungs- und Platzierungsoptimierungen.
 	\paragraph{V1-2}\mbox{}\\
@@ -337,6 +337,8 @@
 		\item Spannungsteiler zur Messung der Speisespannung via USB-C.
 		\item Optionaler Pullup-Widerstand an DRV\_EN um den Anschluss nicht immer manuell schalten zu müssen.
 	\end{itemize}
+	\paragraph{V1-3}\mbox{}\\
+	Auf Wunsch von hEar wurde zusätzlich noch ein PCB entwickelt, welches funktionsidentisch mit dem Vorgänger ist. Einzig die LEDs sind nun nicht mehr ringförmig angeordnet, sondern erstrecken sich neu auf einer vertikalen Linie. \color{red}TODO\color{black} IN DEN ANHANG BILDER DER DIV. VERSIONEN DES PCB
 	\paragraph{Sicherung}\mbox{}\\
 	Der Fall eines Kurzschlusses auf Geräteseite wird mittels einer rückstellbaren Sicherung (PPTC\footnote{\textbf{P}olymeric \textbf{P}ositive \textbf{T}emperature \textbf{C}oefficient, automatisch rückstellbare Sicherung von Littlefuse}) der Stromfluss unterbrochen. Die gewählte Sicherung blockiert bei einem Strom von 400mA komplett und setzt sich automatisch wieder zurück, sobald die Speisung abgetrennt wird.
 	\paragraph{LED-Treiber} \mbox{}\\
@@ -416,16 +418,36 @@
 	
 	\newpage
 	\section{Messungen}
+	Ein System kann qualitativ nur mit Messungen auf seine Einsatzfähigkeit untersucht werden. Dadurch erfolgen nachfolgend theoretische und praktische Messwerte.
 	\subsection{Leistungsaufnahme}
+	Die Leistungsaufnahme eines Systems zu quantifizieren, stellt sich als durchaus komplex dar. Viele Variablen, Abwägung von Verarbeitungsgeschwindigkeit mit der gegensätzlichen Energieeffizienz und nicht genau spezifizierte Parameter erschweren die Festlegung der Rahmenbedingungen. Bei der Auslegung der nachfolgenden Parameter wird stets die energieeffizientes Möglichkeit gewählt, ohne damit die Leistungsfähigkeit massgeblich zu beeinflussen.
+	\paragraph{Mikrocontroller}\mbox{}\\
 	\color{red}TODO\color{black}
-	\subsection{Mikrofon-Kalibrierung}
+	\paragraph{Mikrofon}\mbox{}\\
+	Wie der Formel \ref{eq:Leistung_Mikrofon} entnommen werden kann, gibt es zwei Möglichkeiten das Mikrofon zu betreiben:
+	\begin{itemize}
+		\item Das Mikrofon wird konstant im Performance-Modus betrieben. Durch den Einsatz von DMA sind die benötigten Messewerte jeder Zeit verfügbar und die 30ms Start- und Messzeit entfällt. Dadurch sind höher aufgelöste Messintervalle möglich. Siehe Messung  \color{red}TODO\color{black} der einzelnen Module.
+		\item Das Mikrofon wird nur dann aktiviert, wenn es benötigt wird. Dadurch sinkt die benötigte Leistung von 580$\mu Ah$ auf 87.2 $\mu Ah$ (\ref{eq:Leistung_Mikrofon}). Dadurch erhöht sich jedoch die benötigte Messzeit um 20ms. Dies aus dem Grund, dass keine DMA verwendet wird und das Mikrofon vom Standby-Betrieb (20 $\mu A$) in den Performance-Modus (580 $\mu A$) wechselt.
+	\end{itemize}
+	\begin{equation}\label{eq:Leistung_Mikrofon}
+		Leistung_{Mikrofon} = \underbrace{580 \mu A \cdot 30ms \cdot 4}_{ Performance-Modus} + \underbrace{20 \mu A \cdot 220ms \cdot 4}_{Standby} = 87.2 \mu Ah
+	\end{equation}
+	\paragraph{EEPROM}\mbox{}\\
+	Der Chip weist eine vielzahl von unterschiedlichen Leistungsmodi auf. Die Leistungsaufnahme variiert zwischen dem niedrigen Standby-Modus (35$\mu Ah$) und dem schreiben einer Seite (3$mAh$) von 512 Bytes. Gemäss folgender Mischrechnung (\ref{eq:Leistung_EEPROM}) kann die ungefähre Leistungsaufnahme approximiert werden.
+	\begin{equation}\label{eq:Leistung_EEPROM}
+		\underbrace{3mA \cdot 4.5ms}_{Schreiben} + \underbrace{1.5mA \cdot 2ms}_{Lesen} +  \underbrace{35\mu A \cdot 993.5ms}_{Standby}= 51.3 \mu Ah\footnote{Alle Zeiten gemäss Datenblatt}
+	\end{equation}
+	\paragraph{Übersicht berechnet}\mbox{}\\
+	\paragraph{Übersicht gemessen}\mbox{}\\
+	\color{red}TODO\color{black}
+	\subsection{Mikrofon-Messungen}
 	\color{red}TODO\color{black}
 	\subsection{Vergleich}
 	\color{red}TODO\color{black}
 	
 	\newpage
 	\section{Stolpersteine}
-	RTC, BLE, Filterdesign, Debugger
+	RTC, BLE, Filterdesign, Debugger, PDM / Startup-zeit
 	
 	\newpage
 	\section{Fazit und Ausblick}
@@ -446,6 +468,13 @@
 	Li-Po \\
 	Li-Ion \\
 	RTOS
+	\subsection{Messmittel}
+\begin{itemize}
+	\item Saleae Logic Analyzer - Logic 8 \\
+	S/N: T\&A 36 093
+	\item Logic 2 \\
+	Version: 2.4.14
+\end{itemize}
 	
 	
 	
