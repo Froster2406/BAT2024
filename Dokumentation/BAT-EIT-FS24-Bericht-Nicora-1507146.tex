@@ -78,10 +78,28 @@
 	In einem zweiten Schritt, wird das Gerät kalibriert und dessen Qualität mit auf dem Markt bereits vorhandenen Geräten verglichen.
 	
 	\newpage
+	\section{Stand der Technik}
+	
+	\newpage
 	\section{Mikrofon}
+	Als erste Kernkomponente gilt es, ein geeignetes Mikrofon zu evaluieren. Aus diesem Grund folgen anschliessend die benötigen Grundlagen, sowie die Komponentenwahl.
 	\subsection{Grundlagen}
 	\subsubsection{MEMS}
-	\color{red}TODO\color{black}
+	Mittels \textbf{M}icro \textbf{E}lectro-\textbf{M}echanical \textbf{S}ystems werden Bauteile bezeichnet, welche eine Strukturgrösse von wenigen $\mu m$ aufweisen. Aus diesem Grund werden diese mehrheitlich auf Basis von Halbleitern hergestellt. Beispiele dafür sind Gyroskope (\ref{fig:batbeispielbeschleunigungssensor}), Drucksensoren, Oszillatoren oder eben, Mikrofone. Bedingt durch die Strukturgrösse, können hiermit kleinere Kräfte oder Drücke zuverlässiger detektiert werden. Bei Mikrofonen wird zwischen top- und bottom-port unterschieden (\ref{fig:batmems-mikrofon}), wobei je nach PCB-Layout nicht beide Varianten verwendet werden können. 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{images/BAT_MEMS-Mikrofon}
+		\caption{Unterschied MEMS-Mikrofone $\vert$ Quelle: \cite{feiertag_flip_2010}}
+		\label{fig:batmems-mikrofon}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{images/BAT_Beispiel_Beschleunigungssensor}
+		\caption{Beispiel MEMS-Beschleunigungssensor $\vert$ Quelle: \cite{noauthor_peripherer_nodate}}
+		\label{fig:batbeispielbeschleunigungssensor}
+	\end{figure}
+	
+	
 	\subsubsection{I2S} \label{I2S}
 	\textbf{I}nter-\textbf{I}ntegrated \textbf{S}ound (I²S) bezeichnet eine Bus-Schnittstelle, welche von Philips zur Übertragung von digitalen Audiosignalen entwickelt wurde. Ähnlich wie I²C (Inter-Integrated Circuit) wird die Schnittstelle jedoch nur innerhalb des Gerätes verwendet. Dabei werden drei Pins zwischen Sender (hier das Mikrofon) und dem Empfänger (hier der Mikrocontroller) benötigt:
 	\begin{itemize}
@@ -108,18 +126,21 @@
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\linewidth]{images/BAT_PDM}
-		\caption{Beispiel PDM-Signal}
-		\label{fig:batpdm}
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PDM}
+			\caption{Beispiel PDM-Signal}
+			\label{fig:batpdm}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=0.97\linewidth]{images/BAT_PCM}
+			\caption{Beispiel PCM-Signal}
+			\label{fig:batpcm}
+		\end{minipage}
 	\end{figure}
 	\subsubsection{PCM}
 	Bei \textbf{P}ulse \textbf{C}ode \textbf{M}odulation wird jeder analoge Messwert in einem digitalen Bereich abgebildet (Abbildung \ref{fig:batpcm}). Je nach benötigter Genauigkeit fällt dieser Bereich mal grösser, mal kleiner aus. Bei der Datenübertragung mittels I²S (\ref{I2S}) geschieht diese Umwandlung direkt im Sender und erzeugt somit das SD-Signal. Bei Sendern mit PDM-Ausgang (\ref{PDM}) ist dies nicht der Fall. Hier ist im Empfänger zwingend eine Peripherie notwendig, welche das PDM-Signal mittels Unterabtastung in ein PCM-Signal umwandelt.
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\linewidth]{images/BAT_PCM}
-		\caption{Beispiel PCM-Signal}
-		\label{fig:batpcm}
-	\end{figure}
 	\subsubsection{Schalldruckpegel}
 	\color{red}TODO\color{black}
 	\subsubsection{Frequenzbewertung} \label{Frequenzbewertung}
@@ -135,17 +156,19 @@
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\linewidth]{images/phon-curve}
-		\caption{Phon-Kurven im Vergleich $\vert$ Quelle: \cite{impairments_basics_2004}}
-		\label{fig:phon-curve}
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/phon-curve}
+			\caption{Phon-Kurven im Vergleich $\vert$ Quelle: \cite{impairments_basics_2004}}
+			\label{fig:phon-curve}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/Frequenzbewertung}
+			\caption{Frequenzbewertungsfilter $\vert$ Quelle: \cite{noauthor_frequenzbewertung_2023}}
+			\label{fig:frequenzbewertung}
+		\end{minipage}
 	\end{figure}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\linewidth]{images/Frequenzbewertung}
-		\caption{Frequenzbewertungsfilter $\vert$ Quelle: \cite{noauthor_frequenzbewertung_2023}}
-		\label{fig:frequenzbewertung}
-	\end{figure}
-	
 	
 	\subsection{Komponentenwahl}
 	\subsubsection{Kriterien}
@@ -157,7 +180,7 @@
 		\item Frequenzbereich
 	\end{itemize}
 	\subsubsection{Vergleich}
-	\begin{table}[!ht]
+	\begin{table}[H]
 		\centering
 		\begin{tabular}{|l|l|l|l|l|l|l|}
 			\hline
@@ -227,9 +250,9 @@
 	\subsubsection{Vergleich}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\linewidth]{tables/BAT_Vergleich-Mikrocontroller}
+		\includegraphics[trim=55 260 230 50, width=1\linewidth]{tables/BAT_Vergleich-Mikrocontroller}
 		\caption{Vergleich von möglichen Mikrocontrollern}
-		\label{table:batvergleich-mikrocontroller}
+		\label{fig:batvergleich-mikrocontroller}
 	\end{figure}
 	\subsubsection{Fazit}
 	Wie dem Vergleich zu entnehmen ist, unterscheiden sich die Mikrocontroller meist nur in der integrierten Flash-Grösse sowie der Leistungsaufnahme bei einer gewissen Taktrate. Dadurch wird die Wahl nicht eingeschränkt, was eine geeignete Evaluation nicht vereinfacht. Ausschlaggebend ist jedoch der Formfaktor. Bis auf Silicon Labs und STmicro muss für einen Mikrocontroller mit vorgefertigter Antenne auf Drittanbieter ausgewichen werden. In Zeiten von Katastrophen wie COVID oder Kriegen inmitten von Handelsrouten ist die Produktverfügbarkeit einer der zentraler Aspekte. Aus diesem Grund wird nachfolgend der EFR32BG22 von Silicon Labs bzw. dessen Modul-Variante, der \textbf{BGM220P}, eingesetzt.
@@ -395,9 +418,15 @@
 	\label{table:materialliste}
 \end{table}
 	\subsection{Software}
-	Im Kern besteht die Software, wie in Abbildung \ref{fig:batkonzeptsoftwareablauf} gezeigt, aus einem einzelnen, sich wiederholenden Kreis. Durch den einfach gehaltenen Ablauf, wird auf den Einsatz eines RTOS verzichtet.
+	Im Kern besteht die Software, wie in Abbildung \ref{fig:batkonzeptsoftwareablauf} gezeigt, aus einem einzelnen, sich wiederholenden Kreis. Durch den einfach gehaltenen Ablauf, wird auf den Einsatz eines RTOS verzichtet. Um diesen Abschnitt übersichtlich zu halten sind Timing-Diagramme sowie die Software im Anhang \ref{Anhang:Software} zu finden.
 	\subsubsection{Timer}
-	\color{red}TODO\color{black}
+	Die Timer-Implementation dient als Hauptschleife, um die Datenaggregation, Verarbeitung und Ausgabe steuern zu können. \\Das Makro \textbf{BAT\_MEASUREMENT\_INTERVAL} ermöglicht es, auf wenige Millisekunden genau die Schlaufe zu steuern. Die Programmabfolge ist in Abbildung \ref{fig:batsoftwareletimer} ersichtlich.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_Software_LETIMER}
+		\caption{Übersicht zu (LE)Timer-Funktionalität}
+		\label{fig:batsoftwareletimer}
+	\end{figure}
 	\subsubsection{Filterdesign}
 	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter werden jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) veröffentlicht. Dadurch müssen diese mit der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
 	\begin{equation}\label{G_A_s}
@@ -406,13 +435,25 @@
 		\begin{equation}\label{G_C_s}
 		G_C	(s) = \frac{5,91797 \cdot 10^9 \cdot s^2}{(s+129,4)^2\cdot (s+76617)^2}
 	\end{equation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_Frequenzgewichtung}
+		\caption{Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}
+		\label{fig:batfrequenzgewichtung}
+	\end{figure}
 	
 	\subsubsection{PDM}
 	\color{red}TODO\color{black}
 	\subsubsection{I²C}
-	\color{red}TODO\color{black}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_Flussdiagramm_I2C_V2}
+		\caption{Softwareablauf I²C}
+		\label{fig:batflussdiagrammi2cv2}
+	\end{figure}
+	
 	\subsubsection{SPI}
-	\color{red}TODO\color{black}
+	Da der SPI-Treiber hauptsächlich mittels der SPIDRV-Bibliothek von Silicon Labs implementiert ist, fällt der Treiber schlank aus. Es existieren lediglich jeweils eine Funktion um eine neue Seite (512 Bytes) im Speicher zu beschreiben und um diese auch wieder auszulesen bzw. zu löschen.
 	\subsubsection{RTC}
 	\color{red}TODO\color{black}
 	
@@ -438,8 +479,42 @@
 		\underbrace{3mA \cdot 4.5ms}_{Schreiben} + \underbrace{1.5mA \cdot 2ms}_{Lesen} +  \underbrace{35\mu A \cdot 993.5ms}_{Standby}= 51.3 \mu Ah\footnote{Alle Zeiten gemäss Datenblatt}
 	\end{equation}
 	\paragraph{Übersicht berechnet}\mbox{}\\
+	\begin{table}[H] 
+		\centering
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
+			Mikrocontroller & 3200 $\mu Ah$ & ~ \\ \hline
+			LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
+			LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
+			EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
+			Mikrofon & 87.2 $\mu Ah$ & Low-Power-Modus \\ \hline
+			~ & ~ & ~ \\ \hline
+			Total & 4.7 $mAh$ & ~ \\ \hline
+			Total Arbeitstag à 12h & \textbf{56.9} $mAh$ & ~ \\ \hline
+		\end{tabular}
+		\caption{Berechnete Ströme des Gesamtsystems}
+		\label{tab:leistung-berechnet}
+	\end{table}
 	\paragraph{Übersicht gemessen}\mbox{}\\
 	\color{red}TODO\color{black}
+		\begin{table}[H] 
+		\centering
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
+			Mikrocontroller & 3200 $\mu Ah$ & ~ \\ \hline
+			LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
+			LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
+			EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
+			Mikrofon & 87.2 $\mu Ah$ & Low-Power-Modus \\ \hline
+			~ & ~ & ~ \\ \hline
+			Total & 4.7 $mAh$ & ~ \\ \hline
+			Total Arbeitstag à 12h & \textbf{56.9} $mAh$ & ~ \\ \hline
+		\end{tabular}
+		\caption{Gemessene Ströme des Gesamtsystems}
+		\label{tab:leistung-gemessen}
+	\end{table}
 	\subsection{Mikrofon-Messungen}
 	\color{red}TODO\color{black}
 	\subsection{Vergleich}
@@ -475,7 +550,67 @@
 	\item Logic 2 \\
 	Version: 2.4.14
 \end{itemize}
-	
-	
-	
+	\newpage
+	\subsection{PCB-Versionen}
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_top}
+			\caption{V1-0 Front}
+			\label{fig:pcb_V1-0_front}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_bottom}
+			\caption{V1-0 Back}
+			\label{fig:pcb_V1-0_back}
+		\end{minipage}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_top}
+			\caption{V1-1 Front}
+			\label{fig:pcb_V1-1_front}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_bottom}
+			\caption{V1-1 Back}
+			\label{fig:pcb_V1-1_back}
+		\end{minipage}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_top}
+			\caption{V1-2 Front}
+			\label{fig:pcb_V1-2_front}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_bottom}
+			\caption{V1-2 Back}
+			\label{fig:pcb_V1-2_back}
+		\end{minipage}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_top}
+			\caption{V1-3 Front}
+			\label{fig:pcb_V1-3_front}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_bottom}
+			\caption{V1-3 Back}
+			\label{fig:pcb_V1-3_back}
+		\end{minipage}
+	\end{figure}
+	\subsection{Software} \label{Anhang:Software}
 \end{document}

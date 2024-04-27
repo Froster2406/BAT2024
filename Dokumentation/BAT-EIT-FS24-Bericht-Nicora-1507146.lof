@@ -1,11 +1,24 @@
-\contentsline {figure}{\numberline {2}{\ignorespaces Beispiel PDM-Signal}}{6}{figure.caption.3}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Beispiel PCM-Signal}}{7}{figure.caption.4}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Phon-Kurven im Vergleich $\vert $ Quelle: \cite {impairments_basics_2004}}}{9}{figure.caption.5}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Frequenzbewertungsfilter $\vert $ Quelle: \cite {noauthor_frequenzbewertung_2023}}}{10}{figure.caption.6}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{13}{figure.caption.8}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{15}{figure.caption.9}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color {red}\textbf {schwarz}\color {black}) und Nacht (\color {blue}\textbf {blau}\color {black})$\vert $ Quelle: \cite {noauthor_v-lambda-kurve_2023}}}{16}{figure.caption.10}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Buck Converter}}{17}{figure.caption.11}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Konzept PCB-Layout}}{20}{figure.caption.15}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Konzept Softwareablauf}}{20}{figure.caption.16}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Verpolungsschutz mit P-Kanal MOSFET}}{23}{figure.caption.26}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Unterschied MEMS-Mikrofone $\vert $ Quelle: \cite {feiertag_flip_2010}}}{5}{figure.caption.2}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Beispiel MEMS-Beschleunigungssensor $\vert $ Quelle: \cite {noauthor_peripherer_nodate}}}{5}{figure.caption.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Beispiel PDM-Signal}}{7}{figure.caption.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Beispiel PCM-Signal}}{7}{figure.caption.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Phon-Kurven im Vergleich $\vert $ Quelle: \cite {impairments_basics_2004}}}{9}{figure.caption.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Frequenzbewertungsfilter $\vert $ Quelle: \cite {noauthor_frequenzbewertung_2023}}}{9}{figure.caption.6}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{12}{figure.caption.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{14}{figure.caption.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color {red}\textbf {schwarz}\color {black}) und Nacht (\color {blue}\textbf {blau}\color {black})$\vert $ Quelle: \cite {noauthor_v-lambda-kurve_2023}}}{15}{figure.caption.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Buck Converter}}{16}{figure.caption.11}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Konzept PCB-Layout}}{19}{figure.caption.15}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Konzept Softwareablauf}}{19}{figure.caption.16}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Verpolungsschutz mit P-Kanal MOSFET}}{22}{figure.caption.26}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Übersicht zu (LE)Timer-Funktionalität}}{24}{figure.caption.28}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}}{25}{figure.caption.29}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Softwareablauf I²C}}{26}{figure.caption.30}%
+\contentsline {figure}{\numberline {18}{\ignorespaces V1-0 Front}}{34}{figure.caption.40}%
+\contentsline {figure}{\numberline {19}{\ignorespaces V1-0 Back}}{34}{figure.caption.40}%
+\contentsline {figure}{\numberline {20}{\ignorespaces V1-1 Front}}{34}{figure.caption.41}%
+\contentsline {figure}{\numberline {21}{\ignorespaces V1-1 Back}}{34}{figure.caption.41}%
+\contentsline {figure}{\numberline {22}{\ignorespaces V1-2 Front}}{35}{figure.caption.42}%
+\contentsline {figure}{\numberline {23}{\ignorespaces V1-2 Back}}{35}{figure.caption.42}%
+\contentsline {figure}{\numberline {24}{\ignorespaces V1-3 Front}}{35}{figure.caption.43}%
+\contentsline {figure}{\numberline {25}{\ignorespaces V1-3 Back}}{35}{figure.caption.43}%
