@@ -24,7 +24,11 @@
 
 \usepackage{graphicx} %list of figures
 
+\usepackage{array} % For better column specifications
+
 \usepackage{tablefootnote}
+
+\usepackage[bottom]{footmisc} %stick footnotes to bottom of page
 
 \renewcommand*\contentsname{Inhaltsverzeichnis} % rename table of content
 
@@ -64,7 +68,7 @@
 	\newpage
 	\section{Einleitung}
 	\subsection{Ausgangslage} \label{Ausgangslage}
-	Die Firma hEar hat es sich zum Ziel gesetzt, gegen \color{red}TODO\color{black}. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser Prototyp ist jedoch noch unhandlich und nicht für den Massenmarkt geeignet. 
+	Die Firma hEar hat es sich zum Ziel gesetzt, gegen die schädliche Lärmbelastung unserer Ohren vorzugehen. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser Prototyp ist jedoch noch unhandlich und nicht für den Massenmarkt geeignet. 
 	\subsection{Ziele} \label{Ziele}
 	Das Ziel dieser Arbeit ist es, in einem ersten Schritt, auf Basis des vorhandenen Prototypen, ein funktionales, kompaktes und portables Schalldruckpegel-Messgerät zu entwickeln. Dabei sollen folgende Rahmenbedingungen zwingend eingehalten werden:
 	\begin{itemize}
@@ -75,10 +79,24 @@
 		\item Das Gerät verfügt über eine BLE-Schnittstelle um die Messdaten drahtlos an ein Zielgerät zu übertragen.
 		\item Der aktuelle Schalldruckpegel wird auf der Vorderseite des Gerätes visuell dargestellt.
 	\end{itemize}
-	In einem zweiten Schritt, wird das Gerät kalibriert und dessen Qualität mit auf dem Markt bereits vorhandenen Geräten verglichen.
+	In einem zweiten Schritt, wird das Gerät ausgemessen und dessen Qualität mit auf dem Markt bereits vorhandenen Geräten verglichen.
 	
 	\newpage
 	\section{Stand der Technik}
+	Um den Schalldruckpegel messen zu können gibt es eine Vielzahl von Messgeräten von einer Vielzahl von unterschiedlichen Herstellern. Die Preise reichen von ~10 CHF für ein nicht genauer spezifiziertes Gerät von AliExpress bis hin zu über 3000 CHF für ein XL2 von NTI Audio (inkl. M2211-Mikrofon). Eines haben jedoch alle diese Geräte gemeinsam. Sie weisen eine Frequenzbandbreite von mind. 10kHz auf, verfügen über ein Display um die Messwerte anzuzeigen, fangen den Schall mittels eines Kondensator-Mikrofons auf und implementieren mindestens den dB(A)-Gewichtungsfilter \ref{Frequenzbewertung}. Doch diese Geräte sind alle durch ihre klobige Bauweise sowie ihr, für nichttechnisches Personal ungeeignetes Design, nicht für den Massenmarkt geeignet. Nichtsdestotrotz soll das in dieser Arbeit entwickelte Gerät den Parametern eines hochwertigen Gerätes entsprechen. Dadurch wird es mit dem oben genannten XL2 mit den folgenden Parametern(\cite{noauthor_xl2_nodate}) verglichen:
+	\begin{itemize}
+		\item Frequenzbereich:  5Hz - 20kHz
+		\item Auflösung: \quad  \quad \quad  0.1dB
+		\item Max. dBSPL:\quad \quad 144dBSPL
+		\item Mikrofontyp: \qquad Kondensator
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\linewidth]{images/BAT_NTi-Audio-XL2-500}
+		\caption{XL2 von NTI Audio $\vert$ Quelle: \cite{noauthor_xl2_nodate}}
+		\label{fig:batnti-audio-xl2-500}
+	\end{figure}
+	
 	
 	\newpage
 	\section{Mikrofon}
@@ -116,6 +134,7 @@
 		\caption[]{Übersicht I2S-Signale}
 		\label{fig:bati2s}
 	\end{figure}
+	\newpage
 	\subsubsection{PDM} \label{PDM}
 	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Das PDM-Signal weist eine vielfach schnellere Takrate (meist Faktor 32 / 64), als das ursprünglich abgetastete Mikrofonsignal auf. Dadurch wird auftretendes Rauschen in einen höher gelegenen Frequenzbereich verschoben, welcher bei der anschliessenden Signalverarbeitung mit einem Tiefpassfilter abgeschnitten wird. Im Gegensatz zu I²S (\ref{I2S}) werden lediglich zwei Pins zwischen Mikrofon und Empfänger benötigt:
 	\begin{itemize}
@@ -346,7 +365,7 @@
 	
 	\subsection{Hardware}
 	\subsubsection{PCB}
-	Das PCB durchlief mehrere Iterationen. Nachfolgend treten die Änderungen mit den benötigten Zusatzinformationen chronologisch auf. Zudem findet sich eine Übersicht, wieso, welche Bauteile eingesetzt werden.
+	Das PCB durchlief mehrere Iterationen. Nachfolgend treten die Änderungen mit den benötigten Zusatzinformationen chronologisch auf \footnote{Detailierte Abbildungen der Versionen befinden sich im Anhang \ref{PCB-Versionen}}. Zudem findet sich eine Übersicht, wieso, welche Bauteile eingesetzt werden.
 	\paragraph{V1-1}\mbox{}\\
 	Lediglich kleinere Verdrahtungs- und Platzierungsoptimierungen.
 	\paragraph{V1-2}\mbox{}\\
@@ -361,7 +380,7 @@
 		\item Optionaler Pullup-Widerstand an DRV\_EN um den Anschluss nicht immer manuell schalten zu müssen.
 	\end{itemize}
 	\paragraph{V1-3}\mbox{}\\
-	Auf Wunsch von hEar wurde zusätzlich noch ein PCB entwickelt, welches funktionsidentisch mit dem Vorgänger ist. Einzig die LEDs sind nun nicht mehr ringförmig angeordnet, sondern erstrecken sich neu auf einer vertikalen Linie. \color{red}TODO\color{black} IN DEN ANHANG BILDER DER DIV. VERSIONEN DES PCB
+	Auf Wunsch von hEar wurde zusätzlich noch ein PCB entwickelt, welches funktionsidentisch mit dem Vorgänger ist. Einzig die LEDs sind nun nicht mehr ringförmig angeordnet, sondern erstrecken sich neu auf einer vertikalen Linie.
 	\paragraph{Sicherung}\mbox{}\\
 	Der Fall eines Kurzschlusses auf Geräteseite wird mittels einer rückstellbaren Sicherung (PPTC\footnote{\textbf{P}olymeric \textbf{P}ositive \textbf{T}emperature \textbf{C}oefficient, automatisch rückstellbare Sicherung von Littlefuse}) der Stromfluss unterbrochen. Die gewählte Sicherung blockiert bei einem Strom von 400mA komplett und setzt sich automatisch wieder zurück, sobald die Speisung abgetrennt wird.
 	\paragraph{LED-Treiber} \mbox{}\\
@@ -402,14 +421,14 @@
 		Microchip Technology & \href{https://www.mouser.ch/ProductDetail/Microchip-Technology/MIC5504-3.3YM5-TR?qs=U6T8BxXiZAUmVQ5Zs217qQ\%3D\%3D}{MIC5504-3.3YM5-TR}  & 3V3 LDO & 0.095 \\ \hline
 		RS PRO & \href{https://ch.rs-online.com/web/p/knopfzellen-akkus/1834296}{LIR2477} & Akku & 4.085 \\ \hline
 		Littlefuse & \href{https://www.mouser.ch/ProductDetail/Littelfuse/1210L020WR?qs=PWhpLWeW8wcFhN6lPv0ohQ%3D%3D}{1210L020WR} & Rückstellbare Sicherung & 0.205 \\ \hline
-		Texas Instruments  & \href{https://www.mouser.ch/ProductDetail/Texas-Instruments/LP55231SQX-NOPB?qs=HF2YfZwisE8IcIRPR19gTw\%3D\%3D}{LP55231SQX/NOPB}  & 9-Kanal LED-Treiber IC & 1.35 \\ \hline
-		SunLED & \href{https://www.digikey.ch/de/products/detail/sunled/XZCM2CRK53WA-8VF/10449794}{XZCM2CRK53WA-8VF} & LED RED CLEAR 2SMD & 0.2072 \\ \hline
+		Texas Instruments  & \href{https://www.mouser.ch/ProductDetail/Texas-Instruments/LP55231SQX-NOPB?qs=HF2YfZwisE8IcIRPR19gTw\%3D\%3D}{LP55231SQX/NOPB}  & 9-Kanal LED-Treiber & 1.35 \\ \hline
+		SunLED & \href{https://www.digikey.ch/de/products/detail/sunled/XZCM2CRK53WA-8VF/10449794}{XZCM2CRK53WA-8VF} & LED RED CLEAR & 0.2072 \\ \hline
 		C\&K & \href{https://www.mouser.ch/ProductDetail/CK/JS102011SAQN?qs=LgMIjt8LuD\%252B69bNM9a\%2FozQ\%3D\%3D}{JS102011SAQN}  & Schalter 0.3A@6V & 0.453 \\ \hline
-		Keystone Electronics & \href{https://www.mouser.ch/ProductDetail/Keystone-Electronics/1025-7?qs=2eeJ4RqLicExTS\%2FpSQucQQ\%3D\%3D}{1025-7}  & Batteriehalter 24x7.7mm & 1.26 \\ \hline
+		Keystone Electronics & \href{https://www.mouser.ch/ProductDetail/Keystone-Electronics/1025-7?qs=2eeJ4RqLicExTS\%2FpSQucQQ\%3D\%3D}{1025-7}  & Batteriehalter & 1.26 \\ \hline
 		STMicroelectronics & \href{https://www.mouser.ch/ProductDetail/STMicroelectronics/M95P16-IXMNT-E?qs=rQFj71Wb1eV9LflyHvgrDg\%3D\%3D}{M95P16-IXMNT/E}  & 16MBit SPI EEPROM & 0.843 \\ \hline
 		Silicon Labs & \href{https://www.mouser.ch/ProductDetail/Silicon-Labs/BGM220PC22WGA2R?qs=7MVldsJ5UayRQss0gz56jA\%3D\%3D}{BGM220PC22WGA2R}  & Mikrocontroller & 6.33 \\ \hline
 		TDK InvenSense & \href{https://www.mouser.ch/ProductDetail/TDK-InvenSense/ICS-41351?qs=\%252B6g0mu59x7LDJ1mBnROZzA\%3D\%3D}{ICS-41351}  & MEMS-Mikrofon & 1.05 \\ \hline
-		GCT & \href{https://www.mouser.ch/ProductDetail/GCT/USB4125-GF-A?qs=KUoIvG\%2F9IlaIQ4zBJ6gLeA\%3D\%3D}{640-USB4125-GF-A} & USB-C Buchse 6 Pin TOP & 0.381 \\ \hline
+		GCT & \href{https://www.mouser.ch/ProductDetail/GCT/USB4125-GF-A?qs=KUoIvG\%2F9IlaIQ4zBJ6gLeA\%3D\%3D}{640-USB4125-GF-A} & USB-C Buchse 6 Pin & 0.381 \\ \hline
 		Toshiba & \href{https://www.mouser.ch/ProductDetail/Toshiba/SSM3J334RLF?qs=PiFplXvYe5VBSYhr6TJz8A\%3D\%3D}{SSM3J334R,LF} & P-Channel MOSFET & 0.109 \\ \hline
 		Diverse & Capacitor \& Resistor & Abmessung: 0603 [Inch] & 0.6 \\\hline
 		~ & ~ & ~ & \textbf{17.90 CHF} \\ \hline
@@ -551,7 +570,7 @@
 	Version: 2.4.14
 \end{itemize}
 	\newpage
-	\subsection{PCB-Versionen}
+	\subsection{PCB-Versionen} \label{PCB-Versionen}
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
