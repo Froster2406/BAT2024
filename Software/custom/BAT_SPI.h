@@ -13,6 +13,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "spidrv.h"
+#include "BAT_DEFINES.h"
 
 #define BAT_SPI_WREN    0x06 /* Write enable */
 #define BAT_SPI_WRDI    0x04 /* Write disable */
@@ -51,6 +52,10 @@ void BAT_SPI_init(void);
 
 void BAT_SPI_writePage(char *dataToBeStored);
 
+void BAT_SPI_readPage(char *dataToBeRetrieved);
+
 bool BAT_SPI_eepromIsAvailable(void);
+
+void BAT_SPI_clearEEPROM(void);
 
 #endif /* CUSTOM_BAT_SPI_H_ */
