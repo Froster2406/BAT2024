@@ -8,6 +8,10 @@
 #ifndef CUSTOM_BAT_LETIMER_H_
 #define CUSTOM_BAT_LETIMER_H_
 
+#include <string.h>
+#include <stdint.h>
+#include <stdio.h>
+
 #include "em_letimer.h"
 #include "em_rtcc.h"
 #include "em_cmu.h"
@@ -22,6 +26,7 @@
 #include "BAT_I2C.h"
 #include "BAT_PDM.h"
 #include "BAT_GPIO.h"
+#include "BAT_LOGGING.h"
 
 void BAT_TIMER_init(void);
 
