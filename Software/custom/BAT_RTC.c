@@ -56,5 +56,5 @@ void BAT_RTC_convertTimeToString(uint32_t time, char* str){
   uint8_t seconds = time % 60;
 
   /* convert int to str */
-  snprintf(str, 8, "%02d:%02d:%02d", hours, minutes, seconds);
+  snprintf(str, 9, "%02d:%02d:%02d", hours, minutes, seconds);
 }

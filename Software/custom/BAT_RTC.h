@@ -10,9 +10,11 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include "em_rtcc.h"
 #include "em_cmu.h"
 #include "sl_sleeptimer.h"
+#include "BAT_DEFINES.h"
 
 void BAT_RTC_init(void);
 
