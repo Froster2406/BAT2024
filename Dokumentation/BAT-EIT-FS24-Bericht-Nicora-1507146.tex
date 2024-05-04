@@ -30,6 +30,14 @@
 
 \usepackage[bottom]{footmisc} %stick footnotes to bottom of page
 
+\usepackage{enumitem} %proper itemize indentation
+
+\usepackage{pgfplots} %csv-plots
+
+\usepackage{pdflscape} %change orientation of page
+
+\usepackage{filecontents} % To write data to a file
+
 \renewcommand*\contentsname{Inhaltsverzeichnis} % rename table of content
 
 \renewcommand{\listfigurename}{Abbildungsverzeichnis}
@@ -68,7 +76,7 @@
 	\newpage
 	\section{Einleitung}
 	\subsection{Ausgangslage} \label{Ausgangslage}
-	Die Firma hEar hat es sich zum Ziel gesetzt, gegen die schädliche Lärmbelastung unserer Ohren vorzugehen. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser Prototyp ist jedoch noch unhandlich und nicht für den Massenmarkt geeignet. 
+	Die Firma hEar hat es sich zum Ziel gesetzt, gegen die, für unsere Ohren schädliche Lärmbelästigung, vorzugehen. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser ist jedoch noch unhandlich, nicht verifiziert und somit nicht für den Massenmarkt geeignet. 
 	\subsection{Ziele} \label{Ziele}
 	Das Ziel dieser Arbeit ist es, in einem ersten Schritt, auf Basis des vorhandenen Prototypen, ein funktionales, kompaktes und portables Schalldruckpegel-Messgerät zu entwickeln. Dabei sollen folgende Rahmenbedingungen zwingend eingehalten werden:
 	\begin{itemize}
@@ -80,15 +88,18 @@
 		\item Der aktuelle Schalldruckpegel wird auf der Vorderseite des Gerätes visuell dargestellt.
 	\end{itemize}
 	In einem zweiten Schritt, wird das Gerät ausgemessen und dessen Qualität mit auf dem Markt bereits vorhandenen Geräten verglichen.
+	\subsection{Vorgehen}
+	In einem ersten Schritt, wurden mit hEar die zu erreichenden Ziele der Arbeit ausgearbeitet. Auf Basis dessen, wurde der Anforderungskatalog (Anhang \ref{Anhang:Anforderungskatalog}) erstellt. Dieser ermöglichte es anschliessend, eine umfangreiche Risikoanalyse (Anhang \ref{Anhang:Risikoanalyse}) sowie einen geeigneten Zeitplan (Anhang \ref{Anhang:Zeitplan})zu erstellen. Nach der initialen Projektphase wurden die nötigen Grundlagen für Mikrofone (\ref{Mikrofon}), LEDs \ref{LED} sowie Mikrocontroller (\ref{Mikrocontroller}) aufgearbeitet und mit dem aktuellen Stand der Technik (\ref{Stand}) abgeglichen. Anschliessend folgte die Wahl der benötigten Bauteile sowie die eigentliche Hardware- und Softwareentwicklung (\ref{Entwicklung}). Nach der agilen Entwicklung folgten zum Schluss die diversen Messungen (\ref{Messungen}) und die daraus folgenden Schlussfolgerungen.
 	
 	\newpage
-	\section{Stand der Technik}
-	Um den Schalldruckpegel messen zu können gibt es eine Vielzahl von Messgeräten von einer Vielzahl von unterschiedlichen Herstellern. Die Preise reichen von ~10 CHF für ein nicht genauer spezifiziertes Gerät von AliExpress bis hin zu über 3000 CHF für ein XL2 von NTI Audio (inkl. M2211-Mikrofon). Eines haben jedoch alle diese Geräte gemeinsam. Sie weisen eine Frequenzbandbreite von mind. 10kHz auf, verfügen über ein Display um die Messwerte anzuzeigen, fangen den Schall mittels eines Kondensator-Mikrofons auf und implementieren mindestens den dB(A)-Gewichtungsfilter \ref{Frequenzbewertung}. Doch diese Geräte sind alle durch ihre klobige Bauweise sowie ihr, für nichttechnisches Personal ungeeignetes Design, nicht für den Massenmarkt geeignet. Nichtsdestotrotz soll das in dieser Arbeit entwickelte Gerät den Parametern eines hochwertigen Gerätes entsprechen. Dadurch wird es mit dem oben genannten XL2 mit den folgenden Parametern(\cite{noauthor_xl2_nodate}) verglichen:
-	\begin{itemize}
-		\item Frequenzbereich:  5Hz - 20kHz
-		\item Auflösung: \quad  \quad \quad  0.1dB
-		\item Max. dBSPL:\quad \quad 144dBSPL
-		\item Mikrofontyp: \qquad Kondensator
+	\section{Stand der Technik}\label{Stand}
+	Um den Schalldruckpegel messen zu können, existiert eine Vielzahl von Messgeräten von einer Vielzahl von unterschiedlichen Herstellern. Die Preise reichen von ~10 CHF für ein nicht genauer spezifiziertes Gerät von AliExpress bis hin zu über 3000 CHF für ein XL2 von NTI Audio (inkl. M2211-Mikrofon). Eines haben jedoch alle diese Geräte gemeinsam. Sie weisen eine Frequenzbandbreite von mind. 10kHz auf, verfügen über ein Display um die Messwerte anzuzeigen, fangen den Schall mittels eines Kondensator-Mikrofons auf und implementieren mindestens den dB(A)-Gewichtungsfilter \ref{Frequenzbewertung}. Doch diese Geräte sind alle durch ihre klobige Bauweise sowie ihr, für nichttechnisches Personal ungeeignetes Design, nicht für den Massenmarkt geeignet. Nichtsdestotrotz soll das in dieser Arbeit entwickelte Gerät den Parametern eines hochwertigen Gerätes entsprechen. Dadurch wird es mit dem oben genannten XL2 mit den folgenden Parametern(\cite{noauthor_xl2_nodate}) verglichen:
+	\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
+		\item[$\bullet$ Frequenzbereich:]  5Hz - 20kHz
+		\item[$\bullet$ Auflösung:]  0.1dB
+		\item[$\bullet$ Max. dBSPL:]  144dBSPL
+		\item[$\bullet$ Mikrofontyp:]  Kondensator
+		\item[$\bullet$ Erfassung:]  Fast \& Slow
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
@@ -96,13 +107,12 @@
 		\caption{XL2 von NTI Audio $\vert$ Quelle: \cite{noauthor_xl2_nodate}}
 		\label{fig:batnti-audio-xl2-500}
 	\end{figure}
-	
-	
+		
 	\newpage
-	\section{Mikrofon}
+	\section{Mikrofon}\label{Mikrofon}
 	Als erste Kernkomponente gilt es, ein geeignetes Mikrofon zu evaluieren. Aus diesem Grund folgen anschliessend die benötigen Grundlagen, sowie die Komponentenwahl.
 	\subsection{Grundlagen}
-	\subsubsection{MEMS}
+	\subsubsection*{MEMS}
 	Mittels \textbf{M}icro \textbf{E}lectro-\textbf{M}echanical \textbf{S}ystems werden Bauteile bezeichnet, welche eine Strukturgrösse von wenigen $\mu m$ aufweisen. Aus diesem Grund werden diese mehrheitlich auf Basis von Halbleitern hergestellt. Beispiele dafür sind Gyroskope (\ref{fig:batbeispielbeschleunigungssensor}), Drucksensoren, Oszillatoren oder eben, Mikrofone. Bedingt durch die Strukturgrösse, können hiermit kleinere Kräfte oder Drücke zuverlässiger detektiert werden. Bei Mikrofonen wird zwischen top- und bottom-port unterschieden (\ref{fig:batmems-mikrofon}), wobei je nach PCB-Layout nicht beide Varianten verwendet werden können. 
 	\begin{figure}[H]
 		\centering
@@ -112,13 +122,13 @@
 	\end{figure}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\linewidth]{images/BAT_Beispiel_Beschleunigungssensor}
+		\includegraphics[width=0.6\linewidth]{images/BAT_Beispiel_Beschleunigungssensor_transparent}
 		\caption{Beispiel MEMS-Beschleunigungssensor $\vert$ Quelle: \cite{noauthor_peripherer_nodate}}
 		\label{fig:batbeispielbeschleunigungssensor}
 	\end{figure}
 	
 	
-	\subsubsection{I2S} \label{I2S}
+	\subsubsection*{I2S} \label{I2S}
 	\textbf{I}nter-\textbf{I}ntegrated \textbf{S}ound (I²S) bezeichnet eine Bus-Schnittstelle, welche von Philips zur Übertragung von digitalen Audiosignalen entwickelt wurde. Ähnlich wie I²C (Inter-Integrated Circuit) wird die Schnittstelle jedoch nur innerhalb des Gerätes verwendet. Dabei werden drei Pins zwischen Sender (hier das Mikrofon) und dem Empfänger (hier der Mikrocontroller) benötigt:
 	\begin{itemize}
 		\item \textbf{SCK} \quad (Serial Clock) \\
@@ -135,7 +145,7 @@
 		\label{fig:bati2s}
 	\end{figure}
 	\newpage
-	\subsubsection{PDM} \label{PDM}
+	\subsubsection*{PDM} \label{PDM}
 	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Das PDM-Signal weist eine vielfach schnellere Takrate (meist Faktor 32 / 64), als das ursprünglich abgetastete Mikrofonsignal auf. Dadurch wird auftretendes Rauschen in einen höher gelegenen Frequenzbereich verschoben, welcher bei der anschliessenden Signalverarbeitung mit einem Tiefpassfilter abgeschnitten wird. Im Gegensatz zu I²S (\ref{I2S}) werden lediglich zwei Pins zwischen Mikrofon und Empfänger benötigt:
 	\begin{itemize}
 		\item \color{red}DAT \color{black} \quad (Data) \\
@@ -158,11 +168,14 @@
 			\label{fig:batpcm}
 		\end{minipage}
 	\end{figure}
-	\subsubsection{PCM}
+	\subsubsection*{PCM}
 	Bei \textbf{P}ulse \textbf{C}ode \textbf{M}odulation wird jeder analoge Messwert in einem digitalen Bereich abgebildet (Abbildung \ref{fig:batpcm}). Je nach benötigter Genauigkeit fällt dieser Bereich mal grösser, mal kleiner aus. Bei der Datenübertragung mittels I²S (\ref{I2S}) geschieht diese Umwandlung direkt im Sender und erzeugt somit das SD-Signal. Bei Sendern mit PDM-Ausgang (\ref{PDM}) ist dies nicht der Fall. Hier ist im Empfänger zwingend eine Peripherie notwendig, welche das PDM-Signal mittels Unterabtastung in ein PCM-Signal umwandelt.
-	\subsubsection{Schalldruckpegel}
-	\color{red}TODO\color{black}
-	\subsubsection{Frequenzbewertung} \label{Frequenzbewertung}
+	\subsubsection*{Schalldruckpegel}
+	Damit wird die der Bezug zwischen dem Schalldruck \textbf{$P$}, die Kraftauswirkung von Schallwellen auf ein Medium, und dem normierten Bezugswert \textbf{$P_0$} von $20 \mu Pa$ geschaffen. Oftmals wird der auch mit Sound Pressure Level (SPL) angegeben. Da das menschliche Gehör Lautstärke jedoch logarithmisch skaliert, wird dieser in der Akustik mittels dBSPL angegeben.
+		\begin{equation}\label{dBSPL}
+		dBSPL = 20 \cdot log_{10}(\frac{P}{P_0})
+	\end{equation}
+	\subsubsection*{Frequenzbewertung} \label{Frequenzbewertung}
 	Unser Gehör reagiert nicht nur nicht linear auf Lautstärkeveränderungen, sondern zusätzlich auch unterschiedlich Sensitiv auf unterschiedliche Frequenzen im hörbaren Bereich (20Hz-20kHz). Insbesondere im Bereich zwischen 3kHz bis 4kHz \cite{impairments_basics_2004} ist das Gehör besonders anfällig auf äussere Stimulation. Abbildung \ref{fig:phon-curve}, ursprünglich durch Fletcher \& Munson, mittlerweilen auch durch den ISO226-Standard beschrieben, zeigt diesen Umstand. Um der Problematik aus Abbildung \ref{fig:phon-curve} sorge tragen zu können, wird ein sogenannten Frequenzbewertungsfilter \footnote{ Weighting curves}, Abbildung \ref{fig:frequenzbewertung}, eingesetzt. Dabei werden heutzutage nur noch die dB(A), sowie der dB(C)-Filter eingesetzt. Die beiden Filter unterscheiden sich folgendermassen:
 	\begin{itemize}
 		\item dB(A) \\
@@ -192,7 +205,7 @@
 	\subsection{Komponentenwahl}
 	\subsubsection{Kriterien}
 	\begin{itemize}
-		\item Standort der Mikrofonöffnung
+		\item Standort der Mikrofon-Öffnung
 		\item Ausgangssignal
 		\item Maximaler Schalldruckpegel
 		\item MEMS-Technologie
@@ -220,9 +233,9 @@
 	\subsubsection{Fazit}
 	$\frac{1}{3}$ der untersuchten Mikrofone weisen die Mikrofon-Öffnung auf der Unterseite auf. Dies ermöglicht es, einen höheren SNR gewährleisten zu können, jedoch ist diese Montageart für das Endprodukt nicht geeignet (siehe Kapitel \ref{Entwicklung}). Bei den restlichen Mikrofonen sticht das ICS-41351 von TDK InvenSense mit seinem hohen SNR, AOP sowie der hohen Frequenzbandbreite heraus. Dadurch hat dieses das Rennen gewonnen.
 	\newpage
-	\section{Mikrocontroller}
+	\section{Mikrocontroller}\label{Mikrocontroller}
 	\subsection{Grundlagen}
-	\subsubsection{DMA}
+	\subsubsection*{DMA}
 	Bei \textbf{D}irect \textbf{M}emory \textbf{A}ccess handelt es sich um eine Art Steuerbaustein, welcher unabhängig und parallel zum eigentlichen Rechenkern arbeitet. Dieser hat, wie der Rechenkern selbst, Zugriff auf den gesamten Datenbus. Dieser ermöglicht es, effizient Daten von Peripherien wie der UART, I²S, SPI, ect. in den RAM und umgekehrt zu laden. Dadurch wird der Rechenkern entlastet und kann für wichtigere Aufgaben eingesetzt oder gar in einen Energiesparmodus versetzt werden. Dabei gibt es zwei Möglichkeiten mit dem DMA-Baustein zu interagieren:
 	\begin{itemize}
 		\item Bus Master \\
@@ -230,12 +243,12 @@
 		\item Programmed I/O \\
 		Jeder Arbeitsprozess des DMA-Bausteins wird durch den Rechenkern gestartet. Da sich DMA und Rechenkern den Datenbus teilen, wird so garantiert, dass die Speicheroperation zum gewünschten Zeitpunkt stattfindet.
 	\end{itemize}
-	\subsubsection{Bootloader}
+	\subsubsection*{Bootloader}
 	Unter einem Bootloader versteht man Code, welcher grundsätzlich nach dem erstmaligen flashen, persistent im System bleibt. Er dient als Ausgangspunkt für die eigentliche Software und ermöglicht es beispielsweise auch, während der Laufzeit des Gerätes, Softwareupdates herunter zu laden und diese anschliessend einzuspielen. Insbesondere wenn Funkprotokolle wie Bluetooth oder WLAN eingesetzt werden, ist ein Bootloader oftmals unerlässlich. Der Nachteil ist jedoch, dass dieser den ohnehin knappen Speicherplatz weiter reduziert.
-	\subsubsection{RTC}
+	\subsubsection*{RTC}
 	Unter einer \textbf{R}eal \textbf{T}ime \textbf{C}lock versteht man ein Stück Hardware (intern oder extern), welche die Zeit ab Inbetriebnahme misst. Übliche RTCs haben, aufgrund ihrer Bauweise eine Genauigkeit von 100ppm. Da dies einer Zeitverschiebung von 4min und 19s @32kHz entspricht, enthalten die meisten RTCs Kompensationsmechanismen, um diese Zeit auf unter 100ms zu bringen. \cite{dighe_tps65950_2008}
 % 	https://www.ti.com/lit/an/swca024/swca024.pdf?ts=1709375495514&ref_url=https%253A%252F%252Fwww.google.com%252F
-	\subsubsection{Low Power}
+	\subsubsection*{Low Power}
 	Mit Low Power wird, insbesondere bei Embedded-Systemen, die reduzierte Leistungsaufnahme beschrieben. Oftmals verfügen die Systeme über mehrere Modi mit jeweils unterschiedlichen Eigenschaften. Das Ziel ist es, mit jedem tieferen Modus etwas mehr Energie zu sparen und somit die Akkulaufzeit zu verlängern. Wie in Abbildung  \ref{fig:batlow-power-modestm} ersichtlich, sinkt zwar die Leistungsaufnahme mit jeder Stufe, jedoch werden dabei gewisse Peripherien abgeschaltet und die allgemeine Startzeit des Systems wird erhöht.
 	\begin{figure}[H]
 		\centering
@@ -244,14 +257,14 @@
 		\label{fig:batlow-power-modestm}
 	\end{figure}
 	
-	\subsubsection{Peripherie in Hardware oder Software}
+	\subsubsection*{Peripherie in Hardware oder Software}
 	Bei allen gängigen Kommunikationsprotokollen ist die Frage, wie diese implementiert werden sollen. Dabei stehen folgende Möglichkeiten zur Auswahl:
 	\begin{itemize}
 		\item in \textbf{Hardware} \\
 		+ Die benötigte Infrastruktur (Register, CRC, etc.) sind bereits physikalisch implementiert. Die Kommunikation kann dementsprechend vom Rechenkern abgekoppelt durchgeführt werden und ermöglicht eine gewisse Parallelität von mehreren Prozessen mit wenig Rechenaufwand. Insbesondere in Verbindung mit DMA, kann so viel Rechenzeit eingespart werden. \\
 		- Bei den meisten Mikrocontrollern ist die spezifische Hardware an einzelne Pins gebunden. Dies wirkt sich auf die Flexibilität des PCB-Layouts oder gar des Gesamtsystems (zu wenig Anschlüsse) aus.
 		\item in \textbf{Software} \\
-		+ Die meisten Pins können flexibel für jedes Protokoll verwendet werden. Dadurch vereinfacht sich auch das PCB-Layouten.\\
+		+ Die meisten Pins können flexibel für jedes Protokoll verwendet werden. Dadurch vereinfacht sich auch das PCB-Layout.\\
 		- Bei Verwendung von Ein-Kern-Systemen, welche im Embedded-Bereich mehrheitlich anzutreffen sind, kann keine echte Parallelität von Prozessen erfolgen. Dies verringert die Ausführungsgeschwindigkeit.
 	\end{itemize}
 	Grundsätzlich ist, nach Möglichkeit und Verfügbarkeit, eine Hardware-Peripherie zu bevorzugen. Insbesondere bei batteriebetriebenen Systemen mit langer Laufzeit, ist diese ausschlaggebend.
@@ -277,10 +290,10 @@
 	Wie dem Vergleich zu entnehmen ist, unterscheiden sich die Mikrocontroller meist nur in der integrierten Flash-Grösse sowie der Leistungsaufnahme bei einer gewissen Taktrate. Dadurch wird die Wahl nicht eingeschränkt, was eine geeignete Evaluation nicht vereinfacht. Ausschlaggebend ist jedoch der Formfaktor. Bis auf Silicon Labs und STmicro muss für einen Mikrocontroller mit vorgefertigter Antenne auf Drittanbieter ausgewichen werden. In Zeiten von Katastrophen wie COVID oder Kriegen inmitten von Handelsrouten ist die Produktverfügbarkeit einer der zentraler Aspekte. Aus diesem Grund wird nachfolgend der EFR32BG22 von Silicon Labs bzw. dessen Modul-Variante, der \textbf{BGM220P}, eingesetzt.
 	
 	\newpage
-	\section{LED}
+	\section{LED}\label{LED}
 	Die visuelle Darstellung des Schalldruckpegels kann auf verschiedene Arten umgesetzt werden. Da hEar explizit eine Darstellung mittels LED wünscht, werden nachfolgend die wichtigsten Eigenschaften eingeführt und anschliessend ein passendes Produkt evaluiert.
 	\subsection{Grundlagen}
-	\subsubsection{Wellenlänge} \label{Wellenlänge}
+	\subsubsection*{Wellenlänge} \label{Wellenlänge}
 	Das für den durchschnittlichen Menschen sichtbare Lichtspektrum beginnt bei 380nm (blau) und endet bei 780nm (rot)\cite{noauthor_v-lambda-kurve_2023}. Wie der Abbildung \ref{fig:batv-lambda-curve} zu entnehmen ist, entspricht die Sensitivität einer Gausskurve. Dabei erreicht diese ihr Maximum bei 555nm (grün) bei Betrachtung der Tageskurve. Dementsprechend kann beim Einsatz einer 555nm-LED im Gegensatz zu LEDs mit einer tieferen oder höheren Wellenlänge die zugeführte Leistung bei gleichwertiger Lichtempfindlichkeit reduziert werden.
 	\begin{figure}[H]
 		\centering
@@ -288,12 +301,9 @@
 		\caption{Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color{red}\textbf{schwarz}\color{black}) und Nacht (\color{blue}\textbf{blau}\color{black})$\vert$ Quelle: \cite{noauthor_v-lambda-kurve_2023}}
 		\label{fig:batv-lambda-curve}
 	\end{figure}
-	
-	\subsubsection{Leistungsaufnahme}
-	\color{red}TODO\color{black}
-	\subsubsection{Lichtleistung}
+	\subsubsection*{Lichtleistung}
 	Neben der Wellenlänge, ist die Lichtleistung ausschlaggebend für die wahrgenommene Helligkeit einer LED. Dabei wird die Lichtleistung in Candela [cd] angegeben, wobei 1 cd der Helligkeit einer Kerze entspricht. Bei einer typischen LED verhält sich die Lichtleistung linear mit dem zugeführten Strom.
-	\subsubsection{Vorwiderstand / Strombegrenzung} \label{Vorwiderstand}
+	\subsubsection*{Vorwiderstand / Strombegrenzung} \label{Vorwiderstand}
 	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird normalerweise ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies unerwünscht. Als Alternative kann ein buck converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
 	\begin{figure}[H]
 		\centering
@@ -396,7 +406,7 @@
 		\item Unterstützung von Li-Po und Li-Ion Akkus
 	\end{itemize}
 	\paragraph{Spannungsregler} \mbox{}\\
-	Der Akku weist eine maximale Nennspannung von 4.2V (typ. 3.6V) auf. Alle gewählten Halbleiter erlauben jedoch maximal eine Speisespannung von 3.6V. Deswegen wird ein möglichst effizienter und kostengünstiger Spannungsregler verwendet. Wie auch bereits das BMS, weist der Spannungsregler möglichst wenig externe Bauteile auf.
+	Der Akku weist eine maximale Nennspannung von 4.2V (Typ. 3.6V) auf. Alle gewählten Halbleiter erlauben jedoch maximal eine Speisespannung von 3.6V. Deswegen wird ein möglichst effizienter und kostengünstiger Spannungsregler verwendet. Wie auch bereits das BMS, weist der Spannungsregler möglichst wenig externe Bauteile auf.
 	\paragraph{USB-C-Buchse}\mbox{}\\
 	Die in V1-0 verwendete Buchse (16 Pin) wird durch eine 6 Pin (power only) ersetzt. Dies, da die ursprünglich geplante Möglichkeit, den Mikrocontroller via USB zu programmieren, wieder verworfen wurde. Dadurch kann eine günstigere Buchse verwendet werden.
 	\paragraph{P-Kanal MOSFET} \label{P-Kanal MOSFET} \mbox{}\\
@@ -438,7 +448,7 @@
 \end{table}
 	\subsection{Software}
 	Im Kern besteht die Software, wie in Abbildung \ref{fig:batkonzeptsoftwareablauf} gezeigt, aus einem einzelnen, sich wiederholenden Kreis. Durch den einfach gehaltenen Ablauf, wird auf den Einsatz eines RTOS verzichtet. Um diesen Abschnitt übersichtlich zu halten sind Timing-Diagramme sowie die Software im Anhang \ref{Anhang:Software} zu finden.
-	\subsubsection{Timer}
+	\subsubsection*{Timer}
 	Die Timer-Implementation dient als Hauptschleife, um die Datenaggregation, Verarbeitung und Ausgabe steuern zu können. \\Das Makro \textbf{BAT\_MEASUREMENT\_INTERVAL} ermöglicht es, auf wenige Millisekunden genau die Schlaufe zu steuern. Die Programmabfolge ist in Abbildung \ref{fig:batsoftwareletimer} ersichtlich.
 	\begin{figure}[H]
 		\centering
@@ -446,8 +456,8 @@
 		\caption{Übersicht zu (LE)Timer-Funktionalität}
 		\label{fig:batsoftwareletimer}
 	\end{figure}
-	\subsubsection{Filterdesign}
-	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter werden jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) veröffentlicht. Dadurch müssen diese mit der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
+	\subsubsection*{Filterdesign}
+	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter sind jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) erhältlich. Dadurch müssen diese mit beispielsweise der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
 	\begin{equation}\label{G_A_s}
 		G_A(s) = \frac{7.39705 \cdot 10^9 \cdot s^4}{(s+129.4)^2\cdot (s+676.7)\cdot (s+4636)\cdot (s+76617)^2}
 	\end{equation}
@@ -460,24 +470,32 @@
 		\caption{Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}
 		\label{fig:batfrequenzgewichtung}
 	\end{figure}
-	
-	\subsubsection{PDM}
 	\color{red}TODO\color{black}
-	\subsubsection{I²C}
+	\subsubsection*{PDM}
+	\color{red}TODO\color{black}
+	\subsubsection*{I²C}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_Flussdiagramm_I2C_V2}
 		\caption{Softwareablauf I²C}
 		\label{fig:batflussdiagrammi2cv2}
 	\end{figure}
-	
-	\subsubsection{SPI}
+	\subsubsection*{SPI}
 	Da der SPI-Treiber hauptsächlich mittels der SPIDRV-Bibliothek von Silicon Labs implementiert ist, fällt der Treiber schlank aus. Es existieren lediglich jeweils eine Funktion um eine neue Seite (512 Bytes) im Speicher zu beschreiben und um diese auch wieder auszulesen bzw. zu löschen.
-	\subsubsection{RTC}
+	\subsubsection*{RTC}
 	\color{red}TODO\color{black}
+	\subsubsection*{LEDs}
+	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von +-3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_Skalierung-SPL-auf-LED}
+		\caption{Aufteilung dBSPL auf 8 LEDs}
+		\label{fig:batskalierung-spl-auf-led}
+	\end{figure}
+	
 	
 	\newpage
-	\section{Messungen}
+	\section{Messungen}\label{Messungen}
 	Ein System kann qualitativ nur mit Messungen auf seine Einsatzfähigkeit untersucht werden. Dadurch erfolgen nachfolgend theoretische und praktische Messwerte.
 	\subsection{Leistungsaufnahme}
 	Die Leistungsaufnahme eines Systems zu quantifizieren, stellt sich als durchaus komplex dar. Viele Variablen, Abwägung von Verarbeitungsgeschwindigkeit mit der gegensätzlichen Energieeffizienz und nicht genau spezifizierte Parameter erschweren die Festlegung der Rahmenbedingungen. Bei der Auslegung der nachfolgenden Parameter wird stets die energieeffizientes Möglichkeit gewählt, ohne damit die Leistungsfähigkeit massgeblich zu beeinflussen.
@@ -486,7 +504,7 @@
 	\paragraph{Mikrofon}\mbox{}\\
 	Wie der Formel \ref{eq:Leistung_Mikrofon} entnommen werden kann, gibt es zwei Möglichkeiten das Mikrofon zu betreiben:
 	\begin{itemize}
-		\item Das Mikrofon wird konstant im Performance-Modus betrieben. Durch den Einsatz von DMA sind die benötigten Messewerte jeder Zeit verfügbar und die 30ms Start- und Messzeit entfällt. Dadurch sind höher aufgelöste Messintervalle möglich. Siehe Messung  \color{red}TODO\color{black} der einzelnen Module.
+		\item Das Mikrofon wird konstant im Performance-Modus betrieben. Durch den Einsatz von DMA sind die benötigten Messewerte jeder Zeit verfügbar und die 20ms Startzeit des Mikrofons entfällt. Dadurch sind höher aufgelöste Messintervalle möglich. Dazu sind die Messungen der einzelnen Funktionen in Tabelle \ref{tab:ausfuehrungsgeschwindigkeit}) ersichtlich.
 		\item Das Mikrofon wird nur dann aktiviert, wenn es benötigt wird. Dadurch sinkt die benötigte Leistung von 580$\mu Ah$ auf 87.2 $\mu Ah$ (\ref{eq:Leistung_Mikrofon}). Dadurch erhöht sich jedoch die benötigte Messzeit um 20ms. Dies aus dem Grund, dass keine DMA verwendet wird und das Mikrofon vom Standby-Betrieb (20 $\mu A$) in den Performance-Modus (580 $\mu A$) wechselt.
 	\end{itemize}
 	\begin{equation}\label{eq:Leistung_Mikrofon}
@@ -503,7 +521,7 @@
 		\begin{tabular}{|l|l|l|}
 			\hline
 			\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
-			Mikrocontroller & 3200 $\mu Ah$ & ~ \\ \hline
+			Mikrocontroller & 3200 $\mu Ah$ & Alle Peripherien EIN \\ \hline
 			LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
 			LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
 			EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
@@ -516,28 +534,81 @@
 		\label{tab:leistung-berechnet}
 	\end{table}
 	\paragraph{Übersicht gemessen}\mbox{}\\
-	\color{red}TODO\color{black}
 		\begin{table}[H] 
-		\centering
-		\begin{tabular}{|l|l|l|}
+			\centering
+			\begin{tabular}{|l|l|l|}
 			\hline
 			\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
-			Mikrocontroller & 3200 $\mu Ah$ & ~ \\ \hline
-			LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
-			LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
-			EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
-			Mikrofon & 87.2 $\mu Ah$ & Low-Power-Modus \\ \hline
+			Mikrocontroller & 1760 $\mu Ah$ & Alle Peripherien EIN \\ \hline
+			LEDs & 780 $\mu Ah$ & Alle LEDs EIN\\ \hline
+			LED-Treiber & 820 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
+			EEPROM & 70 $\mu Ah$ & ~ \\ \hline
+			Mikrofon & 103 $\mu Ah$ & Messintervall: 250ms \\ \hline
 			~ & ~ & ~ \\ \hline
-			Total & 4.7 $mAh$ & ~ \\ \hline
-			Total Arbeitstag à 12h & \textbf{56.9} $mAh$ & ~ \\ \hline
+			Total & 3.5 $mAh$ & ~ \\ \hline
+			Total Arbeitstag à 12h & \textbf{42.40} $mAh$ & ~ \\ \hline
 		\end{tabular}
 		\caption{Gemessene Ströme des Gesamtsystems}
 		\label{tab:leistung-gemessen}
-	\end{table}
+		\end{table}
+	\color{red}TODO\color{black}
 	\subsection{Ausführungsgeschwindigkeit}
+	Um die Dauer einer Funktion messen zu können, wurde ein GPIO-Pin zu Beginn sowie am Ende der jeweiligen Funktion umgeschaltet und mit den Logic-Analyzer ausgewertet. Aus 20 Funktionsaufrufen wurde anschliessend der Mittelwert berechnet und in Tabelle \ref{tab:ausfuehrungsgeschwindigkeit} aufgeführt. \\
+	Die Messungen zeigen, dass hauptsächlich das messen der Werte, sowie die Filterung dieser die meiste Zeit in Anspruch nimmt. Gleichzeitig kann jedoch so verifiziert werden, dass ein Messintervall von 125ms (Messmodus: Fast) möglich ist.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Funktionsname} & \textbf{Zeit [ms]} & \textbf{Bemerkung} \\ \hline
+			app\_init & 10.4 & RTC, SPI, I2C, PDM, Timer, GPIO \\ \hline
+			PDM\_readMicrophone & 20.8 & 128 Samples; Low-Power \\ \hline
+			RTC\_convertTimeToString & 0.16 & Format: 00:00:00 \\ \hline
+			PDM\_applyAWeightingFilter & 15.2 & 128 Samples \\ \hline
+			PDM\_convertPCMTodBSPL & 0.81 & 128 Samples \\ \hline
+			PDM\_convertSPLToString & 0.28 & ~ \\ \hline
+			I2C\_enableLedRange & 0.62 & ~ \\ \hline
+			LOGGING\_generateLogString & 0.01 & Länge: 13 char \\ \hline
+			SPI\_writePage / SPI\_readPage & 4.4 & 512 Bytes \\ \hline
+			~ & ~ & ~ \\ \hline
+			Total & 52.68 ms & ~ \\ \hline
+			Total pro Messintervall & \textbf{42.28} ms & ~ \\ \hline
+		\end{tabular}
+		\caption{Ausführungsgeschwindigkeit der einzelnen Funktionen}
+		\label{tab:ausfuehrungsgeschwindigkeit}
+	\end{table}
 	\color{red}TODO\color{black}
 	\subsection{Mikrofon-Messungen}
-	\color{red}TODO\color{black}
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				xmode=log,
+				%title={Messung ungewichtet},
+				xlabel={Frequenz [Hz]},
+				ylabel={Schalldruckpegel [dB]},
+				xmin=0, xmax=20000,
+				ymin=0, ymax=140,
+				legend pos=north west,
+				ymajorgrids=true,
+				grid style=dashed,
+				]
+				
+				\addplot[
+				color=blue,
+				mark=solid,
+				] table[col sep=comma, x=Frequency, y=dBSPL] {measurements/Microphone/MEMS_Z-Weighting.csv};
+				\addlegendentry{MEMS}
+								\addplot[
+				color=red,
+				mark=solid,
+				] table[col sep=comma, x=Frequency, y=dBSPL] {measurements/Microphone/M2211_Z-Weighting.csv};
+				\addlegendentry{M2211}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung}
+		\label{fig:microphone_plot_ungewichtet}
+		\end{figure}
 	\subsection{Vergleich}
 	\color{red}TODO\color{black}
 	
@@ -547,6 +618,11 @@
 	
 	\newpage
 	\section{Fazit und Ausblick}
+	Parameter: Welche LED leuchtet bei welchem Wert, Wie Hell LED, Wie viel Loggen
+	\color{red}TODO\color{black}
+	
+	\newpage
+	\section*{Danksagung}
 	\color{red}TODO\color{black}
 	
 	\newpage
@@ -564,12 +640,31 @@
 	Li-Po \\
 	Li-Ion \\
 	RTOS
+	
+	\newpage
 	\subsection{Messmittel}
+	Farblich gekennzeichnete Geräte und Software gehören zusammen.
 \begin{itemize}
+	\color{green}
 	\item Saleae Logic Analyzer - Logic 8 \\
 	S/N: T\&A 36 093
 	\item Logic 2 \\
 	Version: 2.4.14
+	\color{red}
+	\item Audio Precision 2700 \\
+	S/N: SYS2-31822
+	\item AP2700 Control Software \\
+	Version: 3.30 (Build 118)
+	\color{blue}
+	\item MCUXpresso IDE\\
+	Version: 11.8.1 [Build 1197] [2023-10-27]
+	\item NXP MCU-Link Pro CMSIS-DAP \\
+	Version: V3.108 \\
+	S/N: FDS0PNBVSQUQZ
+	\color{brown}
+	\item NTI XL2 \\
+	S/N:
+	\color{black}
 \end{itemize}
 	\newpage
 	\subsection{PCB-Versionen} \label{PCB-Versionen}
@@ -578,13 +673,13 @@
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_top}
-			\caption{V1-0 Front}
+			\caption[]{V1-0 Front}
 			\label{fig:pcb_V1-0_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_bottom}
-			\caption{V1-0 Back}
+			\caption[]{V1-0 Back}
 			\label{fig:pcb_V1-0_back}
 		\end{minipage}
 	\end{figure}
@@ -593,13 +688,13 @@
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_top}
-			\caption{V1-1 Front}
+			\caption[]{V1-1 Front}
 			\label{fig:pcb_V1-1_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_bottom}
-			\caption{V1-1 Back}
+			\caption[]{V1-1 Back}
 			\label{fig:pcb_V1-1_back}
 		\end{minipage}
 	\end{figure}
@@ -608,13 +703,13 @@
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_top}
-			\caption{V1-2 Front}
+			\caption[]{V1-2 Front}
 			\label{fig:pcb_V1-2_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_bottom}
-			\caption{V1-2 Back}
+			\caption[]{V1-2 Back}
 			\label{fig:pcb_V1-2_back}
 		\end{minipage}
 	\end{figure}
@@ -623,15 +718,41 @@
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_top}
-			\caption{V1-3 Front}
+			\caption[]{V1-3 Front}
 			\label{fig:pcb_V1-3_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_bottom}
-			\caption{V1-3 Back}
+			\caption[]{V1-3 Back}
 			\label{fig:pcb_V1-3_back}
 		\end{minipage}
-	\end{figure}
+	\end{figure} 
+	\newpage
+	\subsection{Schema}
+	%\includepdf[landscape=true, pages={1}]{images/BAT_Schematic_V1-2.pdf}
+	\begin{minipage}[b]{\textwidth}
+		\includepdf[landscape=true, pages={1},scale=0.65]{images/BAT_Schematic_V1-2.pdf}
+	\end{minipage}
+	
+	\newpage
 	\subsection{Software} \label{Anhang:Software}
+	\color{red}TODO\color{black}
+	\newpage
+	\subsection{Anforderungskatalog}\label{Anhang:Anforderungskatalog}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[trim= 2.5cm 5cm 0cm 3.5cm, width=1.2\linewidth]{images/BAT_Anforderungskatalog}
+	\end{figure}
+	\newpage
+	\subsection{Risikoanalyse}\label{Anhang:Risikoanalyse}
+		\begin{minipage}[b]{\textwidth}
+		\includepdf[landscape=true, pages={1},scale=0.7]{images/BAT_Risikoanalyse.pdf}
+	\end{minipage}
+	\newpage
+	\subsection{Zeitplan}\label{Anhang:Zeitplan}
+	\begin{minipage}[b]{\textwidth}
+		\includepdf[landscape=true, pages={1},scale=0.8]{images/BAT_Zeitplan_V2.pdf}
+	\end{minipage}
+	
 \end{document}
