@@ -13,7 +13,8 @@
 \contentsline {figure}{\numberline {14}{\ignorespaces Konzept Softwareablauf}}{20}{figure.caption.31}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Verpolungsschutz mit P-Kanal MOSFET}}{23}{figure.caption.41}%
 \contentsline {figure}{\numberline {16}{\ignorespaces Übersicht zu (LE)Timer-Funktionalität}}{25}{figure.caption.44}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}}{26}{figure.caption.46}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Softwareablauf I²C}}{27}{figure.caption.49}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Aufteilung dBSPL auf 8 LEDs}}{27}{figure.caption.53}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung}}{32}{figure.caption.62}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}}{27}{figure.caption.46}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Übersicht BiQuad-Filter}}{28}{figure.caption.48}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Softwareablauf I²C}}{28}{figure.caption.51}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Aufteilung dBSPL auf 8 LEDs}}{29}{figure.caption.55}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung}}{33}{figure.caption.64}%

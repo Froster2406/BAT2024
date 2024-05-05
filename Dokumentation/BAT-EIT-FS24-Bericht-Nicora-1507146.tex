@@ -323,7 +323,7 @@
 		\centering
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
-			\textbf{Hersteller} & \textbf{Typ} & \textbf{Farbe} & \textbf{Intensität[mcd]\tablefootnote{bei einem Strom von 2mA}} & \textbf{Spannung [V]} \\ \hline
+			\textbf{Hersteller} & \textbf{Typ} & \textbf{Farbe} & \textbf{Intensität[mcd]\tablefootnote{bei einem Strom von 2mA}} & \textbf{Spannung[V]} \\ \hline
 			SunLED & XZCM2CRK53WA-8VF & Rot & 180 & 2.1 \\ \hline
 			SunLED & XZCDGK53W-8VF & Grün & 250 & 3.1 \\ \hline
 			SunLED & XZCFBB53W-8VF & Blau & 30 & 3 \\ \hline
@@ -410,7 +410,7 @@
 	\paragraph{USB-C-Buchse}\mbox{}\\
 	Die in V1-0 verwendete Buchse (16 Pin) wird durch eine 6 Pin (power only) ersetzt. Dies, da die ursprünglich geplante Möglichkeit, den Mikrocontroller via USB zu programmieren, wieder verworfen wurde. Dadurch kann eine günstigere Buchse verwendet werden.
 	\paragraph{P-Kanal MOSFET} \label{P-Kanal MOSFET} \mbox{}\\
-	Für den Verpolungsschutz kann im Grunde auch eine simple Diode (oder Schottky-Diode\footnote{Die Schwellspannung entspricht nur ca. 0.2V}) verwendet werden. Der daraus folgende Spannungsabfall ist jedoch für ein akkubetriebenes Gerät nicht ideal. Die Lösung bietet ein P-Kanal-MOSFET, wie in Abbildung \ref{fig:batverpolungsschutz}. Die Z-Diode, sowie der Gate-Widerstand, werden jedoch weggelassen, da die Batteriespannung die maximale Source-Gate-Spannung des gewählten FETs nicht überschreitet.
+	Für den Verpolungsschutz kann im Grunde auch eine simple Diode (oder Schottky-Diode\footnote{Die Schwellspannung entspricht nur ca. 0.2V}) verwendet werden. Der daraus folgende Spannungsabfall ist jedoch für ein akkubetriebenes Gerät nicht ideal. Die Lösung bietet ein P-Kanal-MOSFET, wie in Abbildung \ref{fig:batverpolungsschutz} ersichtlich. Die Z-Diode, sowie der Gate-Widerstand, werden jedoch weggelassen, da die Batteriespannung die maximale Source-Gate-Spannung des gewählten FETs nicht überschreitet.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\linewidth]{images/BAT_Verpolungsschutz}
@@ -457,7 +457,17 @@
 		\label{fig:batsoftwareletimer}
 	\end{figure}
 	\subsubsection*{Filterdesign}
-	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter sind jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) erhältlich. Dadurch müssen diese mit beispielsweise der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden.
+	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter sind jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) erhältlich. Dabei stehen uns, wie in Abbildung \ref{fig:batfrequenzgewichtung} ersichtlich, diesbezüglich zwei Wege offen:
+	\begin{itemize}
+		\item \textbf{Frequenzbereich} \\
+		Hier wird das PCM-Codierte Signal mittels einer Fast Fourier Transformation (FFT) in den Frequenzbereich transformiert. Anschliessend können die Formeln \ref{G_A_s} oder \ref{G_C_s} auf das Signal angewendet werden, um die gewünschte Gewichtung vorzunehmen. Um anschliessend den Schalldruckpegel berechnen zu können, muss das Signal mittels einer inversen FFT wieder in den Zeitbereich transformiert werden. Je genauer die Frequenzbewertung sein soll, desto kleiner sind die Abstufungen von FFT und IFFT zu wählen, was zu einer Erhöhung des Berechnungsaufwandes auf dem Mikrocontroller führt.
+		\item \textbf{Zeitbereich} \\
+		Im Gegensatz zum Frequenzbereich muss das PCM-Codierte Signal nicht erst in den Frequenzbereich transformiert werden, sondern es kann direkt durch das zeitdiskrete Filter die Gewichtung vorgenommen werden. Dabei treten jedoch zwei Hauptprobleme auf: 
+		\begin{itemize}
+			\item Ein diskretes Filter im Zeitbereich ist immer nur eine Approximation eines Filters im Frequenzbereich. Dies verringert die Genauigkeit des implementierten Filters. 
+			\item Die Umwandlung eines zeitkontinuierlichen Filters in einen zeitdiskreten ist nicht trivial. Dadurch muss dieser mit beispielsweise der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden. 
+		\end{itemize} Glücklicherweise wurden die benötigten A- und C-Gewichtungsfilter bereits in Matlab implementiert. Somit können die Filterkoeffizienten direkt exportiert und in C-Code implementiert werden.
+	\end{itemize}
 	\begin{equation}\label{G_A_s}
 		G_A(s) = \frac{7.39705 \cdot 10^9 \cdot s^4}{(s+129.4)^2\cdot (s+676.7)\cdot (s+4636)\cdot (s+76617)^2}
 	\end{equation}
@@ -470,9 +480,18 @@
 		\caption{Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}
 		\label{fig:batfrequenzgewichtung}
 	\end{figure}
-	\color{red}TODO\color{black}
+	\subsubsection*{Filterimplementation}
+	Die aus Matlab exportieren Filterkoeffizienten weisen einen entscheidenden Unterschied zu gewöhnlichen IIR-Filterkoeffizienten auf. Der Gesamtfilter wird in Teilfilter, sogenannte BiQuads, aufgeteilt, welche anschliessend kaskadiert werden. Dies, weil die Stabilität von Filtern mit tiefer Ordnung leichter kontrolliert werden kann, als bei jenen mit einer hohen Ordnung. Dadurch besteht ein einzelnes BiQuad-Filter-Element jeweils aus einem IIR-Filter zweiter Ordnung. Dabei existieren, wie in Abbildung \ref{fig:batbiquad-uebersicht} aufgezeigt, vier verschiedene Arten der BiQuad-Implementation. Oftmals verfügen Mikrocontroller bereits über eine Hardware-Implementation einer dieser Arten. Der in dieser Arbeit gewählte, jedoch nicht. Dadurch sind wir frei in der Wahl der Implementation. Aus diesem Grund wurde die "Transposed Direct Form 2" gewählt. Dies, da diese zwar mehr Variablen zur als Zwischenspeicher, jedoch weniger Rechenoperationen, benötigt.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_BiQuad-Uebersicht}
+		\caption{Übersicht BiQuad-Filter}
+		\label{fig:batbiquad-uebersicht}
+	\end{figure}
 	\subsubsection*{PDM}
 	\color{red}TODO\color{black}
+	Dezimierung
+	Anzahl Samples
 	\subsubsection*{I²C}
 	\begin{figure}[H]
 		\centering
@@ -485,7 +504,7 @@
 	\subsubsection*{RTC}
 	\color{red}TODO\color{black}
 	\subsubsection*{LEDs}
-	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von +-3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
+	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von +-3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{dBSPL}, einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_Skalierung-SPL-auf-LED}
@@ -497,6 +516,31 @@
 	\newpage
 	\section{Messungen}\label{Messungen}
 	Ein System kann qualitativ nur mit Messungen auf seine Einsatzfähigkeit untersucht werden. Dadurch erfolgen nachfolgend theoretische und praktische Messwerte.
+	\subsection{Ausführungsgeschwindigkeit}
+	Um die Dauer einer Funktion messen zu können, wurde ein GPIO-Pin zu Beginn sowie am Ende der jeweiligen Funktion umgeschaltet und mit den Logic-Analyzer ausgewertet. Aus 20 Funktionsaufrufen wurde anschliessend der Mittelwert berechnet und in Tabelle \ref{tab:ausfuehrungsgeschwindigkeit} aufgeführt. \\
+	Die Messungen zeigen, dass hauptsächlich das messen der Werte, sowie die Filterung dieser die meiste Zeit in Anspruch nimmt. Gleichzeitig kann jedoch so verifiziert werden, dass ein Messintervall von 125ms (Messmodus: Fast) möglich ist.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Funktionsname} & \textbf{Zeit [ms]} & \textbf{Bemerkung} \\ \hline
+			app\_init & 10.4 & RTC, SPI, I2C, PDM, Timer, GPIO \\ \hline
+			PDM\_readMicrophone & 20.8 & 128 Samples; Low-Power \\ \hline
+			RTC\_convertTimeToString & 0.16 & Format: 00:00:00 \\ \hline
+			PDM\_applyAWeightingFilter & 15.2 & 128 Samples \\ \hline
+			PDM\_convertPCMTodBSPL & 0.81 & 128 Samples \\ \hline
+			PDM\_convertSPLToString & 0.28 & ~ \\ \hline
+			I2C\_enableLedRange & 0.62 & ~ \\ \hline
+			LOGGING\_generateLogString & 0.01 & Länge: 13 char \\ \hline
+			SPI\_writePage / SPI\_readPage & 4.4 & 512 Bytes \\ \hline
+			~ & ~ & ~ \\ \hline
+			Total & 52.68 ms & ~ \\ \hline
+			Total pro Messintervall & \textbf{42.28} ms & ~ \\ \hline
+		\end{tabular}
+		\caption{Ausführungsgeschwindigkeit der einzelnen Funktionen}
+		\label{tab:ausfuehrungsgeschwindigkeit}
+	\end{table}
+	\color{red}TODO\color{black}
 	\subsection{Leistungsaufnahme}
 	Die Leistungsaufnahme eines Systems zu quantifizieren, stellt sich als durchaus komplex dar. Viele Variablen, Abwägung von Verarbeitungsgeschwindigkeit mit der gegensätzlichen Energieeffizienz und nicht genau spezifizierte Parameter erschweren die Festlegung der Rahmenbedingungen. Bei der Auslegung der nachfolgenden Parameter wird stets die energieeffizientes Möglichkeit gewählt, ohne damit die Leistungsfähigkeit massgeblich zu beeinflussen.
 	\paragraph{Mikrocontroller}\mbox{}\\
@@ -552,31 +596,6 @@
 		\label{tab:leistung-gemessen}
 		\end{table}
 	\color{red}TODO\color{black}
-	\subsection{Ausführungsgeschwindigkeit}
-	Um die Dauer einer Funktion messen zu können, wurde ein GPIO-Pin zu Beginn sowie am Ende der jeweiligen Funktion umgeschaltet und mit den Logic-Analyzer ausgewertet. Aus 20 Funktionsaufrufen wurde anschliessend der Mittelwert berechnet und in Tabelle \ref{tab:ausfuehrungsgeschwindigkeit} aufgeführt. \\
-	Die Messungen zeigen, dass hauptsächlich das messen der Werte, sowie die Filterung dieser die meiste Zeit in Anspruch nimmt. Gleichzeitig kann jedoch so verifiziert werden, dass ein Messintervall von 125ms (Messmodus: Fast) möglich ist.
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{|l|l|l|}
-			\hline
-			\textbf{Funktionsname} & \textbf{Zeit [ms]} & \textbf{Bemerkung} \\ \hline
-			app\_init & 10.4 & RTC, SPI, I2C, PDM, Timer, GPIO \\ \hline
-			PDM\_readMicrophone & 20.8 & 128 Samples; Low-Power \\ \hline
-			RTC\_convertTimeToString & 0.16 & Format: 00:00:00 \\ \hline
-			PDM\_applyAWeightingFilter & 15.2 & 128 Samples \\ \hline
-			PDM\_convertPCMTodBSPL & 0.81 & 128 Samples \\ \hline
-			PDM\_convertSPLToString & 0.28 & ~ \\ \hline
-			I2C\_enableLedRange & 0.62 & ~ \\ \hline
-			LOGGING\_generateLogString & 0.01 & Länge: 13 char \\ \hline
-			SPI\_writePage / SPI\_readPage & 4.4 & 512 Bytes \\ \hline
-			~ & ~ & ~ \\ \hline
-			Total & 52.68 ms & ~ \\ \hline
-			Total pro Messintervall & \textbf{42.28} ms & ~ \\ \hline
-		\end{tabular}
-		\caption{Ausführungsgeschwindigkeit der einzelnen Funktionen}
-		\label{tab:ausfuehrungsgeschwindigkeit}
-	\end{table}
-	\color{red}TODO\color{black}
 	\subsection{Mikrofon-Messungen}
 	\begin{figure}[H]
 		\centering
@@ -618,7 +637,7 @@
 	
 	\newpage
 	\section{Fazit und Ausblick}
-	Parameter: Welche LED leuchtet bei welchem Wert, Wie Hell LED, Wie viel Loggen
+	Parameter: Welche LED leuchtet bei welchem Wert, Wie Hell LED, Wie viel Loggen. Biquad-hardware
 	\color{red}TODO\color{black}
 	
 	\newpage
@@ -639,7 +658,9 @@
 	flashen \\
 	Li-Po \\
 	Li-Ion \\
-	RTOS
+	RTOS \\
+	IIR\\
+	FIR\\
 	
 	\newpage
 	\subsection{Messmittel}
