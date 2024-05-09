@@ -8,6 +8,8 @@
 #ifndef CUSTOM_BAT_GPIO_H_
 #define CUSTOM_BAT_GPIO_H_
 
+#include <stdbool.h>
+
 #include "em_gpio.h"
 #include "em_cmu.h"
 #include "em_chip.h"

@@ -8,7 +8,7 @@
 #include "BAT_LETIMER.h"
 
 static uint32_t time = 0;
-static double dBSPL = 0;
+//static double dBSPL = 0;
 static uint8_t timeout = 0;
 static char timestamp[10]; /* holds string in format hh:mm:ss */
 static char inputStorageBuffer[512] = {0};  /* holds data  read from EEPROM */
@@ -48,61 +48,70 @@ void BAT_TIMER_deInit(void){
 
 void LETIMER0_IRQHandler(void)
 {
- /* Clear the interrupt flag */
- LETIMER_IntClear(LETIMER0, LETIMER_IF_COMP0);
-// /* is device charging? YES: Enable BLE and transmit Data | NO: log data to memory */
-// if(GPIO_PinInGet(BAT_CHARGING_PORT, BAT_CHARGING_PIN)){ /* device is charging; transmit data */
-////     BAT_SPI_readPage();
-// } else{  /* log data */
-     /* read microphone */
-     BAT_PDM_readMicrophone(buffer, 128);
-     /* read RTC */
-     time = BAT_RTC_getTime();
-     /* convert timestamp to string */
-     BAT_RTC_convertTimeToString(time, timestamp);
-     /* apply filtering */
-     BAT_PDM_applyAWeightingFilter(buffer, bufferWeighted, 128);
-     /* convert data to dBSPL */
-     BAT_PDM_convertPCMTodBSPL(buffer, 128, &dBSPL);
-//     BAT_PDM_convertPCMTodBSPL(bufferWeighted, 128, &dBSPL);
-     /* convert dBSPL value to string */
-     char dBSPLstr[7] = {0};  /* holds dBSPL value in string format */
-     BAT_PDM_convertSPLToString(dBSPL, dBSPLstr);
-//     /* enable LEDs */
-     avg[cnt] = (uint8_t)dBSPL;
-     cnt++;
-     if(cnt == 4){
-         dBSPL = (avg[0] + avg[1] + avg[2] + avg[3]) / 4;
-         if (dBSPL <= (LED_THRESHOLD_1 - 5)){
-             BAT_I2C_enableLedRange(0);
-         } else if (dBSPL <= LED_THRESHOLD_1){
-             BAT_I2C_enableLedRange(1);
-         } else if (dBSPL <= LED_THRESHOLD_2){
-             BAT_I2C_enableLedRange(2);
-         } else if (dBSPL <= LED_THRESHOLD_3){
-             BAT_I2C_enableLedRange(3);
-         } else if (dBSPL <= LED_THRESHOLD_4){
-             BAT_I2C_enableLedRange(4);
-         } else if (dBSPL <= LED_THRESHOLD_5){
-             BAT_I2C_enableLedRange(5);
-         } else if (dBSPL <= LED_THRESHOLD_6){
-             BAT_I2C_enableLedRange(6);
-         } else if (dBSPL <= LED_THRESHOLD_7){
-             BAT_I2C_enableLedRange(7);
-         } else {
-             BAT_I2C_enableLedRange(8);
-         }
-         cnt = 0;
-     }
-     /* add measured data to memory chunk */
-     /* store Data in memory if enough data is available */
-     char string[16] = {0};
-     BAT_LOGGING_generateLogString(string, timestamp, dBSPLstr);
-     value_counter++;
-//     if (value_counter == (512 / BAT_LEN_MEAS_STR)){
-//         BAT_SPI_writePage(outputStorageBuffer);
-//     }
-//     BAT_SPI_eepromIsAvailable();
-////     EMU_EnterEM1(); // Enter energy mode 1 to save power
-// }
+  /* Clear the interrupt flag */
+  LETIMER_IntClear(LETIMER0, LETIMER_IF_COMP0);
+  /* test */
+  uint32_t clock_freqPDM = CMU_ClockFreqGet(cmuClock_PDM);    /* 3072000 */
+  uint32_t clock_freqI2C = CMU_ClockFreqGet(cmuClock_I2C0);   /* 19200000 */
+  uint32_t clock_freqSPI = CMU_ClockFreqGet(cmuClock_USART0); /* 38400000 */
+  uint32_t clock_freqSYSCLK = CMU_ClockFreqGet(cmuClock_SYSCLK); /* 38400000 */
+
+  /* test end */
+  /* is device charging? YES: Enable BLE and transmit Data | NO: log data to memory */
+  if(GPIO_PinInGet(BAT_CHARGING_PORT, BAT_CHARGING_PIN)){ /* device is charging; transmit data */
+      //     BAT_SPI_readPage();
+      time = BAT_RTC_getTime();
+      BAT_I2C_enableLedRange(0);
+  } else{  /* log data */
+      double dBSPL = 0;
+      /* read microphone */
+      BAT_PDM_readMicrophone(buffer, 128);
+      /* read RTC */
+      time = BAT_RTC_getTime();
+      /* convert timestamp to string */
+      BAT_RTC_convertTimeToString(time, timestamp);
+      /* apply filtering */
+//      BAT_PDM_applyAWeightingFilter(buffer, bufferWeighted, 128);
+      /* convert data to dBSPL */
+      BAT_PDM_convertPCMTodBSPL(buffer, 128, &dBSPL);
+//           BAT_PDM_convertPCMTodBSPL(bufferWeighted, 128, &dBSPL);
+      /* convert dBSPL value to string */
+      char dBSPLstr[7] = {0};  /* holds dBSPL value in string format */
+      BAT_PDM_convertSPLToString(dBSPL, dBSPLstr);
+      /* enable LEDs */
+      avg[cnt] = (uint8_t)dBSPL;
+      cnt++;
+      if(cnt == 4){
+          dBSPL = (avg[0] + avg[1] + avg[2] + avg[3]) / 4;
+          if (dBSPL <= (LED_THRESHOLD_1 - 5)){
+              BAT_I2C_enableLedRange(0);
+          } else if (dBSPL <= LED_THRESHOLD_1){
+              BAT_I2C_enableLedRange(1);
+          } else if (dBSPL <= LED_THRESHOLD_2){
+              BAT_I2C_enableLedRange(2);
+          } else if (dBSPL <= LED_THRESHOLD_3){
+              BAT_I2C_enableLedRange(3);
+          } else if (dBSPL <= LED_THRESHOLD_4){
+              BAT_I2C_enableLedRange(4);
+          } else if (dBSPL <= LED_THRESHOLD_5){
+              BAT_I2C_enableLedRange(5);
+          } else if (dBSPL <= LED_THRESHOLD_6){
+              BAT_I2C_enableLedRange(6);
+          } else if (dBSPL <= LED_THRESHOLD_7){
+              BAT_I2C_enableLedRange(7);
+          } else {
+              BAT_I2C_enableLedRange(8);
+          }
+          cnt = 0;
+      }
+      /* add measured data to memory chunk */
+      /* store Data in memory if enough data is available */
+      char string[16] = {0};
+      BAT_LOGGING_generateLogString(string, timestamp, dBSPLstr);
+      value_counter++;
+      //     if (value_counter == (512 / BAT_LEN_MEAS_STR) && BAT_SPI_eepromIsAvailable()){
+      //         BAT_SPI_writePage(outputStorageBuffer);
+      //     }
+      //////     EMU_EnterEM1(); // Enter energy mode 1 to save power
+  }
 }

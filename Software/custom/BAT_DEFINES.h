@@ -9,25 +9,27 @@
 #define CUSTOM_BAT_DEFINES_H_
 
 /* GENERAL */
-#define BAT_MEASUREMENT_INTERVAL  1000  /* [ms] */
+#define BAT_MEASUREMENT_INTERVAL  125  /* [ms] */
 #define BAT_CHARGING_PORT   gpioPortD   /* voltage divider to check for charge connection */
 #define BAT_CHARGING_PIN    2           /* voltage divider to check for charge connection */
+#define BAT_LEN_MEAS_STR    13          /* defines how long one single data-measurement-string is - Format: hh:mm:ss_xxx with xxx = dBSPL-Value */
 
 /* PDM */
+#define DOWNSAMPLINGRATE    32
 #define BAT_MIC_CLK_PORT    gpioPortA
 #define BAT_MIC_CLK_PIN     0
 #define BAT_MIC_DATA_PORT   gpioPortB
 #define BAT_MIC_DATA_PIN    0
 
 /* VISIUAL REPRESENTATION */
-#define LED_THRESHOLD_1 65 /* in dB */
-#define LED_THRESHOLD_2 70 /* in dB */
-#define LED_THRESHOLD_3 75 /* in dB */
-#define LED_THRESHOLD_4 80 /* in dB */
-#define LED_THRESHOLD_5 85 /* in dB */
-#define LED_THRESHOLD_6 90 /* in dB */
-#define LED_THRESHOLD_7 95 /* in dB */
-#define LED_THRESHOLD_8 100 /* in dB */
+#define LED_THRESHOLD_1 57 /* in dB */
+#define LED_THRESHOLD_2 58 /* in dB */
+#define LED_THRESHOLD_3 59 /* in dB */
+#define LED_THRESHOLD_4 60 /* in dB */
+#define LED_THRESHOLD_5 61 /* in dB */
+#define LED_THRESHOLD_6 62 /* in dB */
+#define LED_THRESHOLD_7 63 /* in dB */
+#define LED_THRESHOLD_8 64 /* in dB */
 
 /* SPI */
 #define BAT_SPI_MISO_PORT gpioPortC

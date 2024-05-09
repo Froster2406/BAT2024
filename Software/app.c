@@ -42,28 +42,19 @@ static uint8_t advertising_set_handle = 0xff;
 #include "custom\BAT_PDM.h"
 #include "custom\BAT_LETIMER.h"
 
-/* https://docs.silabs.com/gecko-platform/4.4.1/platform-hardware-driver/mic */
-#include "sl_mic.h"
-
-#define MIC_SAMPLE_RATE            44100
-#define MIC_SAMPLE_BUFFER_SIZE     1024
-#define MIC_N_CHANNELS             1
-
-static int16_t buffer[MIC_SAMPLE_BUFFER_SIZE * MIC_N_CHANNELS];
-
 /**************************************************************************//**
  * Application Init.
  *****************************************************************************/
 SL_WEAK void app_init(void)
 {
-  // Initialize microphone with sample rate and number of channels
-//  sl_mic_init(MIC_SAMPLE_RATE, MIC_N_CHANNELS);
-  BAT_RTC_init();
-//  BAT_SPI_init();
-//  BAT_I2C_init();
-//  BAT_PDM_init();
-  BAT_TIMER_init();
   BAT_GPIO_init();
+  BAT_RTC_init();
+  BAT_SPI_init();
+//  char string[512] = "This is an EEPROM test";
+//  BAT_SPI_writePage(string);
+  BAT_I2C_init();
+  BAT_PDM_init();
+  BAT_TIMER_init();
 }
 
 /**************************************************************************//**
@@ -71,6 +62,10 @@ SL_WEAK void app_init(void)
  *****************************************************************************/
 SL_WEAK void app_process_action(void)
 {
+//  int32_t buffer[128] = {0};
+//  /* read microphone */
+//  BAT_PDM_readMicrophone(buffer, 128);
+//  buffer[1] = 0;
 //  float sound_level_0;
 //  uint32_t n_samples = 1024;
 //  // Read samples from the microphone
@@ -82,10 +77,15 @@ SL_WEAK void app_process_action(void)
 //  // Calculate sound level
 //  sl_mic_calculate_sound_level(&sound_level_0, buffer, n_samples, 0);
 //  sound_level_0 = 10;
-//  BAT_SPI_eepromIsAvailable();
+//  bool status = false;
+//  status = BAT_SPI_eepromIsAvailable();
+//  status = true;
 //  BAT_I2C_enableLedRange(8);
 //  BAT_I2C_readTemperature();
-
+//  double buffer[128];
+//  BAT_PDM_readMicrophone(buffer, 128);
+//  char string[512] = "";
+//  BAT_SPI_writePage(string);
 }
 
 /**************************************************************************//**

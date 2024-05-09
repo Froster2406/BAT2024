@@ -15,3 +15,8 @@ void BAT_GPIO_init(void){
   /* used to check if device is charging */
   GPIO_PinModeSet(BAT_CHARGING_PORT, BAT_CHARGING_PIN, gpioModeInput, 0);
 }
+
+/* returns true if charging, false if not */
+bool BAT_GPIO_getChargeStatus(void){
+  return GPIO_PinInGet(BAT_CHARGING_PORT, BAT_CHARGING_PIN);
+}
