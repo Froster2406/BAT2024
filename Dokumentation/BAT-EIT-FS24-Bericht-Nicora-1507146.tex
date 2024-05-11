@@ -42,6 +42,7 @@
 
 \renewcommand{\listfigurename}{Abbildungsverzeichnis}
 \renewcommand{\listtablename}{Tabellenverzeichnis}
+\renewcommand{\figurename}{Abbildung}
 
 \usepackage{fancyhdr} %header and footer
 
@@ -175,6 +176,10 @@
 		\begin{equation}\label{dBSPL}
 		dBSPL = 20 \cdot log_{10}(\frac{P}{P_0})
 	\end{equation}
+	\subsubsection*{Dynamikbereich} \label{Dynamikbereich}
+	\color{red}TODO\color{black}
+	\subsubsection*{Zeitgewichtung} \label{Zeitgewichtung}
+	\color{red}TODO\color{black}
 	\subsubsection*{Frequenzbewertung} \label{Frequenzbewertung}
 	Unser Gehör reagiert nicht nur nicht linear auf Lautstärkeveränderungen, sondern zusätzlich auch unterschiedlich Sensitiv auf unterschiedliche Frequenzen im hörbaren Bereich (20Hz-20kHz). Insbesondere im Bereich zwischen 3kHz bis 4kHz \cite{impairments_basics_2004} ist das Gehör besonders anfällig auf äussere Stimulation. Abbildung \ref{fig:phon-curve}, ursprünglich durch Fletcher \& Munson, mittlerweilen auch durch den ISO226-Standard beschrieben, zeigt diesen Umstand. Um der Problematik aus Abbildung \ref{fig:phon-curve} sorge tragen zu können, wird ein sogenannten Frequenzbewertungsfilter \footnote{ Weighting curves}, Abbildung \ref{fig:frequenzbewertung}, eingesetzt. Dabei werden heutzutage nur noch die dB(A), sowie der dB(C)-Filter eingesetzt. Die beiden Filter unterscheiden sich folgendermassen:
 	\begin{itemize}
@@ -249,7 +254,7 @@
 	Unter einer \textbf{R}eal \textbf{T}ime \textbf{C}lock versteht man ein Stück Hardware (intern oder extern), welche die Zeit ab Inbetriebnahme misst. Übliche RTCs haben, aufgrund ihrer Bauweise eine Genauigkeit von 100ppm. Da dies einer Zeitverschiebung von 4min und 19s @32kHz entspricht, enthalten die meisten RTCs Kompensationsmechanismen, um diese Zeit auf unter 100ms zu bringen. \cite{dighe_tps65950_2008}
 % 	https://www.ti.com/lit/an/swca024/swca024.pdf?ts=1709375495514&ref_url=https%253A%252F%252Fwww.google.com%252F
 	\subsubsection*{Low Power}
-	Mit Low Power wird, insbesondere bei Embedded-Systemen, die reduzierte Leistungsaufnahme beschrieben. Oftmals verfügen die Systeme über mehrere Modi mit jeweils unterschiedlichen Eigenschaften. Das Ziel ist es, mit jedem tieferen Modus etwas mehr Energie zu sparen und somit die Akkulaufzeit zu verlängern. Wie in Abbildung  \ref{fig:batlow-power-modestm} ersichtlich, sinkt zwar die Leistungsaufnahme mit jeder Stufe, jedoch werden dabei gewisse Peripherien abgeschaltet und die allgemeine Startzeit des Systems wird erhöht.
+	Mit Low Power wird, insbesondere bei Embedded-Systemen, die reduzierte Energieaufnahme beschrieben. Oftmals verfügen die Systeme über mehrere Modi mit jeweils unterschiedlichen Eigenschaften. Das Ziel ist es, mit jedem tieferen Modus etwas mehr Energie zu sparen und somit die Akkulaufzeit zu verlängern. Wie in Abbildung  \ref{fig:batlow-power-modestm} ersichtlich, sinkt zwar die Energieaufnahme mit jeder Stufe, jedoch werden dabei gewisse Peripherien abgeschaltet und die allgemeine Startzeit des Systems wird erhöht.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\linewidth]{images/BAT_Low-Power-Mode_STM}
@@ -287,7 +292,7 @@
 		\label{fig:batvergleich-mikrocontroller}
 	\end{figure}
 	\subsubsection{Fazit}
-	Wie dem Vergleich zu entnehmen ist, unterscheiden sich die Mikrocontroller meist nur in der integrierten Flash-Grösse sowie der Leistungsaufnahme bei einer gewissen Taktrate. Dadurch wird die Wahl nicht eingeschränkt, was eine geeignete Evaluation nicht vereinfacht. Ausschlaggebend ist jedoch der Formfaktor. Bis auf Silicon Labs und STmicro muss für einen Mikrocontroller mit vorgefertigter Antenne auf Drittanbieter ausgewichen werden. In Zeiten von Katastrophen wie COVID oder Kriegen inmitten von Handelsrouten ist die Produktverfügbarkeit einer der zentraler Aspekte. Aus diesem Grund wird nachfolgend der EFR32BG22 von Silicon Labs bzw. dessen Modul-Variante, der \textbf{BGM220P}, eingesetzt.
+	Wie dem Vergleich zu entnehmen ist, unterscheiden sich die Mikrocontroller meist nur in der integrierten Flash-Grösse sowie der Energieaufnahme bei einer gewissen Taktrate. Dadurch wird die Wahl nicht eingeschränkt, was eine geeignete Evaluation nicht vereinfacht. Ausschlaggebend ist jedoch der Formfaktor. Bis auf Silicon Labs und STmicro muss für einen Mikrocontroller mit vorgefertigter Antenne auf Drittanbieter ausgewichen werden. In Zeiten von Katastrophen wie COVID oder Kriegen inmitten von Handelsrouten ist die Produktverfügbarkeit einer der zentraler Aspekte. Aus diesem Grund wird nachfolgend der EFR32BG22 von Silicon Labs bzw. dessen Modul-Variante, der \textbf{BGM220P}, eingesetzt.
 	
 	\newpage
 	\section{LED}\label{LED}
@@ -336,7 +341,7 @@
 		\label{table:vergleich-led}
 	\end{table}
 	\subsubsection{Fazit}
-	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Leistungsaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblich mit einer Wellenlänge von 780nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
+	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Energieaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblich mit einer Wellenlänge von 780nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
 	\newpage
 	\section{Entwicklung}\label{Entwicklung}
 	Die im Unterkapitel \ref{Ziele} definierten Ziele sollen nun umgesetzt werden. Dazu soll die von aussen sichtbare Vorderseite möglichst wenig Bauteile aufweisen, um das visuelle Design nicht zu beeinträchtigen. Mit einer angestrebten Gesamtgrösse von 60mm Durchmesser, können die gewählten Bauteile geradenoch auf dem PCB in einer symmetrischen Art platziert werden. 
@@ -394,7 +399,7 @@
 	\paragraph{Sicherung}\mbox{}\\
 	Der Fall eines Kurzschlusses auf Geräteseite wird mittels einer rückstellbaren Sicherung (PPTC\footnote{\textbf{P}olymeric \textbf{P}ositive \textbf{T}emperature \textbf{C}oefficient, automatisch rückstellbare Sicherung von Littlefuse}) der Stromfluss unterbrochen. Die gewählte Sicherung blockiert bei einem Strom von 400mA komplett und setzt sich automatisch wieder zurück, sobald die Speisung abgetrennt wird.
 	\paragraph{LED-Treiber} \mbox{}\\
-	Die Aufgabe des Treibers ist es, den LED-Strom möglichst Energieeffizient zu regeln (siehe \ref{Vorwiderstand}). Der gewählte Treiber ermöglicht es, alle 8 LEDs individuell in 100uA-Schritten zu regeln. So kann die Leistungsaufnahme des Gesamtsystems kontrolliert werden.
+	Die Aufgabe des Treibers ist es, den LED-Strom möglichst Energieeffizient zu regeln (siehe \ref{Vorwiderstand}). Der gewählte Treiber ermöglicht es, alle 8 LEDs individuell in 100uA-Schritten zu regeln. So kann die Energieaufnahme des Gesamtsystems kontrolliert werden.
 	\paragraph{Akku-Laderegler $\vert$ BMS} \mbox{}\\
 	Das \textbf{B}attery \textbf{M}anagement \textbf{S}ystem wurde aufgrund folgender, benötigter Eigenschaften gewählt:
 	\begin{itemize}
@@ -488,10 +493,26 @@
 		\caption{Übersicht BiQuad-Filter}
 		\label{fig:batbiquad-uebersicht}
 	\end{figure}
-	\subsubsection*{PDM}
-	\color{red}TODO\color{black}
-	Dezimierung
-	Anzahl Samples
+	\subsubsection*{PDM Clock}
+	Das Mikrofon benötigt einen exakten Clock, um die PDM-Daten an den Mikrocontroller bzw. dessen PDM2PCM-Periphiere zu übertragen. Um das Mikrofon im "HIGH PERFORMANCE MODE" laufen lassen zu können, wird gemäss Datenblatt (\cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}) ein Clock von 3.072MHz benötigt. Da dieser nicht direkt aus einem der bereits verfügbaren Clocks abgeleitet bzw. herunter geteilt werden kann, muss dieser mittels dem integrierten PLL erzeugt werden. Der Prozess ist in Abbildung \ref{fig:batclock-muxing-pdm} ersichtlich, wobei der effektive PLL-Clock mittels der Formel \ref{eq:PLL-Formel} berechnet werden muss.
+	\begin{equation}\label{eq:PLL-Formel}
+		Frequenz_{PLL} = \underbrace{Frequenz_{ref}}_{LFXO} \cdot \frac{\overbrace{N+1}^{300\,<=\, N \, <= \, 4095}}{\underbrace{M+1}_{0\,<=\,M\,<=\,4095}}
+	\end{equation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_Clock-Muxing-PDM}
+		\caption{Clock-Muxing für 3.072MHz PDM}
+		\label{fig:batclock-muxing-pdm}
+	\end{figure}
+	\subsubsection*{PDM CIC-Filter}
+	Um aus dem 1-Bit PDM-Datenstream ein verarbeitbares PCM-Signal zu erhalten, wird die integrierte CIC-Filterstruktur verwendet. Gemäss \cite{noauthor_efr32xg22_2022}, \ref{Dynamikbereich} sowie \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate} muss diese folgendermassen konfiguriert sein:
+	\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
+	\item[$\bullet$ Dezimierungsrate:] 64
+	\item[$\bullet$ Wortbreite:]  24 Bit
+	\item[$\bullet$ Verstärkung:]  0 dB
+	\item[$\bullet$ Filterordnung:]  5
+	\item[$\bullet$ Clock-Dezimierung:]  0
+	\end{itemize}
 	\subsubsection*{I²C}
 	\begin{figure}[H]
 		\centering
@@ -502,7 +523,9 @@
 	\subsubsection*{SPI}
 	Da der SPI-Treiber hauptsächlich mittels der SPIDRV-Bibliothek von Silicon Labs implementiert ist, fällt der Treiber schlank aus. Es existieren lediglich jeweils eine Funktion um eine neue Seite (512 Bytes) im Speicher zu beschreiben und um diese auch wieder auszulesen bzw. zu löschen.
 	\subsubsection*{RTC}
-	\color{red}TODO\color{black}
+	Die RTC wird, nicht wie die restliche Peripherie, nicht selbst aufgesetzt und betrieben. Dies ist darauf zurückzuführen, dass der BLE-Stack von Silicon Labs zum Zeitmanagement denselben Zeitgeber verwendet. Dadurch ist der Zugriff auf die RTC limitiert und kann nur über die nachfolgende Funktion abgerufen werden:
+	$$ sl\_sleeptimer\_get\_time() $$
+	Dabei wird die Zeit auf die Sekunde genau zurückgegeben und kann somit für die Erzeugung des Zeitstempels verwendet werden.
 	\subsubsection*{LEDs}
 	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von +-3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{dBSPL}, einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
 	\begin{figure}[H]
@@ -540,11 +563,13 @@
 		\caption{Ausführungsgeschwindigkeit der einzelnen Funktionen}
 		\label{tab:ausfuehrungsgeschwindigkeit}
 	\end{table}
-	\color{red}TODO\color{black}
-	\subsection{Leistungsaufnahme}
-	Die Leistungsaufnahme eines Systems zu quantifizieren, stellt sich als durchaus komplex dar. Viele Variablen, Abwägung von Verarbeitungsgeschwindigkeit mit der gegensätzlichen Energieeffizienz und nicht genau spezifizierte Parameter erschweren die Festlegung der Rahmenbedingungen. Bei der Auslegung der nachfolgenden Parameter wird stets die energieeffizientes Möglichkeit gewählt, ohne damit die Leistungsfähigkeit massgeblich zu beeinflussen.
+	\subsection{Energieaufnahme}
+	Die Energieaufnahme eines Systems zu quantifizieren, stellt sich als durchaus komplex dar. Viele Variablen, Abwägung von Verarbeitungsgeschwindigkeit mit der gegensätzlichen Energieeffizienz und nicht genau spezifizierte Parameter erschweren die Festlegung der Rahmenbedingungen. Bei der Auslegung der nachfolgenden Parameter wird stets die energieeffizientes Möglichkeit gewählt, ohne damit die Leistungsfähigkeit massgeblich zu beeinflussen.
 	\paragraph{Mikrocontroller}\mbox{}\\
-	\color{red}TODO\color{black}
+	Die Energieaufnahme des Mikrocontrollers ist nicht nur von der eigentlichen Taktrate abhängig, sondern auch welche Peripherieblöcke und Low-Power-Modi gerade aktiv sind. Dadurch lässt sich die Energieaufnahme nur sehr grob abschätzen. Mit den benötigten Peripherien aktiv, jedoch ohne eine Berechnung durchzuführen und in einen Low-Power-Modus zu wechseln, könnte die Energieaufnahme folgendermassen aussehen:
+	\begin{equation}\label{eq:Leistung_Mikrocontroller_basic}
+		\underbrace{27 \mu A/MHz \cdot 76.8MHz}_{ \mu C} + \underbrace{10 \mu A/MHz \cdot 76.8MHz}_{Peripherie} = 2842 \mu Ah
+	\end{equation}
 	\paragraph{Mikrofon}\mbox{}\\
 	Wie der Formel \ref{eq:Leistung_Mikrofon} entnommen werden kann, gibt es zwei Möglichkeiten das Mikrofon zu betreiben:
 	\begin{itemize}
@@ -555,28 +580,28 @@
 		Leistung_{Mikrofon} = \underbrace{580 \mu A \cdot 30ms \cdot 4}_{ Performance-Modus} + \underbrace{20 \mu A \cdot 220ms \cdot 4}_{Standby} = 87.2 \mu Ah
 	\end{equation}
 	\paragraph{EEPROM}\mbox{}\\
-	Der Chip weist eine vielzahl von unterschiedlichen Leistungsmodi auf. Die Leistungsaufnahme variiert zwischen dem niedrigen Standby-Modus (35$\mu Ah$) und dem schreiben einer Seite (3$mAh$) von 512 Bytes. Gemäss folgender Mischrechnung (\ref{eq:Leistung_EEPROM}) kann die ungefähre Leistungsaufnahme approximiert werden.
+	Der Chip weist eine vielzahl von unterschiedlichen Leistungsmodi auf. Die Energieaufnahme variiert zwischen dem niedrigen Standby-Modus (35$\mu Ah$) und dem schreiben einer Seite (3$mAh$) von 512 Bytes. Gemäss folgender Mischrechnung (\ref{eq:Leistung_EEPROM}) kann die ungefähre Energieaufnahme approximiert werden.
 	\begin{equation}\label{eq:Leistung_EEPROM}
 		\underbrace{3mA \cdot 4.5ms}_{Schreiben} + \underbrace{1.5mA \cdot 2ms}_{Lesen} +  \underbrace{35\mu A \cdot 993.5ms}_{Standby}= 51.3 \mu Ah\footnote{Alle Zeiten gemäss Datenblatt}
 	\end{equation}
 	\paragraph{Übersicht berechnet}\mbox{}\\
 	\begin{table}[H] 
-		\centering
-		\begin{tabular}{|l|l|l|}
-			\hline
-			\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
-			Mikrocontroller & 3200 $\mu Ah$ & Alle Peripherien EIN \\ \hline
-			LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
-			LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
-			EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
-			Mikrofon & 87.2 $\mu Ah$ & Low-Power-Modus \\ \hline
-			~ & ~ & ~ \\ \hline
-			Total & 4.7 $mAh$ & ~ \\ \hline
-			Total Arbeitstag à 12h & \textbf{56.9} $mAh$ & ~ \\ \hline
-		\end{tabular}
-		\caption{Berechnete Ströme des Gesamtsystems}
-		\label{tab:leistung-berechnet}
-	\end{table}
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
+		Mikrocontroller & 2842 $\mu Ah$ & ~ \\ \hline
+		LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
+		LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
+		EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
+		Mikrofon & 87.2 $\mu Ah$ & Low-Power-Modus \\ \hline
+		~ & ~ & ~ \\ \hline
+		Total & 4.4 $mAh$ & ~ \\ \hline
+		Total Arbeitstag à 12h & \textbf{52.6} $mAh$ & ~ \\ \hline
+	\end{tabular}
+	\caption{Berechnete Energieaufnahme des Gesamtsystems}
+	\label{tab:leistung-berechnet}
+\end{table}
 	\paragraph{Übersicht gemessen}\mbox{}\\
 		\begin{table}[H] 
 			\centering
@@ -592,10 +617,10 @@
 			Total & 3.5 $mAh$ & ~ \\ \hline
 			Total Arbeitstag à 12h & \textbf{42.40} $mAh$ & ~ \\ \hline
 		\end{tabular}
-		\caption{Gemessene Ströme des Gesamtsystems}
+		\caption{Gemessene Leistungsaufnahme des Gesamtsystems}
 		\label{tab:leistung-gemessen}
 		\end{table}
-	\color{red}TODO\color{black}
+	Wie den Tabellen \ref{tab:leistung-gemessen} und \ref{tab:leistung-berechnet} zu entnehmen ist, kann die Einsatzdauer von 12 Stunden mit einem 50mAh-Akku abgedeckt werden.
 	\subsection{Mikrofon-Messungen}
 	\begin{figure}[H]
 		\centering
@@ -606,22 +631,21 @@
 				%title={Messung ungewichtet},
 				xlabel={Frequenz [Hz]},
 				ylabel={Schalldruckpegel [dB]},
-				xmin=0, xmax=20000,
-				ymin=0, ymax=140,
+				xmin=500, xmax=20000,
+				ymin=0, ymax=130,
 				legend pos=north west,
 				ymajorgrids=true,
 				grid style=dashed,
 				]
-				
 				\addplot[
 				color=blue,
 				mark=solid,
-				] table[col sep=comma, x=Frequency, y=dBSPL] {measurements/Microphone/MEMS_Z-Weighting.csv};
+				] table[col sep=semicolon, x=Frequenz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
 				\addlegendentry{MEMS}
-								\addplot[
+				\addplot[
 				color=red,
 				mark=solid,
-				] table[col sep=comma, x=Frequency, y=dBSPL] {measurements/Microphone/M2211_Z-Weighting.csv};
+				] table[col sep=semicolon, x=Frequenz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
 				\addlegendentry{M2211}
 			\end{axis}
 		\end{tikzpicture}
@@ -632,22 +656,47 @@
 	\color{red}TODO\color{black}
 	
 	\newpage
+	\section{Validierung der Anforderungen}
+	\color{red}TODO\color{black}
+	\newpage
 	\section{Stolpersteine}
+	Stolpersteine gab es in dieser Arbeit einige. Auf gewisse werde ich, nachfolgend genauer eingehen.
+	\paragraph{RTC}\mbox{}\\
+	Der Einsatz der RTC hat auf zweierlei Arten zu Problemen geführt. Wie sich während der Arbeit herausgestellt hat, benötigt der BLE-Stack von Silicon Labs für das Zeitmanagement die RTC. Dadurch kann diese nicht frei und flexibel eingesetzt werden, sondern muss über spezielle Funktionen abgegriffen werden. Gleichzeitig setzt sich die RTC bei jedem Neustarts des Systems zurück. Dadurch kann kein anhaltender Zeitstempel, mit Referenz zur lokalen Zeit, erzeugt werden. Dies ist bei der aktuellen Implementation so angedacht, für ein fertiges Produkt jedoch nicht ideal.
+	\paragraph{BLE}\mbox{}\\
+	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grundsätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch der 
+	\paragraph{Mikrofon}\mbox{}\\
+	
+	\paragraph{Filterdesign}\mbox{}\\
 	RTC, BLE, Filterdesign, Debugger, PDM / Startup-zeit
 	
 	\newpage
 	\section{Fazit und Ausblick}
-	Parameter: Welche LED leuchtet bei welchem Wert, Wie Hell LED, Wie viel Loggen. Biquad-hardware
-	\color{red}TODO\color{black}
+	Mit dieser Arbeit habe ich ein Produkt geschaffen, welches zwar nicht an ein NTI XL2 herankommt, jedoch in seiner Preiskategorie durchaus seinen Platz verdient hat. Der Prototyp erfüllt alle in \ref{Anhang:Anforderungskatalog} gewünschten Anforderungen, ist soweit einsatzbereit und kann in einer nachfolgenden Arbeit weiterentwickelt werden. In dieser sollten folgende Themenbereiche behandelt werden:
+	\begin{itemize}
+		\item BLE \\
+		Die Hardware ist soweit für die Datenübertragung vorbereitet. Nun soll die Software mittels zugehörigem BLE-Stack implementiert werden.
+		\item Interface \\
+		Die Messdaten befinden sich momentan nur auf dem EEPROM. In Verbindung mit der BLE-Implementation ist eine visuelle Applikation auf dem Zielgerät, z.B. Smartphone, zu implementieren. Neben dem herunterladen der Messdaten können so auch Einstellungen wie LED-Helligkeit, Log-Intervall oder Aufteilung der Werte auf die LEDs auf dem Messgerät vorgenommen werden.
+		\item RTC \\
+		Die momentane Implementation ermöglicht es nicht, einen Zeitstempel im UNIX-Format den Messdaten anzuhängen. Dies aus dem einfachen Grund, dass bei einem leeren Akku diese Zeit nicht weiter gezählt wird. Als alternative könnte der initiale Zeitstempel via BLE auf das Messgerät übertragen und für die neue Messung verwendet werden.
+		\item Low-Power \\
+		Bei der Entwicklung wurde ein besonders Augenmerk auf die Energieeffizienz gelegt. Nichts desto trotz, kann das System noch energieeffizienter programmiert werden. Dies würde gleichzeitig nochmals einen kleinere Akku oder eine längere Akkulaufzeit zur Folge haben. Insbesondere ein Mikrocontroller mit integrierter BiQuad-Hardware würde die hohe Berechnungszeit \ref{tab:ausfuehrungsgeschwindigkeit} reduzieren
+	\end{itemize}
 	
 	\newpage
 	\section*{Danksagung}
-	\color{red}TODO\color{black}
+	Als aller erstes möchte ich mich bei bei meinem Industriepartner, hEar, bedanken, ohne welchen das Projekt niemals in meine Hände gelangt wäre. Gleichzeitig möchte ich mich auch bei meinen beiden Betreuern, Filippo Parisi und Patric Eberle, für die Unterstützung während des Semesters bedanken. Ein besondere Dank gilt zudem folgenden Personen:
+	\begin{itemize}
+		\item Pascal Jund und Jürgen Wassner für die tatkräftige Unterstützung bei der Implementation von zeitdiskreten Filtern auf einer Embedded-Plattform.
+		\item Katharina Wick für die Korrektur der gesamten Arbeit.
+		\item Meinen Kommiliton:innen für die unzähligen konstruktiven Diskussionen und Möglichkeiten des Austausches im BAT-Raum. 
+	\end{itemize}
 	
 	\newpage
 	\section{Anhang}
 	\bibliography{Sources} 
-	\bibliographystyle{ieeetr}
+	\bibliographystyle{ieee}
 	\listoffigures
 	\subsection{Fremdwörter}
 	CRC \\
@@ -661,6 +710,8 @@
 	RTOS \\
 	IIR\\
 	FIR\\
+	UNIX-Format \\
+	\color{red}TODO\color{black}
 	
 	\newpage
 	\subsection{Messmittel}
@@ -684,7 +735,18 @@
 	S/N: FDS0PNBVSQUQZ
 	\color{brown}
 	\item NTI XL2 \\
-	S/N:
+	S/N: A2A-17216-E0
+	\item M2211 Messmikrofon \\
+	S/N: 7579
+	\item Larson Davis CAL200 \\
+	S/N: 17902
+	\item XL2 Projector PRO\\
+	Version: 1.54
+	\color{orange}
+	\item Simplicity Studio \\
+	Version: SV5.8.1.1
+	\item Gecko SDK Suite \\
+	Version: 4.4.1
 	\color{black}
 \end{itemize}
 	\newpage

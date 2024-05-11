@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{noauthor_xl2_nodate}
 ``{XL2} {Schallpegelmesser} \& {Akustik}-{Analysator} {\textbar} {NTi}
@@ -36,5 +36,11 @@ G.~Dighe, ``{TPS65950} {Real}-{Time} {Clock} {Timing} {Compensation},'' Oct.
 \bibitem{oppenheim_alan_v_zeitdiskrete_nodate}
 A.~V. Oppenheim, {\em Zeitdiskrete {Signalverarbeitung}}.
 \newblock R. Oldenbourg.
+
+\bibitem{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}
+``https://invensense.tdk.com/wp-content/uploads/2020/07/{DS}-000157-{ICS}-41351-v1.4.pdf.''
+
+\bibitem{noauthor_efr32xg22_2022}
+``{EFR32xG22} {Wireless} {Gecko} {Reference} {Manual},'' 2022.
 
 \end{thebibliography}
