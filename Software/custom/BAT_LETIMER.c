@@ -14,7 +14,7 @@ static char timestamp[10]; /* holds string in format hh:mm:ss */
 static char inputStorageBuffer[512] = {0};  /* holds data  read from EEPROM */
 static char outputStorageBuffer[512] = {0}; /* holds data to be written to EEPROM */
 
-static double buffer[128] = {0};
+static int32_t buffer[128] = {0};
 static double bufferWeighted[128] = {0};
 static uint8_t value_counter = 0;
 static uint8_t cnt = 0;
@@ -55,6 +55,12 @@ void LETIMER0_IRQHandler(void)
   uint32_t clock_freqI2C = CMU_ClockFreqGet(cmuClock_I2C0);   /* 19200000 */
   uint32_t clock_freqSPI = CMU_ClockFreqGet(cmuClock_USART0); /* 38400000 */
   uint32_t clock_freqSYSCLK = CMU_ClockFreqGet(cmuClock_SYSCLK); /* 38400000 */
+  uint32_t clock_freqEM01GRPBCLK = CMU_ClockFreqGet(cmuClock_EM01GRPBCLK);
+  uint32_t clock_freqPDM1 = CMU_ClockFreqGet(cmuClock_PDM);
+  uint32_t clock_freqPDMREF = CMU_ClockFreqGet(cmuClock_PDMREF);
+  uint32_t clock_freqDPLL0 = CMU_ClockFreqGet(cmuClock_DPLL0);
+  uint32_t clock_freqLFXO = CMU_ClockFreqGet(cmuClock_LFXO);
+  uint32_t clock_freqHFXO = CMU_ClockFreqGet(cmuClock_HFXO);
 
   /* test end */
   /* is device charging? YES: Enable BLE and transmit Data | NO: log data to memory */
@@ -63,7 +69,7 @@ void LETIMER0_IRQHandler(void)
       time = BAT_RTC_getTime();
       BAT_I2C_enableLedRange(0);
   } else{  /* log data */
-      double dBSPL = 0;
+      float dBSPL = 0;
       /* read microphone */
       BAT_PDM_readMicrophone(buffer, 128);
       /* read RTC */
@@ -75,6 +81,8 @@ void LETIMER0_IRQHandler(void)
       /* convert data to dBSPL */
       BAT_PDM_convertPCMTodBSPL(buffer, 128, &dBSPL);
 //           BAT_PDM_convertPCMTodBSPL(bufferWeighted, 128, &dBSPL);
+//      dBSPL -= 28; /* 24bit */
+      dBSPL += 20; /* 16bit */
       /* convert dBSPL value to string */
       char dBSPLstr[7] = {0};  /* holds dBSPL value in string format */
       BAT_PDM_convertSPLToString(dBSPL, dBSPLstr);

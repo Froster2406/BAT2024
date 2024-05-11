@@ -15,7 +15,7 @@
 #define BAT_LEN_MEAS_STR    13          /* defines how long one single data-measurement-string is - Format: hh:mm:ss_xxx with xxx = dBSPL-Value */
 
 /* PDM */
-#define DOWNSAMPLINGRATE    32
+#define DOWNSAMPLINGRATE    64
 #define BAT_MIC_CLK_PORT    gpioPortA
 #define BAT_MIC_CLK_PIN     0
 #define BAT_MIC_DATA_PORT   gpioPortB

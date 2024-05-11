@@ -42,6 +42,11 @@ static uint8_t advertising_set_handle = 0xff;
 #include "custom\BAT_PDM.h"
 #include "custom\BAT_LETIMER.h"
 
+
+//#define MIC_SAMPLE_RATE            44100
+//#define MIC_SAMPLE_BUFFER_SIZE     1024
+//static int16_t buffer[MIC_SAMPLE_BUFFER_SIZE];
+
 /**************************************************************************//**
  * Application Init.
  *****************************************************************************/
@@ -55,6 +60,15 @@ SL_WEAK void app_init(void)
   BAT_I2C_init();
   BAT_PDM_init();
   BAT_TIMER_init();
+//  sl_mic_init(MIC_SAMPLE_RATE, 1);
+  uint32_t clock_freqPDM = CMU_ClockFreqGet(cmuClock_PDM);    /* 3072000 */
+  uint32_t clock_freqI2C = CMU_ClockFreqGet(cmuClock_I2C0);   /* 19200000 */
+  uint32_t clock_freqSPI = CMU_ClockFreqGet(cmuClock_USART0); /* 38400000 */
+  uint32_t clock_freqSYSCLK = CMU_ClockFreqGet(cmuClock_SYSCLK); /* 38400000 */
+  uint32_t clock_freq = CMU_ClockFreqGet(cmuClock_EM01GRPBCLK);
+  uint32_t clock_freq2 = CMU_ClockFreqGet(cmuClock_PDM);
+  uint32_t clock_freq3 = CMU_ClockFreqGet(cmuClock_PDMREF);
+//  CMU_Lock();
 }
 
 /**************************************************************************//**

@@ -136,30 +136,6 @@
 // [I2C1]$
 
 // $[PDM]
-// PDM CLK on PA00
-#ifndef PDM_CLK_PORT                            
-#define PDM_CLK_PORT                             gpioPortA
-#endif
-#ifndef PDM_CLK_PIN                             
-#define PDM_CLK_PIN                              0
-#endif
-
-// PDM DAT0 on PB00
-#ifndef PDM_DAT0_PORT                           
-#define PDM_DAT0_PORT                            gpioPortB
-#endif
-#ifndef PDM_DAT0_PIN                            
-#define PDM_DAT0_PIN                             0
-#endif
-
-// PDM DAT1 on PB01
-#ifndef PDM_DAT1_PORT                           
-#define PDM_DAT1_PORT                            gpioPortB
-#endif
-#ifndef PDM_DAT1_PIN                            
-#define PDM_DAT1_PIN                             1
-#endif
-
 // [PDM]$
 
 // $[LETIMER0]

@@ -22,7 +22,6 @@ custom \
 gecko_sdk_4.4.1/app/bluetooth/common/in_place_ota_dfu \
 gecko_sdk_4.4.1/app/common/util/app_timer \
 gecko_sdk_4.4.1/hardware/board/src \
-gecko_sdk_4.4.1/hardware/driver/mic/src \
 gecko_sdk_4.4.1/platform/Device/SiliconLabs/BGM22/Source \
 gecko_sdk_4.4.1/platform/bootloader/api \
 gecko_sdk_4.4.1/platform/bootloader/app_properties \

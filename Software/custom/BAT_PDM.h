@@ -16,15 +16,13 @@
 #include "em_cmu.h"
 #include "sl_udelay.h"
 
-#include "sl_mic.h"
-
 void BAT_PDM_init(void);
 
 void BAT_PDM_deInit(void);
 
-void BAT_PDM_readMicrophone(double *buffer, uint16_t samples);
+void BAT_PDM_readMicrophone(int32_t *buffer, uint16_t samples);
 
-void BAT_PDM_convertPCMTodBSPL(double *buffer, uint16_t samples, double *dBSPL);
+void BAT_PDM_convertPCMTodBSPL(int32_t *buffer, uint16_t samples, float *dBSPL);
 
 void BAT_PDM_applyAWeightingFilter(double *x, double *y, uint16_t k);
 

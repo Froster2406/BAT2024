@@ -32,9 +32,6 @@
     <property object="PORTIO" propertyId="portio.i2c0.location.sda" value="38"/>
     <property object="PORTIO" propertyId="portio.i2c1.location.scl" value="50"/>
     <property object="PORTIO" propertyId="portio.i2c1.location.sda" value="51"/>
-    <property object="PORTIO" propertyId="portio.pdm.enable.clk" value="Enabled"/>
-    <property object="PORTIO" propertyId="portio.pdm.enable.dat0" value="Enabled"/>
-    <property object="PORTIO" propertyId="portio.pdm.enable.dat1" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.pdm.location.dat0" value="16"/>
     <property object="PORTIO" propertyId="portio.pdm.location.dat1" value="17"/>
     <property object="PORTIO" propertyId="portio.pti.enable.dframe" value="Enabled"/>
