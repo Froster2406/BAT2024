@@ -1,50 +1,31 @@
 \documentclass[12pt]{article}
 
-\usepackage{amsmath}
-
 \usepackage{graphicx}
-
 \usepackage{hyperref} %querreferenzierung
-
 \usepackage{xcolor}
-
 \usepackage{amsmath} % for 'pmatrix' environment
-
 \usepackage{listings} %code representation
-
 \usepackage{trfsigns} %transformationszeichen
-
 \usepackage{float} %floating images
-
 \usepackage{subfig} %images next to one another
-
 \usepackage{amssymb} %arrows
-
 \usepackage{pdfpages} %add pdf to latex file
-
 \usepackage{graphicx} %list of figures
-
 \usepackage{array} % For better column specifications
-
 \usepackage{tablefootnote}
-
 \usepackage[bottom]{footmisc} %stick footnotes to bottom of page
-
 \usepackage{enumitem} %proper itemize indentation
-
 \usepackage{pgfplots} %csv-plots
-
 \usepackage{pdflscape} %change orientation of page
-
 \usepackage{filecontents} % To write data to a file
+\usepackage{fancyhdr} %header and footer
 
-\renewcommand*\contentsname{Inhaltsverzeichnis} % rename table of content
+\graphicspath{{./images/}{./images/Messaufbau}}
 
+\renewcommand*\contentsname{Inhaltsverzeichnis}
 \renewcommand{\listfigurename}{Abbildungsverzeichnis}
 \renewcommand{\listtablename}{Tabellenverzeichnis}
 \renewcommand{\figurename}{Abbildung}
-
-\usepackage{fancyhdr} %header and footer
 
 % colored \pm
 \usepackage{stackengine,xcolor}
@@ -367,13 +348,13 @@
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\linewidth]{images/BAT_Konzept_Gerät}
+		\includegraphics[width=1\linewidth]{images/BAT_Konzept_Gerät}
 		\caption{Konzept PCB-Layout}
 		\label{fig:batkonzeptgerat}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\linewidth]{images/BAT_Konzept_Softwareablauf}
+		\includegraphics[width=1\linewidth]{images/BAT_Konzept_Softwareablauf}
 		\caption{Konzept Softwareablauf}
 		\label{fig:batkonzeptsoftwareablauf}
 	\end{figure}
@@ -509,10 +490,19 @@
 	\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
 	\item[$\bullet$ Dezimierungsrate:] 64
 	\item[$\bullet$ Wortbreite:]  24 Bit
-	\item[$\bullet$ Verstärkung:]  0 dB
+	\item[$\bullet$ Verstärkung \ref{eq:Verstärkung}:]  0 dB 
 	\item[$\bullet$ Filterordnung:]  5
-	\item[$\bullet$ Clock-Dezimierung:]  0
+	\item[$\bullet$ Clock-Dezimierung \ref{eq:Clock-Dezimierung}:]  0 
+	\item[$\bullet$ Signal-Abtastrate:]  48 kHz
 	\end{itemize}
+	\begin{equation}\label{eq:Clock-Dezimierung}
+		\color{red}TODO\color{black}
+		\underbrace{27 \mu A/MHz \cdot 76.8MHz}_{ \mu C} + \underbrace{10 \mu A/MHz \cdot 76.8MHz}_{Peripherie} = 2842 \mu Ah
+	\end{equation}
+	\begin{equation}\label{eq:Verstärkung}
+		\color{red}TODO\color{black}
+		\underbrace{27 \mu A/MHz \cdot 76.8MHz}_{ \mu C} + \underbrace{10 \mu A/MHz \cdot 76.8MHz}_{Peripherie} = 2842 \mu Ah
+	\end{equation}
 	\subsubsection*{I²C}
 	\begin{figure}[H]
 		\centering
@@ -527,7 +517,7 @@
 	$$ sl\_sleeptimer\_get\_time() $$
 	Dabei wird die Zeit auf die Sekunde genau zurückgegeben und kann somit für die Erzeugung des Zeitstempels verwendet werden.
 	\subsubsection*{LEDs}
-	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von +-3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{dBSPL}, einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
+	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von $\pm$ 3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{dBSPL}, einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_Skalierung-SPL-auf-LED}
@@ -584,7 +574,7 @@
 	\begin{equation}\label{eq:Leistung_EEPROM}
 		\underbrace{3mA \cdot 4.5ms}_{Schreiben} + \underbrace{1.5mA \cdot 2ms}_{Lesen} +  \underbrace{35\mu A \cdot 993.5ms}_{Standby}= 51.3 \mu Ah\footnote{Alle Zeiten gemäss Datenblatt}
 	\end{equation}
-	\paragraph{Übersicht berechnet}\mbox{}\\
+	\paragraph{Übersicht berechnet}
 	\begin{table}[H] 
 	\centering
 	\begin{tabular}{|l|l|l|}
@@ -602,7 +592,7 @@
 	\caption{Berechnete Energieaufnahme des Gesamtsystems}
 	\label{tab:leistung-berechnet}
 \end{table}
-	\paragraph{Übersicht gemessen}\mbox{}\\
+	\paragraph{Übersicht gemessen}
 		\begin{table}[H] 
 			\centering
 			\begin{tabular}{|l|l|l|}
@@ -617,11 +607,31 @@
 			Total & 3.5 $mAh$ & ~ \\ \hline
 			Total Arbeitstag à 12h & \textbf{42.40} $mAh$ & ~ \\ \hline
 		\end{tabular}
-		\caption{Gemessene Leistungsaufnahme des Gesamtsystems}
+		\caption{Gemessene Energieaufnahme des Gesamtsystems}
 		\label{tab:leistung-gemessen}
 		\end{table}
 	Wie den Tabellen \ref{tab:leistung-gemessen} und \ref{tab:leistung-berechnet} zu entnehmen ist, kann die Einsatzdauer von 12 Stunden mit einem 50mAh-Akku abgedeckt werden.
 	\subsection{Mikrofon-Messungen}
+	Das MEMS-Mikrofon, sowie das M2211 von NTI, wurden beide jeweils vor jeder Messung mittels dem CAL200 auf 94dBSPL kalibriert. Genauere Angaben sind dem Anhang \ref{Messmittel} zu entnehmen.
+	\paragraph{Messaufbau SPL}
+		\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
+		\item[$\bullet$ Messfrequenz:] 1 kHz
+		\item[$\bullet$ Amplitude:]  1 Vrms
+		\item[$\bullet$ Signalform:]  Sinus
+		\item[$\bullet$ Gewichtung:]  Z
+		\item[$\bullet$ Erfassung:]  Slow
+		\item[$\bullet$ Visualisierung:]  \ref{fig:messaufbau_spl}
+	\end{itemize}
+	\paragraph{Messaufbau Frequenzgang}
+		\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
+			\item[$\bullet$ Messfrequenz:] 10 Hz ... 20 kHz
+			\item[$\bullet$ Amplitude:]  1 Vrms
+			\item[$\bullet$ Signalform:]  Sinus
+			\item[$\bullet$ Gewichtung:]  Z
+			\item[$\bullet$ Erfassung:]  Slow
+			\item[$\bullet$ Distanz zu Signalquelle:]  200 mm
+			\item[$\bullet$ Visualisierung:]  \ref{fig:messaufbau_frequenzgang}
+		\end{itemize}
 	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}
@@ -631,9 +641,11 @@
 				%title={Messung ungewichtet},
 				xlabel={Frequenz [Hz]},
 				ylabel={Schalldruckpegel [dB]},
-				xmin=500, xmax=20000,
-				ymin=0, ymax=130,
+				xmin=10, xmax=20000,
+				ymin=50, ymax=100,
 				legend pos=north west,
+				xminorgrids=true,
+				xmajorgrids=true,
 				ymajorgrids=true,
 				grid style=dashed,
 				]
@@ -649,8 +661,38 @@
 				\addlegendentry{M2211}
 			\end{axis}
 		\end{tikzpicture}
-		\caption{Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung}
+		\caption{Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert$ dB(Z)}
 		\label{fig:microphone_plot_ungewichtet}
+		\end{figure}
+			\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[
+					width=\textwidth,
+					xmode=linear,
+					%title={Messung ungewichtet},
+					xlabel={Distanz zu Schallquelle [mm]},
+					ylabel={Schalldruckpegel [dB]},
+					xmin=100, xmax=800,
+					ymin=60, ymax=100,
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+					]
+					\addplot[
+					color=blue,
+					mark=solid,
+					] table[col sep=semicolon, x=Distanz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_Distanz.csv};
+					\addlegendentry{MEMS}
+					\addplot[
+					color=red,
+					mark=solid,
+					] table[col sep=semicolon, x=Distanz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_Distanz.csv};
+					\addlegendentry{M2211}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Distanz vs Schalldruckpegel-Plot}
+			\label{fig:microphone_plot_distanz}
 		\end{figure}
 	\subsection{Vergleich}
 	\color{red}TODO\color{black}
@@ -658,15 +700,16 @@
 	\newpage
 	\section{Validierung der Anforderungen}
 	\color{red}TODO\color{black}
+	
 	\newpage
 	\section{Stolpersteine}
 	Stolpersteine gab es in dieser Arbeit einige. Auf gewisse werde ich, nachfolgend genauer eingehen.
 	\paragraph{RTC}\mbox{}\\
 	Der Einsatz der RTC hat auf zweierlei Arten zu Problemen geführt. Wie sich während der Arbeit herausgestellt hat, benötigt der BLE-Stack von Silicon Labs für das Zeitmanagement die RTC. Dadurch kann diese nicht frei und flexibel eingesetzt werden, sondern muss über spezielle Funktionen abgegriffen werden. Gleichzeitig setzt sich die RTC bei jedem Neustarts des Systems zurück. Dadurch kann kein anhaltender Zeitstempel, mit Referenz zur lokalen Zeit, erzeugt werden. Dies ist bei der aktuellen Implementation so angedacht, für ein fertiges Produkt jedoch nicht ideal.
 	\paragraph{BLE}\mbox{}\\
-	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grundsätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch der 
+	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grundsätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch der \color{red}TODO\color{black}
 	\paragraph{Mikrofon}\mbox{}\\
-	
+	\color{red}TODO\color{black}
 	\paragraph{Filterdesign}\mbox{}\\
 	RTC, BLE, Filterdesign, Debugger, PDM / Startup-zeit
 	
@@ -695,9 +738,13 @@
 	
 	\newpage
 	\section{Anhang}
-	\bibliography{Sources} 
+	\bibliography{Sources}
 	\bibliographystyle{ieee}
+	
+	\newpage
 	\listoffigures
+	
+	\newpage
 	\subsection{Fremdwörter}
 	CRC \\
 	Register \\
@@ -714,7 +761,7 @@
 	\color{red}TODO\color{black}
 	
 	\newpage
-	\subsection{Messmittel}
+	\subsection{Messmittel} \label{Messmittel}
 	Farblich gekennzeichnete Geräte und Software gehören zusammen.
 \begin{itemize}
 	\color{green}
@@ -738,7 +785,7 @@
 	S/N: A2A-17216-E0
 	\item M2211 Messmikrofon \\
 	S/N: 7579
-	\item Larson Davis CAL200 \\
+	\item Larson Davis CAL200 (1kHz / 94dBSPL Referenzquelle)\\
 	S/N: 17902
 	\item XL2 Projector PRO\\
 	Version: 1.54
@@ -748,8 +795,43 @@
 	\item Gecko SDK Suite \\
 	Version: 4.4.1
 	\color{black}
-\end{itemize}
-	\newpage
+	\end{itemize}
+		\subsection{Messaufbau} \label{Messaufbau}
+		\begin{figure}[H] 
+			\centering 
+			\begin{minipage}
+				{0.45\textwidth} 		\includegraphics[width=\linewidth]{MEMS_Hinten-removebg} \caption*{(a) MEMS hinten} 
+			\end{minipage} 
+			\hfill 
+			\begin{minipage}
+				{0.45\textwidth} \includegraphics[width=\linewidth]{NTI_Hinten-removebg} \caption*{(b) NTI hinten} 
+			\end{minipage} 
+			\ 
+			\begin{minipage}
+				{0.45\textwidth} \includegraphics[width=\linewidth]{MEMS_Top-removebg} \caption*{(c) MEMS Vogelperspektive} 
+			\end{minipage} 
+			\hfill 
+			\begin{minipage}
+				{0.45\textwidth} \includegraphics[width=\linewidth]{NTI_Top-removebg} \caption*{(d) NTI Vogelperspektive} 
+			\end{minipage}
+			\caption[]{Messaufbau Frequenzgang} \label{fig:messaufbau_frequenzgang} 
+		\end{figure}
+		\begin{figure}[H] 
+			\centering 
+			\begin{minipage}
+				{0.45\textwidth} 		\includegraphics[width=\linewidth]{Beide_Hinten-removebg} \caption*{(a) Messobjekt hinten} 
+			\end{minipage} 
+			\hfill 
+			\begin{minipage}
+				{0.45\textwidth} \includegraphics[width=\linewidth]{Beide_Top-removebg} \caption*{(b) Messobjekt Vogelperspektive} 
+			\end{minipage} 
+			\vfill
+			\begin{minipage}
+				{1\textwidth} \includegraphics[width=\linewidth]{Raum_leer} \caption*{(c) Reflexionsarme Messkammer} 
+			\end{minipage} 
+			\caption[]{Messaufbau SPL} \label{fig:messaufbau_spl} 
+		\end{figure}
+		\newpage
 	\subsection{PCB-Versionen} \label{PCB-Versionen}
 	\begin{figure}[H]
 		\centering
