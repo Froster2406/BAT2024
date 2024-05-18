@@ -26,6 +26,7 @@
 \renewcommand{\listfigurename}{Abbildungsverzeichnis}
 \renewcommand{\listtablename}{Tabellenverzeichnis}
 \renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename}{Tabelle}
 
 % colored \pm
 \usepackage{stackengine,xcolor}
@@ -81,7 +82,6 @@
 		\item[$\bullet$ Auflösung:]  0.1dB
 		\item[$\bullet$ Max. dBSPL:]  144dBSPL
 		\item[$\bullet$ Mikrofontyp:]  Kondensator
-		\item[$\bullet$ Erfassung:]  Fast \& Slow
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
@@ -153,12 +153,35 @@
 	\subsubsection*{PCM}
 	Bei \textbf{P}ulse \textbf{C}ode \textbf{M}odulation wird jeder analoge Messwert in einem digitalen Bereich abgebildet (Abbildung \ref{fig:batpcm}). Je nach benötigter Genauigkeit fällt dieser Bereich mal grösser, mal kleiner aus. Bei der Datenübertragung mittels I²S (\ref{I2S}) geschieht diese Umwandlung direkt im Sender und erzeugt somit das SD-Signal. Bei Sendern mit PDM-Ausgang (\ref{PDM}) ist dies nicht der Fall. Hier ist im Empfänger zwingend eine Peripherie notwendig, welche das PDM-Signal mittels Unterabtastung in ein PCM-Signal umwandelt.
 	\subsubsection*{Schalldruckpegel}
-	Damit wird die der Bezug zwischen dem Schalldruck \textbf{$P$}, die Kraftauswirkung von Schallwellen auf ein Medium, und dem normierten Bezugswert \textbf{$P_0$} von $20 \mu Pa$ geschaffen. Oftmals wird der auch mit Sound Pressure Level (SPL) angegeben. Da das menschliche Gehör Lautstärke jedoch logarithmisch skaliert, wird dieser in der Akustik mittels dBSPL angegeben.
-		\begin{equation}\label{dBSPL}
+	Damit wird die der Bezug zwischen dem Schalldruck \textbf{$P$}, die Kraftauswirkung von Schallwellen auf ein Medium, und dem normierten Bezugswert \textbf{$P_0$} von $20 \mu Pa$ geschaffen. Oftmals wird der auch mit \textbf{S}ound \textbf{P}ressure \textbf{L}evel (SPL) angegeben. Da das menschliche Gehör Lautstärke jedoch logarithmisch wahrnimmt, wird dieser in der Akustik mittels dBSPL \ref{dBSPL} angegeben.
+	\begin{equation}\label{dBSPL}
 		dBSPL = 20 \cdot log_{10}(\frac{P}{P_0})
 	\end{equation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{images/BAT_PDM_Grundbegriffe}
+		\caption{Grundbegriffe Akustik $\vert$ Beispiel: ICS-41351}
+		\label{fig:batpdmgrundbegriffe}
+	\end{figure}
+	\subsubsection*{AOP} \label{AOP}
+	Der \textbf{A}coustic \textbf{O}verload \textbf{P}oint bezeichnet den durch ein Mikrofon maximal messbaren SPL, ohne dass es dabei zu einem Klirrfaktor (THD) von mehr als 10\% kommt. Dieser ist besonders dann wichtig, wenn Messungen in lauten Umgebungen vorgenommen werden müssen.
+	\subsubsection*{SNR} \label{SNR}
+	\textbf{S}ignal to \textbf{N}oise \textbf{R}atio oder Signal Rausch Abstand beschreibt die Differenz zwischen dem Referenzschalldruckpegel von 94dBSPL bei 1kHz und dem Rauschboden. Je höher diese Distanz, desto exakter sind die getätigten Messungen.
+	\subsubsection*{Rauschboden} \label{Rauschboden}
+	Dieser bezeichnet den kleinstmöglich noch messbaren Wert, welcher nicht im Grundrauschen untergeht. Er ist vom \hyperref[SNR]{SNR} des Mikrofons abhängig.
 	\subsubsection*{Dynamikbereich} \label{Dynamikbereich}
-	\color{red}TODO\color{black}
+	Mit dem Dynamikbereich \ref{fig:batpdmgrundbegriffe} wird der maximal messbare Schalldruck-Unterschied bezeichnet. Dieser wird folgendermassen berechnet:
+	\begin{equation}\label{mat_Dynamikbereich}
+		Dynamic Range (DR) = \underbrace{dBFS_{@1kHz}}_{Datenblatt \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}} + \underbrace{SNR}_{Datenblatt \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}}
+	\end{equation}
+	\subsubsection*{Signalauflösung} \label{Signalauflösung}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{images/BAT_PDM_Codierung}
+		\caption{Min. benötigte Auflösung in Bit für gewünschten max. SPL}
+		\label{fig:batpdmcodierung}
+	\end{figure}
+	
 	\subsubsection*{Zeitgewichtung} \label{Zeitgewichtung}
 	\color{red}TODO\color{black}
 	\subsubsection*{Frequenzbewertung} \label{Frequenzbewertung}
@@ -202,7 +225,7 @@
 		\centering
 		\begin{tabular}{|l|l|l|l|l|l|l|}
 			\hline
-			\textbf{Typ} & \textbf{Protokoll} & \textbf{Öffnung} & \textbf{SNR} & \textbf{AOP[dB]} & \textbf{$f_{min}$ [Hz]} & \textbf{$f_{max}$[Hz]} \\\hline
+			\textbf{Typ} & \textbf{Protokoll} & \textbf{Öffnung} & \textbf{\hyperref[SNR]{SNR}} & \textbf{\hyperref[AOP]{AOP}[dB]} & \textbf{$f_{min}$ [Hz]} & \textbf{$f_{max}$[Hz]} \\\hline
 	ICS-43434 & I2S & Unten & 65 & 120 & 60 & 20000 \\ \hline
 	ICS-41351 & PDM & Oben & 65 & 120 & 50 & 20000 \\ \hline
 	MMICT5838-00-012 & PDM & Unten & 68 & 133 & 27 & 20000 \\ \hline
@@ -220,6 +243,7 @@
 	$\frac{1}{3}$ der untersuchten Mikrofone weisen die Mikrofon-Öffnung auf der Unterseite auf. Dies ermöglicht es, einen höheren SNR gewährleisten zu können, jedoch ist diese Montageart für das Endprodukt nicht geeignet (siehe Kapitel \ref{Entwicklung}). Bei den restlichen Mikrofonen sticht das ICS-41351 von TDK InvenSense mit seinem hohen SNR, AOP sowie der hohen Frequenzbandbreite heraus. Dadurch hat dieses das Rennen gewonnen.
 	\newpage
 	\section{Mikrocontroller}\label{Mikrocontroller}
+	Der Mikrocontroller repräsentiert die zweite Kernkomponente des Systems. Aus diesem Grund folgen anschliessend die benötigen Grundlagen, sowie die eigentliche Komponentenwahl.
 	\subsection{Grundlagen}
 	\subsubsection*{DMA}
 	Bei \textbf{D}irect \textbf{M}emory \textbf{A}ccess handelt es sich um eine Art Steuerbaustein, welcher unabhängig und parallel zum eigentlichen Rechenkern arbeitet. Dieser hat, wie der Rechenkern selbst, Zugriff auf den gesamten Datenbus. Dieser ermöglicht es, effizient Daten von Peripherien wie der UART, I²S, SPI, ect. in den RAM und umgekehrt zu laden. Dadurch wird der Rechenkern entlastet und kann für wichtigere Aufgaben eingesetzt oder gar in einen Energiesparmodus versetzt werden. Dabei gibt es zwei Möglichkeiten mit dem DMA-Baustein zu interagieren:
@@ -265,15 +289,15 @@
 		\item \textbf{RTC} um die gemessenen Werten mit einem Zeitstempel verknüpfen zu können.
 		\item \textbf{BLE}-Fähiger Mikrocontroller mit vorgefertigter Antenne um die Integration zu vereinfachen.
 	\end{itemize}
-	\subsubsection{Vergleich}
+	\subsubsection{Vergleich} \label{Vergleich_uC}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[trim=55 260 230 50, width=1\linewidth]{tables/BAT_Vergleich-Mikrocontroller}
+		\includegraphics[trim=55 260 230 70, width=1\linewidth]{tables/BAT_Vergleich-Mikrocontroller}
 		\caption{Vergleich von möglichen Mikrocontrollern}
 		\label{fig:batvergleich-mikrocontroller}
 	\end{figure}
 	\subsubsection{Fazit}
-	Wie dem Vergleich zu entnehmen ist, unterscheiden sich die Mikrocontroller meist nur in der integrierten Flash-Grösse sowie der Energieaufnahme bei einer gewissen Taktrate. Dadurch wird die Wahl nicht eingeschränkt, was eine geeignete Evaluation nicht vereinfacht. Ausschlaggebend ist jedoch der Formfaktor. Bis auf Silicon Labs und STmicro muss für einen Mikrocontroller mit vorgefertigter Antenne auf Drittanbieter ausgewichen werden. In Zeiten von Katastrophen wie COVID oder Kriegen inmitten von Handelsrouten ist die Produktverfügbarkeit einer der zentraler Aspekte. Aus diesem Grund wird nachfolgend der EFR32BG22 von Silicon Labs bzw. dessen Modul-Variante, der \textbf{BGM220P}, eingesetzt.
+	Wie dem \hyperref[Vergleich_uC]{Vergleich} zu entnehmen ist, unterscheiden sich die Mikrocontroller meist nur in der integrierten Flash-Grösse sowie der Energieaufnahme bei einer gewissen Taktrate. Dadurch wird die Wahl nicht eingeschränkt, was die Evaluation nicht vereinfacht. Ausschlaggebend ist jedoch der Formfaktor. Bis auf Silicon Labs und STmicro muss für einen Mikrocontroller mit vorgefertigter Antenne auf Drittanbieter ausgewichen werden. In Zeiten von Katastrophen wie COVID oder Kriegen inmitten von Handelsrouten ist die Produktverfügbarkeit einer der zentraler Aspekte. Aus diesem Grund wird nachfolgend der EFR32BG22 von Silicon Labs bzw. dessen Modul-Variante, der \textbf{BGM220P}, eingesetzt.
 	
 	\newpage
 	\section{LED}\label{LED}
@@ -290,14 +314,13 @@
 	\subsubsection*{Lichtleistung}
 	Neben der Wellenlänge, ist die Lichtleistung ausschlaggebend für die wahrgenommene Helligkeit einer LED. Dabei wird die Lichtleistung in Candela [cd] angegeben, wobei 1 cd der Helligkeit einer Kerze entspricht. Bei einer typischen LED verhält sich die Lichtleistung linear mit dem zugeführten Strom.
 	\subsubsection*{Vorwiderstand / Strombegrenzung} \label{Vorwiderstand}
-	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird normalerweise ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies unerwünscht. Als Alternative kann ein buck converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
+	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird im Regelfall ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies unerwünscht. Als Alternative kann ein Buck Converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_Buck-Converter}
 		\caption{Buck Converter}
 		\label{fig:batbuck-converter}
 	\end{figure}
-	
 	\subsection{Komponentenwahl}
 	\subsubsection{Kriterien}
 	\begin{itemize}
@@ -305,7 +328,7 @@
 		\item Wellenlänge
 	\end{itemize}
 	\subsubsection{Vergleich}
-	\begin{table}[!ht]
+	\begin{table}[H]
 		\centering
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
@@ -340,7 +363,7 @@
 	\begin{itemize}
 		\item USB-C-Ladeanschluss
 		\item Polyfuse (Automatisch rückstellbarer Überstromschutz)
-		\item Switch um generell das Gerät ein- und auszuschalten
+		\item Schalter um generell das Gerät ein- und auszuschalten
 		\item BMS, um den Akku sicher auf- und entladen zu können
 		\item Mikrocontroller, welcher sich aufgrund seiner Antenne am Rand des PCBs befinden muss
 		\item Akkuhalter
@@ -361,7 +384,7 @@
 	
 	\subsection{Hardware}
 	\subsubsection{PCB}
-	Das PCB durchlief mehrere Iterationen. Nachfolgend treten die Änderungen mit den benötigten Zusatzinformationen chronologisch auf \footnote{Detailierte Abbildungen der Versionen befinden sich im Anhang \ref{PCB-Versionen}}. Zudem findet sich eine Übersicht, wieso, welche Bauteile eingesetzt werden.
+	Das PCB durchlief mehrere Iterationen. Nachfolgend treten die Änderungen mit den benötigten Zusatzinformationen chronologisch auf \footnote{Detailierte Abbildungen der Versionen befinden sich im Anhang \ref{PCB-Versionen}}. Zudem findet sich eine Übersicht, wieso, welches Bauteil eingesetzt wird.
 	\paragraph{V1-1}\mbox{}\\
 	Lediglich kleinere Verdrahtungs- und Platzierungsoptimierungen.
 	\paragraph{V1-2}\mbox{}\\
@@ -451,8 +474,8 @@
 		Im Gegensatz zum Frequenzbereich muss das PCM-Codierte Signal nicht erst in den Frequenzbereich transformiert werden, sondern es kann direkt durch das zeitdiskrete Filter die Gewichtung vorgenommen werden. Dabei treten jedoch zwei Hauptprobleme auf: 
 		\begin{itemize}
 			\item Ein diskretes Filter im Zeitbereich ist immer nur eine Approximation eines Filters im Frequenzbereich. Dies verringert die Genauigkeit des implementierten Filters. 
-			\item Die Umwandlung eines zeitkontinuierlichen Filters in einen zeitdiskreten ist nicht trivial. Dadurch muss dieser mit beispielsweise der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_nodate} vom Frequenz- in den Zeitbereich transformiert werden. 
-		\end{itemize} Glücklicherweise wurden die benötigten A- und C-Gewichtungsfilter bereits in Matlab implementiert. Somit können die Filterkoeffizienten direkt exportiert und in C-Code implementiert werden.
+			\item Die Umwandlung eines zeitkontinuierlichen Filters in einen zeitdiskreten ist nicht trivial. Dadurch muss dieser mit beispielsweise der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_1989} vom Frequenz- in den Zeitbereich transformiert werden. 
+		\end{itemize} Die benötigten A- und C-Gewichtungsfilter bereits sind in Matlab implementiert. Somit können die Filterkoeffizienten direkt exportiert und in C-Code implementiert werden.
 	\end{itemize}
 	\begin{equation}\label{G_A_s}
 		G_A(s) = \frac{7.39705 \cdot 10^9 \cdot s^4}{(s+129.4)^2\cdot (s+676.7)\cdot (s+4636)\cdot (s+76617)^2}
@@ -486,22 +509,20 @@
 		\label{fig:batclock-muxing-pdm}
 	\end{figure}
 	\subsubsection*{PDM CIC-Filter}
-	Um aus dem 1-Bit PDM-Datenstream ein verarbeitbares PCM-Signal zu erhalten, wird die integrierte CIC-Filterstruktur verwendet. Gemäss \cite{noauthor_efr32xg22_2022}, \ref{Dynamikbereich} sowie \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate} muss diese folgendermassen konfiguriert sein:
+	Um aus dem 1-Bit PDM-Datenstream ein verarbeitbares PCM-Signal zu erhalten, wird die integrierte CIC-Filterstruktur verwendet. Gemäss \cite{silicon_efr32xg22_2022}, \ref{fig:batpdmgrundbegriffe} sowie \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate} muss diese folgendermassen konfiguriert sein:
 	\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
 	\item[$\bullet$ Dezimierungsrate:] 64
 	\item[$\bullet$ Wortbreite:]  24 Bit
 	\item[$\bullet$ Verstärkung \ref{eq:Verstärkung}:]  0 dB 
 	\item[$\bullet$ Filterordnung:]  5
 	\item[$\bullet$ Clock-Dezimierung \ref{eq:Clock-Dezimierung}:]  0 
-	\item[$\bullet$ Signal-Abtastrate:]  48 kHz
+	\item[$\bullet$ Abtastrate:]  48 kHz
 	\end{itemize}
 	\begin{equation}\label{eq:Clock-Dezimierung}
-		\color{red}TODO\color{black}
-		\underbrace{27 \mu A/MHz \cdot 76.8MHz}_{ \mu C} + \underbrace{10 \mu A/MHz \cdot 76.8MHz}_{Peripherie} = 2842 \mu Ah
+		Dezimierung = \frac{Taktfrequenz}{Abtastrate \cdot Dezimierungsrate} - 1
 	\end{equation}
 	\begin{equation}\label{eq:Verstärkung}
-		\color{red}TODO\color{black}
-		\underbrace{27 \mu A/MHz \cdot 76.8MHz}_{ \mu C} + \underbrace{10 \mu A/MHz \cdot 76.8MHz}_{Peripherie} = 2842 \mu Ah
+		Verst\ddot{a}rkung = 30 - ceil \left( \dfrac{log_{10}\left(Dezimierungsrate^{Filterordnung}\right)}{log_{10}(2)}\right)
 	\end{equation}
 	\subsubsection*{I²C}
 	\begin{figure}[H]
@@ -537,7 +558,9 @@
 		\begin{tabular}{|l|l|l|}
 			\hline
 			\textbf{Funktionsname} & \textbf{Zeit [ms]} & \textbf{Bemerkung} \\ \hline
-			app\_init & 10.4 & RTC, SPI, I2C, PDM, Timer, GPIO \\ \hline
+			app\_init & 10.4 & RTC, SPI, I2C, PDM, \\ 
+			 ~ & ~ & Timer, GPIO \\ 
+			 \hline
 			PDM\_readMicrophone & 20.8 & 128 Samples; Low-Power \\ \hline
 			RTC\_convertTimeToString & 0.16 & Format: 00:00:00 \\ \hline
 			PDM\_applyAWeightingFilter & 15.2 & 128 Samples \\ \hline
@@ -558,7 +581,7 @@
 	\paragraph{Mikrocontroller}\mbox{}\\
 	Die Energieaufnahme des Mikrocontrollers ist nicht nur von der eigentlichen Taktrate abhängig, sondern auch welche Peripherieblöcke und Low-Power-Modi gerade aktiv sind. Dadurch lässt sich die Energieaufnahme nur sehr grob abschätzen. Mit den benötigten Peripherien aktiv, jedoch ohne eine Berechnung durchzuführen und in einen Low-Power-Modus zu wechseln, könnte die Energieaufnahme folgendermassen aussehen:
 	\begin{equation}\label{eq:Leistung_Mikrocontroller_basic}
-		\underbrace{27 \mu A/MHz \cdot 76.8MHz}_{ \mu C} + \underbrace{10 \mu A/MHz \cdot 76.8MHz}_{Peripherie} = 2842 \mu Ah
+		\approx \underbrace{27 \mu A/MHz \cdot 76.8MHz}_{ \mu C} + \underbrace{10 \mu A/MHz \cdot 76.8MHz}_{Peripherie} = 2842 \mu Ah
 	\end{equation}
 	\paragraph{Mikrofon}\mbox{}\\
 	Wie der Formel \ref{eq:Leistung_Mikrofon} entnommen werden kann, gibt es zwei Möglichkeiten das Mikrofon zu betreiben:
@@ -567,33 +590,35 @@
 		\item Das Mikrofon wird nur dann aktiviert, wenn es benötigt wird. Dadurch sinkt die benötigte Leistung von 580$\mu Ah$ auf 87.2 $\mu Ah$ (\ref{eq:Leistung_Mikrofon}). Dadurch erhöht sich jedoch die benötigte Messzeit um 20ms. Dies aus dem Grund, dass keine DMA verwendet wird und das Mikrofon vom Standby-Betrieb (20 $\mu A$) in den Performance-Modus (580 $\mu A$) wechselt.
 	\end{itemize}
 	\begin{equation}\label{eq:Leistung_Mikrofon}
-		Leistung_{Mikrofon} = \underbrace{580 \mu A \cdot 30ms \cdot 4}_{ Performance-Modus} + \underbrace{20 \mu A \cdot 220ms \cdot 4}_{Standby} = 87.2 \mu Ah
+		Leistung_{Mikrofon} \approx \underbrace{580 \mu A \cdot 120ms }_{ Performance-Modus} + \underbrace{20 \mu A \cdot 880ms}_{Standby} = 87.2 \mu Ah
 	\end{equation}
 	\paragraph{EEPROM}\mbox{}\\
 	Der Chip weist eine vielzahl von unterschiedlichen Leistungsmodi auf. Die Energieaufnahme variiert zwischen dem niedrigen Standby-Modus (35$\mu Ah$) und dem schreiben einer Seite (3$mAh$) von 512 Bytes. Gemäss folgender Mischrechnung (\ref{eq:Leistung_EEPROM}) kann die ungefähre Energieaufnahme approximiert werden.
 	\begin{equation}\label{eq:Leistung_EEPROM}
-		\underbrace{3mA \cdot 4.5ms}_{Schreiben} + \underbrace{1.5mA \cdot 2ms}_{Lesen} +  \underbrace{35\mu A \cdot 993.5ms}_{Standby}= 51.3 \mu Ah\footnote{Alle Zeiten gemäss Datenblatt}
+		\approx \underbrace{3mA \cdot 4.5ms}_{Schreiben} + \underbrace{1.5mA \cdot 2ms}_{Lesen} +  \underbrace{35\mu A \cdot 993.5ms}_{Standby}= 51.3 \mu Ah\footnote{Alle Zeiten gemäss Datenblatt}
 	\end{equation}
-	\paragraph{Übersicht berechnet}
-	\begin{table}[H] 
-	\centering
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
-		Mikrocontroller & 2842 $\mu Ah$ & ~ \\ \hline
-		LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
-		LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
-		EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
-		Mikrofon & 87.2 $\mu Ah$ & Low-Power-Modus \\ \hline
-		~ & ~ & ~ \\ \hline
-		Total & 4.4 $mAh$ & ~ \\ \hline
-		Total Arbeitstag à 12h & \textbf{52.6} $mAh$ & ~ \\ \hline
-	\end{tabular}
-	\caption{Berechnete Energieaufnahme des Gesamtsystems}
-	\label{tab:leistung-berechnet}
-\end{table}
-	\paragraph{Übersicht gemessen}
+	\paragraph{Übersicht berechnet}\mbox{}\\
 		\begin{table}[H] 
+			\vspace*{-0.5cm}
+			\centering
+			\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Bauteil} & \textbf{Strom} & \textbf{Bemerkung} \\ \hline
+			Mikrocontroller & 2842 $\mu Ah$ & ~ \\ \hline
+			LEDs & 800 $\mu Ah$ & 100$\mu Ah$ pro LED $\cdot$ 8 LEDs \\ \hline
+			LED-Treiber & 600 $\mu Ah$ & Alle Ausgänge EIN \\ \hline
+			EEPROM & 51.3 $\mu Ah$ & ~ \\ \hline
+			Mikrofon & 87.2 $\mu Ah$ & Low-Power-Modus \\ \hline
+			~ & ~ & ~ \\ \hline
+			Total & 4.4 $mAh$ & ~ \\ \hline
+			Total Arbeitstag à 12h & \textbf{52.6} $mAh$ & ~ \\ \hline
+		\end{tabular}
+		\caption{Berechnete Energieaufnahme des Gesamtsystems}
+		\label{tab:leistung-berechnet}
+	\end{table}
+	\paragraph{Übersicht gemessen}\mbox{}\\
+		\begin{table}[H] 
+			\vspace*{-0.5cm}
 			\centering
 			\begin{tabular}{|l|l|l|}
 			\hline
@@ -610,15 +635,16 @@
 		\caption{Gemessene Energieaufnahme des Gesamtsystems}
 		\label{tab:leistung-gemessen}
 		\end{table}
-	Wie den Tabellen \ref{tab:leistung-gemessen} und \ref{tab:leistung-berechnet} zu entnehmen ist, kann die Einsatzdauer von 12 Stunden mit einem 50mAh-Akku abgedeckt werden.
+	Wie insbesondere der Tabelle \ref{tab:leistung-gemessen} zu entnehmen ist, kann die Einsatzdauer von 12 Stunden mit einem 50mAh-Akku abgedeckt werden.
 	\subsection{Mikrofon-Messungen}
-	Das MEMS-Mikrofon, sowie das M2211 von NTI, wurden beide jeweils vor jeder Messung mittels dem CAL200 auf 94dBSPL kalibriert. Genauere Angaben sind dem Anhang \ref{Messmittel} zu entnehmen.
+	Das MEMS-Mikrofon, sowie das M2211 von NTI, wurden beide jeweils vor jeder Messung mittels dem CAL200 auf 94dBSPL kalibriert. Da die Abstände zwischen den Mikrofonen und CAL200 nicht identisch sind, wurden zudem noch eine Kalibrationsmessung durchgeführt. Genauere Angaben sind dem Anhang \ref{Messmittel} sowie \ref{Kalibrationsmessung} zu entnehmen.
 	\paragraph{Messaufbau SPL}
 		\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
 		\item[$\bullet$ Messfrequenz:] 1 kHz
 		\item[$\bullet$ Amplitude:]  1 Vrms
 		\item[$\bullet$ Signalform:]  Sinus
 		\item[$\bullet$ Gewichtung:]  Z
+		\item[$\bullet$ Distanz zu Signalquelle:]  100 mm ... 800 mm
 		\item[$\bullet$ Erfassung:]  Slow
 		\item[$\bullet$ Visualisierung:]  \ref{fig:messaufbau_spl}
 	\end{itemize}
@@ -638,7 +664,7 @@
 			\begin{axis}[
 				width=\textwidth,
 				xmode=log,
-				%title={Messung ungewichtet},
+				title={dB(Z)},
 				xlabel={Frequenz [Hz]},
 				ylabel={Schalldruckpegel [dB]},
 				xmin=10, xmax=20000,
@@ -664,11 +690,75 @@
 		\caption{Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert$ dB(Z)}
 		\label{fig:microphone_plot_ungewichtet}
 		\end{figure}
-			\begin{figure}[H]
-			\centering
+		\begin{figure}[H]
+		\centering
 			\begin{tikzpicture}
 				\begin{axis}[
-					width=\textwidth,
+					width=0.6\textwidth,
+					xmode=log,
+					title={dB(A)},
+					xlabel={Frequenz [Hz]},
+					ylabel={Schalldruckpegel [dB]},
+					xmin=10, xmax=20000,
+					ymin=50, ymax=100,
+					legend pos=north west,
+					xminorgrids=true,
+					xmajorgrids=true,
+					ymajorgrids=true,
+					grid style=dashed,
+					]
+					\addplot[
+					color=blue,
+					mark=solid,
+					] table[col sep=semicolon, x=Frequenz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
+					\addlegendentry{MEMS}
+					\addplot[
+					color=red,
+					mark=solid,
+					] table[col sep=semicolon, x=Frequenz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
+					\addlegendentry{M2211}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(A)}
+			\label{fig:microphone_plot_gewichtet_A}
+		\end{figure}
+		\begin{figure}[H]
+		\centering
+			\begin{tikzpicture}
+				\begin{axis}[
+					width=0.7\textwidth,
+					xmode=log,
+					title={dB(C)},
+					xlabel={Frequenz [Hz]},
+					ylabel={Schalldruckpegel [dB]},
+					xmin=10, xmax=20000,
+					ymin=50, ymax=100,
+					legend pos=north west,
+					xminorgrids=true,
+					xmajorgrids=true,
+					ymajorgrids=true,
+					grid style=dashed,
+					]
+					\addplot[
+					color=blue,
+					mark=solid,
+					] table[col sep=semicolon, x=Frequenz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_c-Gewichtung.csv};
+					\addlegendentry{MEMS}
+					\addplot[
+					color=red,
+					mark=solid,
+					] table[col sep=semicolon, x=Frequenz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_c-Gewichtung.csv};
+					\addlegendentry{M2211}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(C)}
+			\label{fig:microphone_plot_gewichtet_C}
+		\end{figure}
+		\begin{figure}[H]
+		\centering
+			\begin{tikzpicture}
+				\begin{axis}[
+					width=0.7\textwidth,
 					xmode=linear,
 					%title={Messung ungewichtet},
 					xlabel={Distanz zu Schallquelle [mm]},
@@ -707,24 +797,27 @@
 	\paragraph{RTC}\mbox{}\\
 	Der Einsatz der RTC hat auf zweierlei Arten zu Problemen geführt. Wie sich während der Arbeit herausgestellt hat, benötigt der BLE-Stack von Silicon Labs für das Zeitmanagement die RTC. Dadurch kann diese nicht frei und flexibel eingesetzt werden, sondern muss über spezielle Funktionen abgegriffen werden. Gleichzeitig setzt sich die RTC bei jedem Neustarts des Systems zurück. Dadurch kann kein anhaltender Zeitstempel, mit Referenz zur lokalen Zeit, erzeugt werden. Dies ist bei der aktuellen Implementation so angedacht, für ein fertiges Produkt jedoch nicht ideal.
 	\paragraph{BLE}\mbox{}\\
-	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grundsätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch der \color{red}TODO\color{black}
+	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grund-sätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch der \color{red}TODO\color{black}
 	\paragraph{Mikrofon}\mbox{}\\
-	\color{red}TODO\color{black}
+	Mikrofone mit digitalem Ausgang sollten grundsätzlich einfacher in der Handhabung sein als jene mit analogen. Dies konnte ich jedoch nicht feststellen. Unklarheiten im Bezug zum Ausgangssignal des Mikrofons, sowie des anschliessenden PCM-Peripherieblocks haben die Arbeit erheblich erschwert. Ich bin auch nach Abschluss dieser Arbeit noch nicht komplett davon überzeugt, dass das ausgegebene PCM-Signal einer vorzeichenbehafteten 16-Bit-Zahl (int16\_t) entspricht. Dies aus dem einfachen Grund, dass die mitgelieferte HAL-Funktion, gemäss Implementation, einen unit32-Wert zurückliefert. Rückfragen an den Hersteller blieben unbeantwortet.
 	\paragraph{Filterdesign}\mbox{}\\
 	RTC, BLE, Filterdesign, Debugger, PDM / Startup-zeit
+	\color{red}TODO\color{black}
 	
 	\newpage
 	\section{Fazit und Ausblick}
 	Mit dieser Arbeit habe ich ein Produkt geschaffen, welches zwar nicht an ein NTI XL2 herankommt, jedoch in seiner Preiskategorie durchaus seinen Platz verdient hat. Der Prototyp erfüllt alle in \ref{Anhang:Anforderungskatalog} gewünschten Anforderungen, ist soweit einsatzbereit und kann in einer nachfolgenden Arbeit weiterentwickelt werden. In dieser sollten folgende Themenbereiche behandelt werden:
 	\begin{itemize}
 		\item BLE \\
-		Die Hardware ist soweit für die Datenübertragung vorbereitet. Nun soll die Software mittels zugehörigem BLE-Stack implementiert werden.
+		Die Hardware ist soweit für die Datenübertragung vorbereitet. Nun soll die Datenübertragung mittels zugehörigem BLE-Stack implementiert werden.
 		\item Interface \\
-		Die Messdaten befinden sich momentan nur auf dem EEPROM. In Verbindung mit der BLE-Implementation ist eine visuelle Applikation auf dem Zielgerät, z.B. Smartphone, zu implementieren. Neben dem herunterladen der Messdaten können so auch Einstellungen wie LED-Helligkeit, Log-Intervall oder Aufteilung der Werte auf die LEDs auf dem Messgerät vorgenommen werden.
+		Die Messdaten befinden sich momentan nur auf dem EEPROM. In Verbindung mit der BLE-Implementation ist eine visuelle Applikation auf dem Zielgerät, z.B. Smartphone, zu implementieren. Neben dem herunterladen der Messdaten können so auch Einstellungen wie LED-Helligkeit, Mess-Intervall oder Aufteilung der Werte auf die LEDs auf dem Messgerät vorgenommen werden.
 		\item RTC \\
-		Die momentane Implementation ermöglicht es nicht, einen Zeitstempel im UNIX-Format den Messdaten anzuhängen. Dies aus dem einfachen Grund, dass bei einem leeren Akku diese Zeit nicht weiter gezählt wird. Als alternative könnte der initiale Zeitstempel via BLE auf das Messgerät übertragen und für die neue Messung verwendet werden.
+		Die momentane Implementation ermöglicht es nicht, einen Zeitstempel im UNIX-Format den Messdaten anzuhängen. Dies aus dem einfachen Grund, dass bei einem leeren Akku diese Zeit nicht weiter gezählt wird. Als Alternative könnte der initiale Zeitstempel via BLE auf das Messgerät übertragen und für die neue Messung verwendet werden.
 		\item Low-Power \\
-		Bei der Entwicklung wurde ein besonders Augenmerk auf die Energieeffizienz gelegt. Nichts desto trotz, kann das System noch energieeffizienter programmiert werden. Dies würde gleichzeitig nochmals einen kleinere Akku oder eine längere Akkulaufzeit zur Folge haben. Insbesondere ein Mikrocontroller mit integrierter BiQuad-Hardware würde die hohe Berechnungszeit \ref{tab:ausfuehrungsgeschwindigkeit} reduzieren
+		Bei der Entwicklung wurde ein besonders Augenmerk auf die Energieeffizienz gelegt. Nichts desto trotz, kann das System noch energieeffizienter ausgelegt werden. Insbesondere ein Mikrocontroller mit integrierter BiQuad-Hardware würde die hohe Berechnungszeit \ref{tab:ausfuehrungsgeschwindigkeit} reduzieren.
+		\item Zertifizierung Bluetooth-Geräte\\
+		Gemäss Spezifikation von Bluetooth, ist jedes Gerät zu zertifiziert (\cite{noauthor_bluetooth_nodate-1}). Dementsprechend auch Geräte, welche aus bereits zertifizierten Geräten zusammengestellt werden. Ohne Zertifizierung darf ein Gerät nicht verkauft werden. Die Zertifizierung ist jedoch teuer(\cite{noauthor_bluetooth_nodate}).
 	\end{itemize}
 	
 	\newpage
@@ -737,15 +830,18 @@
 	\end{itemize}
 	
 	\newpage
+	\thispagestyle{empty} 
 	\section{Anhang}
 	\bibliography{Sources}
-	\bibliographystyle{ieee}
+	\bibliographystyle{ieeetran}
 	
 	\newpage
+	\thispagestyle{empty} 
 	\listoffigures
 	
 	\newpage
-	\subsection{Fremdwörter}
+	\thispagestyle{empty} 
+	\subsection{Fremdwörter \& Abkürzungen}
 	CRC \\
 	Register \\
 	Pins \\
@@ -761,6 +857,7 @@
 	\color{red}TODO\color{black}
 	
 	\newpage
+	\thispagestyle{empty} 
 	\subsection{Messmittel} \label{Messmittel}
 	Farblich gekennzeichnete Geräte und Software gehören zusammen.
 \begin{itemize}
@@ -796,7 +893,10 @@
 	Version: 4.4.1
 	\color{black}
 	\end{itemize}
-		\subsection{Messaufbau} \label{Messaufbau}
+	
+	\newpage
+	\thispagestyle{empty} 
+	\subsection{Messaufbau} \label{Messaufbau}
 		\begin{figure}[H] 
 			\centering 
 			\begin{minipage}
@@ -831,17 +931,70 @@
 			\end{minipage} 
 			\caption[]{Messaufbau SPL} \label{fig:messaufbau_spl} 
 		\end{figure}
-		\newpage
+		
+	\newpage
+	\thispagestyle{empty} 
+	\subsection{Kalibrationsmessung} \label{Kalibrationsmessung}
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				xmode=linear,
+				%title={Messung ungewichtet},
+				xlabel={Distanz zu Schallquelle [mm]},
+				ylabel={Schalldruckpegel [dB]},
+				xmin=100, xmax=800,
+				ymin=60, ymax=100,
+				legend pos=north west,
+				ymajorgrids=true,
+				grid style=dashed,
+				]
+				\addplot[
+				color=blue,
+				mark=solid,
+				] table[col sep=semicolon, x=Distanz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
+				\addlegendentry{MEMS}
+				\addplot[
+				color=red,
+				mark=solid,
+				] table[col sep=semicolon, x=Distanz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
+				\addlegendentry{M2211}
+			\end{axis}
+		\end{tikzpicture}
+		\caption[]{Kalibrationsmessung über die Distanz}
+		\label{fig:microphone_plot_kalibration}
+	\end{figure}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\textbf{Distanz [mm]} & \textbf{MEMS} & \textbf{Referenz} & \textbf{Delta} \\ \hline
+			100 & 83.7 & 87.1 & 3.4 \\ \hline
+			200 & 78 & 82.7 & 4.7 \\ \hline
+			300 & 76.3 & 80.6 & 4.3 \\ \hline
+			400 & 74.5 & 79.9 & 5.4 \\ \hline
+			500 & 73.1 & 78.2 & 5.1 \\ \hline
+			600 & 70.8 & 77.5 & 6.7 \\ \hline
+			700 & 70.7 & 77.1 & 6.4 \\ \hline
+			800 & 69.1 & 75.5 & 6.4 \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	\newpage
+	\thispagestyle{empty} 
 	\subsection{PCB-Versionen} \label{PCB-Versionen}
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_top}
 			\caption[]{V1-0 Front}
 			\label{fig:pcb_V1-0_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_bottom}
 			\caption[]{V1-0 Back}
@@ -851,12 +1004,14 @@
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_top}
 			\caption[]{V1-1 Front}
 			\label{fig:pcb_V1-1_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_bottom}
 			\caption[]{V1-1 Back}
@@ -866,12 +1021,14 @@
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_top}
 			\caption[]{V1-2 Front}
 			\label{fig:pcb_V1-2_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_bottom}
 			\caption[]{V1-2 Back}
@@ -881,19 +1038,23 @@
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_top}
 			\caption[]{V1-3 Front}
 			\label{fig:pcb_V1-3_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
+			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_bottom}
 			\caption[]{V1-3 Back}
 			\label{fig:pcb_V1-3_back}
 		\end{minipage}
 	\end{figure} 
+	
 	\newpage
+	\thispagestyle{empty} 
 	\subsection{Schema}
 	%\includepdf[landscape=true, pages={1}]{images/BAT_Schematic_V1-2.pdf}
 	\begin{minipage}[b]{\textwidth}
@@ -901,23 +1062,41 @@
 	\end{minipage}
 	
 	\newpage
+	\thispagestyle{empty} 
 	\subsection{Software} \label{Anhang:Software}
-	\color{red}TODO\color{black}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_QR-Code_Github-Repo}
+		\label{fig:batqr-codegithub-repo}
+	\end{figure}
+	https://github.com/Froster2406/BAT2024 \\ \\ \\
+	Oder alternativ im digitalen Anhang unter:\\
+	$$Entwicklung/Software/custom$$
+	
 	\newpage
+	\thispagestyle{empty} 
 	\subsection{Anforderungskatalog}\label{Anhang:Anforderungskatalog}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[trim= 2.5cm 5cm 0cm 3.5cm, width=1.2\linewidth]{images/BAT_Anforderungskatalog}
 	\end{figure}
+	
 	\newpage
+	\thispagestyle{empty} 
 	\subsection{Risikoanalyse}\label{Anhang:Risikoanalyse}
 		\begin{minipage}[b]{\textwidth}
 		\includepdf[landscape=true, pages={1},scale=0.7]{images/BAT_Risikoanalyse.pdf}
 	\end{minipage}
+	
 	\newpage
+	\thispagestyle{empty} 
 	\subsection{Zeitplan}\label{Anhang:Zeitplan}
 	\begin{minipage}[b]{\textwidth}
 		\includepdf[landscape=true, pages={1},scale=0.8]{images/BAT_Zeitplan_V2.pdf}
 	\end{minipage}
+	
+	\newpage
+	\thispagestyle{empty} 
+	\subsection{Journal}
 	
 \end{document}
