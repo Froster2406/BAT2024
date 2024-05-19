@@ -9,7 +9,7 @@
 #define CUSTOM_BAT_DEFINES_H_
 
 /* GENERAL */
-#define BAT_MEASUREMENT_INTERVAL  125  /* [ms] */
+#define BAT_MEASUREMENT_INTERVAL  250  /* [ms] */
 #define BAT_CHARGING_PORT   gpioPortD   /* voltage divider to check for charge connection */
 #define BAT_CHARGING_PIN    2           /* voltage divider to check for charge connection */
 #define BAT_LEN_MEAS_STR    13          /* defines how long one single data-measurement-string is - Format: hh:mm:ss_xxx with xxx = dBSPL-Value */

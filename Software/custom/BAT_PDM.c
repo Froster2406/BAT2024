@@ -73,7 +73,7 @@ void BAT_PDM_init(void){
 
   init.prescaler = prescaler_val;  /* Formula: (clock_freq / (sample_rate * downSamplingRate)) - 1 */
   init.dsr = DOWNSAMPLINGRATE;
-  init.gain = gain; /* Formula: 31 - (1 + (log10(downSamplingRate^filterOrder) / log10(filterOrder))) */
+  init.gain = gain; /* Formula: 31 - (1 + (log10(downSamplingRate^filterOrder) / log10(2))) */
 
   PDM_Init(PDM, &init);
   /* disable all interrupts */
@@ -123,7 +123,7 @@ void BAT_PDM_convertPCMTodBSPL(int32_t *buffer, uint16_t samples, float *dBSPL){
 
 /***************************************************************************//**
  * @brief
- *   Apply A filter (Direct form II transposed) onto data
+ *   Apply A filter (Direct form II transposed) onto data | Fs = 48kHz
  *
  * @param[in] x
  *   Data-array that holds PCM data samples
@@ -135,29 +135,60 @@ void BAT_PDM_convertPCMTodBSPL(int32_t *buffer, uint16_t samples, float *dBSPL){
  *   Number of data samples contained inside x as well as y
  *
  ******************************************************************************/
-void BAT_PDM_applyAWeightingFilter(double *x, double *y, uint16_t k){
-  /* coefficients */
-  static double A_a_1_koeff[2] = { -0.140536082420711, 0.00493759761554020};
-  static double A_a_2_koeff[2] = { -1.88490121742879,  0.886421471816168};
-  static double A_a_3_koeff[2] = { -1.99413888126633,  0.994147469444531};
-  static double A_b_1_koeff[3] = { 0.216100378798707, 0.432200757597415, 0.216100378798707};
-  static double A_b_2_koeff[3] = { 1, -2, 1};
-  static double A_b_3_koeff[3] = { 1, -2, 1};
-  /* first iteration */
-  for(uint16_t i = 0; i < k ; i++){
-      y[i+2] = x[i] * A_b_1_koeff[0] + x[i+1] * A_b_1_koeff[1] + x[i+2] * A_b_1_koeff[2] - y[i+1] * A_a_1_koeff[0] - y[i] * A_a_1_koeff[1];
-  }
-  /* second iteration */
-  memcpy(x, y, k);  /* copy output of first stage into input of second stage */
-  for(uint16_t i = 0; i < k ; i++){
-      y[i+2] = x[i] * A_b_2_koeff[0] + x[i+1] * A_b_2_koeff[1] + x[i+2] * A_b_2_koeff[2] - y[i+1] * A_a_2_koeff[0] - y[i] * A_a_2_koeff[1];
-  }
-  /* third iteration */
-  memcpy(x, y, k);  /* copy output of second stage into input of third stage */
-  for(uint16_t i = 0; i < k ; i++){
-      y[i+2] = x[i] * A_b_3_koeff[0] + x[i+1] * A_b_3_koeff[1] + x[i+2] * A_b_3_koeff[2] - y[i+1] * A_a_3_koeff[0] - y[i] * A_a_3_koeff[1];
-  }
-}
+//void BAT_PDM_applyAWeightingFilter(double *x, double *y, uint16_t k){
+//  /* coefficients */
+//  static double A_a_1_koeff[2] = { -0.224558458059779, 0.012606625271546};
+//  static double A_a_2_koeff[2] = { -1.893870494723071,  0.895159769094661};
+//  static double A_a_3_koeff[2] = { -1.994614455993022,  0.994621707014085};
+//  static double A_b_1_koeff[3] = { 1, 2, 1};
+//  static double A_b_2_koeff[3] = { 1, -2, 1};
+//  static double A_b_3_koeff[3] = { 1, -2, 1};
+//  /* first iteration */
+//  for(uint16_t i = 0; i < k ; i++){
+//      y[i+2] = x[i] * A_b_1_koeff[0] + x[i+1] * A_b_1_koeff[1] + x[i+2] * A_b_1_koeff[2] - y[i+1] * A_a_1_koeff[0] - y[i] * A_a_1_koeff[1];
+//  }
+//  /* second iteration */
+//  memcpy(x, y, k);  /* copy output of first stage into input of second stage */
+//  for(uint16_t i = 0; i < k ; i++){
+//      y[i+2] = x[i] * A_b_2_koeff[0] + x[i+1] * A_b_2_koeff[1] + x[i+2] * A_b_2_koeff[2] - y[i+1] * A_a_2_koeff[0] - y[i] * A_a_2_koeff[1];
+//  }
+//  /* third iteration */
+//  memcpy(x, y, k);  /* copy output of second stage into input of third stage */
+//  for(uint16_t i = 0; i < k ; i++){
+//      y[i+2] = x[i] * A_b_3_koeff[0] + x[i+1] * A_b_3_koeff[1] + x[i+2] * A_b_3_koeff[2] - y[i+1] * A_a_3_koeff[0] - y[i] * A_a_3_koeff[1];
+//  }
+//}
+
+///***************************************************************************//**
+// * @brief
+// *   Apply C filter (Direct form II transposed) onto data | Fs = 48kHz
+// *
+// * @param[in] x
+// *   Data-array that holds PCM data samples
+// *
+// * @param[in] y
+// *   Data-array that holds the filtered PCM data samples
+// *
+// * @param[in] x
+// *   Number of data samples contained inside x as well as y
+// *
+// ******************************************************************************/
+//void BAT_PDM_applyCWeightingFilter(double *x, double *y, uint16_t k){
+//  /* coefficients */
+//  static double C_a_1_koeff[2] = { -0.224558458059779, 0.012606625271546};
+//  static double C_a_2_koeff[2] = { -1.994614455993022,  0.994621707014085};
+//  static double C_b_1_koeff[3] = { 1, 2, 1};
+//  static double C_b_2_koeff[3] = { 1, -2, 1};
+//  /* first iteration */
+//  for(uint16_t i = 0; i < k ; i++){
+//      y[i+2] = x[i] * C_b_1_koeff[0] + x[i+1] * C_b_1_koeff[1] + x[i+2] * C_b_1_koeff[2] - y[i+1] * C_a_1_koeff[0] - y[i] * C_a_1_koeff[1];
+//  }
+//  /* second iteration */
+//  memcpy(x, y, k);  /* copy output of first stage into input of second stage */
+//  for(uint16_t i = 0; i < k ; i++){
+//      y[i+2] = x[i] * C_b_2_koeff[0] + x[i+1] * C_b_2_koeff[1] + x[i+2] * C_b_2_koeff[2] - y[i+1] * C_a_2_koeff[0] - y[i] * C_a_2_koeff[1];
+//  }
+//}
 
 void BAT_PDM_convertSPLToString(double dBSPL, char* str){
   /* floating-point support for printf needs to be enabled for this to work
