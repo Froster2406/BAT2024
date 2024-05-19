@@ -8412,7 +8412,7 @@
 			(pintype "passive")
 			(uuid "09048875-7fc9-4e21-96ea-d0cc78d6e544")
 		)
-		(model "1025-7.stp"
+		(model "${KICAD_USER_3DMODEL_DIR}/BatteryHolder_1025-7.stp"
 			(offset
 				(xyz 4.869999812 0 2.519999943)
 			)

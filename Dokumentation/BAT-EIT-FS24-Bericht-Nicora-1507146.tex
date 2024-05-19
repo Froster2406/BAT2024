@@ -72,11 +72,11 @@
 	\end{itemize}
 	In einem zweiten Schritt, wird das Gerät ausgemessen und dessen Qualität mit auf dem Markt bereits vorhandenen Geräten verglichen.
 	\subsection{Vorgehen}
-	In einem ersten Schritt, wurden mit hEar die zu erreichenden Ziele der Arbeit ausgearbeitet. Auf Basis dessen, wurde der Anforderungskatalog (Anhang \ref{Anhang:Anforderungskatalog}) erstellt. Dieser ermöglichte es anschliessend, eine umfangreiche Risikoanalyse (Anhang \ref{Anhang:Risikoanalyse}) sowie einen geeigneten Zeitplan (Anhang \ref{Anhang:Zeitplan})zu erstellen. Nach der initialen Projektphase wurden die nötigen Grundlagen für Mikrofone (\ref{Mikrofon}), LEDs \ref{LED} sowie Mikrocontroller (\ref{Mikrocontroller}) aufgearbeitet und mit dem aktuellen Stand der Technik (\ref{Stand}) abgeglichen. Anschliessend folgte die Wahl der benötigten Bauteile sowie die eigentliche Hardware- und Softwareentwicklung (\ref{Entwicklung}). Nach der agilen Entwicklung folgten zum Schluss die diversen Messungen (\ref{Messungen}) und die daraus folgenden Schlussfolgerungen.
+	In einem ersten Schritt, wurden mit hEar die zu erreichenden Ziele der Arbeit ausgearbeitet. Auf Basis dessen, wurde der Anforderungskatalog (Anhang \ref{Anhang:Anforderungskatalog}) erstellt. Dieser ermöglichte es anschliessend, eine umfangreiche Risikoanalyse (Anhang \ref{Anhang:Risikoanalyse}) sowie einen geeigneten Zeitplan (Anhang \ref{Anhang:Zeitplan})zu erstellen. Nach der initialen Projektphase wurden die nötigen Grundlagen für Mikrofone (\ref{Mikrofon}), LEDs \ref{LED} sowie Mikrocontroller (\ref{Mikrocontroller}) aufgearbeitet und mit dem aktuellen Stand der Technik (\ref{Stand}) abgeglichen. Anschliessend folgte die Wahl der benötigten Bauteile sowie die eigentliche Hardware- und Softwareentwicklung (\ref{Entwicklung}). Nach der agilen Entwicklung folgte zum Schluss die Verifizierung mit den dazugehörigen Messungen (\ref{Messungen}) und die daraus abgeleiteten Schlussfolgerungen. \\
 	
 	\newpage
 	\section{Stand der Technik}\label{Stand}
-	Um den Schalldruckpegel messen zu können, existiert eine Vielzahl von Messgeräten von einer Vielzahl von unterschiedlichen Herstellern. Die Preise reichen von ~10 CHF für ein nicht genauer spezifiziertes Gerät von AliExpress bis hin zu über 3000 CHF für ein XL2 von NTI Audio (inkl. M2211-Mikrofon). Eines haben jedoch alle diese Geräte gemeinsam. Sie weisen eine Frequenzbandbreite von mind. 10kHz auf, verfügen über ein Display um die Messwerte anzuzeigen, fangen den Schall mittels eines Kondensator-Mikrofons auf und implementieren mindestens den dB(A)-Gewichtungsfilter \ref{Frequenzbewertung}. Doch diese Geräte sind alle durch ihre klobige Bauweise sowie ihr, für nichttechnisches Personal ungeeignetes Design, nicht für den Massenmarkt geeignet. Nichtsdestotrotz soll das in dieser Arbeit entwickelte Gerät den Parametern eines hochwertigen Gerätes entsprechen. Dadurch wird es mit dem oben genannten XL2 mit den folgenden Parametern(\cite{noauthor_xl2_nodate}) verglichen:
+	Um den Schalldruckpegel messen zu können, existiert eine Vielzahl von Messgeräten von einer Vielzahl von unterschiedlichen Herstellern. Die Preise  reichen von 10 CHF für ein nicht genauer spezifiziertes Gerät von AliExpress bis hin zu über 3000 CHF für ein XL2 von NTI Audio (inkl. M2211-Mikrofon). Eines haben jedoch alle diese Geräte gemeinsam. Sie weisen eine Frequenzbandbreite von mind. 10kHz auf, verfügen über ein Display um die Messwerte anzuzeigen, fangen den Schall mittels eines Kondensator-Mikrofons auf und implementieren mindestens den dB(A)-Gewichtungsfilter \ref{Frequenzbewertung}. Doch diese Geräte sind alle durch ihre klobige Bauweise sowie ihr, für nichttechnisches Personal ungeeignetes Design, nicht für den Massenmarkt geeignet. Nichtsdestotrotz soll das in dieser Arbeit entwickelte Gerät den Parametern eines hochwertigen Gerätes entsprechen. Dadurch wird es mit dem oben genannten XL2 mit den folgenden Parametern(\cite{noauthor_xl2_nodate}) verglichen:
 	\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
 		\item[$\bullet$ Frequenzbereich:]  5Hz - 20kHz
 		\item[$\bullet$ Auflösung:]  0.1dB
@@ -116,9 +116,9 @@
 		\item \textbf{SCK} \quad (Serial Clock) \\
 		Generiert die Taktrate, welche gleichzeitig die Datenrate der Übertragung definiert. Die Taktrate wird vom Master (hier der Mikrocontroller) vorgegeben.
 		\item \color{green}\textbf{WS}\color{black} \quad (Word Select) \\
-		Gibt vor, welcher Audiokanal (R, L) übertragen werden soll. Dies ermöglicht es, entweder ein Stereo-Signal oder zwei Mono-Signale wie zum Beispiel zwei Mikrofone zu übertragen.
+		Gibt vor, welcher Audiokanal (R, L) übertragen werden soll. Dies ermöglicht es, entweder ein Stereo-Signal oder zwei Mono-Signale, wie zum Beispiel zwei unabhängige Mikrofone, zu übertragen.
 		\item \color{red}\textbf{SD}\color{black} \quad (Serial Data) \\
-		Beinhaltet den eigentlichen Datenstream mit der Datenrate definiert durch \textbf{SCK} und der Länge definiert durch \color{green}\textbf{WS}\color{black}.
+		Beinhaltet den eigentlichen Datenstream mit der Datenrate, definiert durch \textbf{SCK}, und der Länge, definiert durch \color{green}\textbf{WS}\color{black}.
 	\end{itemize}
 	\begin{figure}[H]
 		\centering
@@ -152,8 +152,8 @@
 	\end{figure}
 	\subsubsection*{PCM}
 	Bei \textbf{P}ulse \textbf{C}ode \textbf{M}odulation wird jeder analoge Messwert in einem digitalen Bereich abgebildet (Abbildung \ref{fig:batpcm}). Je nach benötigter Genauigkeit fällt dieser Bereich mal grösser, mal kleiner aus. Bei der Datenübertragung mittels I²S (\ref{I2S}) geschieht diese Umwandlung direkt im Sender und erzeugt somit das SD-Signal. Bei Sendern mit PDM-Ausgang (\ref{PDM}) ist dies nicht der Fall. Hier ist im Empfänger zwingend eine Peripherie notwendig, welche das PDM-Signal mittels Unterabtastung in ein PCM-Signal umwandelt.
-	\subsubsection*{Schalldruckpegel}
-	Damit wird die der Bezug zwischen dem Schalldruck \textbf{$P$}, die Kraftauswirkung von Schallwellen auf ein Medium, und dem normierten Bezugswert \textbf{$P_0$} von $20 \mu Pa$ geschaffen. Oftmals wird der auch mit \textbf{S}ound \textbf{P}ressure \textbf{L}evel (SPL) angegeben. Da das menschliche Gehör Lautstärke jedoch logarithmisch wahrnimmt, wird dieser in der Akustik mittels dBSPL \ref{dBSPL} angegeben.
+	\subsubsection*{Schalldruck(pegel)}
+	Damit wird der Bezug zwischen dem Schalldruck \textbf{$P$}, die Kraftauswirkung von Schallwellen auf ein Medium, und dem normierten Bezugswert \textbf{$P_0$} von $20 \mu Pa$ geschaffen. Oftmals wird er auch mit \textbf{S}ound \textbf{P}ressure \textbf{L}evel (SPL) angegeben. Da das menschliche Gehör Lautstärke jedoch logarithmisch wahrnimmt, wird dieser in der Akustik mittels dBSPL \ref{dBSPL} angegeben.
 	\begin{equation}\label{dBSPL}
 		dBSPL = 20 \cdot log_{10}(\frac{P}{P_0})
 	\end{equation}
@@ -246,12 +246,12 @@
 	Der Mikrocontroller repräsentiert die zweite Kernkomponente des Systems. Aus diesem Grund folgen anschliessend die benötigen Grundlagen, sowie die eigentliche Komponentenwahl.
 	\subsection{Grundlagen}
 	\subsubsection*{DMA}
-	Bei \textbf{D}irect \textbf{M}emory \textbf{A}ccess handelt es sich um eine Art Steuerbaustein, welcher unabhängig und parallel zum eigentlichen Rechenkern arbeitet. Dieser hat, wie der Rechenkern selbst, Zugriff auf den gesamten Datenbus. Dieser ermöglicht es, effizient Daten von Peripherien wie der UART, I²S, SPI, ect. in den RAM und umgekehrt zu laden. Dadurch wird der Rechenkern entlastet und kann für wichtigere Aufgaben eingesetzt oder gar in einen Energiesparmodus versetzt werden. Dabei gibt es zwei Möglichkeiten mit dem DMA-Baustein zu interagieren:
+	Bei \textbf{D}irect \textbf{M}emory \textbf{A}ccess handelt es sich um eine Art Steuerbaustein, welcher unabhängig und parallel zum eigentlichen Rechenkern arbeitet. Dieser hat, wie der Rechenkern selbst, Zugriff auf den gesamten Datenbus. Dieser ermöglicht es, effizient Daten von Peripherien wie der UART, I²S, SPI, ect. in den RAM und umgekehrt zu laden. Dadurch wird der Rechenkern entlastet und kann für wichtigere Aufgaben eingesetzt oder gar in einen Energiesparmodus versetzt werden. Dabei sind zwei Möglichkeiten vorhanden, mit dem DMA-Baustein zu interagieren:
 	\begin{itemize}
 		\item Bus Master \\
-		Der DMA-Baustein wird einmalig durch den Rechenkern aufgesetzt und läuft danach autonom. So können beispielsweise via I²S einkommende Daten automatisch aus dem Eingangsregister in den Speicher geladen werden und bei genügend grosser Datenmenge (definiert durch den Entwickler), kann Rechenkern wieder aus dem Energiesparmodus aufgeweckt werden.
+		Der DMA-Baustein wird einmalig durch den Rechenkern aufgesetzt und läuft danach autonom. So können beispielsweise via I²S einkommende Daten automatisch aus dem Eingangsregister in den Speicher geladen werden. Bei genügend grosser Datenmenge (definiert durch den Entwickler), kann der Rechenkern wieder aus dem Energiesparmodus aufgeweckt werden und diese Daten verarbeiten.
 		\item Programmed I/O \\
-		Jeder Arbeitsprozess des DMA-Bausteins wird durch den Rechenkern gestartet. Da sich DMA und Rechenkern den Datenbus teilen, wird so garantiert, dass die Speicheroperation zum gewünschten Zeitpunkt stattfindet.
+		Jeder Arbeitsprozess des DMA-Bausteins wird durch den Rechenkern gestartet. Da sich DMA und Rechenkern den Datenbus teilen, wird so garantiert, dass der Datentransfer zum gewünschten Zeitpunkt stattfindet.
 	\end{itemize}
 	\subsubsection*{Bootloader}
 	Unter einem Bootloader versteht man Code, welcher grundsätzlich nach dem erstmaligen flashen, persistent im System bleibt. Er dient als Ausgangspunkt für die eigentliche Software und ermöglicht es beispielsweise auch, während der Laufzeit des Gerätes, Softwareupdates herunter zu laden und diese anschliessend einzuspielen. Insbesondere wenn Funkprotokolle wie Bluetooth oder WLAN eingesetzt werden, ist ein Bootloader oftmals unerlässlich. Der Nachteil ist jedoch, dass dieser den ohnehin knappen Speicherplatz weiter reduziert.
@@ -301,7 +301,7 @@
 	
 	\newpage
 	\section{LED}\label{LED}
-	Die visuelle Darstellung des Schalldruckpegels kann auf verschiedene Arten umgesetzt werden. Da hEar explizit eine Darstellung mittels LED wünscht, werden nachfolgend die wichtigsten Eigenschaften eingeführt und anschliessend ein passendes Produkt evaluiert.
+	Die visuelle Darstellung des Schalldruckpegels kann auf verschiedene Arten umgesetzt werden. Da hEar explizit eine Darstellung mittels LED wünscht, werden nachfolgend die wichtigsten Charakteristiken eingeführt und anschliessend ein passendes Produkt evaluiert.
 	\subsection{Grundlagen}
 	\subsubsection*{Wellenlänge} \label{Wellenlänge}
 	Das für den durchschnittlichen Menschen sichtbare Lichtspektrum beginnt bei 380nm (blau) und endet bei 780nm (rot)\cite{noauthor_v-lambda-kurve_2023}. Wie der Abbildung \ref{fig:batv-lambda-curve} zu entnehmen ist, entspricht die Sensitivität einer Gausskurve. Dabei erreicht diese ihr Maximum bei 555nm (grün) bei Betrachtung der Tageskurve. Dementsprechend kann beim Einsatz einer 555nm-LED im Gegensatz zu LEDs mit einer tieferen oder höheren Wellenlänge die zugeführte Leistung bei gleichwertiger Lichtempfindlichkeit reduziert werden.
@@ -345,7 +345,7 @@
 		\label{table:vergleich-led}
 	\end{table}
 	\subsubsection{Fazit}
-	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Energieaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblich mit einer Wellenlänge von 780nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
+	Wie im Kapitel \ref{Wellenlänge} ersichtlich, ist die Abwägung zwischen Energieaufnahme der LED und der effektiven Photonenabgabe nicht trivial. Aus technischer Sicht macht dementsprechend eine LED mit einer Wellenlänge von 555nm (Grün) am meisten Sinn. Nach Rücksprache mit dem Industrieparter, hEar, dient das Gerät an erster Stelle als Warngerät. Warnungen werden üblicherweise mit einer Wellenlänge von 780nm (Rot) gekennzeichnet. Dadurch wird im Endprodukt die Low-Power-LED XZCM2CRK53WA-8V von SunLED eingesetzt.
 	\newpage
 	\section{Entwicklung}\label{Entwicklung}
 	Die im Unterkapitel \ref{Ziele} definierten Ziele sollen nun umgesetzt werden. Dazu soll die von aussen sichtbare Vorderseite möglichst wenig Bauteile aufweisen, um das visuelle Design nicht zu beeinträchtigen. Mit einer angestrebten Gesamtgrösse von 60mm Durchmesser, können die gewählten Bauteile geradenoch auf dem PCB in einer symmetrischen Art platziert werden. 
@@ -415,9 +415,9 @@
 		\item Unterstützung von Li-Po und Li-Ion Akkus
 	\end{itemize}
 	\paragraph{Spannungsregler} \mbox{}\\
-	Der Akku weist eine maximale Nennspannung von 4.2V (Typ. 3.6V) auf. Alle gewählten Halbleiter erlauben jedoch maximal eine Speisespannung von 3.6V. Deswegen wird ein möglichst effizienter und kostengünstiger Spannungsregler verwendet. Wie auch bereits das BMS, weist der Spannungsregler möglichst wenig externe Bauteile auf.
+	Der Akku weist eine maximale Nennspannung von 4.2V (Typ. 3.6V) auf. Alle gewählten Halbleiter erlauben jedoch maximal eine Speisespannung von 3.6V. Dadurch wird ein möglichst effizienter und kostengünstiger Spannungsregler verwendet. Wie auch bereits das BMS, weist der Spannungsregler möglichst wenig externe Bauteile auf.
 	\paragraph{USB-C-Buchse}\mbox{}\\
-	Die in V1-0 verwendete Buchse (16 Pin) wird durch eine 6 Pin (power only) ersetzt. Dies, da die ursprünglich geplante Möglichkeit, den Mikrocontroller via USB zu programmieren, wieder verworfen wurde. Dadurch kann eine günstigere Buchse verwendet werden.
+	Die in V1-0 verwendete Buchse (16 Pin) wird durch eine 6 Pin (power only) ersetzt. Dies, da die ursprünglich geplante Möglichkeit, den Mikrocontroller via USB zu programmieren, wieder verworfen wurde. Dadurch kann eine kostenoptimiertere Buchse verwendet werden.
 	\paragraph{P-Kanal MOSFET} \label{P-Kanal MOSFET} \mbox{}\\
 	Für den Verpolungsschutz kann im Grunde auch eine simple Diode (oder Schottky-Diode\footnote{Die Schwellspannung entspricht nur ca. 0.2V}) verwendet werden. Der daraus folgende Spannungsabfall ist jedoch für ein akkubetriebenes Gerät nicht ideal. Die Lösung bietet ein P-Kanal-MOSFET, wie in Abbildung \ref{fig:batverpolungsschutz} ersichtlich. Die Z-Diode, sowie der Gate-Widerstand, werden jedoch weggelassen, da die Batteriespannung die maximale Source-Gate-Spannung des gewählten FETs nicht überschreitet.
 	\begin{figure}[H]
