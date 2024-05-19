@@ -60,7 +60,6 @@ SL_WEAK void app_init(void)
   BAT_I2C_init();
   BAT_PDM_init();
   BAT_TIMER_init();
-//  sl_mic_init(MIC_SAMPLE_RATE, 1);
   uint32_t clock_freqPDM = CMU_ClockFreqGet(cmuClock_PDM);    /* 3072000 */
   uint32_t clock_freqI2C = CMU_ClockFreqGet(cmuClock_I2C0);   /* 19200000 */
   uint32_t clock_freqSPI = CMU_ClockFreqGet(cmuClock_USART0); /* 38400000 */
@@ -76,30 +75,9 @@ SL_WEAK void app_init(void)
  *****************************************************************************/
 SL_WEAK void app_process_action(void)
 {
-//  int32_t buffer[128] = {0};
-//  /* read microphone */
-//  BAT_PDM_readMicrophone(buffer, 128);
-//  buffer[1] = 0;
-//  float sound_level_0;
-//  uint32_t n_samples = 1024;
-//  // Read samples from the microphone
-//  sl_mic_get_n_samples(buffer, n_samples);
-//
-//  while (!sl_mic_sample_buffer_ready()) {
-//    // Wait until sample buffer ready
-//  }
-//  // Calculate sound level
-//  sl_mic_calculate_sound_level(&sound_level_0, buffer, n_samples, 0);
-//  sound_level_0 = 10;
-//  bool status = false;
-//  status = BAT_SPI_eepromIsAvailable();
-//  status = true;
-//  BAT_I2C_enableLedRange(8);
-//  BAT_I2C_readTemperature();
-//  double buffer[128];
-//  BAT_PDM_readMicrophone(buffer, 128);
-//  char string[512] = "";
-//  BAT_SPI_writePage(string);
+  ///////////////////////////////////////////////////////////////////////////
+  // Add additional event handlers here as your application requires!      //
+  ///////////////////////////////////////////////////////////////////////////
 }
 
 /**************************************************************************//**
