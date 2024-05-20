@@ -423,7 +423,7 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\linewidth]{images/BAT_Verpolungsschutz}
-		\caption{Verpolungsschutz mit P-Kanal MOSFET}
+		\caption{Verpolungsschutz mittels P-Kanal MOSFET}
 		\label{fig:batverpolungsschutz}
 	\end{figure}
 	
@@ -552,7 +552,7 @@
 	Ein System kann qualitativ nur mit Messungen auf seine Einsatzfähigkeit untersucht werden. Dadurch erfolgen nachfolgend theoretische und praktische Messwerte.
 	\subsection{Ausführungsgeschwindigkeit}
 	Um die Dauer einer Funktion messen zu können, wurde ein GPIO-Pin zu Beginn sowie am Ende der jeweiligen Funktion umgeschaltet und mit den Logic-Analyzer ausgewertet. Aus 20 Funktionsaufrufen wurde anschliessend der Mittelwert berechnet und in Tabelle \ref{tab:ausfuehrungsgeschwindigkeit} aufgeführt. \\
-	Die Messungen zeigen, dass hauptsächlich das messen der Werte, sowie die Filterung dieser die meiste Zeit in Anspruch nimmt. Gleichzeitig kann jedoch so verifiziert werden, dass ein Messintervall von 125ms (Messmodus: Fast) möglich ist.
+	Die Messungen zeigen, dass hauptsächlich das messen der Werte, sowie die Filterung dieser, die meiste Zeit in Anspruch nimmt. Gleichzeitig kann jedoch so verifiziert werden, dass ein Messintervall von 125ms (Messmodus: Fast) möglich ist.
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{|l|l|l|}
@@ -653,7 +653,7 @@
 			\item[$\bullet$ Messfrequenz:] 10 Hz ... 20 kHz
 			\item[$\bullet$ Amplitude:]  1 Vrms
 			\item[$\bullet$ Signalform:]  Sinus
-			\item[$\bullet$ Gewichtung:]  Z
+			\item[$\bullet$ Gewichtung:]  A, C, Z
 			\item[$\bullet$ Erfassung:]  Slow
 			\item[$\bullet$ Distanz zu Signalquelle:]  200 mm
 			\item[$\bullet$ Visualisierung:]  \ref{fig:messaufbau_frequenzgang}
@@ -662,9 +662,9 @@
 		\centering
 		\begin{tikzpicture}
 			\begin{axis}[
-				width=\textwidth,
+				width=0.65\textwidth,
 				xmode=log,
-				title={dB(Z)},
+				title={\textbf{dB(Z)}},
 				xlabel={Frequenz [Hz]},
 				ylabel={Schalldruckpegel [dB]},
 				xmin=10, xmax=20000,
@@ -678,12 +678,12 @@
 				\addplot[
 				color=blue,
 				mark=solid,
-				] table[col sep=semicolon, x=Frequenz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
+				] table[col sep=semicolon, x=Frequenz, y=MEMS_Z] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
 				\addlegendentry{MEMS}
 				\addplot[
 				color=red,
 				mark=solid,
-				] table[col sep=semicolon, x=Frequenz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
+				] table[col sep=semicolon, x=Frequenz, y=Referenz_Z] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 				\addlegendentry{M2211}
 			\end{axis}
 		\end{tikzpicture}
@@ -694,9 +694,9 @@
 		\centering
 			\begin{tikzpicture}
 				\begin{axis}[
-					width=0.6\textwidth,
+					width=0.65\textwidth,
 					xmode=log,
-					title={dB(A)},
+					title={\textbf{dB(A)}},
 					xlabel={Frequenz [Hz]},
 					ylabel={Schalldruckpegel [dB]},
 					xmin=10, xmax=20000,
@@ -710,12 +710,12 @@
 					\addplot[
 					color=blue,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
+					] table[col sep=semicolon, x=Frequenz, y=MEMS_A] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
 					\addlegendentry{MEMS}
 					\addplot[
 					color=red,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_z-Gewichtung.csv};
+					] table[col sep=semicolon, x=Frequenz, y=Referenz_A] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 					\addlegendentry{M2211}
 				\end{axis}
 			\end{tikzpicture}
@@ -726,9 +726,9 @@
 		\centering
 			\begin{tikzpicture}
 				\begin{axis}[
-					width=0.7\textwidth,
+					width=0.65\textwidth,
 					xmode=log,
-					title={dB(C)},
+					title={\textbf{dB(C)}},
 					xlabel={Frequenz [Hz]},
 					ylabel={Schalldruckpegel [dB]},
 					xmin=10, xmax=20000,
@@ -742,12 +742,12 @@
 					\addplot[
 					color=blue,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_c-Gewichtung.csv};
+					] table[col sep=semicolon, x=Frequenz, y=MEMS_C] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
 					\addlegendentry{MEMS}
 					\addplot[
 					color=red,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_c-Gewichtung.csv};
+					] table[col sep=semicolon, x=Frequenz, y=Referenz_C] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 					\addlegendentry{M2211}
 				\end{axis}
 			\end{tikzpicture}
@@ -758,7 +758,7 @@
 		\centering
 			\begin{tikzpicture}
 				\begin{axis}[
-					width=0.7\textwidth,
+					width=0.65\textwidth,
 					xmode=linear,
 					%title={Messung ungewichtet},
 					xlabel={Distanz zu Schallquelle [mm]},
@@ -806,7 +806,7 @@
 	
 	\newpage
 	\section{Fazit und Ausblick}
-	Mit dieser Arbeit habe ich ein Produkt geschaffen, welches zwar nicht an ein NTI XL2 herankommt, jedoch in seiner Preiskategorie durchaus seinen Platz verdient hat. Der Prototyp erfüllt alle in \ref{Anhang:Anforderungskatalog} gewünschten Anforderungen, ist soweit einsatzbereit und kann in einer nachfolgenden Arbeit weiterentwickelt werden. In dieser sollten folgende Themenbereiche behandelt werden:
+	Mit dieser Arbeit habe ich ein Produkt geschaffen, welches zwar nicht ganz an ein NTI XL2 herankommt, jedoch in seiner Preiskategorie durchaus seinen Platz verdient hat. Der Prototyp erfüllt alle in \ref{Anhang:Anforderungskatalog} gewünschten Anforderungen, ist soweit einsatzbereit und kann in einer nachfolgenden Arbeit weiterentwickelt werden. In dieser sollten folgende Themenbereiche behandelt werden:
 	\begin{itemize}
 		\item BLE \\
 		Die Hardware ist soweit für die Datenübertragung vorbereitet. Nun soll die Datenübertragung mittels zugehörigem BLE-Stack implementiert werden.
@@ -953,13 +953,25 @@
 				\addplot[
 				color=blue,
 				mark=solid,
+				dotted,
 				] table[col sep=semicolon, x=Distanz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
-				\addlegendentry{MEMS}
+				\addlegendentry{$MEMS$}
 				\addplot[
 				color=red,
 				mark=solid,
+				dotted,
 				] table[col sep=semicolon, x=Distanz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
-				\addlegendentry{M2211}
+				\addlegendentry{$M2211$}
+				\addplot[
+				color=blue,
+				mark=solid,
+				] table[col sep=semicolon, x=Distanz, y=MEMS_new] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
+				\addlegendentry{$MEMS_{calib}$}
+				\addplot[
+				color=red,
+				mark=solid,
+				] table[col sep=semicolon, x=Distanz, y=Referenz_new] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
+				\addlegendentry{$M2211_{calib}$}
 			\end{axis}
 		\end{tikzpicture}
 		\caption[]{Kalibrationsmessung über die Distanz}

@@ -13,7 +13,7 @@
 \contentsline {figure}{\numberline {14}{\ignorespaces Buck Converter}}{18}{figure.caption.34}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Konzept PCB-Layout}}{21}{figure.caption.38}%
 \contentsline {figure}{\numberline {16}{\ignorespaces Konzept Softwareablauf}}{21}{figure.caption.39}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Verpolungsschutz mit P-Kanal MOSFET}}{24}{figure.caption.49}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Verpolungsschutz mittels P-Kanal MOSFET}}{24}{figure.caption.49}%
 \contentsline {figure}{\numberline {18}{\ignorespaces Übersicht zu (LE)Timer-Funktionalität}}{26}{figure.caption.52}%
 \contentsline {figure}{\numberline {19}{\ignorespaces Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}}{28}{figure.caption.54}%
 \contentsline {figure}{\numberline {20}{\ignorespaces Übersicht BiQuad-Filter}}{29}{figure.caption.56}%
@@ -23,4 +23,4 @@
 \contentsline {figure}{\numberline {24}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert $ dB(Z)}}{37}{figure.caption.76}%
 \contentsline {figure}{\numberline {25}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(A)}}{38}{figure.caption.77}%
 \contentsline {figure}{\numberline {26}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(C)}}{39}{figure.caption.78}%
-\contentsline {figure}{\numberline {27}{\ignorespaces Distanz vs Schalldruckpegel-Plot}}{40}{figure.caption.79}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Distanz vs Schalldruckpegel-Plot}}{39}{figure.caption.79}%
