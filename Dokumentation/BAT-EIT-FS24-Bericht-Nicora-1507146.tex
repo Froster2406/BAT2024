@@ -43,7 +43,7 @@
 		\vspace{1cm}
 		{\scshape\Large Bachelor Thesis\par}
 		\vspace{1.5cm}
-		{\huge\bfseries Entwicklung einer PCB zur Analyse von Umgebungslärm\par}
+		{\huge\bfseries Gerät zur Überwachung von Umgebungslärm\par}
 		\vspace{2cm}
 		{\Large\itshape Stefano Nicora\par}
 		
@@ -55,11 +55,17 @@
 	\tableofcontents
 	
 	%to do: add footer and header
+	\newpage
+	Abstract(DE)\\
+	Die nachfolgende Arbeit befasst sich mit der Entwicklung einer kombinierten Soft- und Hardware-Lösung zur Erfassung von Umgebungslärm. In einem ersten Schritt wurden die benötigten Bauteile identifiziert und evaluiert. Darauf folgte die Konzeptionierung, sowie die Entwicklung der eigentlichen Soft- und Hardwareplattform. Dabei hat die Hardware drei Iterationen durchlaufen. Im Anschluss wurde die Arbeit mit einem Referenzgerät verifiziert. Dieser Vergleich hat gezeigt, dass das Gerät zwar einsatzfähig ist, jedoch noch Verbesserungs- und Erweiterungspotential aufweist. Dazu wurden entsprechende Leitfäden formuliert. \\
+	\\
+	Abstract(EN)\\
+	The following work deals with the development of a combined software and hardware solution for recording environmental noise. In a first step, the required components were identified and evaluated. This was followed by the conceptualisation and development of the actual software as well as the hardware. The hardware went through a total of three iterations. The work was then verified with a reference device. This comparison showed that although the device is operational, there is still potential for improvement and expansion. Guidelines were formulated for this exact purpose.
 	
 	\newpage
 	\section{Einleitung}
 	\subsection{Ausgangslage} \label{Ausgangslage}
-	Die Firma hEar hat es sich zum Ziel gesetzt, gegen die, für unsere Ohren schädliche Lärmbelästigung, vorzugehen. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser ist jedoch noch unhandlich, nicht verifiziert und somit nicht für den Massenmarkt geeignet. 
+	Die Firma hEar hat es sich zum Ziel gesetzt, gegen die, für unsere Ohren schädliche Lärmbelästigung, vorzugehen. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine konzeptionelle Idee für ein Messgerät ausgearbeitet. Zusätzlich dazu wurde eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser ist jedoch noch unhandlich, nicht verifiziert und somit nicht für den Massenmarkt geeignet. 
 	\subsection{Ziele} \label{Ziele}
 	Das Ziel dieser Arbeit ist es, in einem ersten Schritt, auf Basis des vorhandenen Prototypen, ein funktionales, kompaktes und portables Schalldruckpegel-Messgerät zu entwickeln. Dabei sollen folgende Rahmenbedingungen zwingend eingehalten werden:
 	\begin{itemize}
@@ -200,13 +206,13 @@
 		\begin{minipage}{.5\textwidth}
 			\centering
 			\includegraphics[width=1\linewidth]{images/phon-curve}
-			\caption{Phon-Kurven im Vergleich $\vert$ Quelle: \cite{impairments_basics_2004}}
+			\caption{Phon-Kurven im \\ Vergleich $\vert$ Quelle: \cite{impairments_basics_2004}}
 			\label{fig:phon-curve}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
 			\centering
-			\includegraphics[width=1\linewidth]{images/Frequenzbewertung}
-			\caption{Frequenzbewertungsfilter $\vert$ Quelle: \cite{noauthor_frequenzbewertung_2023}}
+			\includegraphics[width=0.9\linewidth]{images/Frequenzbewertung}
+			\caption{Frequenzbewertungs\-filter $\vert$ Quelle: \cite{noauthor_frequenzbewertung_2023}}
 			\label{fig:frequenzbewertung}
 		\end{minipage}
 	\end{figure}
@@ -223,9 +229,9 @@
 	\subsubsection{Vergleich}
 	\begin{table}[H]
 		\centering
-		\begin{tabular}{|l|l|l|l|l|l|l|}
+		\begin{tabular}{|p{0.2\textwidth}|l|l|l|l|l|l|}
 			\hline
-			\textbf{Typ} & \textbf{Protokoll} & \textbf{Öffnung} & \textbf{\hyperref[SNR]{SNR}} & \textbf{\hyperref[AOP]{AOP}[dB]} & \textbf{$f_{min}$ [Hz]} & \textbf{$f_{max}$[Hz]} \\\hline
+			\textbf{Typ} & \textbf{Protokoll} & \textbf{Öffnung} & \textbf{\hyperref[SNR]{SNR}[dB]} & \textbf{\hyperref[AOP]{AOP}[dB]} & \textbf{$f_{min}$[Hz]} & \textbf{$f_{max}$[Hz]} \\\hline
 	ICS-43434 & I2S & Unten & 65 & 120 & 60 & 20000 \\ \hline
 	ICS-41351 & PDM & Oben & 65 & 120 & 50 & 20000 \\ \hline
 	MMICT5838-00-012 & PDM & Unten & 68 & 133 & 27 & 20000 \\ \hline
@@ -330,7 +336,7 @@
 	\subsubsection{Vergleich}
 	\begin{table}[H]
 		\centering
-		\begin{tabular}{|l|l|l|l|l|}
+		\begin{tabular}{|l|p{0.25\textwidth}|l|l|l|}
 			\hline
 			\textbf{Hersteller} & \textbf{Typ} & \textbf{Farbe} & \textbf{Intensität[mcd]\tablefootnote{bei einem Strom von 2mA}} & \textbf{Spannung[V]} \\ \hline
 			SunLED & XZCM2CRK53WA-8VF & Rot & 180 & 2.1 \\ \hline
@@ -662,7 +668,7 @@
 		\centering
 		\begin{tikzpicture}
 			\begin{axis}[
-				width=0.65\textwidth,
+				width=1\textwidth,
 				xmode=log,
 				title={\textbf{dB(Z)}},
 				xlabel={Frequenz [Hz]},
@@ -685,11 +691,28 @@
 				mark=solid,
 				] table[col sep=semicolon, x=Frequenz, y=Referenz_Z] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 				\addlegendentry{M2211}
+				\fill[green, opacity=0.3] (axis cs:10, 0) -- (axis cs:80, 0) -- (axis cs:80, 120) -- (axis cs:10, 120);
+				\fill[yellow, opacity=0.3] (axis cs:2000, 0) -- (axis cs:20000, 0) -- (axis cs:20000, 120) -- (axis cs:2000, 120);
 			\end{axis}
 		\end{tikzpicture}
 		\caption{Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert$ dB(Z)}
 		\label{fig:microphone_plot_ungewichtet}
 		\end{figure}
+		Wie in Abbildung \ref{fig:microphone_plot_ungewichtet} ersichtlich, kann die Messung grob in drei Bereiche eingeteilt werden, wobei jeder Abschnitt eine konkrete Einzelheit aufweist.
+		\begin{itemize}
+			\item \color{green} Bereich $<$80Hz \color{black} \\
+			\item Bereich $>$80Hz und $<$2kHz \\
+			Dieser ist unproblematisch, da er die Kennlinie des Referenzmikrofons widerspiegelt. Die vorhandenen Nichtlinearitäten sind auf den verwendeten Messlautsprecher sowie den dazugehörigen Verstärker zurück zu führen.
+			\item \color{orange} Bereich $>$2kHz \color{black} \\
+			Auch hier folgen die beiden Mikrofone der Nichtlinearität des Messaufbaus. Jedoch reagiert das \color{blue}MEMS\color{black}-Mikrofon sensitiver auf diesen Frequenzbereich, als das Referenzprodukt. Dieses Phänomen ist auf zwei physikalische Effekte zurückzuführen:
+			\begin{itemize}
+				\item Helmholtz Effekt \\
+				Dieser tritt, bauartbedingt, ab einer gewissen Frequenz bei allen MEMS-Mikrofonen auf. Ersichtlich ist dieser in \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}, Figure 4. Dabei schwingt das gesamte Mikrofon mit der Membrane mit und erzeugt somit einen höheren Schalldruck.
+				\item 
+			\end{itemize}
+			
+		\end{itemize}
+		
 		\begin{figure}[H]
 		\centering
 			\begin{tikzpicture}
@@ -797,12 +820,9 @@
 	\paragraph{RTC}\mbox{}\\
 	Der Einsatz der RTC hat auf zweierlei Arten zu Problemen geführt. Wie sich während der Arbeit herausgestellt hat, benötigt der BLE-Stack von Silicon Labs für das Zeitmanagement die RTC. Dadurch kann diese nicht frei und flexibel eingesetzt werden, sondern muss über spezielle Funktionen abgegriffen werden. Gleichzeitig setzt sich die RTC bei jedem Neustarts des Systems zurück. Dadurch kann kein anhaltender Zeitstempel, mit Referenz zur lokalen Zeit, erzeugt werden. Dies ist bei der aktuellen Implementation so angedacht, für ein fertiges Produkt jedoch nicht ideal.
 	\paragraph{BLE}\mbox{}\\
-	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grund-sätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch der \color{red}TODO\color{black}
+	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grund\-sätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch beim PLL, welcher zur Erzeugung des Mikrofon-Clocks benötigt wird, der Fall. Auch dieser muss mit dem BLE-Stack "geteilt" werden, was die Implementation erschwert hat. 
 	\paragraph{Mikrofon}\mbox{}\\
-	Mikrofone mit digitalem Ausgang sollten grundsätzlich einfacher in der Handhabung sein als jene mit analogen. Dies konnte ich jedoch nicht feststellen. Unklarheiten im Bezug zum Ausgangssignal des Mikrofons, sowie des anschliessenden PCM-Peripherieblocks haben die Arbeit erheblich erschwert. Ich bin auch nach Abschluss dieser Arbeit noch nicht komplett davon überzeugt, dass das ausgegebene PCM-Signal einer vorzeichenbehafteten 16-Bit-Zahl (int16\_t) entspricht. Dies aus dem einfachen Grund, dass die mitgelieferte HAL-Funktion, gemäss Implementation, einen unit32-Wert zurückliefert. Rückfragen an den Hersteller blieben unbeantwortet.
-	\paragraph{Filterdesign}\mbox{}\\
-	RTC, BLE, Filterdesign, Debugger, PDM / Startup-zeit
-	\color{red}TODO\color{black}
+	Mikrofone mit digitalem Ausgang sollten grundsätzlich einfacher in der Handhabung sein als jene mit analogen. Dies konnte ich jedoch nicht feststellen. Unklarheiten im Bezug zum Ausgangssignal des Mikrofons, sowie des anschliessenden PCM-Peripherieblocks haben die Arbeit erheblich erschwert. Ich bin auch nach Abschluss dieser Arbeit noch nicht komplett davon überzeugt, dass das ausgegebene PCM-Signal einer vorzeichenbehafteten 16-Bit-Zahl (int16\_t) entspricht. Dies aus dem einfachen Grund, dass die mitgelieferte HAL-Funktion, gemäss Implementation, einen unit32-Wert zurückliefert. \\ Rückfragen an den Hersteller blieben unbeantwortet.
 	
 	\newpage
 	\section{Fazit und Ausblick}
@@ -816,7 +836,7 @@
 		Die momentane Implementation ermöglicht es nicht, einen Zeitstempel im UNIX-Format den Messdaten anzuhängen. Dies aus dem einfachen Grund, dass bei einem leeren Akku diese Zeit nicht weiter gezählt wird. Als Alternative könnte der initiale Zeitstempel via BLE auf das Messgerät übertragen und für die neue Messung verwendet werden.
 		\item Low-Power \\
 		Bei der Entwicklung wurde ein besonders Augenmerk auf die Energieeffizienz gelegt. Nichts desto trotz, kann das System noch energieeffizienter ausgelegt werden. Insbesondere ein Mikrocontroller mit integrierter BiQuad-Hardware würde die hohe Berechnungszeit \ref{tab:ausfuehrungsgeschwindigkeit} reduzieren.
-		\item Zertifizierung Bluetooth-Geräte\\
+		\item Bluetooth-Zertifizierung\\
 		Gemäss Spezifikation von Bluetooth, ist jedes Gerät zu zertifiziert (\cite{noauthor_bluetooth_nodate-1}). Dementsprechend auch Geräte, welche aus bereits zertifizierten Geräten zusammengestellt werden. Ohne Zertifizierung darf ein Gerät nicht verkauft werden. Die Zertifizierung ist jedoch teuer(\cite{noauthor_bluetooth_nodate}).
 	\end{itemize}
 	
@@ -825,39 +845,55 @@
 	Als aller erstes möchte ich mich bei bei meinem Industriepartner, hEar, bedanken, ohne welchen das Projekt niemals in meine Hände gelangt wäre. Gleichzeitig möchte ich mich auch bei meinen beiden Betreuern, Filippo Parisi und Patric Eberle, für die Unterstützung während des Semesters bedanken. Ein besondere Dank gilt zudem folgenden Personen:
 	\begin{itemize}
 		\item Pascal Jund und Jürgen Wassner für die tatkräftige Unterstützung bei der Implementation von zeitdiskreten Filtern auf einer Embedded-Plattform.
-		\item Katharina Wick für die Korrektur der gesamten Arbeit.
+		\item Manuel Isenegger für die Unterstützung bei Akustikthemen aller Art.
+		\item Katharina Wick für die Korrektur, sowie der konstruktiven Kritik meiner gesamten Arbeit.
 		\item Meinen Kommiliton:innen für die unzähligen konstruktiven Diskussionen und Möglichkeiten des Austausches im BAT-Raum. 
 	\end{itemize}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\section{Anhang}
 	\bibliography{Sources}
 	\bibliographystyle{ieeetran}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\listoffigures
 	
 	\newpage
-	\thispagestyle{empty} 
+	
 	\subsection{Fremdwörter \& Abkürzungen}
-	CRC \\
-	Register \\
-	Pins \\
-	Embedded \\
-	ppm \\
-	flashen \\
-	Li-Po \\
-	Li-Ion \\
-	RTOS \\
-	IIR\\
-	FIR\\
-	UNIX-Format \\
-	\color{red}TODO\color{black}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|l|p{0.8\textwidth}|}
+			\hline
+			\textbf{Abkürzung} & \textbf{Beschreibung} \\ \hline
+			BLE & Bluetooth Low Energy \\ \hline
+			BMS & Battery Management System $\vert$ Akku-Laderegelung \\ \hline
+			CRC & Cyclic Redundancy Check \\ \hline
+			Embedded & In das Gerät integriert \\ \hline
+			FFT & Fast Fourier Transformation \\ \hline
+			FIR & Finite Impulse Response \\ \hline
+			Flashen & Software auf Mikrocontroller laden \\ \hline
+			I2C & Inter-Integrated Circuit (Bus-System) \\ \hline
+			IC & Integrated Circuit $\vert$ Integrierter Schaltkreis \\ \hline
+			IFFT & Inverse Fast Fourier Transformation \\ \hline
+			IIR & Infinite Impulse Response \\ \hline
+			Li-Ion & Lithium-Ionen \\ \hline
+			Li-Po & Lithium-Polymer \\ \hline
+			Peripherie & Gruppe von Funktionen um z.B. das PCM-Signal zu generieren \\ \hline
+			Pins & Physikalischer Anschluss am Mikrocontroller \\ \hline
+			PLL & Phase Locked Loop \\ \hline
+			ppm & Parts Per Million \\ \hline
+			PPTC & Polymeric Positive Temperature Coefficient \\ \hline
+			Register & Schnellste Speichereinheit im Mikrocontroller \\ \hline
+			RTOS & Real Time Operating System $\vert$ Betriebssystem auf Mikro\-controller \\ \hline
+			SPI & Serial Peripheral Interface (Bus-System) \\ \hline
+			THD & Total Harmonic Distortion $\vert$ Klirrfaktor \\ \hline
+			UNIX-Format & Zeitformat gezählt ab 01.01.1970 \\ \hline
+			WLAN & Wireless Local Area Network \\ \hline
+		\end{tabular}
+	\end{table}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Messmittel} \label{Messmittel}
 	Farblich gekennzeichnete Geräte und Software gehören zusammen.
 \begin{itemize}
@@ -895,7 +931,6 @@
 	\end{itemize}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Messaufbau} \label{Messaufbau}
 		\begin{figure}[H] 
 			\centering 
@@ -933,7 +968,6 @@
 		\end{figure}
 		
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Kalibrationsmessung} \label{Kalibrationsmessung}
 	\begin{figure}[H]
 		\centering
@@ -953,13 +987,13 @@
 				\addplot[
 				color=blue,
 				mark=solid,
-				dotted,
+				dashed,
 				] table[col sep=semicolon, x=Distanz, y=MEMS] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
 				\addlegendentry{$MEMS$}
 				\addplot[
 				color=red,
 				mark=solid,
-				dotted,
+				dashed,
 				] table[col sep=semicolon, x=Distanz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_Kalibration.csv};
 				\addlegendentry{$M2211$}
 				\addplot[
@@ -994,19 +1028,16 @@
 	\end{table}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{PCB-Versionen} \label{PCB-Versionen}
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_top}
 			\caption[]{V1-0 Front}
 			\label{fig:pcb_V1-0_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-0_bottom}
 			\caption[]{V1-0 Back}
@@ -1016,14 +1047,12 @@
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_top}
 			\caption[]{V1-1 Front}
 			\label{fig:pcb_V1-1_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-1_bottom}
 			\caption[]{V1-1 Back}
@@ -1033,14 +1062,12 @@
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_top}
 			\caption[]{V1-2 Front}
 			\label{fig:pcb_V1-2_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-2_bottom}
 			\caption[]{V1-2 Back}
@@ -1050,14 +1077,12 @@
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_top}
 			\caption[]{V1-3 Front}
 			\label{fig:pcb_V1-3_front}
 		\end{minipage}%
 		\begin{minipage}{.5\textwidth}
-			\thispagestyle{empty} 
 			\centering
 			\includegraphics[width=1\linewidth]{images/BAT_PCB_V1-3_bottom}
 			\caption[]{V1-3 Back}
@@ -1066,7 +1091,6 @@
 	\end{figure} 
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Schema}
 	%\includepdf[landscape=true, pages={1}]{images/BAT_Schematic_V1-2.pdf}
 	\begin{minipage}[b]{\textwidth}
@@ -1074,7 +1098,6 @@
 	\end{minipage}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Software} \label{Anhang:Software}
 	\begin{figure}[H]
 		\centering
@@ -1086,7 +1109,16 @@
 	$$Entwicklung/Software/custom$$
 	
 	\newpage
-	\thispagestyle{empty} 
+	\subsection{Aufgabenstellung}\label{Anhang:Aufgabenstellung}
+	\begin{minipage}[b]{\textwidth}
+		\includepdf[pages={1}, scale=0.9, pagecommand={}]{images/Aufgabenstellung.pdf}
+	\end{minipage}
+	\newpage
+	\begin{minipage}[b]{\textwidth}
+		\includepdf[pages={2}, scale=0.9, pagecommand={}]{images/Aufgabenstellung.pdf}
+	\end{minipage}
+	
+	\newpage
 	\subsection{Anforderungskatalog}\label{Anhang:Anforderungskatalog}
 	\begin{figure}[H]
 		\centering
@@ -1094,21 +1126,18 @@
 	\end{figure}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Risikoanalyse}\label{Anhang:Risikoanalyse}
 		\begin{minipage}[b]{\textwidth}
-		\includepdf[landscape=true, pages={1},scale=0.7]{images/BAT_Risikoanalyse.pdf}
+		\includepdf[landscape=true, pages={1},scale=0.7, pagecommand={}]{images/BAT_Risikoanalyse.pdf}
 	\end{minipage}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Zeitplan}\label{Anhang:Zeitplan}
 	\begin{minipage}[b]{\textwidth}
-		\includepdf[landscape=true, pages={1},scale=0.8]{images/BAT_Zeitplan_V2.pdf}
+		\includepdf[landscape=true, pages={1},scale=0.8, pagecommand={}]{images/BAT_Zeitplan_V2.pdf}
 	\end{minipage}
 	
 	\newpage
-	\thispagestyle{empty} 
 	\subsection{Journal}
 	
 \end{document}
