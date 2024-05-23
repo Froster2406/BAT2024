@@ -40,6 +40,20 @@ G.~Feiertag, M.~Winter, and A.~Leidl, ``Flip chip packaging for {MEMS}
   \url{https://www.bosch-mobility.com/de/loesungen/sensoren/peripherer-beschleunigungssensor/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}
+\BIBentryALTinterwordspacing
+``https://invensense.tdk.com/wp-content/uploads/2020/07/{DS}-000157-{ICS}-41351-v1.4.pdf.''
+  [Online]. Available:
+  \url{https://invensense.tdk.com/wp-content/uploads/2020/07/DS-000157-ICS-41351-v1.4.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{noauthor_was_nodate}
+\BIBentryALTinterwordspacing
+``Was bedeuten die {Begriffe} '{Fast}', '{Slow}', '{Impulse}'
+  {Zeitgewichtung}?'' [Online]. Available:
+  \url{https://www.nti-audio.com/de/service/wissen/was-bedeuten-die-begriffe-fast-slow-impulse-zeitgewichtung}
+\BIBentrySTDinterwordspacing
+
 \bibitem{impairments_basics_2004}
 \BIBentryALTinterwordspacing
 N.~R. C. U. C. o. D. D. f. I. w.~H. Impairments, R.~A. Dobie, and S.~V. Hemel,
@@ -81,13 +95,6 @@ G.~Dighe, ``{TPS65950} {Real}-{Time} {Clock} {Timing} {Compensation},'' Oct.
 \bibitem{oppenheim_alan_v_zeitdiskrete_1989}
 A.~V. Oppenheim, \emph{Zeitdiskrete {Signalverarbeitung}}.\hskip 1em plus 0.5em
   minus 0.4em\relax R. Oldenbourg, 1989.
-
-\bibitem{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}
-\BIBentryALTinterwordspacing
-``https://invensense.tdk.com/wp-content/uploads/2020/07/{DS}-000157-{ICS}-41351-v1.4.pdf.''
-  [Online]. Available:
-  \url{https://invensense.tdk.com/wp-content/uploads/2020/07/DS-000157-ICS-41351-v1.4.pdf}
-\BIBentrySTDinterwordspacing
 
 \bibitem{silicon_efr32xg22_2022}
 \BIBentryALTinterwordspacing

@@ -16,45 +16,45 @@ Database file #1: Sources.bib
 Warning--empty journal in silicon_efr32xg22_2022
 
 Done.
-You've used 13 entries,
+You've used 14 entries,
             4087 wiz_defined-function locations,
-            884 strings with 9612 characters,
-and the built_in function-call counts, 5029 in all, are:
-= -- 355
-> -- 54
+            887 strings with 9810 characters,
+and the built_in function-call counts, 5304 in all, are:
+= -- 371
+> -- 55
 < -- 10
-+ -- 32
++ -- 33
 - -- 9
-* -- 253
-:= -- 853
-add.period$ -- 27
-call.type$ -- 13
-change.case$ -- 14
+* -- 262
+:= -- 897
+add.period$ -- 29
+call.type$ -- 14
+change.case$ -- 15
 chr.to.int$ -- 24
-cite$ -- 14
-duplicate$ -- 421
-empty$ -- 510
+cite$ -- 15
+duplicate$ -- 448
+empty$ -- 543
 format.name$ -- 11
-if$ -- 1100
+if$ -- 1161
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 84
-newline$ -- 84
+int.to.str$ -- 14
+missing$ -- 90
+newline$ -- 89
 num.names$ -- 5
-pop$ -- 277
+pop$ -- 301
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 361
+skip$ -- 381
 stack$ -- 0
-substring$ -- 72
-swap$ -- 246
+substring$ -- 73
+swap$ -- 257
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 13
+type$ -- 14
 warning$ -- 1
 while$ -- 9
-width$ -- 15
-write$ -- 139
+width$ -- 16
+write$ -- 147
 (There was 1 warning)

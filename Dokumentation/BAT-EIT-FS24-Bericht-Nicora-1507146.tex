@@ -189,7 +189,14 @@
 	\end{figure}
 	
 	\subsubsection*{Zeitgewichtung} \label{Zeitgewichtung}
-	\color{red}TODO\color{black}
+	Die Zeitgewichtung wird mit dem Standard IEC 61672-1 beschrieben und definiert, wie schnell die Anzeige des Gerätes auf eine Pegeländerung reagieren kann. Dabei wird gemäss Abbildung \ref{fig:batf-s-time-weighting} zwischen den Modi \textbf{S}low und \textbf{F}ast unterschieden. Dabei stammen die Modi aus der Zeit der analogen Anzeigesysteme, wobei schnelle Änderungen der Anzeige nur schwer ablesbar waren. Implementationstechnisch werden neuere Messwerte stärker gewichtet, als die alten um auf Impulse besser reagieren zu können.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{images/BAT_F-S-time-weighting}
+		\caption{Unterschied der Zeitgewichtung $\vert$ Quelle: \cite{noauthor_was_nodate}}
+		\label{fig:batf-s-time-weighting}
+	\end{figure}
+	
 	\subsubsection*{Frequenzbewertung} \label{Frequenzbewertung}
 	Unser Gehör reagiert nicht nur nicht linear auf Lautstärkeveränderungen, sondern zusätzlich auch unterschiedlich Sensitiv auf unterschiedliche Frequenzen im hörbaren Bereich (20Hz-20kHz). Insbesondere im Bereich zwischen 3kHz bis 4kHz \cite{impairments_basics_2004} ist das Gehör besonders anfällig auf äussere Stimulation. Abbildung \ref{fig:phon-curve}, ursprünglich durch Fletcher \& Munson, mittlerweilen auch durch den ISO226-Standard beschrieben, zeigt diesen Umstand. Um der Problematik aus Abbildung \ref{fig:phon-curve} sorge tragen zu können, wird ein sogenannten Frequenzbewertungsfilter \footnote{ Weighting curves}, Abbildung \ref{fig:frequenzbewertung}, eingesetzt. Dabei werden heutzutage nur noch die dB(A), sowie der dB(C)-Filter eingesetzt. Die beiden Filter unterscheiden sich folgendermassen:
 	\begin{itemize}
@@ -707,7 +714,7 @@
 			Auch hier folgen die beiden Mikrofone der Nichtlinearität des Messaufbaus. Jedoch reagiert das \color{blue}MEMS\color{black}-Mikrofon sensitiver auf diesen Frequenzbereich, als das Referenzprodukt. Dieses Phänomen ist auf zwei physikalische Effekte zurückzuführen:
 			\begin{itemize}
 				\item Helmholtz Effekt \\
-				Dieser tritt, bauartbedingt, ab einer gewissen Frequenz bei allen MEMS-Mikrofonen auf. Ersichtlich ist dieser in \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}, Figure 4. Dabei schwingt das gesamte Mikrofon mit der Membrane mit und erzeugt somit einen höheren Schalldruck.
+				Dieser tritt, bauartbedingt, ab einer gewissen Frequenz bei allen MEMS-Mikrofonen auf. Ersichtlich ist dieser in \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}, Figure 4. Dabei schwingt das Mikrofongehäuse mit der Membrane mit (es entsteht eine gewisse Resonanz) und erzeugt somit einen höheren Schalldruck.
 				\item 
 			\end{itemize}
 			
@@ -745,6 +752,7 @@
 			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(A)}
 			\label{fig:microphone_plot_gewichtet_A}
 		\end{figure}
+		Wie in Abbildung \ref{fig:microphone_plot_gewichtet_A} aufgezeigt, werden die Frequenzen bis ca. 1kHz gedämpft. Dies entspricht der Filtercharakteristik, welche in Abbildung \ref{fig:frequenzbewertung} ersichtlich ist. Somit kann bestätigt werden, dass der implementierte Filter wie gewünscht, funktioniert.
 		\begin{figure}[H]
 		\centering
 			\begin{tikzpicture}
@@ -772,11 +780,17 @@
 					mark=solid,
 					] table[col sep=semicolon, x=Frequenz, y=Referenz_C] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 					\addlegendentry{M2211}
+					\addplot[
+					color=red,
+					mark=solid,
+					] table[col sep=semicolon, x=Frequenz, y=dB2] {measurements/Microphone/BAT_Weighting_Matlab.csv};
+					\addlegendentry{Filter}
 				\end{axis}
 			\end{tikzpicture}
 			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(C)}
 			\label{fig:microphone_plot_gewichtet_C}
 		\end{figure}
+		Auch der in Abbildung \ref{fig:microphone_plot_gewichtet_C} gezeigte Frequenzgang repräsentiert den erfolgreich umgesetzten 
 		\begin{figure}[H]
 		\centering
 			\begin{tikzpicture}
@@ -807,6 +821,7 @@
 			\caption{Distanz vs Schalldruckpegel-Plot}
 			\label{fig:microphone_plot_distanz}
 		\end{figure}
+		Die Abbildung \ref{fig:microphone_plot_distanz} zeigt, dass bei der 
 	\subsection{Vergleich}
 	\color{red}TODO\color{black}
 	
