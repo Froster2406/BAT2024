@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{graphicx}
-\usepackage{hyperref} %querreferenzierung
+\usepackage[hidelinks]{hyperref} %querreferenzierung
 \usepackage{xcolor}
 \usepackage{amsmath} % for 'pmatrix' environment
 \usepackage{listings} %code representation
@@ -32,6 +32,16 @@
 \usepackage{stackengine,xcolor}
 \def\cpm{\mathbin{\ensurestackMath{\abovebaseline[-3.4pt]{%
 				\stackunder[-3.5pt]{\color{green!70}+}{\color{red}-}}}}}
+
+% footnote without number
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+% green checkmark
+\newcommand{\greencheck}{{\color{green}\checkmark}}
 
 \usepackage[utf8]{inputenc}
 
@@ -75,6 +85,8 @@
 		\item Die Messdaten werden in regelmässigen Abständen auf dem Gerät gespeichert.
 		\item Das Gerät verfügt über eine BLE-Schnittstelle um die Messdaten drahtlos an ein Zielgerät zu übertragen.
 		\item Der aktuelle Schalldruckpegel wird auf der Vorderseite des Gerätes visuell dargestellt.
+		\item Die Bauform der Platine fällt rund aus.
+		\item Die Gesamtkosten betragen maximal 50 CHF.
 	\end{itemize}
 	In einem zweiten Schritt, wird das Gerät ausgemessen und dessen Qualität mit auf dem Markt bereits vorhandenen Geräten verglichen.
 	\subsection{Vorgehen}
@@ -159,9 +171,9 @@
 	\subsubsection*{PCM}
 	Bei \textbf{P}ulse \textbf{C}ode \textbf{M}odulation wird jeder analoge Messwert in einem digitalen Bereich abgebildet (Abbildung \ref{fig:batpcm}). Je nach benötigter Genauigkeit fällt dieser Bereich mal grösser, mal kleiner aus. Bei der Datenübertragung mittels I²S (\ref{I2S}) geschieht diese Umwandlung direkt im Sender und erzeugt somit das SD-Signal. Bei Sendern mit PDM-Ausgang (\ref{PDM}) ist dies nicht der Fall. Hier ist im Empfänger zwingend eine Peripherie notwendig, welche das PDM-Signal mittels Unterabtastung in ein PCM-Signal umwandelt.
 	\subsubsection*{Schalldruck(pegel)}
-	Damit wird der Bezug zwischen dem Schalldruck \textbf{$P$}, die Kraftauswirkung von Schallwellen auf ein Medium, und dem normierten Bezugswert \textbf{$P_0$} von $20 \mu Pa$ geschaffen. Oftmals wird er auch mit \textbf{S}ound \textbf{P}ressure \textbf{L}evel (SPL) angegeben. Da das menschliche Gehör Lautstärke jedoch logarithmisch wahrnimmt, wird dieser in der Akustik mittels dBSPL \ref{dBSPL} angegeben.
-	\begin{equation}\label{dBSPL}
-		dBSPL = 20 \cdot log_{10}(\frac{P}{P_0})
+	Damit wird der Bezug zwischen dem Schalldruck \textbf{$P$}, die Kraftauswirkung von Schallwellen auf ein Medium, und dem normierten Bezugswert \textbf{$P_0$} von $20 \mu Pa$ geschaffen. Oftmals wird er auch mit \textbf{S}ound \textbf{P}ressure \textbf{L}evel (SPL) angegeben. Da das menschliche Gehör Lautstärke jedoch logarithmisch wahrnimmt, wird dieser in der Akustik mittels dBSPL \ref{eq:dBSPL} angegeben.
+	\begin{equation}\label{eq:dBSPL}
+		dB_{SPL} = 20 \cdot log_{10}(\frac{P}{P_0})
 	\end{equation}
 	\begin{figure}[H]
 		\centering
@@ -189,7 +201,7 @@
 	\end{figure}
 	
 	\subsubsection*{Zeitgewichtung} \label{Zeitgewichtung}
-	Die Zeitgewichtung wird mit dem Standard IEC 61672-1 beschrieben und definiert, wie schnell die Anzeige des Gerätes auf eine Pegeländerung reagieren kann. Dabei wird gemäss Abbildung \ref{fig:batf-s-time-weighting} zwischen den Modi \textbf{S}low und \textbf{F}ast unterschieden. Dabei stammen die Modi aus der Zeit der analogen Anzeigesysteme, wobei schnelle Änderungen der Anzeige nur schwer ablesbar waren. Implementationstechnisch werden neuere Messwerte stärker gewichtet, als die alten um auf Impulse besser reagieren zu können.
+	Die Zeitgewichtung wird mit dem Standard IEC 61672-1 beschrieben und definiert, wie schnell die Anzeige des Gerätes auf eine Pegeländerung reagieren kann. Dabei wird gemäss Abbildung \ref{fig:batf-s-time-weighting} zwischen den Modi \textbf{S}low und \textbf{F}ast unterschieden. Dabei stammen die Modi aus der Zeit der analogen Anzeigesysteme, wobei schnelle Änderungen der Anzeige nur schwer ablesbar waren. Implementationstechnisch werden neuere Messwerte stärker gewichtet, als die alten um auf kurzzeitige Amplitudenänderungen besser reagieren zu können.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_F-S-time-weighting}
@@ -321,7 +333,7 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.8\linewidth]{images/BAT_v-lambda-curve}
-		\caption{Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color{red}\textbf{schwarz}\color{black}) und Nacht (\color{blue}\textbf{blau}\color{black})$\vert$ Quelle: \cite{noauthor_v-lambda-kurve_2023}}
+		\caption{Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color{red}\textbf{Rot}\color{black}) und Nacht (\color{blue}\textbf{blau}\color{black})$\vert$ Quelle: \cite{noauthor_v-lambda-kurve_2023}}
 		\label{fig:batv-lambda-curve}
 	\end{figure}
 	\subsubsection*{Lichtleistung}
@@ -362,7 +374,7 @@
 	\newpage
 	\section{Entwicklung}\label{Entwicklung}
 	Die im Unterkapitel \ref{Ziele} definierten Ziele sollen nun umgesetzt werden. Dazu soll die von aussen sichtbare Vorderseite möglichst wenig Bauteile aufweisen, um das visuelle Design nicht zu beeinträchtigen. Mit einer angestrebten Gesamtgrösse von 60mm Durchmesser, können die gewählten Bauteile geradenoch auf dem PCB in einer symmetrischen Art platziert werden. 
-	\subsection{Konzept}
+	\subsection{Konzept} \label{Konzept}
 	\paragraph{Front}
 	Die Vorderseite weist folgende Bauteile auf:
 	\begin{itemize}
@@ -440,7 +452,7 @@
 		\label{fig:batverpolungsschutz}
 	\end{figure}
 	
-	\subsubsection{Kosten}
+	\subsubsection{Kosten} \label{Kosten}
 	Die Tabelle \ref{table:materialliste} beinhaltet alle anfallenden Materialkosten exkl. Versand. Zudem wurde \href{https://jlcpcb.com/}{JLCPCB} als PCB-Hersteller gewählt, da zum einen die Qualität bei 2-Layer-PCBs ausreicht und zum anderen mit der Anbindung an \href{https://www.lcsc.com/}{LCSC} die Bestückung der PCBs direkt im selben Werk stattfindet. Dadurch verkürzt sich die Fertigung des Endproduktes. \\
 	Die vorhandenen Kondensatoren, sowie die benötigten Widerstände werden in der Tabelle \ref{table:materialliste} unter Diverse zusammengenommen. Dies aus dem Grund, dass keines dieser Bauteile einer besonderen Toleranz unterliegt. Dadurch kann bei der PCB-Bestellung eine kosten-optimierte Wahl getroffen werden.
 \begin{table}[!ht]
@@ -470,7 +482,7 @@
 \end{table}
 	\subsection{Software}
 	Im Kern besteht die Software, wie in Abbildung \ref{fig:batkonzeptsoftwareablauf} gezeigt, aus einem einzelnen, sich wiederholenden Kreis. Durch den einfach gehaltenen Ablauf, wird auf den Einsatz eines RTOS verzichtet. Um diesen Abschnitt übersichtlich zu halten sind Timing-Diagramme sowie die Software im Anhang \ref{Anhang:Software} zu finden.
-	\subsubsection*{Timer}
+	\subsubsection*{Timer} \label{Timer}
 	Die Timer-Implementation dient als Hauptschleife, um die Datenaggregation, Verarbeitung und Ausgabe steuern zu können. \\Das Makro \textbf{BAT\_MEASUREMENT\_INTERVAL} ermöglicht es, auf wenige Millisekunden genau die Schlaufe zu steuern. Die Programmabfolge ist in Abbildung \ref{fig:batsoftwareletimer} ersichtlich.
 	\begin{figure}[H]
 		\centering
@@ -537,6 +549,25 @@
 	\begin{equation}\label{eq:Verstärkung}
 		Verst\ddot{a}rkung = 30 - ceil \left( \dfrac{log_{10}\left(Dezimierungsrate^{Filterordnung}\right)}{log_{10}(2)}\right)
 	\end{equation}
+	\subsubsection*{Schalldruckpegel}
+	Wie in Abbildung \ref{fig:batfrequenzgewichtung} ersichtlich, durchläuft die Schalldruckpegel-Berechnung drei Phasen:
+	\begin{itemize}
+		\item Mittelwert $\vert$ Offset-Korrektur\\
+		Das gemessene und gefilterte Signal ist in den meisten Fällen nicht mittelwertfrei. Dadurch beinhaltet dieses einen unbekannten Offset von der X-Achse. Um im Anschluss die Signalenergie sowie den dazugehörigen dB-Wert korrekt berechnen zu können, muss das Signal jedoch mittelwertfrei sein. Dazu wird die folgende Formel vor jeder Umrechnung angewendet:
+		\begin{equation}\label{eq:Mittelwert}
+			\bar{x} = \frac{1}{n}\sum_{i=1}^{n} Sample_i
+		\end{equation}
+		\item RMS $\vert$ Signalenergie \\
+		Um aus dem mittelwertfreien Signal den dB-Wert berechnen zu können, muss zuvor die mittlere Signalenergie berechnet werden. Dies geschieht mit der nachfolgenden Formel:
+		\begin{equation}\label{eq:RMS}
+			x_{RMS} = \sqrt{\frac{1}{n}\sum_{i=1}^{n} \left( Sample_i-\bar{x}\right)^2}
+		\end{equation}\blfootnote{n = Anzahl gemessene Samples}
+		\item dB-Umwandlung\\
+		Zur effektiven Berechnung des Schalldruckpegels muss die allgemein gültige Formel aus der Theorie (\ref{eq:dBSPL}) mit den maximalen Messwerten erweitert werden. Gleichzeitig wird der Referenz-Schalldruckpegel $P_0$ durch den maximalen, digitalen Wert, $dBFS$, ersetzt. Daraus entsteht folgende, finale Formel:
+		\begin{equation}\label{eq:dBSPL2}
+			dBSPL = \underbrace{129.5dB}_{AOP \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}} + 20 \cdot log_{10}\left( \frac{x_{RMS}}{8388607}\right) 
+		\end{equation}\blfootnote{dBFS = $\frac{2^{Aufl\ddot{o}sung}}{2}$}
+	\end{itemize}
 	\subsubsection*{I²C}
 	\begin{figure}[H]
 		\centering
@@ -550,8 +581,8 @@
 	Die RTC wird, nicht wie die restliche Peripherie, nicht selbst aufgesetzt und betrieben. Dies ist darauf zurückzuführen, dass der BLE-Stack von Silicon Labs zum Zeitmanagement denselben Zeitgeber verwendet. Dadurch ist der Zugriff auf die RTC limitiert und kann nur über die nachfolgende Funktion abgerufen werden:
 	$$ sl\_sleeptimer\_get\_time() $$
 	Dabei wird die Zeit auf die Sekunde genau zurückgegeben und kann somit für die Erzeugung des Zeitstempels verwendet werden.
-	\subsubsection*{LEDs}
-	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von $\pm$ 3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{dBSPL}, einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
+	\subsubsection*{LEDs} \label{LEDs}
+	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von $\pm$ 3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{eq:dBSPL}, einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_Skalierung-SPL-auf-LED}
@@ -658,7 +689,7 @@
 		\item[$\bullet$ Signalform:]  Sinus
 		\item[$\bullet$ Gewichtung:]  Z
 		\item[$\bullet$ Distanz zu Signalquelle:]  100 mm ... 800 mm
-		\item[$\bullet$ Erfassung:]  Slow
+		\item[$\bullet$ Zeitgewichtung:]  Slow
 		\item[$\bullet$ Visualisierung:]  \ref{fig:messaufbau_spl}
 	\end{itemize}
 	\paragraph{Messaufbau Frequenzgang}
@@ -667,7 +698,7 @@
 			\item[$\bullet$ Amplitude:]  1 Vrms
 			\item[$\bullet$ Signalform:]  Sinus
 			\item[$\bullet$ Gewichtung:]  A, C, Z
-			\item[$\bullet$ Erfassung:]  Slow
+			\item[$\bullet$ Zeitgewichtung:]  Slow
 			\item[$\bullet$ Distanz zu Signalquelle:]  200 mm
 			\item[$\bullet$ Visualisierung:]  \ref{fig:messaufbau_frequenzgang}
 		\end{itemize}
@@ -680,7 +711,7 @@
 				title={\textbf{dB(Z)}},
 				xlabel={Frequenz [Hz]},
 				ylabel={Schalldruckpegel [dB]},
-				xmin=10, xmax=20000,
+				xmin=50, xmax=20000,
 				ymin=50, ymax=100,
 				legend pos=north west,
 				xminorgrids=true,
@@ -689,47 +720,41 @@
 				grid style=dashed,
 				]
 				\addplot[
+				smooth,
 				color=blue,
 				mark=solid,
-				] table[col sep=semicolon, x=Frequenz, y=MEMS_Z] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
+				] table[col sep=semicolon, x=Frequenz, y=MEMS_Z_2] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
 				\addlegendentry{MEMS}
 				\addplot[
+				smooth,
 				color=red,
 				mark=solid,
-				] table[col sep=semicolon, x=Frequenz, y=Referenz_Z] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
+				] table[col sep=semicolon, x=Frequenz, y=Referenz_Z_2] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 				\addlegendentry{M2211}
-				\fill[green, opacity=0.3] (axis cs:10, 0) -- (axis cs:80, 0) -- (axis cs:80, 120) -- (axis cs:10, 120);
 				\fill[yellow, opacity=0.3] (axis cs:2000, 0) -- (axis cs:20000, 0) -- (axis cs:20000, 120) -- (axis cs:2000, 120);
 			\end{axis}
 		\end{tikzpicture}
 		\caption{Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert$ dB(Z)}
 		\label{fig:microphone_plot_ungewichtet}
 		\end{figure}
-		Wie in Abbildung \ref{fig:microphone_plot_ungewichtet} ersichtlich, kann die Messung grob in drei Bereiche eingeteilt werden, wobei jeder Abschnitt eine konkrete Einzelheit aufweist.
+		Wie in Abbildung \ref{fig:microphone_plot_ungewichtet} ersichtlich, kann die Messung grob in zwei Bereiche eingeteilt werden:
 		\begin{itemize}
-			\item \color{green} Bereich $<$80Hz \color{black} \\
-			\item Bereich $>$80Hz und $<$2kHz \\
+			\item Bereich zwischen 50Hz und 2kHz \\
 			Dieser ist unproblematisch, da er die Kennlinie des Referenzmikrofons widerspiegelt. Die vorhandenen Nichtlinearitäten sind auf den verwendeten Messlautsprecher sowie den dazugehörigen Verstärker zurück zu führen.
-			\item \color{orange} Bereich $>$2kHz \color{black} \\
-			Auch hier folgen die beiden Mikrofone der Nichtlinearität des Messaufbaus. Jedoch reagiert das \color{blue}MEMS\color{black}-Mikrofon sensitiver auf diesen Frequenzbereich, als das Referenzprodukt. Dieses Phänomen ist auf zwei physikalische Effekte zurückzuführen:
-			\begin{itemize}
-				\item Helmholtz Effekt \\
-				Dieser tritt, bauartbedingt, ab einer gewissen Frequenz bei allen MEMS-Mikrofonen auf. Ersichtlich ist dieser in \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}, Figure 4. Dabei schwingt das Mikrofongehäuse mit der Membrane mit (es entsteht eine gewisse Resonanz) und erzeugt somit einen höheren Schalldruck.
-				\item 
-			\end{itemize}
-			
+			\item \color{orange} Bereich grösser als 2kHz \color{black} \\
+			Auch hier folgen die beiden Mikrofone der Nichtlinearität des Messaufbaus. Jedoch reagiert das \color{blue}MEMS\color{black}-Mikrofon sensitiver auf diesen Frequenzbereich, als das Referenzprodukt. Dieses Phänomen ist auf den Helmholtz Effekt zurück zu führen. 				Dieser tritt, bauartbedingt, ab einer gewissen Frequenz bei allen MEMS-Mikrofonen auf. Ersichtlich ist dieser in \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}, Figure 4. Dabei schwingt das Mikrofongehäuse mit der Membrane mit (es entsteht eine gewisse Resonanz) und erzeugt somit einen höheren Schalldruck.
 		\end{itemize}
 		
 		\begin{figure}[H]
 		\centering
 			\begin{tikzpicture}
 				\begin{axis}[
-					width=0.65\textwidth,
+					width=1\textwidth,
 					xmode=log,
 					title={\textbf{dB(A)}},
 					xlabel={Frequenz [Hz]},
 					ylabel={Schalldruckpegel [dB]},
-					xmin=10, xmax=20000,
+					xmin=50, xmax=20000,
 					ymin=50, ymax=100,
 					legend pos=north west,
 					xminorgrids=true,
@@ -738,31 +763,33 @@
 					grid style=dashed,
 					]
 					\addplot[
+					smooth,
 					color=blue,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=MEMS_A] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
+					] table[col sep=semicolon, x=Frequenz, y=MEMS_A_3] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
 					\addlegendentry{MEMS}
 					\addplot[
+					smooth,
 					color=red,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=Referenz_A] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
+					] table[col sep=semicolon, x=Frequenz, y=Referenz_A_2] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 					\addlegendentry{M2211}
 				\end{axis}
 			\end{tikzpicture}
 			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(A)}
 			\label{fig:microphone_plot_gewichtet_A}
 		\end{figure}
-		Wie in Abbildung \ref{fig:microphone_plot_gewichtet_A} aufgezeigt, werden die Frequenzen bis ca. 1kHz gedämpft. Dies entspricht der Filtercharakteristik, welche in Abbildung \ref{fig:frequenzbewertung} ersichtlich ist. Somit kann bestätigt werden, dass der implementierte Filter wie gewünscht, funktioniert.
+		\noindent Wie in Abbildung  \ref{fig:microphone_plot_gewichtet_A} aufgezeigt, werden die Frequenzen bis ca. 1kHz gedämpft. Dies entspricht der Filtercharakteristik, welche in Abbildung \ref{fig:frequenzbewertung} ersichtlich ist. Somit kann bestätigt werden, dass der implementierte Filter funktioniert.
 		\begin{figure}[H]
 		\centering
 			\begin{tikzpicture}
 				\begin{axis}[
-					width=0.65\textwidth,
+					width=1\textwidth,
 					xmode=log,
 					title={\textbf{dB(C)}},
 					xlabel={Frequenz [Hz]},
 					ylabel={Schalldruckpegel [dB]},
-					xmin=10, xmax=20000,
+					xmin=50, xmax=20000,
 					ymin=50, ymax=100,
 					legend pos=north west,
 					xminorgrids=true,
@@ -771,33 +798,30 @@
 					grid style=dashed,
 					]
 					\addplot[
+					smooth,
 					color=blue,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=MEMS_C] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
+					] table[col sep=semicolon, x=Frequenz, y=MEMS_C_2] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
 					\addlegendentry{MEMS}
 					\addplot[
+					smooth,
 					color=red,
 					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=Referenz_C] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
+					] table[col sep=semicolon, x=Frequenz, y=Referenz_C_2] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 					\addlegendentry{M2211}
-					\addplot[
-					color=red,
-					mark=solid,
-					] table[col sep=semicolon, x=Frequenz, y=dB2] {measurements/Microphone/BAT_Weighting_Matlab.csv};
-					\addlegendentry{Filter}
 				\end{axis}
 			\end{tikzpicture}
 			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(C)}
 			\label{fig:microphone_plot_gewichtet_C}
 		\end{figure}
-		Auch der in Abbildung \ref{fig:microphone_plot_gewichtet_C} gezeigte Frequenzgang repräsentiert den erfolgreich umgesetzten 
+		\noindent Auch der in Abbildung \ref{fig:microphone_plot_gewichtet_C} gezeigte Frequenzgang repräsentiert den erfolgreich umgesetzten C-Gewichtungsfilter. Dabei werden die hohen Frequenzen etwas stärker gedämpft als beim dB(A)-Filter. Als Referenz dient auch hier die Abbildung \ref{fig:frequenzbewertung}.
 		\begin{figure}[H]
 		\centering
 			\begin{tikzpicture}
 				\begin{axis}[
-					width=0.65\textwidth,
+					width=1\textwidth,
 					xmode=linear,
-					%title={Messung ungewichtet},
+					title={\textbf{Abstandsmessung}},
 					xlabel={Distanz zu Schallquelle [mm]},
 					ylabel={Schalldruckpegel [dB]},
 					xmin=100, xmax=800,
@@ -816,18 +840,43 @@
 					mark=solid,
 					] table[col sep=semicolon, x=Distanz, y=Referenz] {measurements/Microphone/BAT_Frequenzmessung_Distanz.csv};
 					\addlegendentry{M2211}
+					\addplot[
+					dashed,
+					color=green,
+					mark=solid,
+					] table[col sep=semicolon, x=Distanz, y=1/r] {measurements/Microphone/BAT_Frequenzmessung_Distanz.csv};
+					\addlegendentry{1/r}
 				\end{axis}
 			\end{tikzpicture}
 			\caption{Distanz vs Schalldruckpegel-Plot}
 			\label{fig:microphone_plot_distanz}
 		\end{figure}
-		Die Abbildung \ref{fig:microphone_plot_distanz} zeigt, dass bei der 
-	\subsection{Vergleich}
-	\color{red}TODO\color{black}
+	\noindent Abbildung \ref{fig:microphone_plot_distanz} zeigt, dass nach der initialen Kalibration (siehe Anhang \ref{Kalibrationsmessung}) der Schalldruckpegel keine Abweichung vom Referenzgerät erfährt. Somit kann bestätigt werden, dass das Mikrofon sich bei abnehmender Distanz, im Vergleich zum XL2, gleich verhält. Zudem ist das reziproke Abstandsgesetz (\color{green}1/r\color{black}) in den Messwerten ersichtlich. Gemäss diesem sinkt der Schalldruckpegel bei doppelter Distanz um den Faktor 6.021dB und wird gemäss folgender Formel berechnet:
+	\begin{equation}\label{eq:Abstandsgesetz}
+		dB_{neu} = dB_{Ref} - 20 \cdot log_{10}\left( \frac{Abstand_{Ref}}{Abstand_{neu}}\right) 
+	\end{equation}
 	
 	\newpage
-	\section{Validierung der Anforderungen}
-	\color{red}TODO\color{black}
+	\section{Validieren der Anforderungen} \label{Validierung}
+	Die im Kapitel \ref{Ziele} definierten Ziele können nun anhand der Arbeit validiert werden.
+	\begin{itemize}
+		\item [\greencheck] Die Laufzeit des Gerätes soll mindestens 12 Stunden betragen. \\
+		\textcolor{gray}{Gemäss Unterkapitel \ref{tab:leistung-gemessen} reicht ein 50mAh-Akku, um das Gerät während 12 Stunden betreiben zu können. Momentan verbaut ist ein 200mAh-Akku.}
+		\item [\greencheck] Das Gerät wird mit einem Akku betrieben. Dieser wird via eines USB-C-Anschlusses aufgeladen. \\
+		\textcolor{gray}{Siehe Kapitel \ref{Konzept}.}
+		\item [\greencheck] Der Schalldruckpegel wird mit einem MEMS-Mikrofon aufgezeichnet. \\
+		\textcolor{gray}{Siehe Kapitel \ref{Mikrofon}.}
+		\item [\greencheck] Die Messdaten werden in regelmässigen Abständen auf dem Gerät gespeichert. \\
+		\textcolor{gray}{Das Messintervall kann über das Define angepasst werden. Siehe Kapitel \ref{Timer}.}
+		\item [\greencheck] Das Gerät verfügt über eine BLE-Schnittstelle um die Messdaten drahtlos an ein Zielgerät zu übertragen.\\
+		\textcolor{gray}{Der Mikrocontroller ist zur Datenübertragung vorbereitet. Siehe Kapitel \ref{Konzept}.}
+		\item [\greencheck] Der aktuelle Schalldruckpegel wird auf der Vorderseite des Gerätes visuell dargestellt. \\
+		\textcolor{gray}{Es befinden sich 8 LEDs auf der Vorderseite des Gerätes, welche in \\ $\pm$ 3dB Abständen den Schalldruckpegel anzeigen. Siehe Kapitel \ref{LEDs}.}
+		\item [\greencheck] Die Bauform der Platine fällt rund aus. \\
+		\textcolor{gray}{Siehe Kapitel \ref{PCB-Versionen} im Anhang.}
+		\item [\greencheck] Die Gesamtkosten betragen maximal 50 CHF. \\
+		\textcolor{gray}{Mit 17.90 CHF wurde dieses Ziel klar erreicht. Siehe Kapitel \ref{Kosten} für eine detaillierte Auflistung.}
+	\end{itemize}
 	
 	\newpage
 	\section{Stolpersteine}
@@ -837,22 +886,28 @@
 	\paragraph{BLE}\mbox{}\\
 	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grund\-sätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch beim PLL, welcher zur Erzeugung des Mikrofon-Clocks benötigt wird, der Fall. Auch dieser muss mit dem BLE-Stack "geteilt" werden, was die Implementation erschwert hat. 
 	\paragraph{Mikrofon}\mbox{}\\
-	Mikrofone mit digitalem Ausgang sollten grundsätzlich einfacher in der Handhabung sein als jene mit analogen. Dies konnte ich jedoch nicht feststellen. Unklarheiten im Bezug zum Ausgangssignal des Mikrofons, sowie des anschliessenden PCM-Peripherieblocks haben die Arbeit erheblich erschwert. Ich bin auch nach Abschluss dieser Arbeit noch nicht komplett davon überzeugt, dass das ausgegebene PCM-Signal einer vorzeichenbehafteten 16-Bit-Zahl (int16\_t) entspricht. Dies aus dem einfachen Grund, dass die mitgelieferte HAL-Funktion, gemäss Implementation, einen unit32-Wert zurückliefert. \\ Rückfragen an den Hersteller blieben unbeantwortet.
+	Mikrofone mit digitalem Ausgang sollten grundsätzlich einfacher in der Handhabung sein als jene mit analogen. Dies konnte ich jedoch nicht feststellen. Unklarheiten im Bezug zum Ausgangssignal des Mikrofons, sowie des anschliessenden PCM-Peripherieblocks haben die Arbeit erheblich erschwert. Ich bin auch nach Abschluss dieser Arbeit noch nicht komplett davon überzeugt, dass das ausgegebene PCM-Signal einer vorzeichenbehafteten 24-Bit-Zahl (int32\_t) entspricht. Der hohe Offset-Fehler untermauert meine Vermutung. \\ Rückfragen an den Hersteller blieben unbeantwortet.
 	
 	\newpage
 	\section{Fazit und Ausblick}
-	Mit dieser Arbeit habe ich ein Produkt geschaffen, welches zwar nicht ganz an ein NTI XL2 herankommt, jedoch in seiner Preiskategorie durchaus seinen Platz verdient hat. Der Prototyp erfüllt alle in \ref{Anhang:Anforderungskatalog} gewünschten Anforderungen, ist soweit einsatzbereit und kann in einer nachfolgenden Arbeit weiterentwickelt werden. In dieser sollten folgende Themenbereiche behandelt werden:
+	Mit dieser Arbeit habe ich ein Produkt geschaffen, welches zwar nicht komplett an ein NTI XL2 herankommt, jedoch in seiner Preiskategorie durchaus seinen Platz verdient hat. Der Prototyp erfüllt alle in \ref{Anhang:Anforderungskatalog} gewünschten Anforderungen, ist soweit einsatzbereit und kann in einer nachfolgenden Arbeit weiterentwickelt werden. In dieser sollten folgende Themenbereiche behandelt werden:
 	\begin{itemize}
 		\item BLE \\
 		Die Hardware ist soweit für die Datenübertragung vorbereitet. Nun soll die Datenübertragung mittels zugehörigem BLE-Stack implementiert werden.
 		\item Interface \\
-		Die Messdaten befinden sich momentan nur auf dem EEPROM. In Verbindung mit der BLE-Implementation ist eine visuelle Applikation auf dem Zielgerät, z.B. Smartphone, zu implementieren. Neben dem herunterladen der Messdaten können so auch Einstellungen wie LED-Helligkeit, Mess-Intervall oder Aufteilung der Werte auf die LEDs auf dem Messgerät vorgenommen werden.
+		Die Messdaten befinden sich momentan nur auf dem EEPROM. In Verbindung mit der BLE-Implementation ist eine visuelle Applikation auf dem Zielgerät, z.B. Smartphone, zu implementieren. Neben dem herunterladen der Messdaten können so auch Einstellungen wie LED-Helligkeit, Mess-Intervall oder die Aufteilung der Werte auf die LEDs auf dem Messgerät vorgenommen werden.
 		\item RTC \\
-		Die momentane Implementation ermöglicht es nicht, einen Zeitstempel im UNIX-Format den Messdaten anzuhängen. Dies aus dem einfachen Grund, dass bei einem leeren Akku diese Zeit nicht weiter gezählt wird. Als Alternative könnte der initiale Zeitstempel via BLE auf das Messgerät übertragen und für die neue Messung verwendet werden.
+		Die momentane Implementation ermöglicht es nicht, einen Zeitstempel im UNIX-Format den Messdaten anzuhängen. Dies aus dem einfachen Grund, dass bei einem leeren Akku diese Zeit nicht weiter gezählt wird. Als Alternative könnte der initiale Zeitstempel via BLE auf das Messgerät übertragen und für die anstehende Messung verwendet werden.
+		\item Zeitgewichtung \\
+		Die im Unterkapitel \ref{Zeitgewichtung} eingeführte Gewichtung der Messungen, wurde bis kurz vor Abschluss der Arbeit fehlinterpretiert. Dadurch werden die Messwerte in einem fixen Intervall ausgewertet und nicht kontinuierlich. Obschon das Kapitel \ref{Validierung} zeigt, dass die Messungen akkurat sind, entspricht dies nicht dem Industriestandard.
 		\item Low-Power \\
-		Bei der Entwicklung wurde ein besonders Augenmerk auf die Energieeffizienz gelegt. Nichts desto trotz, kann das System noch energieeffizienter ausgelegt werden. Insbesondere ein Mikrocontroller mit integrierter BiQuad-Hardware würde die hohe Berechnungszeit \ref{tab:ausfuehrungsgeschwindigkeit} reduzieren.
+		Bei der Entwicklung wurde ein besonders Augenmerk auf die Energieeffizienz gelegt. Nichts desto trotz, kann das System noch energieeffizienter ausgelegt werden. Insbesondere ein Mikrocontroller mit integrierter BiQuad-Hardware würde die hohe Berechnungszeit (siehe Tabelle \ref{tab:ausfuehrungsgeschwindigkeit}) reduzieren.
 		\item Bluetooth-Zertifizierung\\
-		Gemäss Spezifikation von Bluetooth, ist jedes Gerät zu zertifiziert (\cite{noauthor_bluetooth_nodate-1}). Dementsprechend auch Geräte, welche aus bereits zertifizierten Geräten zusammengestellt werden. Ohne Zertifizierung darf ein Gerät nicht verkauft werden. Die Zertifizierung ist jedoch teuer(\cite{noauthor_bluetooth_nodate}).
+		Gemäss Spezifikation von Bluetooth, ist jedes Gerät zu zertifiziert (\cite{noauthor_bluetooth_nodate-1}). Dementsprechend auch Geräte, welche aus bereits zertifizierten Geräten zusammengestellt werden. Ohne Zertifizierung darf ein Gerät nicht verkauft werden. Die Zertifizierung generiert erhebliche Mehrkosten (\cite{noauthor_bluetooth_nodate}).
+		\item Sensitivitäts-Filter \\
+		\color{red}TODO\color{black}
+		\item Grundrauschen $\vert$ SNR \\
+		\color{red}TODO\color{black}
 	\end{itemize}
 	
 	\newpage
@@ -894,12 +949,13 @@
 			IIR & Infinite Impulse Response \\ \hline
 			Li-Ion & Lithium-Ionen \\ \hline
 			Li-Po & Lithium-Polymer \\ \hline
-			Peripherie & Gruppe von Funktionen um z.B. das PCM-Signal zu generieren \\ \hline
+			Peripherie & Gruppe von Hardware-Funktionen um z.B. das PCM-Signal zu generieren \\ \hline
 			Pins & Physikalischer Anschluss am Mikrocontroller \\ \hline
 			PLL & Phase Locked Loop \\ \hline
 			ppm & Parts Per Million \\ \hline
 			PPTC & Polymeric Positive Temperature Coefficient \\ \hline
 			Register & Schnellste Speichereinheit im Mikrocontroller \\ \hline
+			RMS & Root Mean Square $\vert$ Effektivwert eines Signals \\ \hline
 			RTOS & Real Time Operating System $\vert$ Betriebssystem auf Mikro\-controller \\ \hline
 			SPI & Serial Peripheral Interface (Bus-System) \\ \hline
 			THD & Total Harmonic Distortion $\vert$ Klirrfaktor \\ \hline

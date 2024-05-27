@@ -10,7 +10,7 @@
 \contentsline {figure}{\numberline {11}{\ignorespaces Frequenzbewertungs\-filter $\vert $ Quelle: \cite {noauthor_frequenzbewertung_2023}}}{13}{figure.caption.22}%
 \contentsline {figure}{\numberline {12}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{16}{figure.caption.28}%
 \contentsline {figure}{\numberline {13}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{18}{figure.caption.30}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color {red}\textbf {schwarz}\color {black}) und Nacht (\color {blue}\textbf {blau}\color {black})$\vert $ Quelle: \cite {noauthor_v-lambda-kurve_2023}}}{19}{figure.caption.32}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color {red}\textbf {Rot}\color {black}) und Nacht (\color {blue}\textbf {blau}\color {black})$\vert $ Quelle: \cite {noauthor_v-lambda-kurve_2023}}}{19}{figure.caption.32}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Buck Converter}}{20}{figure.caption.35}%
 \contentsline {figure}{\numberline {16}{\ignorespaces Konzept PCB-Layout}}{23}{figure.caption.39}%
 \contentsline {figure}{\numberline {17}{\ignorespaces Konzept Softwareablauf}}{23}{figure.caption.40}%
@@ -19,9 +19,9 @@
 \contentsline {figure}{\numberline {20}{\ignorespaces Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}}{30}{figure.caption.55}%
 \contentsline {figure}{\numberline {21}{\ignorespaces Übersicht BiQuad-Filter}}{31}{figure.caption.57}%
 \contentsline {figure}{\numberline {22}{\ignorespaces Clock-Muxing für 3.072MHz PDM}}{32}{figure.caption.59}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Softwareablauf I²C}}{33}{figure.caption.62}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Aufteilung dBSPL auf 8 LEDs}}{34}{figure.caption.66}%
-\contentsline {figure}{\numberline {25}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert $ dB(Z)}}{39}{figure.caption.77}%
-\contentsline {figure}{\numberline {26}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(A)}}{40}{figure.caption.78}%
-\contentsline {figure}{\numberline {27}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(C)}}{41}{figure.caption.79}%
-\contentsline {figure}{\numberline {28}{\ignorespaces Distanz vs Schalldruckpegel-Plot}}{42}{figure.caption.80}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Softwareablauf I²C}}{34}{figure.caption.63}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Aufteilung dBSPL auf 8 LEDs}}{35}{figure.caption.67}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert $ dB(Z)}}{40}{figure.caption.78}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(A)}}{41}{figure.caption.79}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(C)}}{42}{figure.caption.80}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Distanz vs Schalldruckpegel-Plot}}{43}{figure.caption.81}%
