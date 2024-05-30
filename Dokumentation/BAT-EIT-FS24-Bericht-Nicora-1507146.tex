@@ -146,7 +146,7 @@
 	\end{figure}
 	\newpage
 	\subsubsection*{PDM} \label{PDM}
-	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Das PDM-Signal weist eine vielfach schnellere Takrate (meist Faktor 32 / 64), als das ursprünglich abgetastete Mikrofonsignal auf. Dadurch wird auftretendes Rauschen in einen höher gelegenen Frequenzbereich verschoben, welcher bei der anschliessenden Signalverarbeitung mit einem Tiefpassfilter abgeschnitten wird. Im Gegensatz zu I²S (\ref{I2S}) werden lediglich zwei Pins zwischen Mikrofon und Empfänger benötigt:
+	\textbf{P}ulse \textbf{D}ensity \textbf{M}odulation oder Pulsdichtemodulation bezeichnet die Darstellung eines analogen Signals in der digitalen Ebene. Dabei entspricht das Verhältnis zwischen der Anzahl der digitalen "1" und digitalen "0" der Amplitude des analogen Signales. Das PDM-Signal weist eine vielfach schnellere Takrate (meist Faktor 32 / 64), als das zu verarbeitende Mikrofonsignal auf. Dadurch wird auftretendes Rauschen in einen höher gelegenen Frequenzbereich verschoben, welcher bei der anschliessenden Signalverarbeitung mit einem Tiefpassfilter abgeschnitten wird. Im Gegensatz zu I²S (\ref{I2S}) werden lediglich zwei Pins zwischen Mikrofon und Empfänger benötigt:
 	\begin{itemize}
 		\item \color{red}DAT \color{black} \quad (Data) \\
 		Beinhaltet den als PDM-Codierten Datenstream.
@@ -308,7 +308,7 @@
 	\subsubsection{Kriterien}
 	\begin{itemize}
 		\item \textbf{I²S} + \textbf{PDM} zur Ansteuerung des Mikrofons.
-		\item \textbf{SPI} zur Ansteuerung von möglichen Peripherien wie externe Speicherbausteine oder Displays.
+		\item \textbf{SPI} zur Ansteuerung von möglichen Peripherien wie externe Speicher\-bausteine oder Displays.
 		\item \textbf{I²C} zur Ansteuerung von Laderegler und LED-Treiber-IC.
 		\item \textbf{DMA} zur energieeffizienten Verarbeitung der Daten.
 		\item \textbf{RTC} um die gemessenen Werten mit einem Zeitstempel verknüpfen zu können.
@@ -326,7 +326,7 @@
 	
 	\newpage
 	\section{LED}\label{LED}
-	Die visuelle Darstellung des Schalldruckpegels kann auf verschiedene Arten umgesetzt werden. Da hEar explizit eine Darstellung mittels LED wünscht, werden nachfolgend die wichtigsten Charakteristiken eingeführt und anschliessend ein passendes Produkt evaluiert.
+	Die visuelle Darstellung des Schalldruckpegels kann auf verschiedene Arten umgesetzt werden. Da hEar explizit eine Darstellung mittels LED wünscht, werden nachfolgend die wichtigsten Charakteristiken eingeführt und anschlie\-ssend ein passendes Produkt evaluiert.
 	\subsection{Grundlagen}
 	\subsubsection*{Wellenlänge} \label{Wellenlänge}
 	Das für den durchschnittlichen Menschen sichtbare Lichtspektrum beginnt bei 380nm (blau) und endet bei 780nm (rot)\cite{noauthor_v-lambda-kurve_2023}. Wie der Abbildung \ref{fig:batv-lambda-curve} zu entnehmen ist, entspricht die Sensitivität einer Gausskurve. Dabei erreicht diese ihr Maximum bei 555nm (grün) bei Betrachtung der Tageskurve. Dementsprechend kann beim Einsatz einer 555nm-LED im Gegensatz zu LEDs mit einer tieferen oder höheren Wellenlänge die zugeführte Leistung bei gleichwertiger Lichtempfindlichkeit reduziert werden.
@@ -337,7 +337,7 @@
 		\label{fig:batv-lambda-curve}
 	\end{figure}
 	\subsubsection*{Lichtleistung}
-	Neben der Wellenlänge, ist die Lichtleistung ausschlaggebend für die wahrgenommene Helligkeit einer LED. Dabei wird die Lichtleistung in Candela [cd] angegeben, wobei 1 cd der Helligkeit einer Kerze entspricht. Bei einer typischen LED verhält sich die Lichtleistung linear mit dem zugeführten Strom.
+	Neben der Wellenlänge, ist die Lichtleistung ausschlaggebend für die wahr\-genommene Helligkeit einer LED. Dabei wird die Lichtleistung in Candela [cd] angegeben, wobei 1 cd der Helligkeit einer Kerze entspricht. Bei einer typischen LED verhält sich die Lichtleistung linear mit dem zugeführten Strom.
 	\subsubsection*{Vorwiderstand / Strombegrenzung} \label{Vorwiderstand}
 	Nach Anlegen einer Spannung, $>=$ Schwellspannung der LED \footnote{variiert je nach LED Typ und Farbe}, wird diese grundsätzlich zu einem Kurzschluss. Um den Stromfluss durch die LED begrenzen zu können, wird im Regelfall ein Vorwiderstand verwendet. Der Nachteil des Vorwiderstandes ist es, dass, gegeben durch das ohmsche Gesetzt, über diesem elektrische Leistung in Wärme umgewandelt wird. Bei einem akkubetriebenen Gerät ist dies unerwünscht. Als Alternative kann ein Buck Converter, Abbildung \ref{fig:batbuck-converter}, oder eine Konstantstromquelle eingesetzt werden. Dadurch entfällt der Vorwiderstand und die Effizienz des Teilsystems wird erhöht.
 	\begin{figure}[H]
@@ -491,14 +491,14 @@
 		\label{fig:batsoftwareletimer}
 	\end{figure}
 	\subsubsection*{Filterdesign}
-	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benötigten Frequenzbewertungsfilter sind jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) erhältlich. Dabei stehen uns, wie in Abbildung \ref{fig:batfrequenzgewichtung} ersichtlich, diesbezüglich zwei Wege offen:
+	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die benöti\-gten Frequenzbewertungsfilter sind jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) erhältlich. Dabei stehen uns, wie in Abbildung \ref{fig:batfrequenzgewichtung} ersichtlich, diesbezüglich zwei Wege offen:
 	\begin{itemize}
 		\item \textbf{Frequenzbereich} \\
 		Hier wird das PCM-Codierte Signal mittels einer Fast Fourier Transformation (FFT) in den Frequenzbereich transformiert. Anschliessend können die Formeln \ref{G_A_s} oder \ref{G_C_s} auf das Signal angewendet werden, um die gewünschte Gewichtung vorzunehmen. Um anschliessend den Schalldruckpegel berechnen zu können, muss das Signal mittels einer inversen FFT wieder in den Zeitbereich transformiert werden. Je genauer die Frequenzbewertung sein soll, desto kleiner sind die Abstufungen von FFT und IFFT zu wählen, was zu einer Erhöhung des Berechnungsaufwandes auf dem Mikrocontroller führt.
 		\item \textbf{Zeitbereich} \\
 		Im Gegensatz zum Frequenzbereich muss das PCM-Codierte Signal nicht erst in den Frequenzbereich transformiert werden, sondern es kann direkt durch das zeitdiskrete Filter die Gewichtung vorgenommen werden. Dabei treten jedoch zwei Hauptprobleme auf: 
 		\begin{itemize}
-			\item Ein diskretes Filter im Zeitbereich ist immer nur eine Approximation eines Filters im Frequenzbereich. Dies verringert die Genauigkeit des implementierten Filters. 
+			\item Ein diskretes Filter im Zeitbereich ist immer nur eine Approximation eines Filters im Frequenzbereich. Dies verringert die Genauig\-keit des implementierten Filters. 
 			\item Die Umwandlung eines zeitkontinuierlichen Filters in einen zeitdiskreten ist nicht trivial. Dadurch muss dieser mit beispielsweise der bilinaren Transformation \cite{oppenheim_alan_v_zeitdiskrete_1989} vom Frequenz- in den Zeitbereich transformiert werden. 
 		\end{itemize} Die benötigten A- und C-Gewichtungsfilter bereits sind in Matlab implementiert. Somit können die Filterkoeffizienten direkt exportiert und in C-Code implementiert werden.
 	\end{itemize}
@@ -515,7 +515,7 @@
 		\label{fig:batfrequenzgewichtung}
 	\end{figure}
 	\subsubsection*{Filterimplementation}
-	Die aus Matlab exportieren Filterkoeffizienten weisen einen entscheidenden Unterschied zu gewöhnlichen IIR-Filterkoeffizienten auf. Der Gesamtfilter wird in Teilfilter, sogenannte BiQuads, aufgeteilt, welche anschliessend kaskadiert werden. Dies, weil die Stabilität von Filtern mit tiefer Ordnung leichter kontrolliert werden kann, als bei jenen mit einer hohen Ordnung. Dadurch besteht ein einzelnes BiQuad-Filter-Element jeweils aus einem IIR-Filter zweiter Ordnung. Dabei existieren, wie in Abbildung \ref{fig:batbiquad-uebersicht} aufgezeigt, vier verschiedene Arten der BiQuad-Implementation. Oftmals verfügen Mikrocontroller bereits über eine Hardware-Implementation einer dieser Arten. Der in dieser Arbeit gewählte, jedoch nicht. Dadurch sind wir frei in der Wahl der Implementation. Aus diesem Grund wurde die "Transposed Direct Form 2" gewählt. Dies, da diese zwar mehr Variablen zur als Zwischenspeicher, jedoch weniger Rechenoperationen, benötigt.
+	Die aus Matlab exportieren Filterkoeffizienten weisen einen entscheidenden Unterschied zu gewöhnlichen IIR-Filterkoeffizienten auf. Der Gesamtfilter wird in Teilfilter, sogenannte BiQuads, aufgeteilt, welche anschliessend kaskad\-iert werden. Dies, weil die Stabilität von Filtern mit tiefer Ordnung leichter kontrolliert werden kann, als bei jenen mit einer hohen Ordnung. Dadurch besteht ein einzelnes BiQuad-Filter-Element jeweils aus einem IIR-Filter zweiter Ordnung. Dabei existieren, wie in Abbildung \ref{fig:batbiquad-uebersicht} aufgezeigt, vier verschiedene Arten der BiQuad-Implementation. Oftmals verfügen Mikrocontroller bereits über eine Hardware-Implementation einer dieser Arten. Der in dieser Arbeit gewählte, jedoch nicht. Dadurch sind wir frei in der Wahl der Implementation. Aus diesem Grund wurde die "Transposed Direct Form 2" gewählt. Dies, da diese zwar mehr Variablen zur als Zwischenspeicher, jedoch weniger Rechenoperationen, benötigt.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_BiQuad-Uebersicht}
@@ -582,7 +582,7 @@
 	$$ sl\_sleeptimer\_get\_time() $$
 	Dabei wird die Zeit auf die Sekunde genau zurückgegeben und kann somit für die Erzeugung des Zeitstempels verwendet werden.
 	\subsubsection*{LEDs} \label{LEDs}
-	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von $\pm$ 3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{eq:dBSPL}, einer Lautstärkeverdoppelung. Somit sieht die momentane Skalierung folgendermassen aus:
+	Auf Wunsch des Industriepartners, werden die SPL-Werte so auf die 8 LEDs abgebildet, dass der 85dB(A)-Wert auf LED 4 zu liegen kommt mit jeweils einer Veränderung von $\pm$ 3dB(A) auf die nachfolgenden LEDs. Dabei entspricht ein Schritt von +3dB, gemäss Formel \ref{eq:dBSPL}, einer Lautstärkeverdoppe\-lung. Somit sieht die momentane Skalierung folgendermassen aus:
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_Skalierung-SPL-auf-LED}
@@ -630,7 +630,7 @@
 	\paragraph{Mikrofon}\mbox{}\\
 	Wie der Formel \ref{eq:Leistung_Mikrofon} entnommen werden kann, gibt es zwei Möglichkeiten das Mikrofon zu betreiben:
 	\begin{itemize}
-		\item Das Mikrofon wird konstant im Performance-Modus betrieben. Durch den Einsatz von DMA sind die benötigten Messewerte jeder Zeit verfügbar und die 20ms Startzeit des Mikrofons entfällt. Dadurch sind höher aufgelöste Messintervalle möglich. Dazu sind die Messungen der einzelnen Funktionen in Tabelle \ref{tab:ausfuehrungsgeschwindigkeit}) ersichtlich.
+		\item Das Mikrofon wird konstant im Performance-Modus betrieben. Durch den Einsatz von DMA sind die benötigten Messewerte jeder Zeit verfüg\-bar und die 20ms Startzeit des Mikrofons entfällt. Dadurch sind höher aufgelöste Messintervalle möglich. Dazu sind die Messungen der einzelnen Funktionen in Tabelle \ref{tab:ausfuehrungsgeschwindigkeit} ersichtlich.
 		\item Das Mikrofon wird nur dann aktiviert, wenn es benötigt wird. Dadurch sinkt die benötigte Leistung von 580$\mu Ah$ auf 87.2 $\mu Ah$ (\ref{eq:Leistung_Mikrofon}). Dadurch erhöht sich jedoch die benötigte Messzeit um 20ms. Dies aus dem Grund, dass keine DMA verwendet wird und das Mikrofon vom Standby-Betrieb (20 $\mu A$) in den Performance-Modus (580 $\mu A$) wechselt.
 	\end{itemize}
 	\begin{equation}\label{eq:Leistung_Mikrofon}
@@ -680,7 +680,7 @@
 		\label{tab:leistung-gemessen}
 		\end{table}
 	Wie insbesondere der Tabelle \ref{tab:leistung-gemessen} zu entnehmen ist, kann die Einsatzdauer von 12 Stunden mit einem 50mAh-Akku abgedeckt werden.
-	\subsection{Mikrofon-Messungen}
+	\subsection{Mikrofon-Messungen} \label{Mikrofon-Messungen}
 	Das MEMS-Mikrofon, sowie das M2211 von NTI, wurden beide jeweils vor jeder Messung mittels dem CAL200 auf 94dBSPL kalibriert. Da die Abstände zwischen den Mikrofonen und CAL200 nicht identisch sind, wurden zudem noch eine Kalibrationsmessung durchgeführt. Genauere Angaben sind dem Anhang \ref{Messmittel} sowie \ref{Kalibrationsmessung} zu entnehmen.
 	\paragraph{Messaufbau SPL}
 		\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
@@ -778,7 +778,7 @@
 			\end{tikzpicture}
 			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(A)}
 			\label{fig:microphone_plot_gewichtet_A}
-		\end{figure}
+		\end{figure} 
 		\noindent Wie in Abbildung  \ref{fig:microphone_plot_gewichtet_A} aufgezeigt, werden die Frequenzen bis ca. 1kHz gedämpft. Dies entspricht der Filtercharakteristik, welche in Abbildung \ref{fig:frequenzbewertung} ersichtlich ist. Somit kann bestätigt werden, dass der implementierte Filter funktioniert.
 		\begin{figure}[H]
 		\centering
@@ -875,7 +875,7 @@
 		\item [\greencheck] Die Bauform der Platine fällt rund aus. \\
 		\textcolor{gray}{Siehe Kapitel \ref{PCB-Versionen} im Anhang.}
 		\item [\greencheck] Die Gesamtkosten betragen maximal 50 CHF. \\
-		\textcolor{gray}{Mit 17.90 CHF wurde dieses Ziel klar erreicht. Siehe Kapitel \ref{Kosten} für eine detaillierte Auflistung.}
+		\textcolor{gray}{Mit 17.90 CHF wurde dieses Ziel klar erreicht. Siehe Kapitel \ref{Kosten} für eine detaillierte Auflistung der Kosten.}
 	\end{itemize}
 	
 	\newpage
@@ -886,7 +886,7 @@
 	\paragraph{BLE}\mbox{}\\
 	Der BLE-Stack weist eine hohe Komplexität auf. Dadurch wird dieser grund\-sätzlich nicht selbst implementiert, sondern vom Hersteller des Mikrocontrollers zur Verfügung gestellt. Dies birgt jedoch die Gefahr, dass gewisse Peripherien einen Doppelnutzen erfahren wie dies beispielsweise auch bei der RTC der Fall ist. Genauso war es auch beim PLL, welcher zur Erzeugung des Mikrofon-Clocks benötigt wird, der Fall. Auch dieser muss mit dem BLE-Stack "geteilt" werden, was die Implementation erschwert hat. 
 	\paragraph{Mikrofon}\mbox{}\\
-	Mikrofone mit digitalem Ausgang sollten grundsätzlich einfacher in der Handhabung sein als jene mit analogen. Dies konnte ich jedoch nicht feststellen. Unklarheiten im Bezug zum Ausgangssignal des Mikrofons, sowie des anschliessenden PCM-Peripherieblocks haben die Arbeit erheblich erschwert. Ich bin auch nach Abschluss dieser Arbeit noch nicht komplett davon überzeugt, dass das ausgegebene PCM-Signal einer vorzeichenbehafteten 24-Bit-Zahl (int32\_t) entspricht. Der hohe Offset-Fehler untermauert meine Vermutung. \\ Rückfragen an den Hersteller blieben unbeantwortet.
+	Mikrofone mit digitalem Ausgang sollten grundsätzlich einfacher in der Handhabung sein als jene mit analogen. Dies konnte ich jedoch nicht feststellen. Unklarheiten im Bezug zum Ausgangssignal des Mikrofons, sowie des anschliessenden PCM-Peripherieblocks haben die Arbeit erheblich erschwert. Ich bin auch nach Abschluss dieser Arbeit noch nicht komplett davon über\-zeugt, dass das ausgegebene PCM-Signal einer vorzeichenbehafteten 24-Bit-Zahl (int32\_t) entspricht. Der hohe Offset-Fehler, welcher bei der dBSPL-Berechnung berücksichtigt werden muss, untermauert meine Vermutung. \\Rückfragen an den Hersteller blieben unbeantwortet.
 	
 	\newpage
 	\section{Fazit und Ausblick}
@@ -905,9 +905,9 @@
 		\item Bluetooth-Zertifizierung\\
 		Gemäss Spezifikation von Bluetooth, ist jedes Gerät zu zertifiziert (\cite{noauthor_bluetooth_nodate-1}). Dementsprechend auch Geräte, welche aus bereits zertifizierten Geräten zusammengestellt werden. Ohne Zertifizierung darf ein Gerät nicht verkauft werden. Die Zertifizierung generiert erhebliche Mehrkosten (\cite{noauthor_bluetooth_nodate}).
 		\item Sensitivitäts-Filter \\
-		\color{red}TODO\color{black}
-		\item Grundrauschen $\vert$ SNR \\
-		\color{red}TODO\color{black}
+		Wie in den \hyperref[Mikrofon-Messungen]{Mikrofon-Messungen} ersichtlich, ist das MEMS-Mikrofon sensitiver im Frequenzbereich $>$2kHz als das Referenzgerät. Dieser Umstand soll durch einen zusätzlichen Software-Filter korrigiert werden.
+		\item Rauschboden $\vert$ SNR \\
+		In den \hyperref[Mikrofon-Messungen]{Mikrofon-Messungen} wird der \hyperref[Rauschboden]{Rauschboden} nicht explizit auf\-geführt. Der im Datenblatt (\cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}) aufgeführte SNR konnte in dieser Arbeit jedoch nicht verifiziert werden. Der gemessene Rauschboden liegt bei ca. 65dB. Deshalb wurden im Anhang \ref{Grundrauschen} mögliche Fehlerquellen überprüft, um diesen in einer Folgearbeit zu verbessern.
 	\end{itemize}
 	
 	\newpage
@@ -930,7 +930,7 @@
 	
 	\newpage
 	
-	\subsection{Fremdwörter \& Abkürzungen}
+	\subsection*{Fremdwörter \& Abkürzungen}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{|l|p{0.8\textwidth}|}
@@ -965,7 +965,7 @@
 	\end{table}
 	
 	\newpage
-	\subsection{Messmittel} \label{Messmittel}
+	\subsection*{Messmittel} \label{Messmittel}
 	Farblich gekennzeichnete Geräte und Software gehören zusammen.
 \begin{itemize}
 	\color{green}
@@ -999,10 +999,12 @@
 	\item Gecko SDK Suite \\
 	Version: 4.4.1
 	\color{black}
+	\item MSO6052A Mixed Signal Oscilloscope \\
+	S/N: T\&A 45
 	\end{itemize}
 	
 	\newpage
-	\subsection{Messaufbau} \label{Messaufbau}
+	\subsection*{Messaufbau} \label{Messaufbau}
 		\begin{figure}[H] 
 			\centering 
 			\begin{minipage}
@@ -1039,7 +1041,7 @@
 		\end{figure}
 		
 	\newpage
-	\subsection{Kalibrationsmessung} \label{Kalibrationsmessung}
+	\subsection*{Kalibrationsmessung} \label{Kalibrationsmessung}
 	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}
@@ -1099,7 +1101,105 @@
 	\end{table}
 	
 	\newpage
-	\subsection{PCB-Versionen} \label{PCB-Versionen}
+	\subsection*{Grundrauschen $\vert$ Rauschboden} \label{Grundrauschen}
+	Eine Vielzahl von Störquellen können die Signalqualität, trotz digitaler Signalverarbeitung, beeinträchtigen. Im Anschluss werden folgende Quellen untersucht:
+	\begin{itemize}
+		\item Clock-Stabilität $\vert$ Clock-Drift \\
+		Wie Konstant ist der Clock, welcher vom Mikrocontroller generiert wird?
+		\item Spannungsversorgung \\
+		Hat die Speisung via USB einen Einfluss auf den Rauschboden?
+		\item Start-Zeit des Mikrofons \\
+		Reichen die 20ms, welche gemäss Datenblatt als Startzeit angegeben sind, um das Mikrofon komplett zu starten?
+	\end{itemize}
+	\paragraph{Clock-Stabilität}\mbox{}\\
+	Abbildungen \ref{fig:PDM_CLK_Jitter_Logic-Analyzer} und \ref{fig:PDM_CLK_Jitter_Oszilloskop} zeigen, dass der Clock im Mittel die gewünschte Taktrate von 3.072MHz erreicht. Gleichzeitig weist der Clock eine maximale Abweichung von 1.7\% auf.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{measurements/Timings/PDM_CLK_Jitter_Logic-Analyzer}
+		\caption[]{Clock-Stabilität gemessen mit Logic Analyzer}
+		\label{fig:PDM_CLK_Jitter_Logic-Analyzer}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{measurements/Timings/PDM_CLK_Jitter_Oszilloskop}
+		\caption[]{Clock-Stabilität gemessen mit Oszilloskop}
+		\label{fig:PDM_CLK_Jitter_Oszilloskop}
+	\end{figure} \newpage
+	\paragraph{Spannungsversorgung}\mbox{}\\
+	Abbildung \ref{fig:stabilitae_rauschen} zeigt, ist das Rauschen zwar von der Spannungsversorgung abhängig, jedoch relativiert sich dieser Einfluss wieder. Wird der gesamt mögliche Messbereich von 24 Bit (16777216 Abstufungen) betrachtet liegen im Mittel 2000 Messpunkte zwischen der Batteriespeisung und der USB-Speisung. Dies entspricht ca. 0.012\% des gesamten Messbereiches.
+	$$Distanz \, [\%] = \frac{Mittlerer \, Abstand}{Messbereich}\cdot 100 $$
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				xmode=linear,
+				%title={Messung ungewichtet},
+				xlabel={Sample},
+				ylabel={PCM-Wert [24-bit Auflösung]},
+				xmin=0, xmax=2048,
+				ymin=190000, ymax=210000,
+				legend pos=north west,
+				ymajorgrids=true,
+				grid style=dashed,
+				]
+				\addplot[
+				color=green,
+				mark=solid,
+				] table[col sep=semicolon, x=Sample, y=usb] {measurements/Microphone/BAT_Rauschboden_Speisung.csv};
+				\addlegendentry{USB}
+				\addplot[
+				color=red,
+				mark=solid,
+				] table[col sep=semicolon, x=Sample, y=batterie] {measurements/Microphone/BAT_Rauschboden_Speisung.csv};
+				\addlegendentry{Batterie}
+				\addplot[
+				color=blue,
+				mark=solid,
+				] table[col sep=semicolon, x=Sample, y=usb_batterie] {measurements/Microphone/BAT_Rauschboden_Speisung.csv};
+				\addlegendentry{USB und Batterie}
+			\end{axis}
+		\end{tikzpicture}
+		\caption[]{Einfluss von Spannungsquellen auf das Mikrofonrauschen}
+		\label{fig:stabilitae_rauschen}
+	\end{figure} \newpage
+	\paragraph{Start-Zeit}\mbox{}\\
+	Abbildung \ref{fig:startzeit-mikrofon} zeigt deutlich, dass Mikrofon-Grundrauschen verbessert wird, sofern das Mikrofon jeweils nicht nach jeder Messung in den Energiesparmodus versetzt wird. So konnte ein Rauschboden von bis zu 37dB gemessen werden, welcher demjenigen aus dem Datenblatt (\cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}) sehr nahe kommt. Bei den Messungen im frei-laufenden Modus variierte der Rauschboden jedoch um jeweils bis zu 10dB.
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=0.95\textwidth,
+				xmode=linear,
+				%title={Messung ungewichtet},
+				xlabel={Sample},
+				ylabel={PCM-Wert [24-bit Auflösung]},
+				xmin=0, xmax=2048,
+				ymin=-5000, ymax=5000,
+				legend pos=north west,
+				ymajorgrids=true,
+				grid style=dashed,
+				]
+				\addplot[
+				color=blue,
+				mark=solid,
+				] table[col sep=semicolon, x=Sample, y=20ms] {measurements/Microphone/BAT_Rauschboden_Startup.csv};
+				\addlegendentry{20ms}
+				\addplot[
+				color=red,
+				mark=solid,
+				] table[col sep=semicolon, x=Sample, y=freilaufend] {measurements/Microphone/BAT_Rauschboden_Startup.csv};
+				\addlegendentry{Freilaufend}
+			\end{axis}
+		\end{tikzpicture}
+		\caption[]{Einfluss der Startzeit auf das Mikrofonrauschen}
+		\label{fig:startzeit-mikrofon}
+	\end{figure}
+	\paragraph{Fazit}\mbox{}\\
+	Die drei Messungen zeigen, dass jede untersuchte Fehlerquelle einen Einfluss auf das SNR hat. Insbesondere das Ein- und Auschalten des Mikrofons scheint den hohen Rauschboden zu erklären und muss in einer Folgearbeit überarbeitet werden.
+	
+	\newpage
+	\subsection*{PCB-Versionen} \label{PCB-Versionen}
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}{.5\textwidth}
@@ -1162,14 +1262,14 @@
 	\end{figure} 
 	
 	\newpage
-	\subsection{Schema}
+	\subsection*{Schema}
 	%\includepdf[landscape=true, pages={1}]{images/BAT_Schematic_V1-2.pdf}
 	\begin{minipage}[b]{\textwidth}
 		\includepdf[landscape=true, pages={1},scale=0.65]{images/BAT_Schematic_V1-2.pdf}
 	\end{minipage}
 	
 	\newpage
-	\subsection{Software} \label{Anhang:Software}
+	\subsection*{Software} \label{Anhang:Software}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{images/BAT_QR-Code_Github-Repo}
@@ -1180,7 +1280,7 @@
 	$$Entwicklung/Software/custom$$
 	
 	\newpage
-	\subsection{Aufgabenstellung}\label{Anhang:Aufgabenstellung}
+	\subsection*{Aufgabenstellung}\label{Anhang:Aufgabenstellung}
 	\begin{minipage}[b]{\textwidth}
 		\includepdf[pages={1}, scale=0.9, pagecommand={}]{images/Aufgabenstellung.pdf}
 	\end{minipage}
@@ -1190,25 +1290,25 @@
 	\end{minipage}
 	
 	\newpage
-	\subsection{Anforderungskatalog}\label{Anhang:Anforderungskatalog}
+	\subsection*{Anforderungskatalog}\label{Anhang:Anforderungskatalog}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[trim= 2.5cm 5cm 0cm 3.5cm, width=1.2\linewidth]{images/BAT_Anforderungskatalog}
 	\end{figure}
 	
 	\newpage
-	\subsection{Risikoanalyse}\label{Anhang:Risikoanalyse}
+	\subsection*{Risikoanalyse}\label{Anhang:Risikoanalyse}
 		\begin{minipage}[b]{\textwidth}
 		\includepdf[landscape=true, pages={1},scale=0.7, pagecommand={}]{images/BAT_Risikoanalyse.pdf}
 	\end{minipage}
 	
 	\newpage
-	\subsection{Zeitplan}\label{Anhang:Zeitplan}
+	\subsection*{Zeitplan}\label{Anhang:Zeitplan}
 	\begin{minipage}[b]{\textwidth}
 		\includepdf[landscape=true, pages={1},scale=0.8, pagecommand={}]{images/BAT_Zeitplan_V2.pdf}
 	\end{minipage}
 	
 	\newpage
-	\subsection{Journal}
+	\subsection*{Journal}
 	
 \end{document}
