@@ -62,10 +62,13 @@
 		% Bottom of the page
 		{\large 7. Juni 2024\par}
 	\end{titlepage}
+	\thispagestyle{empty}
 	\tableofcontents
+	\thispagestyle{empty}
 	
 	%to do: add footer and header
 	\newpage
+	\thispagestyle{empty}
 	Abstract(DE)\\
 	Die nachfolgende Arbeit befasst sich mit der Entwicklung einer kombinierten Soft- und Hardware-Lösung zur Erfassung von Umgebungslärm. In einem ersten Schritt wurden die benötigten Bauteile identifiziert und evaluiert. Darauf folgte die Konzeptionierung, sowie die Entwicklung der eigentlichen Soft- und Hardwareplattform. Dabei hat die Hardware drei Iterationen durchlaufen. Im Anschluss wurde die Arbeit mit einem Referenzgerät verifiziert. Dieser Vergleich hat gezeigt, dass das Gerät zwar einsatzfähig ist, jedoch noch Verbesserungs- und Erweiterungspotential aufweist. Dazu wurden entsprechende Leitfäden formuliert. \\
 	\\
@@ -74,6 +77,8 @@
 	
 	\newpage
 	\section{Einleitung}
+	\setcounter{page}{1} % Set the page number to 3
+	\pagestyle{plain} % Enable page numbering
 	\subsection{Ausgangslage} \label{Ausgangslage}
 	Die Firma hEar hat es sich zum Ziel gesetzt, gegen die, für unsere Ohren schädliche Lärmbelästigung, vorzugehen. Dazu wurde in der Masterarbeit von Sophie Mia Willener eine konzeptionelle Idee für ein Messgerät ausgearbeitet. Zusätzlich dazu wurde eine Marktanalyse durchgeführt, sowie ein erster Prototyp gebaut. Dieser ist jedoch noch unhandlich, nicht verifiziert und somit nicht für den Massenmarkt geeignet. 
 	\subsection{Ziele} \label{Ziele}
@@ -774,6 +779,13 @@
 					mark=solid,
 					] table[col sep=semicolon, x=Frequenz, y=Referenz_A_2] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 					\addlegendentry{M2211}
+					\addplot[
+					smooth,
+					color=green,
+					mark=solid,
+					dashed,
+					] table[col sep=semicolon, x=Frequenz, y=Kurve_A] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
+					\addlegendentry{Referenz}
 				\end{axis}
 			\end{tikzpicture}
 			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(A)}
@@ -809,6 +821,13 @@
 					mark=solid,
 					] table[col sep=semicolon, x=Frequenz, y=Referenz_C_2] {measurements/Microphone/BAT_Frequenzmessung_Referenz.csv};
 					\addlegendentry{M2211}
+					\addplot[
+					smooth,
+					color=green,
+					mark=solid,
+					dashed,
+					] table[col sep=semicolon, x=Frequenz, y=Kurve_C] {measurements/Microphone/BAT_Frequenzmessung_Geraet.csv};
+					\addlegendentry{Referenz}
 				\end{axis}
 			\end{tikzpicture}
 			\caption{Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert$ dB(C)}
@@ -923,7 +942,7 @@
 	\newpage
 	\section{Anhang}
 	\bibliography{Sources}
-	\bibliographystyle{ieeetran}
+	\bibliographystyle{ieeetranN}
 	
 	\newpage
 	\listoffigures

@@ -1,27 +1,27 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces XL2 von NTI Audio $\vert $ Quelle: \cite {noauthor_xl2_nodate}}}{6}{figure.caption.2}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Unterschied MEMS-Mikrofone $\vert $ Quelle: \cite {feiertag_flip_2010}}}{7}{figure.caption.4}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Beispiel MEMS-Beschleunigungssensor $\vert $ Quelle: \cite {noauthor_peripherer_nodate}}}{7}{figure.caption.5}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Beispiel PDM-Signal}}{9}{figure.caption.9}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Beispiel PCM-Signal}}{9}{figure.caption.9}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Grundbegriffe Akustik $\vert $ Beispiel: ICS-41351}}{10}{figure.caption.12}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Min. benötigte Auflösung in Bit für gewünschten max. SPL}}{11}{figure.caption.18}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Unterschied der Zeitgewichtung $\vert $ Quelle: \cite {noauthor_was_nodate}}}{12}{figure.caption.20}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Phon-Kurven im Vergleich $\vert $ Quelle: \cite {impairments_basics_2004}}}{13}{figure.caption.22}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Frequenzbewertungs\-filter $\vert $ Quelle: \cite {noauthor_frequenzbewertung_2023}}}{13}{figure.caption.22}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{16}{figure.caption.28}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{18}{figure.caption.30}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color {red}\textbf {Rot}\color {black}) und Nacht (\color {blue}\textbf {blau}\color {black})$\vert $ Quelle: \cite {noauthor_v-lambda-kurve_2023}}}{19}{figure.caption.32}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Buck Converter}}{20}{figure.caption.35}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Konzept PCB-Layout}}{23}{figure.caption.39}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Konzept Softwareablauf}}{23}{figure.caption.40}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Verpolungsschutz mittels P-Kanal MOSFET}}{26}{figure.caption.50}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Übersicht zu (LE)Timer-Funktionalität}}{28}{figure.caption.53}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}}{30}{figure.caption.55}%
-\contentsline {figure}{\numberline {21}{\ignorespaces Übersicht BiQuad-Filter}}{31}{figure.caption.57}%
-\contentsline {figure}{\numberline {22}{\ignorespaces Clock-Muxing für 3.072MHz PDM}}{32}{figure.caption.59}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Softwareablauf I²C}}{34}{figure.caption.63}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Aufteilung dBSPL auf 8 LEDs}}{35}{figure.caption.67}%
-\contentsline {figure}{\numberline {25}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert $ dB(Z)}}{40}{figure.caption.78}%
-\contentsline {figure}{\numberline {26}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(A)}}{41}{figure.caption.79}%
-\contentsline {figure}{\numberline {27}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(C)}}{42}{figure.caption.80}%
-\contentsline {figure}{\numberline {28}{\ignorespaces Distanz vs Schalldruckpegel-Plot}}{43}{figure.caption.81}%
+\contentsline {figure}{\numberline {1}{\ignorespaces XL2 von NTI Audio $\vert $ Quelle: \cite {noauthor_xl2_nodate}}}{3}{figure.caption.2}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Unterschied MEMS-Mikrofone $\vert $ Quelle: \cite {feiertag_flip_2010}}}{4}{figure.caption.4}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Beispiel MEMS-Beschleunigungssensor $\vert $ Quelle: \cite {noauthor_peripherer_nodate}}}{4}{figure.caption.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Beispiel PDM-Signal}}{6}{figure.caption.9}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Beispiel PCM-Signal}}{6}{figure.caption.9}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Grundbegriffe Akustik $\vert $ Beispiel: ICS-41351}}{7}{figure.caption.12}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Min. benötigte Auflösung in Bit für gewünschten max. SPL}}{8}{figure.caption.18}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Unterschied der Zeitgewichtung $\vert $ Quelle: \cite {noauthor_was_nodate}}}{9}{figure.caption.20}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Phon-Kurven im Vergleich $\vert $ Quelle: \cite {impairments_basics_2004}}}{10}{figure.caption.22}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Frequenzbewertungs\-filter $\vert $ Quelle: \cite {noauthor_frequenzbewertung_2023}}}{10}{figure.caption.22}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Vergleich Low-Power-Modi STM $\vert $ Quelle: \cite {noauthor_stm32l4_2024}}}{13}{figure.caption.28}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Vergleich von möglichen Mikrocontrollern}}{15}{figure.caption.30}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Sensitivität des menschlichen Auges auf das Lichtspektrum bei Tag (\color {red}\textbf {Rot}\color {black}) und Nacht (\color {blue}\textbf {blau}\color {black})$\vert $ Quelle: \cite {noauthor_v-lambda-kurve_2023}}}{16}{figure.caption.32}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Buck Converter}}{17}{figure.caption.35}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Konzept PCB-Layout}}{20}{figure.caption.39}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Konzept Softwareablauf}}{20}{figure.caption.40}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Verpolungsschutz mittels P-Kanal MOSFET}}{23}{figure.caption.50}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Übersicht zu (LE)Timer-Funktionalität}}{25}{figure.caption.53}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Unterschied Zeit- und Frequenzbereich zur Frequenzgewichtung}}{27}{figure.caption.55}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Übersicht BiQuad-Filter}}{28}{figure.caption.57}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Clock-Muxing für 3.072MHz PDM}}{29}{figure.caption.59}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Softwareablauf I²C}}{31}{figure.caption.63}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Aufteilung dBSPL auf 8 LEDs}}{32}{figure.caption.67}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der ungewichteten Messung $\vert $ dB(Z)}}{37}{figure.caption.78}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(A)}}{38}{figure.caption.79}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Frequenz vs Schalldruckpegel-Plot der gewichteten Messung $\vert $ dB(C)}}{39}{figure.caption.80}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Distanz vs Schalldruckpegel-Plot}}{40}{figure.caption.81}%
