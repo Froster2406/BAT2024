@@ -296,7 +296,7 @@
 	Bei allen gängigen Kommunikationsprotokollen ist die Frage, wie diese implementiert werden sollen. Dabei stehen folgende Möglichkeiten zur Auswahl:
 	\begin{itemize}
 		\item in \textbf{Hardware} \\
-		+ Die benötigte Infrastruktur (Register, CRC, etc.) sind bereits physikalisch implementiert. Die Kommunikation kann dementsprechend vom Rechenkern abgekoppelt durchgeführt werden und ermöglicht eine gewisse Parallelität von mehreren Prozessen mit wenig Rechenaufwand. Insbesondere in Verbindung mit DMA kann so viel Rechenzeit eingespart werden. \\
+		+ Die benötigte Infrastruktur (Register, CRC, etc.) sind bereits physika\-lisch implementiert. Die Kommunikation kann dementsprechend vom Rechenkern abgekoppelt durchgeführt werden und ermöglicht eine ge\-wisse Parallelität von mehreren Prozessen mit wenig Rechenaufwand. Insbesondere in Verbindung mit DMA kann so viel Rechenzeit eingespart werden. \\
 		- Bei den meisten Mikrocontrollern ist die spezifische Hardware an einzelne Pins gebunden. Dies wirkt sich auf die Flexibilität des PCB-Layouts oder gar des Gesamtsystems (zu wenig Anschlüsse vorhanden) aus.
 		\item in \textbf{Software} \\
 		+ Die meisten Pins können flexibel für jedes Protokoll verwendet werden. Dadurch vereinfacht sich auch das PCB-Layout.\\
@@ -412,7 +412,7 @@
 	\subsection{Hardware}
 	Auf Basis des \hyperref[Konzept]{Konzepts} wurde das PCB entworfen. Dabei wurde für die optimale Platzierung, sowie die zusätzlichen Widerstände und Kondensatoren, die jeweiligen Datenblätter der Hersteller konsultiert.
 	\subsubsection{PCB}
-	Das PCB durchlief dabei mehrere Iterationen. Nachfolgend treten die Änderungen mit den benötigten Zusatzinformationen chronologisch auf \footnote{Detailierte Abbildungen der Versionen befinden sich im Anhang \ref{PCB-Versionen}}. Zudem befindet sich nachfolgend eine Übersicht, wieso, welches Bauteil eingesetzt wird.
+	Das PCB durchlief dabei mehrere Iterationen. Nachfolgend treten die Ände\-rungen mit den benötigten Zusatzinformationen chronologisch auf \footnote{Detailierte Abbildungen der Versionen befinden sich im Anhang \ref{PCB-Versionen}}. Zudem befindet sich nachfolgend eine Übersicht, wieso, welches Bauteil eingesetzt wird.
 	\paragraph{V1-1}\mbox{}\\
 	Lediglich kleinere Verdrahtungs- und Platzierungsoptimierungen
 	\paragraph{V1-2}\mbox{}\\
@@ -443,7 +443,7 @@
 		\item Unterstützung von Li-Po und Li-Ion Akkus
 	\end{itemize}
 	\paragraph{Spannungsregler} \mbox{}\\
-	Der Akku weist eine maximale Nennspannung von 4.2V (Typ. 3.6V) auf. Alle gewählten Halbleiter erlauben jedoch maximal eine Speisespannung von 3.6V. Dadurch wird ein möglichst effizienter und kostengünstiger Spannungsregler verwendet. Wie auch bereits das BMS, weist der Spannungsregler möglichst wenig externe Bauteile auf.
+	Der Akku weist eine maximale Nennspannung von 4.2V (Typ. 3.6V) auf. Alle gewählten Halbleiter erlauben jedoch maximal eine Speisespannung von 3.6V. Dadurch wird ein möglichst effizienter und kostengünstiger Spannungs\-regler verwendet. Wie auch bereits das BMS, weist der Spannungsregler möglichst wenig externe Bauteile auf.
 	\paragraph{USB-C-Buchse}\mbox{}\\
 	Die in V1-0 verwendete Buchse (16 Pin) wird durch eine 6 Pin (power only) ersetzt. Dies, da die ursprünglich geplante Möglichkeit, den Mikrocontroller via USB zu programmieren, wieder verworfen wurde. Dies, weil auf den geplanten Anschlüssen zeitweise 5 V vom USB-Standard anliegen. Dadurch kann eine kostenoptimiertere Buchse verwendet werden.
 	\paragraph{P-Kanal MOSFET} \label{P-Kanal MOSFET} \mbox{}\\
