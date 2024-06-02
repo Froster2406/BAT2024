@@ -495,7 +495,7 @@
 		\label{fig:batsoftwareletimer}
 	\end{figure}
 	\subsubsection*{Filterdesign}
-	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Berechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die verwendeten Frequenzbewertungsfilter sind jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) erhältlich. Diesbezüglich stehen, wie in Abbildung \ref{fig:batfrequenzgewichtung} ersichtlich, zwei Wege offen:
+	Wie im Unterkapitel \ref{Frequenzbewertung} erläutert, reagiert unser Gehör nicht auf alle Frequenzen gleich. Um diese Frequenzbewertung in die Schalldruckpegel-Be\-rechnung einfliessen zu lassen, wird ein digitales, diskretes Filter benötigt. Die verwendeten Frequenzbewertungsfilter sind jedoch ausschliesslich in der S-Ebene (Laplace-Bereich, zeitkontinuierlich) erhältlich. Diesbezüglich stehen, wie in Abbildung \ref{fig:batfrequenzgewichtung} ersichtlich, zwei Wege offen:
 	\begin{itemize}
 		\item \textbf{Frequenzbereich} \\
 		Hier wird das PCM-codierte Signal mittels einer Fast Fourier Transformation (FFT) in den Frequenzbereich transformiert. Anschliessend können die Formeln \ref{G_A_s} oder \ref{G_C_s} auf das Signal angewendet werden, um die gewünschte Gewichtung vorzunehmen. Um anschliessend den Schalldruckpegel berechnen zu können, muss das Signal mittels einer inversen FFT wieder in den Zeitbereich transformiert werden. Je genauer die Frequenzbewertung sein soll, desto kleiner sind die Abstufungen von FFT und IFFT zu wählen, was zu einer Erhöhung des Berechnungsaufwandes auf dem Mikrocontroller führt.
@@ -538,13 +538,13 @@
 		\label{fig:batclock-muxing-pdm}
 	\end{figure}
 	\subsubsection*{PDM CIC-Filter}
-	Um aus dem 1-Bit PDM-Datenstream ein verarbeitbares PCM-Signal zu erhalten, wird die integrierte CIC-Filterstruktur verwendet. Gemäss \cite{silicon_efr32xg22_2022}, \ref{fig:batpdmgrundbegriffe} sowie \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate} muss diese folgendermassen konfiguriert sein:
+	Um aus dem 1-Bit PDM-Datenstream ein verarbeitbares PCM-Signal zu erhalten, wird die integrierte CIC-Filterstruktur verwendet. Gemäss \cite{silicon_efr32xg22_2022}, (\ref{fig:batpdmgrundbegriffe}) sowie \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate} muss diese folgendermassen konfiguriert sein:
 	\begin{itemize}[topsep=10pt,partopsep=0pt,labelwidth=5cm,align=left,itemindent=5cm]
 	\item[$\bullet$ Dezimierungsrate:] 64
 	\item[$\bullet$ Wortbreite:]  24 Bit
-	\item[$\bullet$ Verstärkung \ref{eq:Verstärkung}:]  0 dB 
+	\item[$\bullet$ Verstärkung (\ref{eq:Verstärkung}):]  0 dB 
 	\item[$\bullet$ Filterordnung:]  5
-	\item[$\bullet$ Clock-Dezimierung \ref{eq:Clock-Dezimierung}:]  0 
+	\item[$\bullet$ Clock-Dezimierung (\ref{eq:Clock-Dezimierung}):]  0 
 	\item[$\bullet$ Abtastrate:]  48 kHz
 	\end{itemize}
 	\begin{equation}\label{eq:Clock-Dezimierung}
@@ -569,7 +569,7 @@
 		\item dB-Umwandlung\\
 		Zur effektiven Berechnung des Schalldruckpegels muss die allgemein gültige Formel aus der Theorie (\ref{eq:dBSPL}) mit den maximalen Messwerten erweitert werden. Gleichzeitig wird der Referenz-Schalldruckpegel $P_0$ durch den maximalen, digitalen Wert, $dBFS$, ersetzt. Daraus entsteht folgende, finale Formel:
 		\begin{equation}\label{eq:dBSPL2}
-			dBSPL = \underbrace{129.5dB}_{AOP \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}} + 20 \cdot log_{10}\left( \frac{x_{RMS}}{8388607}\right) 
+			dBSPL = \underbrace{129.5dB}_{AOP \, \cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}} + 20 \cdot log_{10}\left( \frac{x_{RMS}}{8388607}\right) 
 		\end{equation}\blfootnote{dBFS = $\frac{2^{Aufl\ddot{o}sung}}{2}$}
 	\end{itemize}
 	\subsubsection*{I²C}
@@ -925,7 +925,7 @@
 		\item Sensitivitäts-Filter \\
 		Wie in den \hyperref[Mikrofon-Messungen]{Mikrofon-Messungen} ersichtlich, ist das MEMS-Mikrofon sensitiver im Frequenzbereich $>$2kHz als das Referenzgerät. Dieser Umstand soll durch einen zusätzlichen Software-Filter korrigiert werden.
 		\item Rauschboden $\vert$ SNR \\
-		In den \hyperref[Mikrofon-Messungen]{Mikrofon-Messungen} wird der \hyperref[Rauschboden]{Rauschboden} nicht explizit auf\-geführt. Der im Datenblatt (\cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}) aufgeführte SNR konnte in dieser Arbeit jedoch nicht verifiziert werden. Der gemessene Rauschboden liegt bei ca. 65dB. Deshalb wurden im Anhang \ref{Grundrauschen} mögliche Fehlerquellen überprüft, um diesen in einer Folgearbeit zu verbessern.
+		In den \hyperref[Mikrofon-Messungen]{Mikrofon-Messungen} wird der \hyperref[Rauschboden]{Rauschboden} nicht explizit auf\-geführt. Der im Datenblatt (\cite{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}) aufgeführte SNR konnte in dieser Arbeit jedoch nicht verifiziert werden. Der gemessene Rauschboden liegt bei ca. 65dB. Deshalb wurden im Anhang, Kapitel  \hyperref[Grundrauschen]{Grundrauschen}, mögliche Fehlerquellen überprüft, um diese in einer Folgearbeit zu beseitigen.
 	\end{itemize}
 	
 	\newpage
@@ -1325,7 +1325,7 @@
 	\begin{minipage}[b]{\textwidth}
 		\includepdf[landscape=true, pages={1},scale=0.8, pagecommand={}]{images/BAT_Zeitplan_V2.pdf}
 	\end{minipage}
-	
+
 	\newpage
 	\subsection*{Journal}
 	\begin{table}[H]
