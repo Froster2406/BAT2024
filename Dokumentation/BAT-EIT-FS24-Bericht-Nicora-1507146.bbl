@@ -24,7 +24,7 @@
 \bibitem{noauthor_xl2_nodate}
 \BIBentryALTinterwordspacing
 ``{XL2} {Schallpegelmesser} \& {Akustik}-{Analysator} {\textbar} {NTi}
-  {Audio}.'' [Online]. Available:
+  {Audio},'' zugriff:2024-04-28. [Online]. Available:
   \url{https://www.nti-audio.com/de/produkte/schallpegelmesser/xl2-audio-akustik-analysator}
 \BIBentrySTDinterwordspacing
 
@@ -35,22 +35,22 @@ G.~Feiertag, M.~Winter, and A.~Leidl, ``Flip chip packaging for {MEMS}
 
 \bibitem{noauthor_peripherer_nodate}
 \BIBentryALTinterwordspacing
-``\BIBforeignlanguage{de}{Peripherer {Beschleunigungssensor}}.'' [Online].
-  Available:
+``\BIBforeignlanguage{de}{Peripherer {Beschleunigungssensor}},''
+  zugriff:2024-04-27. [Online]. Available:
   \url{https://www.bosch-mobility.com/de/loesungen/sensoren/peripherer-beschleunigungssensor/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{noauthor_httpsinvensensetdkcomwp-contentuploads202007ds-000157-ics-41351-v14pdf_nodate}
 \BIBentryALTinterwordspacing
-``https://invensense.tdk.com/wp-content/uploads/2020/07/{DS}-000157-{ICS}-41351-v1.4.pdf.''
-  [Online]. Available:
+``https://invensense.tdk.com/wp-content/uploads/2020/07/{DS}-000157-{ICS}-41351-v1.4.pdf,''
+  zugriff:2024-05-11. [Online]. Available:
   \url{https://invensense.tdk.com/wp-content/uploads/2020/07/DS-000157-ICS-41351-v1.4.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{noauthor_was_nodate}
 \BIBentryALTinterwordspacing
 ``Was bedeuten die {Begriffe} '{Fast}', '{Slow}', '{Impulse}'
-  {Zeitgewichtung}?'' [Online]. Available:
+  {Zeitgewichtung}?'' zugriff:2024-05-23. [Online]. Available:
   \url{https://www.nti-audio.com/de/service/wissen/was-bedeuten-die-begriffe-fast-slow-impulse-zeitgewichtung}
 \BIBentrySTDinterwordspacing
 
@@ -74,14 +74,14 @@ N.~R. C. U. C. o. D. D. f. I. w.~H. Impairments, R.~A. Dobie, and S.~V. Hemel,
 \bibitem{dighe_tps65950_2008}
 \BIBentryALTinterwordspacing
 G.~Dighe, ``{TPS65950} {Real}-{Time} {Clock} {Timing} {Compensation},'' Oct.
-  2008. [Online]. Available:
+  2008, zugriff:2024-03-04. [Online]. Available:
   \url{https://www.ti.com/lit/an/swca024/swca024.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{noauthor_stm32l4_2024}
 \BIBentryALTinterwordspacing
 ``\BIBforeignlanguage{en}{{STM32L4} {Series} - {PDF} {Documentation}},'' Mar.
-  2024. [Online]. Available:
+  2024, zugriff:2024-03-18. [Online]. Available:
   \url{https://www.st.com/en/microcontrollers-microprocessors/stm32l4-series/documentation.html}
 \BIBentrySTDinterwordspacing
 
@@ -99,21 +99,22 @@ A.~V. Oppenheim, \emph{Zeitdiskrete {Signalverarbeitung}}.\hskip 1em plus 0.5em
 \bibitem{silicon_efr32xg22_2022}
 \BIBentryALTinterwordspacing
 L.~Silicon, ``\BIBforeignlanguage{en}{{EFR32xG22} {Wireless} {Gecko}
-  {Reference} {Manual}},'' 2022. [Online]. Available:
+  {Reference} {Manual}},'' 2022, zugriff:2024-05-11. [Online]. Available:
   \url{https://www.silabs.com/documents/public/reference-manuals/efr32xg22-rm.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{noauthor_bluetooth_nodate-1}
 \BIBentryALTinterwordspacing
-``\BIBforeignlanguage{en-US}{Bluetooth {Zertifizierung}}.'' [Online].
-  Available:
+``\BIBforeignlanguage{en-US}{Bluetooth {Zertifizierung}},'' zugriff:2024-05-14.
+  [Online]. Available:
   \url{https://www.bluetooth.com/develop-with-bluetooth/qualification-listing/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{noauthor_bluetooth_nodate}
 \BIBentryALTinterwordspacing
-``\BIBforeignlanguage{en-US}{Bluetooth {Zertifizierungskosten}}.'' [Online].
-  Available: \url{https://www.bluetooth.com/fee-schedule/}
+``\BIBforeignlanguage{en-US}{Bluetooth {Zertifizierungskosten}},''
+  zugriff:2024-05-14. [Online]. Available:
+  \url{https://www.bluetooth.com/fee-schedule/}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

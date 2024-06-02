@@ -18,37 +18,37 @@ Warning--empty journal in silicon_efr32xg22_2022
 Done.
 You've used 14 entries,
             4087 wiz_defined-function locations,
-            887 strings with 9810 characters,
-and the built_in function-call counts, 5304 in all, are:
-= -- 371
+            894 strings with 9936 characters,
+and the built_in function-call counts, 5718 in all, are:
+= -- 434
 > -- 55
 < -- 10
 + -- 33
 - -- 9
-* -- 262
-:= -- 897
+* -- 288
+:= -- 987
 add.period$ -- 29
 call.type$ -- 14
-change.case$ -- 15
+change.case$ -- 24
 chr.to.int$ -- 24
 cite$ -- 15
-duplicate$ -- 448
-empty$ -- 543
+duplicate$ -- 475
+empty$ -- 552
 format.name$ -- 11
-if$ -- 1161
+if$ -- 1251
 int.to.chr$ -- 0
 int.to.str$ -- 14
-missing$ -- 90
+missing$ -- 99
 newline$ -- 89
 num.names$ -- 5
 pop$ -- 301
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 381
+skip$ -- 418
 stack$ -- 0
-substring$ -- 73
-swap$ -- 257
+substring$ -- 91
+swap$ -- 284
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 5
@@ -56,5 +56,5 @@ type$ -- 14
 warning$ -- 1
 while$ -- 9
 width$ -- 16
-write$ -- 147
+write$ -- 156
 (There was 1 warning)
