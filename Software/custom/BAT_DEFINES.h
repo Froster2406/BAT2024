@@ -2,7 +2,7 @@
  * BAT_DEFINES.h
  *
  *  Created on: 17.03.2024
- *      Author: FrosterOTG
+ *      Author: Stefano Nicora
  */
 
 #ifndef CUSTOM_BAT_DEFINES_H_
@@ -20,16 +20,17 @@
 #define BAT_MIC_CLK_PIN     0
 #define BAT_MIC_DATA_PORT   gpioPortB
 #define BAT_MIC_DATA_PIN    0
+#define BUFFERSIZE          512
 
 /* VISIUAL REPRESENTATION */
-#define LED_THRESHOLD_1 57 /* in dB */
-#define LED_THRESHOLD_2 58 /* in dB */
-#define LED_THRESHOLD_3 59 /* in dB */
-#define LED_THRESHOLD_4 60 /* in dB */
-#define LED_THRESHOLD_5 61 /* in dB */
-#define LED_THRESHOLD_6 62 /* in dB */
-#define LED_THRESHOLD_7 63 /* in dB */
-#define LED_THRESHOLD_8 64 /* in dB */
+#define LED_THRESHOLD_1 76 /* in dB */
+#define LED_THRESHOLD_2 79 /* in dB */
+#define LED_THRESHOLD_3 82 /* in dB */
+#define LED_THRESHOLD_4 85 /* in dB */
+#define LED_THRESHOLD_5 88 /* in dB */
+#define LED_THRESHOLD_6 91 /* in dB */
+#define LED_THRESHOLD_7 94 /* in dB */
+#define LED_THRESHOLD_8 97 /* in dB */
 
 /* SPI */
 #define BAT_SPI_MISO_PORT gpioPortC
@@ -48,4 +49,5 @@
 #define BAT_I2C_SDA_PIN     6
 #define BAT_I2C_ENABLE_PORT gpioPortA
 #define BAT_I2C_ENABLE_PIN  4
+
 #endif /* CUSTOM_BAT_DEFINES_H_ */

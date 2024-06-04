@@ -17,4 +17,4 @@ CWeighting = weightingFilter('C-weighting', 48000);
 cSOSFilter = getFilter(CWeighting);
 
 % Save the filter design to a file
-% save('c_filter_48000_DD2-T.mat', 'aSOSFilter');
+% save('c_filter_48000_DD2-T.mat', 'cSOSFilter');

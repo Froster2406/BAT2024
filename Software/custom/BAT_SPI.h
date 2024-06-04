@@ -2,7 +2,7 @@
  * BAT_SPI.h
  *
  *  Created on: 16.03.2024
- *      Author: FrosterOTG
+ *      Author: Stefano Nicora
  */
 
 #ifndef CUSTOM_BAT_SPI_H_

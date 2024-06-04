@@ -2,7 +2,7 @@
  * BAT_SPI.c
  *
  *  Created on: 16.03.2024
- *      Author: FrosterOTG
+ *      Author: Stefano Nicora
  */
 
 /*
@@ -23,6 +23,11 @@ void BAT_SPI_enableChip(void);
 
 void BAT_SPI_disableChip(void);
 
+/***************************************************************************//**
+ * @brief
+ *   Disable SPI peripheral as well as EEPROM
+ *
+ ******************************************************************************/
 void BAT_SPI_init(void){
   SPIDRV_Init_t initData = SPIDRV_MASTER_DEFAULT;
   initData.clockMode = spidrvClockMode0; /* SPI mode 0: CLKPOL=0, CLKPHA=0 */
@@ -40,23 +45,44 @@ void BAT_SPI_init(void){
   BAT_SPI_enableChip();
 }
 
+/***************************************************************************//**
+ * @brief
+ *   Disable SPI peripheral as well as EEPORM
+ *
+ ******************************************************************************/
 void BAT_SPI_deInit(void){
   BAT_SPI_disableChip();
   SPIDRV_DeInit(handle);
 }
 
-/* in order to write to the chip, we need to enable it first */
+/***************************************************************************//**
+ * @brief
+ *   Enable EEPROM to make it writable
+ *
+ ******************************************************************************/
 void BAT_SPI_enableChip(void){
   uint8_t dataOut[1] = { BAT_SPI_WREN };
   SPIDRV_MTransmitB(handle, dataOut, 1);
 }
 
+/***************************************************************************//**
+ * @brief
+ *   Disable EEPROM
+ *
+ ******************************************************************************/
 void BAT_SPI_disableChip(void){
   uint8_t dataOut[1] = { BAT_SPI_WRDI };
   SPIDRV_MTransmitB(handle, dataOut, 1);
 }
 
-/* check if eeprom is ready to communicate */
+/***************************************************************************//**
+ * @brief
+ *   Check JEDEC code to see if EEPROM is available
+ *
+ * @param[out]
+ *   Returns true if EEPROM is available
+ *
+ ******************************************************************************/
 bool BAT_SPI_eepromIsAvailable(void){
   /* read JEDEC code for specific EEPROM */
   uint8_t dataOut[1] = { BAT_SPI_JDID };
@@ -69,7 +95,14 @@ bool BAT_SPI_eepromIsAvailable(void){
   }
 }
 
-/* write a page (512 bytes) of data  */
+/***************************************************************************//**
+ * @brief
+ *   Write a whole page (512 bytes) of data into the EEPROM
+ *
+ * @param[in] *dataToBeStored
+ *   Which data has to be stored in the EEPROM
+ *
+ ******************************************************************************/
 void BAT_SPI_writePage(char *dataToBeStored){
   /* concatinate dataToBeStored with command to write a page as well as starting address */
   memset(data, 0, 516);
@@ -83,8 +116,14 @@ void BAT_SPI_writePage(char *dataToBeStored){
   pageWriteCounter++;
 }
 
-
-/* read a page (512 bytes) of data into RAM */
+/***************************************************************************//**
+ * @brief
+ *   Read a whole page (512 bytes) of data into RAM
+ *
+ * @param[in] *dataToBeRetrieved
+ *   Where the EEPROM-data is stored
+ *
+ ******************************************************************************/
 void BAT_SPI_readPage(char *dataToBeRetrieved){
   memset(data, 0, 516);
   data[0] = BAT_SPI_READ;
@@ -96,7 +135,11 @@ void BAT_SPI_readPage(char *dataToBeRetrieved){
   pageReadCounter++;
 }
 
-/* erases the whole EEPROM */
+/***************************************************************************//**
+ * @brief
+ *   Erase the whole EEPROM
+ *
+ ******************************************************************************/
 void BAT_SPI_clearEEPROM(void){
   uint8_t dataOut[1] = { BAT_SPI_CHER };
   SPIDRV_MTransmitB(handle, dataOut, 1);

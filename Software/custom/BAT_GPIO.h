@@ -2,7 +2,7 @@
  * BAT_GPIO.h
  *
  *  Created on: 02.04.2024
- *      Author: FrosterOTG
+ *      Author: Stefano Nicora
  */
 
 #ifndef CUSTOM_BAT_GPIO_H_

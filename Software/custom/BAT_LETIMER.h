@@ -2,7 +2,7 @@
  * BAT_LETIMER.h
  *
  *  Created on: 02.04.2024
- *      Author: FrosterOTG
+ *      Author: Stefano Nicora
  */
 
 #ifndef CUSTOM_BAT_LETIMER_H_

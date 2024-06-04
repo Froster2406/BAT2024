@@ -2,7 +2,7 @@
  * BAT_PDM.h
  *
  *  Created on: 16.03.2024
- *      Author: FrosterOTG
+ *      Author: Stefano Nicora
  */
 
 #ifndef BAT_PDM_H_
@@ -24,7 +24,9 @@ void BAT_PDM_readMicrophone(int32_t *buffer, uint16_t samples);
 
 void BAT_PDM_convertPCMTodBSPL(int32_t *buffer, uint16_t samples, float *dBSPL);
 
-void BAT_PDM_applyAWeightingFilter(double *x, double *y, uint16_t k);
+void BAT_PDM_applyAWeightingFilter(int32_t *x, int32_t *y, uint16_t k);
+
+void BAT_PDM_applyCWeightingFilter(int32_t *x, int32_t *y, uint16_t k);
 
 void BAT_PDM_convertSPLToString(double dBSPL, char* str);
 

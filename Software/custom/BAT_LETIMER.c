@@ -2,24 +2,22 @@
  * BAT_LETIMER.c
  *
  *  Created on: 02.04.2024
- *      Author: FrosterOTG
+ *      Author: Stefano Nicora
  */
 
 #include "BAT_LETIMER.h"
 
 static uint32_t time = 0;
-//static double dBSPL = 0;
 static uint8_t timeout = 0;
 static char timestamp[10]; /* holds string in format hh:mm:ss */
 static char inputStorageBuffer[512] = {0};  /* holds data  read from EEPROM */
 static char outputStorageBuffer[512] = {0}; /* holds data to be written to EEPROM */
 
-static int32_t buffer[128] = {0};
-static double bufferWeighted[128] = {0};
-static uint8_t value_counter = 0;
-static uint8_t cnt = 0;
-static uint8_t avg[4] = {0};
-
+/***************************************************************************//**
+ * @brief
+ *   Initialize the Timer peripheral
+ *
+ ******************************************************************************/
 void BAT_TIMER_init(void){
   /* Enable clock for LETIMER0 */
   CMU_ClockEnable(cmuClock_LETIMER0, true);
@@ -42,47 +40,50 @@ void BAT_TIMER_init(void){
   NVIC_EnableIRQ(LETIMER0_IRQn);
 }
 
+/***************************************************************************//**
+ * @brief
+ *   Deinitialize the Timer peripheral
+ *
+ ******************************************************************************/
 void BAT_TIMER_deInit(void){
 
 }
 
+/***************************************************************************//**
+ * @brief
+ *   Create the interrupt handler called each BAT_MEASUREMENT_INTERVAL.
+ *   Acts as the main measurement loop
+ *
+ ******************************************************************************/
 void LETIMER0_IRQHandler(void)
 {
   /* Clear the interrupt flag */
   LETIMER_IntClear(LETIMER0, LETIMER_IF_COMP0);
-  /* test */
-  uint32_t clock_freqPDM = CMU_ClockFreqGet(cmuClock_PDM);    /* 3072000 */
-  uint32_t clock_freqI2C = CMU_ClockFreqGet(cmuClock_I2C0);   /* 19200000 */
-  uint32_t clock_freqSPI = CMU_ClockFreqGet(cmuClock_USART0); /* 38400000 */
-  uint32_t clock_freqSYSCLK = CMU_ClockFreqGet(cmuClock_SYSCLK); /* 38400000 */
-  uint32_t clock_freqEM01GRPBCLK = CMU_ClockFreqGet(cmuClock_EM01GRPBCLK);
-  uint32_t clock_freqPDM1 = CMU_ClockFreqGet(cmuClock_PDM);
-  uint32_t clock_freqPDMREF = CMU_ClockFreqGet(cmuClock_PDMREF);
-  uint32_t clock_freqDPLL0 = CMU_ClockFreqGet(cmuClock_DPLL0);
-  uint32_t clock_freqLFXO = CMU_ClockFreqGet(cmuClock_LFXO);
-  uint32_t clock_freqHFXO = CMU_ClockFreqGet(cmuClock_HFXO);
 
-  /* test end */
   /* is device charging? YES: Enable BLE and transmit Data | NO: log data to memory */
   if(GPIO_PinInGet(BAT_CHARGING_PORT, BAT_CHARGING_PIN)){ /* device is charging; transmit data */
-      //     BAT_SPI_readPage();
       time = BAT_RTC_getTime();
       BAT_I2C_enableLedRange(0);
   } else{  /* log data */
+      /* define needed variables */
+      int32_t buffer[BUFFERSIZE] = {0};
+      int32_t bufferWeighted[BUFFERSIZE] = {0};
+      static uint8_t value_counter = 0;
+      static uint8_t cnt = 0;
+      static uint8_t avg[4] = {0};
       float dBSPL = 0;
       /* read microphone */
-      BAT_PDM_readMicrophone(buffer, 128);
+      BAT_PDM_readMicrophone(buffer, BUFFERSIZE);
       /* read RTC */
       time = BAT_RTC_getTime();
       /* convert timestamp to string */
       BAT_RTC_convertTimeToString(time, timestamp);
       /* apply filtering */
-//      BAT_PDM_applyAWeightingFilter(buffer, bufferWeighted, 128);
+//    BAT_PDM_applyAWeightingFilter(buffer, bufferWeighted, BUFFERSIZE);
+//    BAT_PDM_applyCWeightingFilter(buffer, bufferWeighted, BUFFERSIZE);
       /* convert data to dBSPL */
-      BAT_PDM_convertPCMTodBSPL(buffer, 128, &dBSPL);
-//           BAT_PDM_convertPCMTodBSPL(bufferWeighted, 128, &dBSPL);
-//      dBSPL -= 28; /* 24bit */
-      dBSPL += 20; /* 16bit */
+      BAT_PDM_convertPCMTodBSPL(buffer, BUFFERSIZE, &dBSPL);
+//    BAT_PDM_convertPCMTodBSPL(bufferWeighted, BUFFERSIZE, &dBSPL);
       /* convert dBSPL value to string */
       char dBSPLstr[7] = {0};  /* holds dBSPL value in string format */
       BAT_PDM_convertSPLToString(dBSPL, dBSPLstr);
@@ -117,9 +118,9 @@ void LETIMER0_IRQHandler(void)
       char string[16] = {0};
       BAT_LOGGING_generateLogString(string, timestamp, dBSPLstr);
       value_counter++;
-      //     if (value_counter == (512 / BAT_LEN_MEAS_STR) && BAT_SPI_eepromIsAvailable()){
-      //         BAT_SPI_writePage(outputStorageBuffer);
-      //     }
-      //////     EMU_EnterEM1(); // Enter energy mode 1 to save power
+//           if (value_counter == (512 / BAT_LEN_MEAS_STR) && BAT_SPI_eepromIsAvailable()){
+//               BAT_SPI_writePage(outputStorageBuffer);
+//           }
+//      EMU_EnterEM1(); // Enter energy mode 1 to save power
   }
 }
