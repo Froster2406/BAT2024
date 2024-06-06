@@ -20,7 +20,7 @@
 #define BAT_MIC_CLK_PIN     0
 #define BAT_MIC_DATA_PORT   gpioPortB
 #define BAT_MIC_DATA_PIN    0
-#define BUFFERSIZE          512
+#define BUFFERSIZE          128
 
 /* VISIUAL REPRESENTATION */
 #define LED_THRESHOLD_1 76 /* in dB */
